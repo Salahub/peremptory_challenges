@@ -1,0 +1,90 @@
+\documentclass{article}
+
+\usepackage{url}
+
+\usepackage{times}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage[font=footnotesize]{caption}
+\usepackage[font=footnotesize]{subcaption}
+\usepackage[pdftex]{graphicx}
+\usepackage{wrapfig}
+\usepackage{epstopdf}
+\usepackage[american]{babel}
+\usepackage{url}
+\usepackage{color}
+\usepackage{xspace}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{alltt}
+\usepackage{multicol}
+\usepackage{blindtext}
+\usepackage{scrextend}
+\addtokomafont{labelinglabel}{\sffamily}
+
+\usepackage{algorithmic}
+\renewcommand{\algorithmiccomment}[1]{// #1} % Brackets are confused with the sets
+\usepackage{algorithm} % For counting chapters
+\algsetup{linenosize=\scriptsize}
+\xspaceaddexceptions{=}
+\xspaceaddexceptions{\}}
+\xspaceaddexceptions{\in}
+
+%% common abbreviations
+\newcommand{\ie}{i.e.,\xspace}
+\newcommand{\eg}{e.g.\xspace}
+\newcommand{\Ie}{I.e.,\xspace}
+\newcommand{\Eg}{E.g.\xspace}
+\newcommand{\etal}{\emph{et.\ al.\ }\xspace}
+\newcommand{\des}[1]{\mbox{\scriptsize #1}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+
+% A set depicted with bold:
+\newcommand{\set}[1]{\ensuremath{\mathbf{#1}}\xspace}
+
+% The elements of a set:
+\newcommand{\elements}[3]{\ensuremath{\{#1_{#2},...,#1_{#3}\}}\xspace} 
+
+%The cardinality of a given set belonging somewhere:
+\newcommand{\cardinality}[2]{\ensuremath{|\set{#1}_{#2}|}\xspace} 		
+
+% A mathematical unit:
+\newcommand{\unit}[1]{\ensuremath{\mathrm{#1}}\xspace} 	
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newtheorem{definition}{Definition}
+
+% correct bad hyphenation here
+\hyphenation{}
+
+\title{An empirical investigation of peremptory challenge}
+\author{Christopher Salahub}
+
+\begin{document}
+\maketitle
+
+\section{Data Cleaning}
+
+\textbf{Jury Sunshine Data}
+
+\underline{Problem}: some columns of the data contained only NA values
+\underline{Solution}: \texttt{lapply} to remove these uninformative columns
+
+\underline{Problem}: relational database provided did not have all data in one joined table
+\underline{Solution}: creation of \texttt{CleaningMerge} function: a wrapper for \texttt{merge} which provides information about the
+mismatches which may be present in the two merged tables
+
+\underline{Problem}: inconsistently coded levels, e.g. inconsistent case or ``?'' instead of ``U'' for unknowns
+\underline{Solution}: forcing levels to be uppercase and the replacement of obvious mis-specified levels
+
+\underline{Problem}: some columns seem to have swapped values, e.g. the gender column should be one of ``M'', ``F'', or ``U'' and the
+political affiliation column should be one of ``D'', ``R'', ``I'', or ``U'', but some individuals have the gender recorded as
+``R'' and political affiliation as ``M''
+\underline{Solution}: the creation of the \texttt{IdentifySwap} function, which has two arguments: a data set and the acceptable or correct
+levels for the variables in the data set. It then identifies rows which have candidate swaps and presents them for review
+
+\end{document}

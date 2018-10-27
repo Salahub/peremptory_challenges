@@ -1,0 +1,167 @@
+
+
+## CONSTANTS ###########################
+
+## start by defining file locations
+ThesisDir <- "c:/Users/Chris/Documents/ETH Zurich/Thesis/Data"
+SunshineFile <- paste0(ThesisDir, "/JurySunshineExcel.xlsx")
+SunshineSheets <- excel_sheets(SunshineFile)
+
+NorthCarFile <- paste0(ThesisDir,
+                       "/Jury Study Data and Materials/NC Jury Selection Study Database6 Dec 2011.csv")
+
+PhillyFile <- paste0(ThesisDir,
+                     "/Voir Dire Data & Codebook/capital_venires.csv")
+
+## next the factor level codes as given in the codebook and regularized here
+## regularization: - political affiliation "N" replaced with "I" for all entries
+LevRace <-  c("A","B","H","N","O","U","W")
+LevGen <-  c("F","M","U")
+LevPol <-  c("D","L","R","I","U")
+
+
+## DATA INSPECTION #####################
+
+## load the data if it is not loaded
+if (!("FullSunshine" %in% ls())) FullSunshine <- read.csv("FullSunshine.csv")
+if (!("SwapSunshine" %in% ls())) SwapSunshine <- read.csv("FullSunshine_Swapped.csv")
+
+## display information about juror rejection tendencies
+mosaicplot(Race ~ Disposition, data = SRaceKnown)
+## too busy, synthesize some variables to clearly indicate the results of defense and prosecution selection
+SwapSunshine$VisibleMinor <- SwapSunshine$Race != "W"
+SwapSunshine$PerempStruck <- SwapSunshine$Disposition == "S" | SwapSunshine$Disposition == "D"
+SwapSunshine$DefStruck <- SwapSunshine$Disposition == "D"
+SwapSunshine$ProStruck <- SwapSunshine$Disposition == "S"
+## create a race filtered data set
+SRaceKnown <- SwapSunshine[SwapSunshine$Race != "U",]
+SRaceKnown$Race <- as.factor(levels(SRaceKnown$Race)[as.numeric(SRaceKnown$Race)])
+## try plotting these
+mosaicplot(VisibleMinor ~ PerempStruck, data = SRaceKnown, shade = TRUE)
+mosaicplot(VisibleMinor ~ DefStruck, data = SRaceKnown, shade = TRUE)
+mosaicplot(VisibleMinor ~ ProStruck, data = SRaceKnown, shade = TRUE)
+## it seems that there are significantly different strike habits between the defense and prosecution, but that
+## generally the system does not strike at different rates on average
+## look at rejection with more detail
+mosaicplot(Race ~ PerempStruck, data = SRaceKnown)
+mosaicplot(Race ~ DefStruck, data = SRaceKnown)
+mosaicplot(Race ~ ProStruck, data = SRaceKnown)
+## try another approach
+mosaicplot(Race ~ Disposition, data = SRaceKnown)
+
+
+## however, this suggests another question: is this strategy actually successful? That is, does there appear to
+## be a relation between the number of peremptory challenges and the court case outcome?
+## this may be difficult, there are a lot of factors to consider:
+##                  - the lawyer and their track record
+##                  - how to judge the success/failure of the case
+## start by making a simple indicator of guilty/not guilty ignoring the complexities of such a verdict
+SwapSunshine$Guilty <- SwapSunshine$Outcome %in% c("GC", "GL", "G")
+## see if the presence of challenges is related to this verdict
+mosaicplot(PerempStruck ~ Guilty, data = SwapSunshine, shade = TRUE)
+## on the level of jurors, this is certainly not the case, but this is not the correct scale for the question being
+## asked, this question will be addressed again in the case-summarized data
+
+## identify the unique trials
+Trials <- unique(SwapSunshine$TrialNumberID)
+## and the variables which can be sensibly summarized for each trial
+TrialVars <- c("TrialNumberID", "JudgeID", "DefAttyType", "VictimName",
+               "VictimRace", "VictimGender", "CrimeLocation", "PropertyType",
+               "ZipCode.Trials", "StateTotalRemoved", "DefenseTotalRemoved",
+               "CourtTotalRemoved", "JDistrict", "JFirstName", "JLastName",
+               "JRace", "JGender", "JPoliticalAff", "JVoterRegYr", "JYrApptd",
+               "JResCity", "JResZip", "ChargeTxt", "Outcome", "Sentence.FullSunshine",
+               "DefendantID.FullSunshine", "DefendantID.DefendantToTrial", "DefRace",
+               "DefGender", "DefDOB", "ProsecutorID", "ProsecutorFirstName",
+               "ProsecutorLastName", "ProsRace", "ProsGender", "ProsPoliticalAff",
+               "PYrRegVote", "PYrLicensed", "PResideCity", "PResideZip")
+## extract information about these trials
+UniqueTrial <- aggregate(SwapSunshine[,TrialVars],
+                         by = list(SwapSunshine$TrialNumberID),
+                         unique)
+UniqueTrial$Group.1 <- NULL
+UniqueTrial <- lapply(UniqueTrial, function(var) if (is.character(var)) as.factor(var) else var)
+## interestingly, the outcomes do not seem to be unique to the trials in the data, which is surprising
+## let's investigate these outcomes
+OutcomeTabs <- lapply(Trials, function(trial) table(SwapSunshine$Outcome[SwapSunshine$TrialNumberID == trial]))
+OutcomeTabs <- lapply(OutcomeTabs, function(tab) tab[tab != 0])
+DubOut <- OutcomeTabs[sapply(OutcomeTabs, function(tab) length(tab) > 1)]
+length(DubOut)
+## this does not seem to make sense until the charges are viewed by unique trial
+sum(sapply(UniqueTrial$ChargeTxt, function(el) length(el > 1)))
+## this and multiple defendants on a trial seem to explain almost all of the duplicates, aggregate by all three of these
+## variables and create new, clearer IDs
+UniqueTrial <- aggregate(SwapSunshine[,TrialVars],
+                         by = list(SwapSunshine$TrialNumberID, SwapSunshine$DefendantID.DefendantToTrial,
+                                   SwapSunshine$ID.Charges),
+                         unique)
+UniqueTrial$Group.1 <- NULL
+UniqueTrial$Group.2 <- NULL
+UniqueTrial$Group.3 <- NULL
+## this has solved the issue
+## synthesize a minority defense indicator
+UniqueTrial$MinorDef <- sapply(UniqueTrial$DefRace, function(el) !("W" %in% el), simplify = TRUE)
+## add a guilty indicator
+UniqueTrial$Guilty <- UniqueTrial$Outcome %in% c("GC", "GL", "G")
+## try to address the same question of "effectiveness" as before
+plot(DefenseTotalRemoved ~ as.factor(Guilty), data = UniqueTrial)
+plot(StateTotalRemoved ~ as.factor(Guilty), data = UniqueTrial)
+plot(jitter(as.numeric(Guilty)) ~ StateTotalRemoved, data = UniqueTrial)
+## see if there is anything to an advantage given by a usage differential between prosecution and defense
+UniqueTrial$PerempDiff <- UniqueTrial$StateTotalRemoved - UniqueTrial$DefenseTotalRemoved
+plot(PerempDiff ~ as.factor(Guilty), data = UniqueTrial)
+## try fitting a logistic regression model
+diffMod <- glm(Guilty ~ MinorDef + DefenseTotalRemoved + StateTotalRemoved, data = UniqueTrial,
+               family = binomial)
+## do a quick race investigation
+mosaicplot(DefRace ~ as.factor(Guilty), data = UniqueTrial, shade = TRUE)
+plot(DefenseTotalRemoved ~ as.factor(Guilty) + DefRace, data = UniqueTrial)
+plot(StateTotalRemoved ~ as.factor(Guilty) + as.factor(MinorDef), data = UniqueTrial)
+## there does not seem to be any advantage given by peremptory challenge usage, maybe try controlling for crime severity
+
+## to control for crime severity, try performing some text analysis on the sentencing data and charge text
+
+## try this for the other data sets
+mosaicplot(RACEQUES ~ FINLJURY, data = PhillyData)
+## not many rejections, LOTS of missing data
+c(table(PhillyData$FINLJURY), "NAs" = sum(is.na(PhillyData$FINLJURY)))
+## is this data even useful? next data set:
+mosaic(table(NorthCarData[,c("RaceLabel", "Struck")]), shade = TRUE)
+
+
+
+## do some plotting
+with(SingleTrialData, plot(y = jitter(DefenseTotalRemoved), x = jitter(as.numeric(DefAttyType)),
+                           xaxt = "n", xlab = "Defense Attorney Type", ylab = "Number of Rejected Jurors",
+                           col = adjustcolor(c("firebrick","steelblue")[MinorDef+1], alpha.f = 0.2), pch = 19))
+axis(side = 1, at = 1:6, labels = c("P-Appointed", "PublicDefender", "P-Unknown",
+                                    "P-Retained", "Unknown", "Self-Representation"),
+     cex.axis = 0.75)
+for (ii in 0:17) abline(h = ii, lty = 2, col = adjustcolor("gray50", alpha.f = 0.3))
+with(SingleTrialData, points(x = 1:6, y = sapply(levels(DefAttyType),
+                                               function(type) mean(DefenseTotalRemoved[DefAttyType == type],
+                                                                   na.rm = TRUE)),
+                             col = "red", pch = 19))
+
+## comparison plot of prosecutor rejection
+plot(x = sort(SingleTrialData$StateTotalRemoved), y = ppoints(length(sort(SingleTrialData$StateTotalRemoved))),
+     ylab = "Quantile", xlab = "Number of Juror Rejections", col = "steelblue")
+points(x = sort(SingleTrialData$DefenseTotalRemoved), y = ppoints(length(sort(SingleTrialData$DefenseTotalRemoved))),
+       col = "firebrick")
+legend(x = "bottomright", legend = c("Prosecution", "Defense"), col = c("steelblue","firebrick"),
+       pch = 1)
+
+## plot by race combination of defendant
+
+## plot of rejection by minority defendant
+par(mfrow = c(1,2))
+boxplot(DefenseTotalRemoved ~ MinorDef, data = SingleTrialData, ylim = c(-1,17), xlab = "Minority Defendant",
+        ylab = "Defense Peremptory Challenges")
+text(x = c(1,2), y = c(-1,-1),
+     labels = paste0("n = ", c(sum(!SingleTrialData$MinorDef), sum(SingleTrialData$MinorDef))))
+boxplot(StateTotalRemoved ~ MinorDef, data = SingleTrialData, ylim = c(-1,17), xlab = "Minority Defendant",
+        ylab = "Prosecution Peremptory Challenges")
+text(x = c(1,2), y = c(-1,-1),
+     labels = paste0("n = ", c(sum(!SingleTrialData$MinorDef), sum(SingleTrialData$MinorDef))))
+
+## plot the unconditional challenge distribution of both sides
