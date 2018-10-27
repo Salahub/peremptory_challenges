@@ -1,3 +1,10 @@
+########################################
+
+## THESIS ANALYSIS SCRIPT
+## Christopher Salahub
+## Sept 26, 2018
+
+########################################
 
 
 ## CONSTANTS ###########################
@@ -15,19 +22,21 @@ PhillyFile <- paste0(ThesisDir,
 
 ## next the factor level codes as given in the codebook and regularized here
 ## regularization: - political affiliation "N" replaced with "I" for all entries
-LevRace <-  c("A","B","H","N","O","U","W")
-LevGen <-  c("F","M","U")
-LevPol <-  c("D","L","R","I","U")
+LevRace <- sort(c("A","B","H","N","O","U","W"))
+LevGen <-  sort(c("F","M","U"))
+LevPol <-  sort(c("D","L","R","I","U"))
 
 
 ## DATA INSPECTION #####################
 
 ## load the data if it is not loaded
-if (!("FullSunshine" %in% ls())) FullSunshine <- read.csv("FullSunshine.csv")
-if (!("SwapSunshine" %in% ls())) SwapSunshine <- read.csv("FullSunshine_Swapped.csv")
+if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
+    SwapSunshine <- read.csv("FullSunshine_Swapped.csv")
+} else source(paste0(ThesisDir, "/DataProcess.R"))
+FullSunshine <- read.csv("FullSunshine_Swapped.csv")
 
 ## display information about juror rejection tendencies
-mosaicplot(Race ~ Disposition, data = SRaceKnown)
+mosaicplot(Race ~ Disposition, data = SwapSunshine)
 ## too busy, synthesize some variables to clearly indicate the results of defense and prosecution selection
 SwapSunshine$VisibleMinor <- SwapSunshine$Race != "W"
 SwapSunshine$PerempStruck <- SwapSunshine$Disposition == "S" | SwapSunshine$Disposition == "D"
@@ -38,6 +47,7 @@ SRaceKnown <- SwapSunshine[SwapSunshine$Race != "U",]
 SRaceKnown$Race <- as.factor(levels(SRaceKnown$Race)[as.numeric(SRaceKnown$Race)])
 ## try plotting these
 mosaicplot(VisibleMinor ~ PerempStruck, data = SRaceKnown, shade = TRUE)
+mosaicplot(Race ~ Disposition, data = SRaceKnown, shade = TRUE)
 mosaicplot(VisibleMinor ~ DefStruck, data = SRaceKnown, shade = TRUE)
 mosaicplot(VisibleMinor ~ ProStruck, data = SRaceKnown, shade = TRUE)
 ## it seems that there are significantly different strike habits between the defense and prosecution, but that
