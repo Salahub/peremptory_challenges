@@ -127,27 +127,33 @@ UniqueTrial$Group.3 <- NULL
 ## this has solved the issue
 
 ## next add some jury characteristics
-JurorVars <- c("Disposition", "Race", "Gender", "PoliticalAffiliation", "VisibleMinor", "DefStruck",
-               "ProStruck", "CauseRemoved")
+JurorVars <- c("Disposition", "Race", "Gender", "PoliticalAffiliation")
 ## first group the data for easy access
 UniqueTrial.Juries <- aggregate(SwapSunshine[, JurorVars],
                                 by = list(SwapSunshine$TrialNumberID, SwapSunshine$DefendantID.DefendantToTrial,
                                           SwapSunshine$ID.Charges),
                                 function(var) var)
 ## now summarize relevant features
-UniqueTrial.JurySummary <- apply(UniqueTrial.Juries, 1,
+UniqueTrial.JurySummary <- apply(UniqueTrial.Juries[, JurorVars], 1,
                                  function(row) {
                                      ## get final jury indices
-                                     finJur <- grepl("Foreman|Kept", unlist(row$Disposition))
+                                     disps <- unlist(row$Disposition)
+                                     foreman <- grepl("Foreman", disps)
+                                     finJur <- grepl("Foreman|Kept", disps)
+                                     defStruck <- grepl("D_rem", disps)
+                                     proStruck <- grepl("S_rem", disps)
                                      ## process all variables
-                                     row <- sapply(row, unlist)
-                                     ## get jury race counts
-                                     jurraces <- as.list(table(row$Race[finJur]))
-                                     ## get jury political counts
-                                     jurpols <- as.list(table(row$PoliticalAffiliation[finJur]))
-                                     ## get jury genders
-                                     jurgends <- as.list(table(row$Gender[finJur]))
-
+                                     newrow <- sapply(row,
+                                                      function(el) {
+                                                          c(Final = table(unlist(el)[finJur]),
+                                                            Venire = table(unlist(el)),
+                                                            DefRem = table(unlist(el)[defStruck]),
+                                                            ProRem = table(unlist(el)[proStruck]),
+                                                            ForeRace = row$Race[foreman],
+                                                            ForeGender = row$Gender[foreman],
+                                                            ForePol = row$PoliticalAffiliation[foreman])
+                                                      })
+                                 })
 
 ## synthesize a minority defense indicator
 UniqueTrial$MinorDef <- sapply(UniqueTrial$DefRace, function(el) !("White" %in% el), simplify = TRUE)
