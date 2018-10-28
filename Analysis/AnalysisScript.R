@@ -22,9 +22,71 @@ PhillyFile <- paste0(ThesisDir,
 
 ## next the factor level codes as given in the codebook and regularized here
 ## regularization: - political affiliation "N" replaced with "I" for all entries
-LevRace <- sort(c("A","B","H","N","O","U","W"))
+LevRace <- sort(c("Asian","Black","Hisp","NatAm","Other","U","White"))
 LevGen <-  sort(c("F","M","U"))
-LevPol <-  sort(c("D","L","R","I","U"))
+LevPol <-  sort(c("Dem","Lib","Rep","Ind","U"))
+
+
+## FUNCTIONS ###########################
+
+## make a function to summarize trial jury data
+JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "PoliticalAffiliation")) {
+    ## first group the data for easy access
+    Juries <- aggregate(SwapSunshine[, Varnames],
+                        by = list(SwapSunshine$TrialNumberID, SwapSunshine$DefendantID.DefendantToTrial,
+                                  SwapSunshine$ID.Charges),
+                        function(var) var)
+    names(Juries)[grepl("Polit", names(Juries))] <- "PolAff"
+    Varnames[4] <- "PolAff"
+    ## now summarize relevant features
+    Summary <- apply(Juries[, Varnames], 1,
+                     function(row) {
+                         ## get final jury indices
+                         disps <- unlist(row$Disposition)
+                         foreman <- grepl("Foreman", disps)
+                         finJur <- grepl("Foreman|Kept", disps)
+                         defStruck <- grepl("D_rem", disps)
+                         proStruck <- grepl("S_rem", disps)
+                         ## process all variables
+                         newrow <- sapply(row,
+                                          function(el) {
+                                              c(Jury = table(unlist(el)[finJur]),
+                                                Venire = table(unlist(el)),
+                                                DefRem = table(unlist(el)[defStruck]),
+                                                ProRem = table(unlist(el)[proStruck]))
+                                          })
+                         newrow$Disposition <- NULL
+                         newrow <- c(unlist(newrow), ForeRace = row$Race[foreman],
+                                     ForeGender = row$Gender[foreman], ForePol = row$PolAff[foreman])
+                         if (sum(foreman) > 1) {
+                             names(newrow)[names(newrow) == "ForeRace1"] <- "ForeRace"
+                             names(newrow)[names(newrow) == "ForeGender1"] <- "ForeGender"
+                             names(newrow)[names(newrow) == "ForePol1"] <- "ForePol"
+                         }
+                         newrow
+                     })
+    ## perform some clean up
+    longest <- sapply(Summary, length)
+    longest <- which(longest == max(longest))[1]
+    longNames <- names(Summary[[longest]])
+    Summary <- lapply(names(Summary[[longest]]),
+                      function(name) unname(sapply(Summary,
+                                                   function(el) el[name])))
+    names(Summary) <- longNames
+    Summary <- lapply(longNames,
+                      function(nm) {
+                          if (grepl("ForeGender", nm)) {
+                              Summary[[nm]] <- factor(Summary[[nm]], levels = 1:3, labels = LevGen)
+                          } else if (grepl("ForePol", nm)) {
+                              Summary[[nm]] <- factor(Summary[[nm]], levels = 1:5, labels = LevPol)
+                          } else if (grepl("ForeRace", nm)) {
+                              Summary[[nm]] <- factor(Summary[[nm]], levels = 1:7, labels = LevRace)
+                          } else Summary[[nm]]
+                      })
+    names(Summary) <- longNames
+    ## return these
+    list(Juries = Juries, Summaries = Summary)
+}
 
 
 ## DATA INSPECTION #####################
@@ -59,13 +121,21 @@ SRaceKnown <- SwapSunshine[SwapSunshine$Race != "U",]
 SRaceKnown$Race <- as.factor(levels(SRaceKnown$Race)[as.numeric(SRaceKnown$Race)])
 
 ## try plotting these
-mosaicplot(Race ~ PerempStruck, data = SRaceKnown, main = "Minority vs. Removal", shade = TRUE, las = 2)
+mosaicplot(Race ~ PerempStruck, data = SRaceKnown, main = "Race vs. Removal", shade = TRUE, las = 2)
 mosaicplot(Race ~ Disposition, data = SRaceKnown, main = "Race by Trial Status", shade = TRUE, las = 2)
 mosaicplot(Race ~ DefStruck, data = SRaceKnown, main = "Race by Defense Removal", shade = TRUE, las = 2)
 mosaicplot(Race ~ ProStruck, data = SRaceKnown, main = "Race by Prosecution Removal", shade = TRUE, las = 2)
 mosaicplot(Race ~ CauseRemoved, data = SRaceKnown, main = "Race by Removal with Cause", shade = TRUE, las = 2)
 ## it seems that there are significantly different strike habits between the defense and prosecution, but that
 ## generally the system does not strike at different rates on average
+## recall the paper "Ideological Imbalance and the Peremptory Challenge"
+par(mfrow = c(1,2))
+mosaicplot(Race ~ PoliticalAffiliation, data = SRaceKnown[SRaceKnown$Gender == "M",],
+           main = "Affiliation and Race (Men)", shade = TRUE, las = 2)
+mosaicplot(Race ~ PoliticalAffiliation, data = SRaceKnown[SRaceKnown$Gender == "F",],
+           main = "Affiliation and Race (Women)", shade = TRUE, las = 2)
+par(mfrow = c(1,1))
+## the same forces are at play here, compare to simulation?
 
 ## however, this suggests another question: is this strategy actually successful? That is, does there appear to
 ## be a relation between the number of peremptory challenges and the court case outcome?
@@ -83,6 +153,8 @@ mosaicplot(PerempStruck ~ Guilty, data = SwapSunshine, main = "Strikes by Guilt"
 ## above to try and identify this
 mosaicplot(Race ~ StruckBy, data = SRaceKnown, shade = TRUE, main = "Race of Juror to Race Removing Juror",
            las = 2)
+mosaicplot(Race ~ StruckBy, data = SRaceKnown[SRaceKnown$StruckBy != "Not Struck",], shade = TRUE,
+           main = "Race to Race Removing (Only Struck)", las = 2)
 ## this plot shows no large systematic deviation between the races in their rejection habits, this suggests, that
 ## the rejection that occurs is not as simple as a group identity check
 
@@ -127,33 +199,7 @@ UniqueTrial$Group.3 <- NULL
 ## this has solved the issue
 
 ## next add some jury characteristics
-JurorVars <- c("Disposition", "Race", "Gender", "PoliticalAffiliation")
-## first group the data for easy access
-UniqueTrial.Juries <- aggregate(SwapSunshine[, JurorVars],
-                                by = list(SwapSunshine$TrialNumberID, SwapSunshine$DefendantID.DefendantToTrial,
-                                          SwapSunshine$ID.Charges),
-                                function(var) var)
-## now summarize relevant features
-UniqueTrial.JurySummary <- apply(UniqueTrial.Juries[, JurorVars], 1,
-                                 function(row) {
-                                     ## get final jury indices
-                                     disps <- unlist(row$Disposition)
-                                     foreman <- grepl("Foreman", disps)
-                                     finJur <- grepl("Foreman|Kept", disps)
-                                     defStruck <- grepl("D_rem", disps)
-                                     proStruck <- grepl("S_rem", disps)
-                                     ## process all variables
-                                     newrow <- sapply(row,
-                                                      function(el) {
-                                                          c(Final = table(unlist(el)[finJur]),
-                                                            Venire = table(unlist(el)),
-                                                            DefRem = table(unlist(el)[defStruck]),
-                                                            ProRem = table(unlist(el)[proStruck]),
-                                                            ForeRace = row$Race[foreman],
-                                                            ForeGender = row$Gender[foreman],
-                                                            ForePol = row$PoliticalAffiliation[foreman])
-                                                      })
-                                 })
+JurySummarized <- JurySummarize()
 
 ## synthesize a minority defense indicator
 UniqueTrial$MinorDef <- sapply(UniqueTrial$DefRace, function(el) !("White" %in% el), simplify = TRUE)
