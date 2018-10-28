@@ -79,6 +79,13 @@ mosaicplot(PerempStruck ~ Guilty, data = SwapSunshine, main = "Strikes by Guilt"
 ## on the level of jurors, this is certainly not the case, but this is not the correct scale for the question being
 ## asked, this question will be addressed again in the case-summarized data
 
+## a third obvious question is a comparison of which races strike or keep which others, used the synthesized variable
+## above to try and identify this
+mosaicplot(Race ~ StruckBy, data = SRaceKnown, shade = TRUE, main = "Race of Juror to Race Removing Juror",
+           las = 2)
+## this plot shows no large systematic deviation between the races in their rejection habits, this suggests, that
+## the rejection that occurs is not as simple as a group identity check
+
 ## identify the unique trials
 Trials <- unique(SwapSunshine$TrialNumberID)
 ## and the variables which can be sensibly summarized for each trial
@@ -89,9 +96,11 @@ TrialVars <- c("TrialNumberID", "JudgeID", "DefAttyType", "VictimName",
                "JRace", "JGender", "JPoliticalAff", "JVoterRegYr", "JYrApptd",
                "JResCity", "JResZip", "ChargeTxt", "Outcome", "Sentence.FullSunshine",
                "DefendantID.FullSunshine", "DefendantID.DefendantToTrial", "DefRace",
-               "DefGender", "DefDOB", "ProsecutorID", "ProsecutorFirstName",
-               "ProsecutorLastName", "ProsRace", "ProsGender", "ProsPoliticalAff",
-               "PYrRegVote", "PYrLicensed", "PResideCity", "PResideZip")
+               "DefGender", "DefDOB", "DCFirstName", "DCLastName", "DCRace",
+               "DCGender", "DCPoliticalAff", "DCYrLicensed", "DCResideCity", "DCResideZIP",
+               "ProsecutorID", "ProsecutorFirstName", "ProsecutorLastName", "ProsRace",
+               "ProsGender", "ProsPoliticalAff", "PYrRegVote", "PYrLicensed",
+               "PResideCity", "PResideZip")
 ## extract information about these trials
 UniqueTrial <- aggregate(SwapSunshine[,TrialVars],
                          by = list(SwapSunshine$TrialNumberID),
