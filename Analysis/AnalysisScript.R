@@ -46,11 +46,14 @@ SwapSunshine$CauseRemoved <- SwapSunshine$Disposition == "C_rem"
 ## lets look at which race struck each juror
 SwapSunshine$StruckBy <- as.factor(sapply(1:nrow(SwapSunshine),
                                           function(ind) {
-                                              dis <- SwapSunshine$Disposition[ind]
+                                              dis <- as.character(SwapSunshine$Disposition[ind])
                                               if (dis == "S_rem") {
-                                                  SwapSunshine$ProsRace
+                                                  as.character(SwapSunshine$ProsRace[ind])
                                               } else if (dis == "D_rem") {
-                                                  SwapSunshine$DefRace
+                                                  as.character(SwapSunshine$DCRace[ind])
+                                              } else "Not Struck"
+                                          }))
+
 ## create a race filtered data set
 SRaceKnown <- SwapSunshine[SwapSunshine$Race != "U",]
 SRaceKnown$Race <- as.factor(levels(SRaceKnown$Race)[as.numeric(SRaceKnown$Race)])
