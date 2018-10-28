@@ -36,29 +36,33 @@ if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
 FullSunshine <- read.csv("FullSunshine_Swapped.csv")
 
 ## display information about juror rejection tendencies
-mosaicplot(Race ~ Disposition, data = SwapSunshine)
+mosaicplot(Race ~ Disposition, data = SwapSunshine, las = 2, shade = TRUE)
 ## too busy, synthesize some variables to clearly indicate the results of defense and prosecution selection
-SwapSunshine$VisibleMinor <- SwapSunshine$Race != "W"
-SwapSunshine$PerempStruck <- SwapSunshine$Disposition == "S" | SwapSunshine$Disposition == "D"
-SwapSunshine$DefStruck <- SwapSunshine$Disposition == "D"
-SwapSunshine$ProStruck <- SwapSunshine$Disposition == "S"
+SwapSunshine$VisibleMinor <- SwapSunshine$Race != "White"
+SwapSunshine$PerempStruck <- grepl("S_rem|D_rem", SwapSunshine$Disposition)
+SwapSunshine$DefStruck <- SwapSunshine$Disposition == "D_rem"
+SwapSunshine$ProStruck <- SwapSunshine$Disposition == "S_rem"
+SwapSunshine$CauseRemoved <- SwapSunshine$Disposition == "C_rem"
+## lets look at which race struck each juror
+SwapSunshine$StruckBy <- as.factor(sapply(1:nrow(SwapSunshine),
+                                          function(ind) {
+                                              dis <- SwapSunshine$Disposition[ind]
+                                              if (dis == "S_rem") {
+                                                  SwapSunshine$ProsRace
+                                              } else if (dis == "D_rem") {
+                                                  SwapSunshine$DefRace
 ## create a race filtered data set
 SRaceKnown <- SwapSunshine[SwapSunshine$Race != "U",]
 SRaceKnown$Race <- as.factor(levels(SRaceKnown$Race)[as.numeric(SRaceKnown$Race)])
+
 ## try plotting these
-mosaicplot(VisibleMinor ~ PerempStruck, data = SRaceKnown, shade = TRUE)
-mosaicplot(Race ~ Disposition, data = SRaceKnown, shade = TRUE)
-mosaicplot(VisibleMinor ~ DefStruck, data = SRaceKnown, shade = TRUE)
-mosaicplot(VisibleMinor ~ ProStruck, data = SRaceKnown, shade = TRUE)
+mosaicplot(Race ~ PerempStruck, data = SRaceKnown, main = "Minority vs. Removal", shade = TRUE, las = 2)
+mosaicplot(Race ~ Disposition, data = SRaceKnown, main = "Race by Trial Status", shade = TRUE, las = 2)
+mosaicplot(Race ~ DefStruck, data = SRaceKnown, main = "Race by Defense Removal", shade = TRUE, las = 2)
+mosaicplot(Race ~ ProStruck, data = SRaceKnown, main = "Race by Prosecution Removal", shade = TRUE, las = 2)
+mosaicplot(Race ~ CauseRemoved, data = SRaceKnown, main = "Race by Removal with Cause", shade = TRUE, las = 2)
 ## it seems that there are significantly different strike habits between the defense and prosecution, but that
 ## generally the system does not strike at different rates on average
-## look at rejection with more detail
-mosaicplot(Race ~ PerempStruck, data = SRaceKnown)
-mosaicplot(Race ~ DefStruck, data = SRaceKnown)
-mosaicplot(Race ~ ProStruck, data = SRaceKnown)
-## try another approach
-mosaicplot(Race ~ Disposition, data = SRaceKnown)
-
 
 ## however, this suggests another question: is this strategy actually successful? That is, does there appear to
 ## be a relation between the number of peremptory challenges and the court case outcome?
@@ -66,9 +70,9 @@ mosaicplot(Race ~ Disposition, data = SRaceKnown)
 ##                  - the lawyer and their track record
 ##                  - how to judge the success/failure of the case
 ## start by making a simple indicator of guilty/not guilty ignoring the complexities of such a verdict
-SwapSunshine$Guilty <- SwapSunshine$Outcome %in% c("GC", "GL", "G")
+SwapSunshine$Guilty <- grepl("Guilty", SwapSunshine$Outcome)
 ## see if the presence of challenges is related to this verdict
-mosaicplot(PerempStruck ~ Guilty, data = SwapSunshine, shade = TRUE)
+mosaicplot(PerempStruck ~ Guilty, data = SwapSunshine, main = "Strikes by Guilt", shade = TRUE)
 ## on the level of jurors, this is certainly not the case, but this is not the correct scale for the question being
 ## asked, this question will be addressed again in the case-summarized data
 

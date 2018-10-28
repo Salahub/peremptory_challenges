@@ -389,6 +389,8 @@ FullSunshine <- CleaningMerge(FullSunshine, TrialsToCharge, by = "TrialNumberID"
 FullSunshine <- FullSunshine$Merge
 ## the defendants
 FullSunshine <- CleaningMerge(FullSunshine, DefendantToTrial, by = "TrialNumberID", all = TRUE)
+## the attorneys
+FullSunshine <- CleaningMerge(FullSunshine, AttorneyToTrial, by = "TrialNumberID", all = TRUE)
 ## the prosecutors
 FullSunshine <- CleaningMerge(FullSunshine, ProsecutorToTrial, by = "TrialNumberID", all = TRUE)
 ## 26 jurors appear to be lacking a prosecutor, these appear to be the uninformative prosecutors from earlier, included
@@ -458,13 +460,19 @@ SwapSunshine <- SimpleSwapper(SwapSunshine, CorrectLevs = list(DefRace = LevRace
                                                                DefGender = LevGen))
 SwapSunshine <- SwapErrorFix(SwapSunshine, CorrectLevs = list(DefRace = LevRace,
                                                               DefGender = LevGen))
+## next the attorney data
+SwapSunshine <- SimpleSwapper(SwapSunshine, CorrectLevs =
 ## finally the victim data
 SwapSunshine <- SimpleSwapper(SwapSunshine, CorrectLevs = list(VictimRace = LevRace,
                                                                VictimGender = LevGen))
 SwapSunshine <- SwapErrorFix(SwapSunshine, CorrectLevs = list(VictimRace = LevRace,
                                                               VictimGender = LevGen))
-
 ## this leaves the data error-free (in at least the race/gender/politics columns)
+
+## fix the outcome data, which had some improper levels
+SwapSunshine$Outcome[SwapSunshine$Outcome == "HC"] <- "U"
+SwapSunshine$Outcome[SwapSunshine$Outcome == "G"] <- "U"
+SwapSunshine$Outcome <- as.factor(levels(SwapSunshine$Outcome)[as.numeric(SwapSunshine$Outcome)])
 
 ## lets make the levels more clear for some of the data (race, politics, disposition)
 ## start with the disposition
@@ -484,9 +492,16 @@ SwapSunshine <- lapply(SwapSunshine, function(el) {
                         "U", "White")
         el
     } else el})
-levels(SwapSunshine$VictimRace) <- c("Asian", "Black", "
-
-
+levels(SwapSunshine$VictimRace) <- c("Asian", "Black", "Hisp", "NatAm",
+                                     "U", "White")
+levels(SwapSunshine$JRace) <- c("Black", "Hisp", "NatAm", "U", "White")
+## now the outcome/verdict
+levels(SwapSunshine$Outcome) <- c("Acquittal", "Guilty as Charged",
+                                  "Guilty of Lesser", "Incomplete", "Mistrial",
+                                  "U")
+## the defense attorney type
+levels(SwapSunshine$DefAttyType) <- c("App Priv", "Public", "Private",
+                                      "Ret Priv", "U", "Waived")
 
 ## save the full sunshine data
-if (!("FullSunshine_Swapped.csv" %in% list.files()))  write.csv(SwapSunshine, "FullSunshine_Swapped.csv", row.names = FALSE)
+if (!("FullSunshine_Swapped.csv" %in% list.files())) write.csv(SwapSunshine, "FullSunshine_Swapped.csv", row.names = FALSE)
