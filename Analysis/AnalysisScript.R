@@ -89,7 +89,7 @@ mosaicplot(Race ~ StruckBy, data = SRaceKnown, shade = TRUE, main = "Race of Jur
 ## identify the unique trials
 Trials <- unique(SwapSunshine$TrialNumberID)
 ## and the variables which can be sensibly summarized for each trial
-TrialVars <- c("TrialNumberID", "JudgeID", "DefAttyType", "VictimName",
+TrialVars <- c("TrialNumberID", "DateOutcome", "JudgeID", "DefAttyType", "VictimName",
                "VictimRace", "VictimGender", "CrimeLocation", "PropertyType",
                "ZipCode.Trials", "StateTotalRemoved", "DefenseTotalRemoved",
                "CourtTotalRemoved", "JDistrict", "JFirstName", "JLastName",
@@ -97,10 +97,10 @@ TrialVars <- c("TrialNumberID", "JudgeID", "DefAttyType", "VictimName",
                "JResCity", "JResZip", "ChargeTxt", "Outcome", "Sentence.FullSunshine",
                "DefendantID.FullSunshine", "DefendantID.DefendantToTrial", "DefRace",
                "DefGender", "DefDOB", "DCFirstName", "DCLastName", "DCRace",
-               "DCGender", "DCPoliticalAff", "DCYrLicensed", "DCResideCity", "DCResideZIP",
-               "ProsecutorID", "ProsecutorFirstName", "ProsecutorLastName", "ProsRace",
-               "ProsGender", "ProsPoliticalAff", "PYrRegVote", "PYrLicensed",
-               "PResideCity", "PResideZip")
+               "DCGender", "DCPoliticalAff", "DCYrRegVote", "DCYrLicensed",
+               "DCResideCity", "DCResideZip", "ProsecutorID", "ProsecutorFirstName",
+               "ProsecutorLastName", "ProsRace", "ProsGender", "ProsPoliticalAff",
+               "PYrRegVote", "PYrLicensed", "PResideCity", "PResideZip")
 ## extract information about these trials
 UniqueTrial <- aggregate(SwapSunshine[,TrialVars],
                          by = list(SwapSunshine$TrialNumberID),
@@ -125,10 +125,34 @@ UniqueTrial$Group.1 <- NULL
 UniqueTrial$Group.2 <- NULL
 UniqueTrial$Group.3 <- NULL
 ## this has solved the issue
+
+## next add some jury characteristics
+JurorVars <- c("Disposition", "Race", "Gender", "PoliticalAffiliation", "VisibleMinor", "DefStruck",
+               "ProStruck", "CauseRemoved")
+## first group the data for easy access
+UniqueTrial.Juries <- aggregate(SwapSunshine[, JurorVars],
+                                by = list(SwapSunshine$TrialNumberID, SwapSunshine$DefendantID.DefendantToTrial,
+                                          SwapSunshine$ID.Charges),
+                                function(var) var)
+## now summarize relevant features
+UniqueTrial.JurySummary <- apply(UniqueTrial.Juries, 1,
+                                 function(row) {
+                                     ## get final jury indices
+                                     finJur <- grepl("Foreman|Kept", unlist(row$Disposition))
+                                     ## process all variables
+                                     row <- sapply(row, unlist)
+                                     ## get jury race counts
+                                     jurraces <- as.list(table(row$Race[finJur]))
+                                     ## get jury political counts
+                                     jurpols <- as.list(table(row$PoliticalAffiliation[finJur]))
+                                     ## get jury genders
+                                     jurgends <- as.list(table(row$Gender[finJur]))
+
+
 ## synthesize a minority defense indicator
-UniqueTrial$MinorDef <- sapply(UniqueTrial$DefRace, function(el) !("W" %in% el), simplify = TRUE)
+UniqueTrial$MinorDef <- sapply(UniqueTrial$DefRace, function(el) !("White" %in% el), simplify = TRUE)
 ## add a guilty indicator
-UniqueTrial$Guilty <- UniqueTrial$Outcome %in% c("GC", "GL", "G")
+UniqueTrial$Guilty <- grepl("Guilty", UniqueTrial$Outcome)
 ## try to address the same question of "effectiveness" as before
 plot(DefenseTotalRemoved ~ as.factor(Guilty), data = UniqueTrial)
 plot(StateTotalRemoved ~ as.factor(Guilty), data = UniqueTrial)
