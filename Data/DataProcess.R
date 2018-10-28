@@ -461,7 +461,12 @@ SwapSunshine <- SimpleSwapper(SwapSunshine, CorrectLevs = list(DefRace = LevRace
 SwapSunshine <- SwapErrorFix(SwapSunshine, CorrectLevs = list(DefRace = LevRace,
                                                               DefGender = LevGen))
 ## next the attorney data
-SwapSunshine <- SimpleSwapper(SwapSunshine, CorrectLevs =
+SwapSunshine <- SimpleSwapper(SwapSunshine, CorrectLevs = list(DCRace = LevRace,
+                                                               DCGender = LevGen,
+                                                               DCPoliticalAff = LevPol))
+SwapSunshine <- SwapErrorFix(SwapSunshine, CorrectLevs =  list(DCRace = LevRace,
+                                                               DCGender = LevGen,
+                                                               DCPoliticalAff = LevPol))
 ## finally the victim data
 SwapSunshine <- SimpleSwapper(SwapSunshine, CorrectLevs = list(VictimRace = LevRace,
                                                                VictimGender = LevGen))
@@ -495,6 +500,8 @@ SwapSunshine <- lapply(SwapSunshine, function(el) {
 levels(SwapSunshine$VictimRace) <- c("Asian", "Black", "Hisp", "NatAm",
                                      "U", "White")
 levels(SwapSunshine$JRace) <- c("Black", "Hisp", "NatAm", "U", "White")
+levels(SwapSunshine$DCRace) <- c("Asian", "Black", "NatAm", "Other",
+                                 "U", "White")
 ## now the outcome/verdict
 levels(SwapSunshine$Outcome) <- c("Acquittal", "Guilty as Charged",
                                   "Guilty of Lesser", "Incomplete", "Mistrial",
