@@ -6,6 +6,9 @@
 
 ########################################
 
+## PACKAGES ############################
+library(readxl)
+
 
 ## CONSTANTS ###########################
 
@@ -93,9 +96,9 @@ JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "Politic
 
 ## load the data if it is not loaded
 if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
-    SwapSunshine <- read.csv("FullSunshine_Swapped.csv")
+    SwapSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
 } else source(paste0(ThesisDir, "/DataProcess.R"))
-FullSunshine <- read.csv("FullSunshine_Swapped.csv")
+FullSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
 
 ## display information about juror rejection tendencies
 mosaicplot(Race ~ Disposition, data = SwapSunshine, las = 2, shade = TRUE)
@@ -134,8 +137,16 @@ mosaicplot(Race ~ PoliticalAffiliation, data = SRaceKnown[SRaceKnown$Gender == "
            main = "Affiliation and Race (Men)", shade = TRUE, las = 2)
 mosaicplot(Race ~ PoliticalAffiliation, data = SRaceKnown[SRaceKnown$Gender == "F",],
            main = "Affiliation and Race (Women)", shade = TRUE, las = 2)
+mosaicplot(Race ~ DefStruck, data = SRaceKnown[SRaceKnown$Gender == "M",],
+           main = "Defense Removals and Race (Men)", shade = TRUE, las = 2)
+mosaicplot(Race ~ DefStruck, data = SRaceKnown[SRaceKnown$Gender == "F",],
+           main = "Defense Removals and Race (Women)", shade = TRUE, las = 2)
+mosaicplot(Race ~ ProStruck, data = SRaceKnown[SRaceKnown$Gender == "M",],
+           main = "Prosecution Removals and Race (Men)", shade = TRUE, las = 2)
+mosaicplot(Race ~ ProStruck, data = SRaceKnown[SRaceKnown$Gender == "F",],
+           main = "Prosecution Removals and Race (Women)", shade = TRUE, las = 2)
 par(mfrow = c(1,1))
-## the same forces are at play here, compare to simulation?
+## maybe the same forces are at play here, compare to simulation?
 
 ## however, this suggests another question: is this strategy actually successful? That is, does there appear to
 ## be a relation between the number of peremptory challenges and the court case outcome?
@@ -153,10 +164,31 @@ mosaicplot(PerempStruck ~ Guilty, data = SwapSunshine, main = "Strikes by Guilt"
 ## above to try and identify this
 mosaicplot(Race ~ StruckBy, data = SRaceKnown, shade = TRUE, main = "Race of Juror to Race Removing Juror",
            las = 2)
+mosaicplot(Race ~ StruckBy, data = SRaceKnown, shade = TRUE, main = "Race of Juror to Race Removing Juror",
+           las = 2)
 mosaicplot(Race ~ StruckBy, data = SRaceKnown[SRaceKnown$StruckBy != "Not Struck",], shade = TRUE,
            main = "Race to Race Removing (Only Struck)", las = 2)
 ## this plot shows no large systematic deviation between the races in their rejection habits, this suggests, that
 ## the rejection that occurs is not as simple as a group identity check
+## this might be the wrong race to check, though, perhaps we are better comparing the defendant and victim races to
+## strike habits
+mosaicplot(Race ~ DefRace, data = SRaceKnown[SRaceKnown$Disposition == "D_rem",], shade = TRUE,
+           main = "Race of Defense-Struck Jurors to Defendant Race", las = 2)
+mosaicplot(Race ~ DefRace, data = SRaceKnown[SRaceKnown$Disposition == "S_rem",], shade = TRUE,
+           main = "Race of Prosecution-Struck Jurors to Defendant Race", las = 2)
+## that result is very interesting, the defense strike rates when conditioned on defendant race show no racial
+## preference, but those of the prosecution do, maybe by victim race?
+mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$Disposition == "D_rem",], shade = TRUE,
+           main = "Race of Defense-Struck Jurors to Defendant Race", las = 2)
+mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$Disposition == "S_rem",], shade = TRUE,
+           main = "Race of Prosecution-Struck Jurors to Defendant Race", las = 2)
+## hard to see anything there, the majority of victim races are unknown, maybe looking at the races removed by defense
+## attorney type
+mosaicplot(Race ~ DefAttyType, data = SRaceKnown[SRaceKnown$Disposition == "D_rem",], shade = TRUE, las = 2,
+           main = "Race of Defense-Struck Jurors to Defense Attorney Type")
+## so what have we seen above is that the prosecuton and defense seem to behave in opposite manners when selecting a
+## jury based on race attributes, but prosecution is far more likely to reject individuals of the same race as the
+## defendant in the trial
 
 ## identify the unique trials
 Trials <- unique(SwapSunshine$TrialNumberID)
@@ -267,3 +299,9 @@ text(x = c(1,2), y = c(-1,-1),
      labels = paste0("n = ", c(sum(!SingleTrialData$MinorDef), sum(SingleTrialData$MinorDef))))
 
 ## plot the unconditional challenge distribution of both sides
+
+
+## race kept to race defendant, victim, look in particular at the cases where the races of defendant and victim differ
+## look at the similarity of venires
+## email a lawyer and ask them about peremptory, email the
+## serial podcast to give a system
