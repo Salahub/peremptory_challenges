@@ -23,6 +23,7 @@
 \usepackage{multicol}
 \usepackage{blindtext}
 \usepackage{scrextend}
+\usepackage{geometry}
 \addtokomafont{labelinglabel}{\sffamily}
 
 \usepackage{algorithmic}
@@ -33,14 +34,7 @@
 \xspaceaddexceptions{\}}
 \xspaceaddexceptions{\in}
 
-%% common abbreviations
-\newcommand{\ie}{i.e.,\xspace}
-\newcommand{\eg}{e.g.\xspace}
-\newcommand{\Ie}{I.e.,\xspace}
-\newcommand{\Eg}{E.g.\xspace}
-\newcommand{\etal}{\emph{et.\ al.\ }\xspace}
-\newcommand{\des}[1]{\mbox{\scriptsize #1}}
-\newcommand{\vect}[1]{\boldsymbol{#1}}
+\geometry{margin=1in}
 
 % A set depicted with bold:
 \newcommand{\set}[1]{\ensuremath{\mathbf{#1}}\xspace}
@@ -65,12 +59,34 @@
 \author{Christopher Salahub}
 
 \begin{document}
-\bibliography{perempchallenge.bib}
 \maketitle
+
+\section{Introduction}
+
+The Gerald Stanley murder trial was noteworthy for all of the wrong reasons. The first reason was the crime itself. The rural
+region around Biggar, Saskatchewan\cite{StanleyWitnessAccounts} is not known for crime, indeed, the crime statistics collected by
+Statistics Canada suggest it is one of the safest in the province\cite{SaskatchewanCrime}. Any murder at all would be worthy of
+attention and subject to plenty of drama. But beyond the damage this trial has done to the community, in particular the Red
+Pheasant First Nation, this trial is noteworthy because it led to a significant re-examination of the legal jurisprudence
+surrounding the jury selection process culminating in the proposition of Bill C-75 by the Canadian government in March of
+2018\cite{billc75}, less than two months after the trial's verdict\cite{GeraldStanleyVerdict}. 
+
+Bill C-75, in part, aims to ameliorate one of the critical points of contention about the Gerald Stanley case: the use of
+peremptory challenges in jury selection. The outsized impact of the case was due, in large part, to it's racial aspect. Gerald
+Stanley, a white man, was accused of second degree murder in the killing of Colten Boushie, a First Nations man. Given Canada's
+troubled history with First Nations groups, this would be enough to make the trial a flash point for race issues, but that was not
+the worst aspect of the trial. Rather, it was the alleged use of peremptory challenges to strike five potential jurors who
+``appeared'' to be First Nations, resulting in an all-white jury, that proved to be the most controversial and influential facet
+of the entire affair\cite{fiverejected} \cite{fraughthistory} \cite{testArticle}.
+
+With Bill C-75 currently moving through the Canadian parliamentary system, having completed its second reading in June
+2018\cite{c75legisinfo},
 
 \section{Data Cleaning}
 
 \textbf{Jury Sunshine Data}
+
+The data collected in North Carolina proved invaluable to this project \cite{JurySunshineProj}.
 
 \underline{Problem}: some columns of the data contained only NA values
 \underline{Solution}: \texttt{lapply} to remove these uninformative columns
@@ -87,5 +103,14 @@ political affiliation column should be one of ``D'', ``R'', ``I'', or ``U'', but
 ``R'' and political affiliation as ``M''
 \underline{Solution}: the creation of the \texttt{IdentifySwap} function, which has two arguments: a data set and the acceptable or correct
 levels for the variables in the data set. It then identifies rows which have candidate swaps and presents them for review
+
+\section{Ideas}
+\begin{itemize}
+\item look at the CSI from StatsCan, or an analogous US value, to assess the severity of a crime
+\item Kullback-Leibler divergence of accepted jury distribution to the venire distribution
+\end{itemize}
+
+\bibliographystyle{abbrv}
+\bibliography{perempchallenge} 
 
 \end{document}
