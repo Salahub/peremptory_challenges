@@ -8,22 +8,6 @@ volume = 2018,
 pages = 1407,
 month = {October}}
 
-@article{StubbornLegacy,
-author = {Catherine M. Grosso and Barbara O'Brien},
-title = {{A Stubborn Legacy: The Overwhelming Importance of Race in Jury Selection in 173 Post-Batson North Carolina Capital Trials}},
-journal = {Iowa Law Review},
-year = 2012,
-volume = 97,
-pages = 1531}
-
-@article{PerempChalMurder,
-author = {David C. Baldus and George Woodworth and David Zuckerman and Neil Alan Weiner},
-title = {{The Use of Peremptory Challenges in Capital Murder Trials: A Legal and Empirical Analysis}},
-journal = {University of Pennsylvania Journal of Consitutional Law},
-volume = 3,
-number = 1,
-year = 2001} 
-
 @misc{SaskatchewanCrime,
 author = {{Statistics Canada}},
 title = {{Table 35-10-0061-01: Crime severity index and weighted clearance rates, police services in Saskatchewan}},
@@ -54,12 +38,11 @@ year = 2018,
 note = {https://www.cbc.ca/news/canada/saskatoon/gerald-stanley-colten-boushie-verdict-1.4526313}}
 
 @misc{c75legisinfo,
-author = {{42nd Parliament of Canada}},
+author = {{LEGISinfo}},
 title = {{Bill C75}},
-howpublished = {LEGISinfo},
 month = {November},
 year = 2018,
-note = {http://www.parl.ca/LegisInfo}}
+note = {http://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=9745407&View=0}}
 
 @misc{fiverejected,
 author = {Kathleen Harris},
@@ -76,27 +59,3 @@ howpublished = {{CBC News}},
 month = {February},
 year = 2018,
 note = {https://www.cbc.ca/news/canada/manitoba/aboriginal-justice-inquiry-colten-boushie-gerald-stanley-jury-1.4532394}}
-
-@misc{peremparegood,
-author = {Nader R. Hasan},
-title = {Eliminating peremptory challenges makes trials less fair},
-howpublished = {{The Star}},
-month = {April},
-year = 2018,
-note = {https://www.thestar.com/opinion/contributors/2018/04/10/eliminating-peremptory-challenges-make-trials-less-fair.html}}
-
-@misc{goodfirststep,
-author = {Kent Roach},
-title = {Ending peremptory challenges in jury selection is a good first step},
-howpublished = {{The Ottawa Citizen}},
-month = {April},
-year = 2018,
-note = {https://ottawacitizen.com/opinion/columnists/roach-ending-peremptory-challenges-in-jury-selection-is-a-good-first-step}}
-
-@misc{bothwrong,
-author = {Brian Zinchuk},
-title = {{Both sides wrong about Stanley trial}},
-howpublished = {{Prince George Citizen}},
-month = {March},
-year = 2018,
-note = {https://www.princegeorgecitizen.com/opinion/editorial/both-sides-wrong-about-stanley-trial-1.23199321}}

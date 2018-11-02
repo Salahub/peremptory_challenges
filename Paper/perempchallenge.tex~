@@ -61,58 +61,28 @@
 \begin{document}
 \maketitle
 
-\section{Introduction} \label{sec:Intro}
+\section{Introduction}
 
 The Gerald Stanley murder trial was noteworthy for all of the wrong reasons. The first reason was the crime itself. The rural
 region around Biggar, Saskatchewan\cite{StanleyWitnessAccounts} is not known for crime, indeed, the crime statistics collected by
 Statistics Canada suggest it is one of the safest in the province\cite{SaskatchewanCrime}. Any murder at all would be worthy of
-attention and subject to plenty of drama. But beyond the damage this trial has done to the community, this trial is noteworthy
-because it led to a significant re-examination of the legal jurisprudence surrounding the jury selection process culminating in
-the proposition of Bill C-75 by the Canadian government in March of 2018\cite{billc75}, less than two months after the trial's
-verdict\cite{GeraldStanleyVerdict}.
+attention and subject to plenty of drama. But beyond the damage this trial has done to the community, in particular the Red
+Pheasant First Nation, this trial is noteworthy because it led to a significant re-examination of the legal jurisprudence
+surrounding the jury selection process culminating in the proposition of Bill C-75 by the Canadian government in March of
+2018\cite{billc75}, less than two months after the trial's verdict\cite{GeraldStanleyVerdict}. 
 
 Bill C-75, in part, aims to ameliorate one of the critical points of contention about the Gerald Stanley case: the use of
 peremptory challenges in jury selection. The outsized impact of the case was due, in large part, to it's racial aspect. Gerald
 Stanley, a white man, was accused of second degree murder in the killing of Colten Boushie, a First Nations man. Given Canada's
-troubled history with First Nations groups, this alone would have been enough to make the trial a flash point for race issues, but
-that was not the worst aspect of the trial. Rather, it was the alleged use of peremptory challenges to strike five potential
-jurors who ``appeared'' to be First Nations, resulting in an all-white jury, that proved to be the most controversial and
-influential facet of the entire affair\cite{fiverejected} \cite{fraughthistory}.
+troubled history with First Nations groups, this would be enough to make the trial a flash point for race issues, but that was not
+the worst aspect of the trial. Rather, it was the alleged use of peremptory challenges to strike five potential jurors who
+``appeared'' to be First Nations, resulting in an all-white jury, that proved to be the most controversial and influential facet
+of the entire affair\cite{fiverejected} \cite{fraughthistory}.
 
 With Bill C-75 currently moving through the Canadian parliamentary system, having completed its second reading in June
-2018\cite{c75legisinfo}, a close re-examination of the practice of peremptory challenge is warranted. A great deal of ink has
-already been spilled on both sides of the debate \cite{peremparegood} \cite{bothwrong} \cite{goodfirststep}, but startlingly
-little of this discussion can be based on any hard evidence on the impact of peremptory challenge in jury selection. This paper
-aims to provide analysis and evidence to illuminate the topic further by analyzing three separate peremptory challenge
-data sets collected in the United States \cite{JurySunshineProj} \cite{StubbornLegacy} \cite{PerempChalMurder}. While this data
-cannot tell us if challenges were racially motivated in the Stanley trial, stepping back from this fraught legal episode to take a
-wider view of the practice of peremptory challenge provides a more sober place to start the discussion of its place in modern jury
-trials.
+2018\cite{c75legisinfo},
 
-This paper will proceed in five parts. Section \ref{sec:background} provides a brief history of the practice of peremptory
-challenges in jury trials, in particular explaining their original motivation and past implementations in \ref{subsec:history} and
-how they have developed in the United States, the United Kingdom, and Canada in \ref{subsec:modprac}. Section \ref{sec:data}
-proceeds to discuss the three data sets obtained, with \ref{subsec:jspdata} -- \ref{subsec:phillydata} discussing the sources and
-collection methods before the cleaning and preprocessing are explained in \ref{subsec:datacleaning}. Section \ref{sec:analysis}
-then provides the details and results of the different analyses performed on the different data sets, before these results are
-compared to previous works in Section \ref{sec:comparison}. Finally, the results and findings are summarized in
-\ref{sec:conclusion}, and recommendations based on the observations obtained here are provided.
-
-\section{Background} \label{sec:background}
-
-\subsection{History of Peremptory Challenge} \label{subsec:history}
-
-\subsection{Modern Practice} \label{subsec:modprac}
-
-\section{Data} \label{sec:data}
-
-\subsection{Jury Sunshine Project} \label{subsec:jspdata}
-
-\subsection{North Carolina Data} \label{subsec:norcardata}
-
-\subsection{Philadelphia Data} \label{subsec:phillydata}
-
-\subsection{Data Cleaning} \label{subsec:datacleaning}
+\section{Data Cleaning}
 
 \textbf{Jury Sunshine Data}
 
@@ -133,12 +103,6 @@ political affiliation column should be one of ``D'', ``R'', ``I'', or ``U'', but
 ``R'' and political affiliation as ``M''
 \underline{Solution}: the creation of the \texttt{IdentifySwap} function, which has two arguments: a data set and the acceptable or correct
 levels for the variables in the data set. It then identifies rows which have candidate swaps and presents them for review
-
-\section{Analysis} \label{sec:analysis}
-
-\section{Comparison to Previous Work} \label{sec:comparison}
-
-\section{Conclusions and Recommendations} \label{sec:conclusion}
 
 \section{Ideas}
 \begin{itemize}
