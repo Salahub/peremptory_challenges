@@ -91,6 +91,9 @@ JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "Politic
     list(Juries = Juries, Summaries = Summary)
 }
 
+## try to build a mosaic plot that communicates relative significance by creating a sense of relative size of sample
+mosaicplotPlus <-
+
 
 ## DATA INSPECTION #####################
 
