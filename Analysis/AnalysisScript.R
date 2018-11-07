@@ -185,9 +185,9 @@ mosaicplot(Race ~ StruckBy, data = SRaceKnown[SRaceKnown$StruckBy != "Not Struck
 ## this might be the wrong race to check, though, perhaps we are better comparing the defendant and victim races to
 ## strike habits
 par(mfrow = c(1,3))
-mosaicplot(Race ~ DefRace, data = SRaceKnown[SRaceKnown$Disposition == "D_rem",], shade = TRUE,
+mosaicplot(Race ~ DefRace, data = SRaceKnown[SRaceKnown$DefStruck,], shade = TRUE,
            main = "Race of Defense-Struck Jurors to Defendant Race", las = 2)
-mosaicplot(Race ~ DefRace, data = SRaceKnown[SRaceKnown$Disposition == "S_rem",], shade = TRUE,
+mosaicplot(Race ~ DefRace, data = SRaceKnown[SRaceKnown$ProStruck,], shade = TRUE,
            main = "Race of Prosecution-Struck Jurors to Defendant Race", las = 2)
 mosaicplot(Race ~ DefRace, data = SRaceKnown, las = 2, shade = TRUE, main = "Race of Defendant to Venire Race")
 par(mfrow = c(1,1))
@@ -209,17 +209,24 @@ mosaicplot(ProStruck ~ DefWhiteBlack + WhiteBlack, data = SRaceKnown, shade = TR
 ## that result is very interesting, the defense strike rates when conditioned on defendant race show no racial
 ## preference, with a preference to reject white jurors regardless of defendant, but those of the prosecution do,
 ## maybe by victim race?
-mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$Disposition == "D_rem",], shade = TRUE,
+mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$DefStruck,], shade = TRUE,
            main = "Race of Defense-Struck Jurors to Defendant Race", las = 2)
-mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$Disposition == "S_rem",], shade = TRUE,
+mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$ProStruck,], shade = TRUE,
            main = "Race of Prosecution-Struck Jurors to Defendant Race", las = 2)
 ## hard to see anything there, the majority of victim races are unknown, maybe looking at the races removed by defense
 ## attorney type
-mosaicplot(Race ~ DefAttyType, data = SRaceKnown[SRaceKnown$Disposition == "D_rem",], shade = TRUE, las = 2,
+mosaicplot(Race ~ DefAttyType, data = SRaceKnown[SRaceKnown$DefStruck,], shade = TRUE, las = 2,
            main = "Race of Defense-Struck Jurors to Defense Attorney Type")
+mosaicplot(WhiteBlack ~ DefAttyType, data = SRaceKnown[SRaceKnown$DefStruck,], shade = TRUE, las = 2,
+           main = "Race of Defense-Strick Jurors to Defense Attorney Type")
+peikos(WhiteBlack ~ DefWhiteBlack + DefAttyType, data = SRaceKnown[SRaceKnown$DefStruck,],
+      xlab_rot = 90)
 ## so what have we seen above is that the prosecuton and defense seem to behave very differently in their jury selection
 ## tactics, the defense seems to reject white individuals at a high rate regardless of the defendant, while the prosecution
 ## seems to prefer the rejection of venire members of the same race as the defendant
+
+## this last plot shows that different types of lawyers may have different strategies, suggests a new investigation:
+## that of lawyer strategy and success based on lawyer tendencies, aggregating by trial first will be easiest
 
 ## identify the unique trials
 Trials <- unique(SwapSunshine$TrialNumberID)
@@ -231,27 +238,13 @@ TrialVars <- c("TrialNumberID", "DateOutcome", "JudgeID", "DefAttyType", "Victim
                "JRace", "JGender", "JPoliticalAff", "JVoterRegYr", "JYrApptd",
                "JResCity", "JResZip", "ChargeTxt", "Outcome", "Sentence.FullSunshine",
                "DefendantID.FullSunshine", "DefendantID.DefendantToTrial", "DefRace",
-               "DefGender", "DefDOB", "DCFirstName", "DCLastName", "DCRace",
+               "DefGender", "DefDOB", "DefAttyID", "DCFirstName", "DCLastName", "DCRace",
                "DCGender", "DCPoliticalAff", "DCYrRegVote", "DCYrLicensed",
                "DCResideCity", "DCResideZip", "ProsecutorID", "ProsecutorFirstName",
                "ProsecutorLastName", "ProsRace", "ProsGender", "ProsPoliticalAff",
                "PYrRegVote", "PYrLicensed", "PResideCity", "PResideZip")
-## extract information about these trials
-UniqueTrial <- aggregate(SwapSunshine[,TrialVars],
-                         by = list(SwapSunshine$TrialNumberID),
-                         unique)
-UniqueTrial$Group.1 <- NULL
-UniqueTrial <- lapply(UniqueTrial, function(var) if (is.character(var)) as.factor(var) else var)
-## interestingly, the outcomes do not seem to be unique to the trials in the data, which is surprising
-## let's investigate these outcomes
-OutcomeTabs <- lapply(Trials, function(trial) table(SwapSunshine$Outcome[SwapSunshine$TrialNumberID == trial]))
-OutcomeTabs <- lapply(OutcomeTabs, function(tab) tab[tab != 0])
-DubOut <- OutcomeTabs[sapply(OutcomeTabs, function(tab) length(tab) > 1)]
-length(DubOut)
-## this does not seem to make sense until the charges are viewed by unique trial
-sum(sapply(UniqueTrial$ChargeTxt, function(el) length(el > 1)))
-## this and multiple defendants on a trial seem to explain almost all of the duplicates, aggregate by all three of these
-## variables and create new, clearer IDs
+## extract information about these trials, note that grouping occurs on the trial ID, defendant ID, and charge ID levels,
+## as the trials frequency involve multiple charges and defendants, which makes them less clean
 UniqueTrial <- aggregate(SwapSunshine[,TrialVars],
                          by = list(SwapSunshine$TrialNumberID, SwapSunshine$DefendantID.DefendantToTrial,
                                    SwapSunshine$ID.Charges),
@@ -259,10 +252,15 @@ UniqueTrial <- aggregate(SwapSunshine[,TrialVars],
 UniqueTrial$Group.1 <- NULL
 UniqueTrial$Group.2 <- NULL
 UniqueTrial$Group.3 <- NULL
-## this has solved the issue
 
 ## next add some jury characteristics
 JurySummarized <- JurySummarize()
+
+## use this to generate summaries by defense and prosecution lawyers
+LawyerSums <- lapply(levels(SwapSunshine$DefAttyID),
+                     function(ID) {
+                         colMeans(as.data.frame(JurySummarized$Summaries)[sapply(UniqueTrial$DefAttyID,
+                                                                                          function(tr) ID %in% tr),]))
 
 ## synthesize a minority defense indicator
 UniqueTrial$MinorDef <- sapply(UniqueTrial$DefRace, function(el) !("White" %in% el), simplify = TRUE)
