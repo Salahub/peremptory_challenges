@@ -8,8 +8,7 @@
 
 ## PACKAGES ############################
 library(readxl)
-library(MASS)
-library(eikosogram)
+
 
 ## CONSTANTS ###########################
 
@@ -68,7 +67,7 @@ JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "Politic
                              names(newrow)[names(newrow) == "ForePol1"] <- "ForePol"
                          }
                          newrow
-                    })
+                     })
     ## perform some clean up
     longest <- sapply(Summary, length)
     longest <- which(longest == max(longest))[1]
@@ -92,17 +91,9 @@ JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "Politic
     list(Juries = Juries, Summaries = Summary)
 }
 
-## a simple helper to convert multiple races into black, white, and other, due to the prevalence of the first two
-## compared to the third
-BlackWhiteOther <- function(vals) {
-    chars <- as.character(vals)
-    ## simply replace elements
-    chars[!grepl("Black|White", chars)] <- "Other"
-    chars
-}
+## try to build a mosaic plot that communicates relative significance by creating a sense of relative size of sample
+mosaicplotPlus <-
 
-## build a three-way chi-square indpendence function
-chisq3way <- function(formula, data
 
 ## DATA INSPECTION #####################
 
@@ -184,31 +175,12 @@ mosaicplot(Race ~ StruckBy, data = SRaceKnown[SRaceKnown$StruckBy != "Not Struck
 ## the rejection that occurs is not as simple as a group identity check
 ## this might be the wrong race to check, though, perhaps we are better comparing the defendant and victim races to
 ## strike habits
-par(mfrow = c(1,3))
 mosaicplot(Race ~ DefRace, data = SRaceKnown[SRaceKnown$Disposition == "D_rem",], shade = TRUE,
            main = "Race of Defense-Struck Jurors to Defendant Race", las = 2)
 mosaicplot(Race ~ DefRace, data = SRaceKnown[SRaceKnown$Disposition == "S_rem",], shade = TRUE,
            main = "Race of Prosecution-Struck Jurors to Defendant Race", las = 2)
-mosaicplot(Race ~ DefRace, data = SRaceKnown, las = 2, shade = TRUE, main = "Race of Defendant to Venire Race")
-par(mfrow = c(1,1))
-## this makes the defense look as if they are not racist, but note that this display and comparison does not compare
-## these distributions to the venire distribution relative to defendant race, first combine the smaller races into one
-## category to make the plot less noisy and more identifiable
-SRaceKnown$WhiteBlack <- BlackWhiteOther(SRaceKnown$Race)
-SRaceKnown$DefWhiteBlack <- BlackWhiteOther(SRaceKnown$DefRace)
-SRaceKnown$VicWhiteBlack <- BlackWhiteOther(SRaceKnown$VictimRace)
-## now look at how the two behave relative in their rejections and their acceptance
-eikos(WhiteBlack ~ DefWhiteBlack + DefStruck, data = SRaceKnown, xlab_rot = 90,
-      main = "Defense Challenges by Race of Venire Member and Defendant")
-eikos(WhiteBlack ~ DefWhiteBlack + ProStruck, data = SRaceKnown, xlab_rot = 90,
-      main = "Prosecution Challenges by Race of Venire Member and Defendant")
-## very interesting, the prosecution seems far more aggressive than the defense
-mosaicplot(DefStruck ~ DefWhiteBlack + WhiteBlack, data = SRaceKnown, shade = TRUE, las = 2)
-mosaicplot(ProStruck ~ DefWhiteBlack + WhiteBlack, data = SRaceKnown, shade = TRUE, las = 2)
-
 ## that result is very interesting, the defense strike rates when conditioned on defendant race show no racial
-## preference, with a preference to reject white jurors regardless of defendant, but those of the prosecution do,
-## maybe by victim race?
+## preference, but those of the prosecution do, maybe by victim race?
 mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$Disposition == "D_rem",], shade = TRUE,
            main = "Race of Defense-Struck Jurors to Defendant Race", las = 2)
 mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$Disposition == "S_rem",], shade = TRUE,
@@ -217,9 +189,9 @@ mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$Disposition == "S_rem
 ## attorney type
 mosaicplot(Race ~ DefAttyType, data = SRaceKnown[SRaceKnown$Disposition == "D_rem",], shade = TRUE, las = 2,
            main = "Race of Defense-Struck Jurors to Defense Attorney Type")
-## so what have we seen above is that the prosecuton and defense seem to behave very differently in their jury selection
-## tactics, the defense seems to reject white individuals at a high rate regardless of the defendant, while the prosecution
-## seems to prefer the rejection of venire members of the same race as the defendant
+## so what have we seen above is that the prosecuton and defense seem to behave in opposite manners when selecting a
+## jury based on race attributes, but prosecution is far more likely to reject individuals of the same race as the
+## defendant in the trial
 
 ## identify the unique trials
 Trials <- unique(SwapSunshine$TrialNumberID)
