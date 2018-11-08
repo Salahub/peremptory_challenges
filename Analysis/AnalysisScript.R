@@ -92,6 +92,37 @@ JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "Politic
     list(Juries = Juries, Summaries = Summary)
 }
 
+## write a scale converting summarize function which accepts arguments on how to handle different data types
+ScaleSummarize <- function(col, typelist = list(character = paste0, numeric = mean, factor = paste0),
+                           opts = list(character = list(collapse = ""), numeric = list(na.rm = TRUE),
+                                       factor = list(collapse = ""))) {
+    ## identify the class being handled
+    cl <- class(col)
+    ## address lists by unlisting, unless otherwise specified
+    if (cl == "list" && !("list" %in% typelist)) {
+        col <- unlist(col)
+        cl <- class(col)
+    }
+    ## identify the function being used
+    func <- do.call(switch, c(cl, typelist))
+    ## and the optional arguments
+    optarg <- do.call(switch, c(cl, opts))
+    ## evaluate
+    do.call(func, c(list(col),optarg))
+}
+
+## I'm too proud to get rid of the previous function, but it's designed poorly, instead use generics
+Simplifier <- function(col, ...) {
+    UseMethod("Simplifier", col)
+}
+
+Simplifier.numeric <- function(col, trim = 0, na.rm = FALSE, ...) mean.default(col, trim, na.rm, ...)
+
+Simplifier.factor <- function(col, collapse = "", ...) paste0(as.character(levels(col)[as.numeric(col)]),
+                                                              collapse = collapse)
+
+Simplifier.character <- function(col, collapse = "", ...) paste0(col, collapse = collapse)
+
 ## a simple helper to convert multiple races into black, white, and other, due to the prevalence of the first two
 ## compared to the third
 BlackWhiteOther <- function(vals) {
@@ -124,9 +155,12 @@ chisq3way <- function(formula, data
 
 ## load the data if it is not loaded
 if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
-    SwapSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
+    SwapSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"), stringsAsFactors = FALSE)
 } else source(paste0(ThesisDir, "/DataProcess.R"))
 FullSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
+
+## summarize this on the correct scale (jurors)
+JurorSunshine <- aggregate(SwapSunshine, by = list(SwapSunshine$JurorNumber), unique)
 
 ## display information about juror rejection tendencies
 mosaicplot(Race ~ Disposition, data = SwapSunshine, las = 2, shade = TRUE)
