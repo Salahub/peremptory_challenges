@@ -93,7 +93,7 @@ JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "Politic
 }
 
 ## write a scale converting summarize function which accepts arguments on how to handle different data types
-ScaleSummarize <- function(col, typelist = list(character = paste0, numeric = mean, factor = paste0),
+ColProc <- function(col, typelist = list(character = paste0, numeric = mean, factor = paste0),
                            opts = list(character = list(collapse = ""), numeric = list(na.rm = TRUE),
                                        factor = list(collapse = ""))) {
     ## identify the class being handled
@@ -111,17 +111,38 @@ ScaleSummarize <- function(col, typelist = list(character = paste0, numeric = me
     do.call(func, c(list(col),optarg))
 }
 
-## I'm too proud to get rid of the previous function, but it's designed poorly, instead use generics
+## the previous function is designed poorly, instead use generics
 Simplifier <- function(col, ...) {
-    UseMethod("Simplifier", col)
+    UseMethod("Simplifier")
 }
 
-Simplifier.numeric <- function(col, trim = 0, na.rm = FALSE, ...) mean.default(col, trim, na.rm, ...)
-
+## code up methods for the types to be seen
+Simplifier.numeric <- function(col, trim = 0, na.rm = FALSE, ...) mean.default(col,trim, na.rm, ...)
 Simplifier.factor <- function(col, collapse = "", ...) paste0(as.character(levels(col)[as.numeric(col)]),
                                                               collapse = collapse)
-
 Simplifier.character <- function(col, collapse = "", ...) paste0(col, collapse = collapse)
+
+## create a grouping wrapper which does unique aggregation of a data set
+UniqueAgg <- function(data, by, ...) {
+    ## convert data to a data frame for regularity
+    if (!is.data.frame(data)) data <- as.data.frame(data)
+    ## identify the grouping column by in the data
+    by.groups <- names(data) == by
+    ## provide nice error handling
+    stopifnot(sum(by.groups) > 0)
+    ## first identify which rows are already unique
+    groups <- as.numeric(as.factor(unlist(data[by.groups])))
+    unqRows <- sapply(groups, function(el) sum(groups == el) == 1)
+    ## consider grouping only the other rows using the unique function
+    endata <- data[unqRows,]
+    unqdata <- aggregate(data[!unqRows, !by.groups], by = list(data[!unqRows, by.groups]), unique)
+    ## now use the Simplifier helper defined above to process these results
+    procdata <- lapply(unqdata, function(col) sapply(col, Simplifier, ...))
+    ## append everything together
+    endata <- lapply(1:length(endata), function(n) c(endata[[n]], procdata[[n]]))
+    ## convert to a data frame
+    as.data.frame(endata)
+}
 
 ## a simple helper to convert multiple races into black, white, and other, due to the prevalence of the first two
 ## compared to the third
@@ -159,8 +180,8 @@ if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
 } else source(paste0(ThesisDir, "/DataProcess.R"))
 FullSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
 
-## summarize this on the correct scale (jurors)
-JurorSunshine <- aggregate(SwapSunshine, by = list(SwapSunshine$JurorNumber), unique)
+## summarize onto the correct scale, the jurors
+JurorSunshine <- UniqueAgg(SwapSunshine, by = "JurorNumber")
 
 ## display information about juror rejection tendencies
 mosaicplot(Race ~ Disposition, data = SwapSunshine, las = 2, shade = TRUE)
