@@ -101,6 +101,22 @@ BlackWhiteOther <- function(vals) {
     chars
 }
 
+## another simple processing function to correct NA's given some other identifier and data set
+FillNAs <- function(dataNAs, filldata, identifier) {
+    ## extract the relevant column indices in a flexible way
+    if (is.null(colnames(filldata))) {
+        relcol <- grepl(identifier, names(filldata))
+    } else relcol <- grepl(identifier, colnames(filldata))
+    ## first identify the relevant rows in the data NAs
+    relRows <- is.na(dataNAs)
+    ## take the relevant rows of the filldata
+    filldata <- matrix(unlist(filldata[relcol]), ncol = sum(relcol))
+    rowfiller <- rowSums(filldata[relRows,])
+    ## return the filled data
+    dataNAs[relRows] <- rowfiller
+    dataNAs
+}
+
 ## build a three-way chi-square indpendence function
 chisq3way <- function(formula, data
 
@@ -256,11 +272,11 @@ UniqueTrial$Group.3 <- NULL
 ## next add some jury characteristics
 JurySummarized <- JurySummarize()
 
-## use this to generate summaries by defense and prosecution lawyers
-LawyerSums <- lapply(levels(SwapSunshine$DefAttyID),
-                     function(ID) {
-                         colMeans(as.data.frame(JurySummarized$Summaries)[sapply(UniqueTrial$DefAttyID,
-                                                                                          function(tr) ID %in% tr),]))
+## notice that the total removed variables are incomplete, try to correct this where possible using the jury
+## sumarized data above
+UniqueTrial$DefRemovedEstimate <- UniqueTrial$DefenseTotalRemoved
+UniqueTrial$DefRemovedEstimate <-
+
 
 ## synthesize a minority defense indicator
 UniqueTrial$MinorDef <- sapply(UniqueTrial$DefRace, function(el) !("White" %in% el), simplify = TRUE)
