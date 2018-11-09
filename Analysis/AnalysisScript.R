@@ -140,6 +140,7 @@ UniqueAgg <- function(data, by, ...) {
     procdata <- lapply(unqdata, function(col) sapply(col, Simplifier, ...))
     ## append everything together
     endata <- lapply(1:length(endata), function(n) c(endata[[n]], procdata[[n]]))
+    names(endata) <- names(data)
     ## convert to a data frame
     as.data.frame(endata)
 }
@@ -169,8 +170,36 @@ FillNAs <- function(dataNAs, filldata, identifier) {
     dataNAs
 }
 
+## in order to make the process of pre-processing the data and adding desired columns, place the pre-processing into a
+## flexible function and add operations as desired
+SynCols <- function(data) {
+    ## too busy, synthesize some variables to clearly indicate the results of defense and prosecution selection
+    data$VisibleMinor <- data$Race != "White"
+    data$PerempStruck <- grepl("S_rem|D_rem", data$Disposition)
+    data$DefStruck <- data$Disposition == "D_rem"
+    data$ProStruck <- data$Disposition == "S_rem"
+    data$CauseRemoved <- data$Disposition == "C_rem"
+    ## lets look at which race struck each juror
+    data$StruckBy <- as.factor(sapply(1:nrow(data),
+                                               function(ind) {
+                                                   dis <- as.character(data$Disposition[ind])
+                                                   if (dis == "S_rem") {
+                                                       as.character(data$ProsRace[ind])
+                                                   } else if (dis == "D_rem") {
+                                                       as.character(data$DCRace[ind])
+                                                   } else "Not Struck"
+                                               }))
+    ## create a white black other indicator
+    data$WhiteBlack <- BlackWhiteOther(data$Race)
+    data$DefWhiteBlack <- BlackWhiteOther(data$DefRace)
+    data$VicWhiteBlack <- BlackWhiteOther(data$VictimRace)
+    ## return the data with synthesized columns
+    data
+}
+
 ## build a three-way chi-square indpendence function
 chisq3way <- function(formula, data
+
 
 ## DATA INSPECTION #####################
 
@@ -181,26 +210,14 @@ if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
 FullSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
 
 ## summarize onto the correct scale, the jurors
-JurorSunshine <- UniqueAgg(SwapSunshine, by = "JurorNumber")
+JurorSunshine <- UniqueAgg(SwapSunshine, by = "JurorNumber", collapse = ",")
 
 ## display information about juror rejection tendencies
-mosaicplot(Race ~ Disposition, data = SwapSunshine, las = 2, shade = TRUE)
-## too busy, synthesize some variables to clearly indicate the results of defense and prosecution selection
-SwapSunshine$VisibleMinor <- SwapSunshine$Race != "White"
-SwapSunshine$PerempStruck <- grepl("S_rem|D_rem", SwapSunshine$Disposition)
-SwapSunshine$DefStruck <- SwapSunshine$Disposition == "D_rem"
-SwapSunshine$ProStruck <- SwapSunshine$Disposition == "S_rem"
-SwapSunshine$CauseRemoved <- SwapSunshine$Disposition == "C_rem"
-## lets look at which race struck each juror
-SwapSunshine$StruckBy <- as.factor(sapply(1:nrow(SwapSunshine),
-                                          function(ind) {
-                                              dis <- as.character(SwapSunshine$Disposition[ind])
-                                              if (dis == "S_rem") {
-                                                  as.character(SwapSunshine$ProsRace[ind])
-                                              } else if (dis == "D_rem") {
-                                                  as.character(SwapSunshine$DCRace[ind])
-                                              } else "Not Struck"
-                                          }))
+mosaicplot(Race ~ Disposition, data = JurorSunshine, las = 2, shade = TRUE)
+
+## synthesize some variables
+SwapSunshine <- SynCols(SwapSunshine)
+JurorSunshine <- SynCols(JurorSunshine)
 
 ## create a race filtered data set
 SRaceKnown <- SwapSunshine[SwapSunshine$Race != "U",]
