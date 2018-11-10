@@ -117,6 +117,7 @@ Simplifier <- function(col, ...) {
 }
 
 ## code up methods for the types to be seen
+Simplifier.default <- function(col, collapse = "") paste0(col, collapse = collapse)
 Simplifier.numeric <- function(col, trim = 0, na.rm = FALSE, ...) mean.default(col,trim, na.rm, ...)
 Simplifier.factor <- function(col, collapse = "", ...) paste0(sort(as.character(levels(col)[as.numeric(col)])),
                                                               collapse = collapse)
@@ -210,9 +211,9 @@ MatRelevel <- function(data) {
 
 ## load the data if it is not loaded
 if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
-    SwapSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"), stringsAsFactors = FALSE)
+    SwapSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
 } else source(paste0(ThesisDir, "/DataProcess.R"))
-FullSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
+FullSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine.csv"))
 
 ## summarize onto the correct scale, the jurors
 JurorSunshine <- UniqueAgg(SwapSunshine, by = "JurorNumber", collapse = ",")
@@ -269,8 +270,6 @@ mosaicplot(PerempStruck ~ Guilty, data = SwapSunshine, main = "Strikes by Guilt"
 ## above to try and identify this
 mosaicplot(Race ~ StruckBy, data = SRaceKnown, shade = TRUE, main = "Race of Juror to Race Removing Juror",
            las = 2)
-mosaicplot(Race ~ StruckBy, data = SRaceKnown, shade = TRUE, main = "Race of Juror to Race Removing Juror",
-           las = 2)
 mosaicplot(Race ~ StruckBy, data = SRaceKnown[SRaceKnown$StruckBy != "Not Struck",], shade = TRUE,
            main = "Race to Race Removing (Only Struck)", las = 2)
 ## this plot shows no large systematic deviation between the races in their rejection habits, this suggests, that
@@ -308,11 +307,11 @@ mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$ProStruck,], shade = 
            main = "Race of Prosecution-Struck Jurors to Defendant Race", las = 2)
 ## hard to see anything there, the majority of victim races are unknown, maybe looking at the races removed by defense
 ## attorney type
-mosaicplot(Race ~ DefAttyType, data = SRaceKnown[SRaceKnown$DefStruck,], shade = TRUE, las = 2,
+mosaicplot(DefAttyType ~ Race, data = SRaceKnown[SRaceKnown$DefStruck,], shade = TRUE, las = 2,
            main = "Race of Defense-Struck Jurors to Defense Attorney Type")
 mosaicplot(WhiteBlack ~ DefAttyType, data = SRaceKnown[SRaceKnown$DefStruck,], shade = TRUE, las = 2,
            main = "Race of Defense-Strick Jurors to Defense Attorney Type")
-peikos(WhiteBlack ~ DefWhiteBlack + DefAttyType, data = SRaceKnown[SRaceKnown$DefStruck,],
+eikos(WhiteBlack ~ DefWhiteBlack + DefAttyType, data = SRaceKnown[SRaceKnown$DefStruck,],
       xlab_rot = 90)
 ## so what have we seen above is that the prosecuton and defense seem to behave very differently in their jury selection
 ## tactics, the defense seems to reject white individuals at a high rate regardless of the defendant, while the prosecution
