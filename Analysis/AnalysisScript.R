@@ -9,7 +9,7 @@
 ## PACKAGES ############################
 library(readxl)
 library(MASS)
-library(eikosogram)
+library(eikosograms)
 
 ## CONSTANTS ###########################
 
@@ -225,8 +225,8 @@ SwapSunshine <- SynCols(SwapSunshine)
 JurorSunshine <- SynCols(JurorSunshine)
 
 ## create a race filtered data set
-SRaceKnown <- SwapSunshine[SwapSunshine$Race != "U",]
-SRaceKnown$Race <- as.factor(levels(SRaceKnown$Race)[as.numeric(SRaceKnown$Race)])
+SRaceKnown <- JurorSunshine[JurorSunshine$Race != "U",]
+SRaceKnown <- MatRelevel(SRaceKnown)
 
 ## try plotting these
 mosaicplot(Race ~ PerempStruck, data = SRaceKnown, main = "Race vs. Removal", shade = TRUE, las = 2)
