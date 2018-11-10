@@ -429,6 +429,9 @@ FullSunshine <- as.data.frame(FullSunshine)
 FullSunshine$ID <- NULL
 FullSunshine$TrialIDAuto <- NULL
 
+## save this
+if (!("FullSunshine.csv" %in% list.files())) write.csv(FullSunshine, "FullSunshine.csv", row.names = FALSE)
+
 ## check for column swaps
 ## in the juror data
 SwapSunshine <- SimpleSwapper(FullSunshine, CorrectLevs = list(Race = LevRace,
