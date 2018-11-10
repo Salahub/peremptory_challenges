@@ -140,7 +140,7 @@ UniqueAgg <- function(data, by, ...) {
     ## now use the Simplifier helper defined above to process these results
     procdata <- lapply(unqdata, function(col) sapply(col, Simplifier, ...))
     ## append everything together
-    endata <- lapply(1:length(endata), function(n) c(endata[[n]], procdata[[n]]))
+    endata <- lapply(1:length(endata), function(n) c(as.character(endata[[n]]), procdata[[n]]))
     names(endata) <- names(data)
     ## convert to a data frame
     as.data.frame(endata)
@@ -283,12 +283,10 @@ mosaicplot(Race ~ DefRace, data = SRaceKnown[SRaceKnown$ProStruck,], shade = TRU
            main = "Race of Prosecution-Struck Jurors to Defendant Race", las = 2)
 mosaicplot(Race ~ DefRace, data = SRaceKnown, las = 2, shade = TRUE, main = "Race of Defendant to Venire Race")
 par(mfrow = c(1,1))
-## this makes the defense look as if they are not racist, but note that this display and comparison does not compare
+## this makes the defense look as if they are not racist, though the comparison to the venire distributions in the third
+## panel makes that clearer
 ## these distributions to the venire distribution relative to defendant race, first combine the smaller races into one
 ## category to make the plot less noisy and more identifiable
-SRaceKnown$WhiteBlack <- BlackWhiteOther(SRaceKnown$Race)
-SRaceKnown$DefWhiteBlack <- BlackWhiteOther(SRaceKnown$DefRace)
-SRaceKnown$VicWhiteBlack <- BlackWhiteOther(SRaceKnown$VictimRace)
 ## now look at how the two behave relative in their rejections and their acceptance
 eikos(WhiteBlack ~ DefWhiteBlack + DefStruck, data = SRaceKnown, xlab_rot = 90,
       main = "Defense Challenges by Race of Venire Member and Defendant")
@@ -337,19 +335,19 @@ TrialVars <- c("TrialNumberID", "DateOutcome", "JudgeID", "DefAttyType", "Victim
                "PYrRegVote", "PYrLicensed", "PResideCity", "PResideZip")
 ## extract information about these trials, note that grouping occurs on the trial ID, defendant ID, and charge ID levels,
 ## as the trials frequency involve multiple charges and defendants, which makes them less clean
-UniqueTrial <- aggregate(SwapSunshine[,TrialVars],
-                         by = list(SwapSunshine$TrialNumberID, SwapSunshine$DefendantID.DefendantToTrial,
-                                   SwapSunshine$ID.Charges),
-                         unique)
-UniqueTrial$Group.1 <- NULL
-UniqueTrial$Group.2 <- NULL
-UniqueTrial$Group.3 <- NULL
+TrialSunshine <- aggregate(SwapSunshine[,TrialVars],
+                           by = list(SwapSunshine$TrialNumberID, SwapSunshine$DefendantID.DefendantToTrial,
+                                     SwapSunshine$ID.Charges),
+                           unique)
+TrialSunshine$Group.1 <- NULL
+TrialSunshine$Group.2 <- NULL
+TrialSunshine$Group.3 <- NULL
 
 ## next add some jury characteristics
 JurySummarized <- JurySummarize()
 
 ## notice that the total removed variables are incomplete, try to correct this where possible using the jury
-## sumarized data above
+## summarized data above
 UniqueTrial$DefRemovedEstimate <- UniqueTrial$DefenseTotalRemoved
 UniqueTrial$DefRemovedEstimate <-
 
