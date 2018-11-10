@@ -342,7 +342,6 @@ SwapErrorFix <- function(errorData, CorrectLevs) {
 }
 
 
-
 ## LOADING AND PROCESSING DATA #########
 
 ## load the data
@@ -486,7 +485,7 @@ levels(SwapSunshine$Disposition) <- c("C_rem", "D_rem", "Foreman", "Kept", "U_re
 ## next the political affiliation
 SwapSunshine <- lapply(SwapSunshine, function(el) {
     if (is.factor(el) & identical(levels(el), LevPol)) {
-        levels(el) <- c("Dem", "Lib", "Rep", "Ind", "U")
+        levels(el) <- c("Dem", "Ind", "Lib", "Rep", "U")
         el
     } else el})
 levels(SwapSunshine$JPoliticalAff) <- c("Dem", "Ind", "Rep", "U")
