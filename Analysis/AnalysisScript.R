@@ -118,9 +118,9 @@ Simplifier <- function(col, ...) {
 
 ## code up methods for the types to be seen
 Simplifier.numeric <- function(col, trim = 0, na.rm = FALSE, ...) mean.default(col,trim, na.rm, ...)
-Simplifier.factor <- function(col, collapse = "", ...) paste0(as.character(levels(col)[as.numeric(col)]),
+Simplifier.factor <- function(col, collapse = "", ...) paste0(sort(as.character(levels(col)[as.numeric(col)])),
                                                               collapse = collapse)
-Simplifier.character <- function(col, collapse = "", ...) paste0(col, collapse = collapse)
+Simplifier.character <- function(col, collapse = "", ...) paste0(sort(col), collapse = collapse)
 
 ## create a grouping wrapper which does unique aggregation of a data set
 UniqueAgg <- function(data, by, ...) {
@@ -197,8 +197,13 @@ SynCols <- function(data) {
     data
 }
 
-## build a three-way chi-square indpendence function
-chisq3way <- function(formula, data
+## write a function to re-level factor variables to make mosaic plots cleaner
+MatRelevel <- function(data) {
+    temp <- lapply(data, function(el) if (is.factor(el)) as.factor(levels(el)[as.numeric(el)]) else el)
+    temp <- as.data.frame(temp)
+    names(temp) <- names(data)
+    temp
+}
 
 
 ## DATA INSPECTION #####################
