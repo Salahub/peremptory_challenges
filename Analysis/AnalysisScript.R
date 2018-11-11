@@ -10,6 +10,8 @@
 library(readxl)
 library(MASS)
 library(eikosograms)
+library(RColorBrewer)
+library(stringr)
 
 ## CONSTANTS ###########################
 
@@ -30,8 +32,27 @@ LevRace <- sort(c("Asian","Black","Hisp","NatAm","Other","U","White"))
 LevGen <-  sort(c("F","M","U"))
 LevPol <-  sort(c("Dem","Lib","Rep","Ind","U"))
 
+## color constants
+racePal <- brewer.pal(3, "Set1") # c("steelblue","grey50","firebrick")
+whitePal <- c("steelblue","firebrick")
 
 ## FUNCTIONS ###########################
+
+## make a Kullback-Leibler divergence function
+kldiv <- function(samp, dist) {
+    ## convert to matrices
+    mat1 <- as.matrix(samp)
+    mat2 <- as.matrix(dist)
+    ## make into proper distributions
+    mat1 <- mat1/rowSums(mat1)
+    mat2 <- mat2/rowSums(mat2)
+    ## take the log ratio
+    logratio <- log(mat1/mat2)
+    ## multiply by correct matrix
+    vals <- mat1*logratio
+    ## take the row sums
+    rowSums(vals, na.rm = TRUE)
+}
 
 ## make a function to summarize trial jury data
 JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "PoliticalAffiliation")) {
@@ -218,6 +239,19 @@ MatRelevel <- function(data) {
     temp
 }
 
+## write a wrapper to estimate the values of total removed jurors
+RemovedJurorEstimates <- function(tofill, data, ident) {
+    temp <- FillNAs(tofill, filldata = data, identifier = ident)
+    temp2 <- rowSums(data[,grepl(ident, names(data))])
+    ## let's see how accurate this is
+    plot(temp, temp2)
+    abline(0,1)
+    cat("= : ", sum(temp == temp2)/length(temp2), "\n", "< : ", sum(temp2 < temp)/length(temp2), "\n", sep = "")
+    ## replace the filled values less than the estimated, for consistency
+    temp[temp < temp2] <- temp2[temp < temp2]
+    temp
+}
+
 
 ## DATA INSPECTION #####################
 
@@ -359,83 +393,121 @@ TrialSunshine$Group.3 <- NULL
 JurySummarized <- JurySummarize()
 
 ## merge the summaries to the trial sunshine data
-TrialSun.sum <- merge(
+TrialSun.sum <- merge(cbind(TrialNumberID = JurySummarized$Juries$TrialNumberID, JurySummarized$Summaries),
+                      TrialSunshine, all = TRUE)
 
 ## notice that the total removed variables are incomplete, try to correct this where possible using the jury
 ## summarized data above
-UniqueTrial$DefRemovedEstimate <- UniqueTrial$DefenseTotalRemoved
-UniqueTrial$DefRemovedEstimate <-
+TrialSun.sum$DefRemEst <- RemovedJurorEstimates(TrialSun.sum$DefenseTotalRemoved, data = TrialSun.sum,
+                                                ident = "Gender.DefRem")
+## perform this same procedure for the prosecution removals
+TrialSun.sum$ProRemEst <- RemovedJurorEstimates(TrialSun.sum$StateTotalRemoved, data = TrialSun.sum,
+                                                ident = "Gender.ProRem")
+## synthesize some other variables, simple race indicators
+TrialSun.sum$DefWhiteBlack <- as.factor(BlackWhiteOther(TrialSun.sum$DefRace))
+TrialSun.sum$DefWhiteOther <- as.factor(c("Other", "White")[grepl("White", TrialSun.sum$DefWhiteBlack) + 1])
+## the Kullback-Leibler divergence
+TrialSun.sum$KLdiv <- kldiv(TrialSun.sum[,grepl("Jury", names(TrialSun.sum))],
+                            TrialSun.sum[,grepl("Venire", names(TrialSun.sum))])
+
+## now look at removals across trials for defense and prosecution
+with(TrialSun.sum, plot(jitter(DefRemEst, factor = 2), jitter(ProRemEst, factor = 2), pch = 20,
+                        xlab = "Defense Strike Count (jittered)", ylab = "Prosecution Strike Count (jittered)",
+                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.3)))
+abline(0,1)
+legend(x = "topleft", legend = levels(TrialSun.sum$DefWhiteBlack), col = racePal, pch = 20, title = "Defendant Race")
+with(TrialSun.sum, plot(DefRemEst, ProRemEst, pch = 15, cex = 2,
+                        xlab = "Defense Strike Count", ylab = "Prosecution Strike Count",
+                        col = adjustcolor(whitePal[as.numeric(DefWhiteOther)], alpha.f = 0.2)))
+abline(0,1)
+legend(x = "topleft", legend = levels(TrialSun.sum$DefWhiteOther), col = racePal, pch = 15, title = "Defendant Race")
+
+## break apart in more detail for the defense
+DefStruckMeans <- with(TrialSun.sum, sapply(levels(DefWhiteBlack),
+                                            function(rc) c(mean((Race.DefRem.Black/Race.Venire.Black)[DefWhiteBlack == rc],
+                                                                na.rm = TRUE),
+                                                           mean((Race.DefRem.White/Race.Venire.White)[DefWhiteBlack == rc],
+                                                                na.rm = TRUE))))
+with(TrialSun.sum, plot(Race.DefRem.Black/Race.Venire.Black, Race.DefRem.White/Race.Venire.White, pch = 20,
+                        xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
+                        xlim = c(0,1), ylim = c(0,1), main = "Defense Strike Proportions",
+                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
+abline(0,1)
+points(DefStruckMeans[1,], DefStruckMeans[2,], col = racePal, pch = 4, cex = 2, lwd = 1.5)
+legend(x = "topright", title = "Defendant Race", col = c(racePal,"black"), pch = c(rep(20,3),4), bg = "white",
+       legend = c(levels(TrialSun.sum$DefWhiteBlack),"Mean"))
+
+## and for the prosecution
+ProStruckMeans <- with(TrialSun.sum, sapply(levels(DefWhiteBlack),
+                                            function(rc) c(mean((Race.ProRem.Black/Race.Venire.Black)[DefWhiteBlack == rc],
+                                                                na.rm = TRUE),
+                                                           mean((Race.ProRem.White/Race.Venire.White)[DefWhiteBlack == rc],
+                                                                na.rm = TRUE))))
+with(TrialSun.sum, plot(Race.ProRem.Black/Race.Venire.Black, Race.ProRem.White/Race.Venire.White, pch = 20,
+                        xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
+                        xlim = c(0,1), ylim = c(0,1), main = "Prosecution Strike Proportions",
+                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
+abline(0,1)
+points(ProStruckMeans[1,], ProStruckMeans[2,], col = racePal, pch = 4, cex = 2, lwd = 1.5)
+legend(x = "topright", title = "Defendant Race", col = c(racePal,"black"), pch = c(rep(20,3),4), bg = "white",
+       legend = c(levels(TrialSun.sum$DefWhiteBlack),"Mean"))
+
+## both of these plots show a much higher proportion of the black venire is usually struck for both sides, an unsurprising result
+## given the the black venire was shown to be smaller in the aggregate statistics, looking at raw counts next:
+## for the defense
+with(TrialSun.sum, plot(jitter(Race.DefRem.Black, factor = 2), jitter(Race.DefRem.White, factor = 2), pch = 20,
+                        xlab = "Black Venire Strike Count (jittered)", ylab = "White Venire Strike Count (jittered)",
+                        xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts",
+                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
+legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "white", legend = levels(TrialSun.sum$DefWhiteBlack))
+
+with(TrialSun.sum, plot(Race.DefRem.Black, Race.DefRem.White, pch = 15, cex = 2,
+                        xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
+                        xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts",
+                        col = adjustcolor(whitePal[as.numeric(DefWhiteOther)], alpha.f = 0.2)))
+legend(x = "topright", title = "Defendant Race", col = whitePal, pch = 15, bg = "white", legend = levels(TrialSun.sum$DefWhiteOther))
+
+## for the prosecution
+with(TrialSun.sum, plot(jitter(Race.ProRem.Black, factor = 1.2), jitter(Race.ProRem.White, factor = 1.2), pch = 20,
+                        xlab = "Black Venire Strike Count (jittered)", ylab = "White Venire Strike Count (jittered)",
+                        xlim = c(0,8), ylim = c(0,8), main = "Prosecution Strike Counts",
+                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
+legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "white", legend = levels(TrialSun.sum$DefWhiteBlack))
+
+with(TrialSun.sum, plot(Race.ProRem.Black, Race.ProRem.White, pch = 15, cex = 2,
+                        xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
+                        xlim = c(0,8), ylim = c(0,8), main = "Prosecution Strike Counts",
+                        col = adjustcolor(whitePal[as.numeric(DefWhiteOther)], alpha.f = 0.2)))
+legend(x = "topright", title = "Defendant Race", col = whitePal, pch = 15, bg = "white", legend = levels(TrialSun.sum$DefWhiteOther))
 
 
-## synthesize a minority defense indicator
-UniqueTrial$MinorDef <- sapply(UniqueTrial$DefRace, function(el) !("White" %in% el), simplify = TRUE)
-## add a guilty indicator
-UniqueTrial$Guilty <- grepl("Guilty", UniqueTrial$Outcome)
-## try to address the same question of "effectiveness" as before
-plot(DefenseTotalRemoved ~ as.factor(Guilty), data = UniqueTrial)
-plot(StateTotalRemoved ~ as.factor(Guilty), data = UniqueTrial)
-plot(jitter(as.numeric(Guilty)) ~ StateTotalRemoved, data = UniqueTrial)
-## see if there is anything to an advantage given by a usage differential between prosecution and defense
-UniqueTrial$PerempDiff <- UniqueTrial$StateTotalRemoved - UniqueTrial$DefenseTotalRemoved
-plot(PerempDiff ~ as.factor(Guilty), data = UniqueTrial)
-## try fitting a logistic regression model
-diffMod <- glm(Guilty ~ MinorDef + DefenseTotalRemoved + StateTotalRemoved, data = UniqueTrial,
-               family = binomial)
-## do a quick race investigation
-mosaicplot(DefRace ~ as.factor(Guilty), data = UniqueTrial, shade = TRUE)
-plot(DefenseTotalRemoved ~ as.factor(Guilty) + DefRace, data = UniqueTrial)
-plot(StateTotalRemoved ~ as.factor(Guilty) + as.factor(MinorDef), data = UniqueTrial)
-## there does not seem to be any advantage given by peremptory challenge usage, maybe try controlling for crime severity
+## this suggests that there could be a jury-based racial imbalance due to the venire rather than the racial patterns of lawyer strikes
 
-## to control for crime severity, try performing some text analysis on the sentencing data and charge text
+## let's look at the rejection profiles using a pairs plot
+pairs(TrialSun.sum[,paste0("Race.", rep(c("Def","Pro"), each = 2), "Rem.", rep(c("Black","White"),2))],
+      col = adjustcolor(racePal[as.numeric(TrialSun.sum$DefWhiteBlack)], alpha.f = 0.2), pch = 15)
+pairs(TrialSun.sum[,paste0("Race.", rep(c("Def","Pro"), each = 2), "Rem.", rep(c("Black","White"),2))],
+      col = adjustcolor(whitePal[as.numeric(TrialSun.sum$DefWhiteOther)], alpha.f = 0.2), pch = 15, cex = 2)
 
-## try this for the other data sets
-mosaicplot(RACEQUES ~ FINLJURY, data = PhillyData)
-## not many rejections, LOTS of missing data
-c(table(PhillyData$FINLJURY), "NAs" = sum(is.na(PhillyData$FINLJURY)))
-## is this data even useful? next data set:
-mosaic(table(NorthCarData[,c("RaceLabel", "Struck")]), shade = TRUE)
+## hard to see anything from that, there don't seem to be any obvious patterns
+## so there are some obvious patterns we can see in the aggregated data and in the individual cases, see if these affect outcomes
+with(TrialSun.sum, plot(DefRemEst ~ Outcome))
+with(TrialSun.sum, plot(ProRemEst ~ Outcome))
+## nothing obvious there, but there is no control for charges/crime type
+## regularize the charges
 
+## try looking at specific lawyers next, see if they have patterns
 
-
-## do some plotting
-with(SingleTrialData, plot(y = jitter(DefenseTotalRemoved), x = jitter(as.numeric(DefAttyType)),
-                           xaxt = "n", xlab = "Defense Attorney Type", ylab = "Number of Rejected Jurors",
-                           col = adjustcolor(c("firebrick","steelblue")[MinorDef+1], alpha.f = 0.2), pch = 19))
-axis(side = 1, at = 1:6, labels = c("P-Appointed", "PublicDefender", "P-Unknown",
-                                    "P-Retained", "Unknown", "Self-Representation"),
-     cex.axis = 0.75)
-for (ii in 0:17) abline(h = ii, lty = 2, col = adjustcolor("gray50", alpha.f = 0.3))
-with(SingleTrialData, points(x = 1:6, y = sapply(levels(DefAttyType),
-                                               function(type) mean(DefenseTotalRemoved[DefAttyType == type],
-                                                                   na.rm = TRUE)),
-                             col = "red", pch = 19))
-
-## comparison plot of prosecutor rejection
-plot(x = sort(SingleTrialData$StateTotalRemoved), y = ppoints(length(sort(SingleTrialData$StateTotalRemoved))),
-     ylab = "Quantile", xlab = "Number of Juror Rejections", col = "steelblue")
-points(x = sort(SingleTrialData$DefenseTotalRemoved), y = ppoints(length(sort(SingleTrialData$DefenseTotalRemoved))),
-       col = "firebrick")
-legend(x = "bottomright", legend = c("Prosecution", "Defense"), col = c("steelblue","firebrick"),
-       pch = 1)
-
-## plot by race combination of defendant
-
-## plot of rejection by minority defendant
-par(mfrow = c(1,2))
-boxplot(DefenseTotalRemoved ~ MinorDef, data = SingleTrialData, ylim = c(-1,17), xlab = "Minority Defendant",
-        ylab = "Defense Peremptory Challenges")
-text(x = c(1,2), y = c(-1,-1),
-     labels = paste0("n = ", c(sum(!SingleTrialData$MinorDef), sum(SingleTrialData$MinorDef))))
-boxplot(StateTotalRemoved ~ MinorDef, data = SingleTrialData, ylim = c(-1,17), xlab = "Minority Defendant",
-        ylab = "Prosecution Peremptory Challenges")
-text(x = c(1,2), y = c(-1,-1),
-     labels = paste0("n = ", c(sum(!SingleTrialData$MinorDef), sum(SingleTrialData$MinorDef))))
-
-## plot the unconditional challenge distribution of both sides
-
-
-## race kept to race defendant, victim, look in particular at the cases where the races of defendant and victim differ
-## look at the similarity of venires
-## email a lawyer and ask them about peremptory, email the
-## serial podcast to give a system
+## try looking now at the KL divergence values and see what patterns might be there
+plot(density(TrialSun.sum$KLdiv))
+hist(TrialSun.sum$KLdiv)
+## looks like a gamma or beta distribution
+## plot the KL div by guilt status
+with(TrialSun.sum, plot(KLdiv ~ Outcome))
+par(mar = c(5.1,6.1,4.1,2.1))
+with(TrialSun.sum, plot(KLdiv, jitter(as.numeric(Outcome)), yaxt = 'n'))
+axis(side = 2, at = 1:6, labels = abbreviate(levels(TrialSun.sum$Outcome), minlength = 5), las = 2)
+## no strong relationship there that can be seen
+with(TrialSun.sum, plot(DefRemEst, KLdiv))
+with(TrialSun.sum, plot(ProRemEst, KLdiv))
+with(TrialSun.sum, plot(DefRemEst + ProRemEst, KLdiv))
