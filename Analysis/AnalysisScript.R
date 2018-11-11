@@ -12,6 +12,7 @@ library(MASS)
 library(eikosograms)
 library(RColorBrewer)
 library(stringr)
+library(tm)
 
 ## CONSTANTS ###########################
 
@@ -251,6 +252,19 @@ RemovedJurorEstimates <- function(tofill, data, ident) {
     temp[temp < temp2] <- temp2[temp < temp2]
     temp
 }
+
+## make a text-mining regularization function
+StringReg <- function(strs, cosdists = TRUE) {
+    ## first set everything to uppercase
+    strs <- toupper(strs)
+    ## replace punctuation
+    strs <- gsub("[^[:alnum:][:space:]']", "", strs)
+    ## split on spaces
+    strs <- str_split(strs, "\\s+")
+    upstop <- paste0(toupper(stopwords()), collapse = " | ")
+    ## remove these
+    strs1 <- str_replace_all(strs, upstop, " ")
+
 
 
 ## DATA INSPECTION #####################
