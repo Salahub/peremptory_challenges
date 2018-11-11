@@ -35,11 +35,18 @@ LevPol <-  sort(c("Dem","Lib","Rep","Ind","U"))
 
 ## make a function to summarize trial jury data
 JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "PoliticalAffiliation")) {
-    ## first group the data for easy access
-    Juries <- aggregate(SwapSunshine[, Varnames],
-                        by = list(SwapSunshine$TrialNumberID, SwapSunshine$DefendantID.DefendantToTrial,
-                                  SwapSunshine$ID.Charges),
+    ## check if a juror summary object exists already
+    if (!("JurorSunshine" %in% ls(.GlobalEnv))) {
+        ## first group the data for easy access
+        Juries <- aggregate(SwapSunshine[, Varnames],
+                            by = list(TrialNumberID = SwapSunshine$TrialNumberID, JurorNumer = SwapSunshine$JurorNumber),
+                            unique)
+    } else Juries <- JurorSunshine
+    ## in either case, perform aggregation by trial instance
+    Juries <- aggregate(Juries[, Varnames],
+                        by = list(TrialNumberID = Juries$TrialNumberID),
                         function(var) var)
+    ## clean up the names
     names(Juries)[grepl("Polit", names(Juries))] <- "PolAff"
     Varnames[4] <- "PolAff"
     ## now summarize relevant features
@@ -89,7 +96,7 @@ JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "Politic
                       })
     names(Summary) <- longNames
     ## return these
-    list(Juries = Juries, Summaries = Summary)
+    list(Juries = Juries, Summaries = as.data.frame(Summary))
 }
 
 ## write a scale converting summarize function which accepts arguments on how to handle different data types
@@ -118,7 +125,7 @@ Simplifier <- function(col, ...) {
 
 ## code up methods for the types to be seen
 Simplifier.default <- function(col, collapse = "") paste0(col, collapse = collapse)
-Simplifier.numeric <- function(col, trim = 0, na.rm = FALSE, ...) mean.default(col,trim, na.rm, ...)
+Simplifier.numeric <- function(col, na.rm = TRUE, trim = 0, ...) mean.default(col, trim = trim, na.rm = na.rm)
 Simplifier.factor <- function(col, collapse = "", ...) paste0(sort(as.character(levels(col)[as.numeric(col)])),
                                                               collapse = collapse)
 Simplifier.character <- function(col, collapse = "", ...) paste0(sort(col), collapse = collapse)
@@ -137,10 +144,15 @@ UniqueAgg <- function(data, by, ...) {
     ## consider grouping only the other rows using the unique function
     endata <- data[unqRows,]
     unqdata <- aggregate(data[!unqRows, !by.groups], by = list(data[!unqRows, by.groups]), unique)
+    ## reorder to make sure everything is compatible
+    names(unqdata)[1] <- by
+    unqdata <- unqdata[,match(names(endata), names(unqdata))]
     ## now use the Simplifier helper defined above to process these results
     procdata <- lapply(unqdata, function(col) sapply(col, Simplifier, ...))
     ## append everything together
-    endata <- lapply(1:length(endata), function(n) c(as.character(endata[[n]]), procdata[[n]]))
+    endata <- lapply(1:length(endata),
+                     function(n) c(if (is.factor(endata[[n]])) as.character(endata[[n]]) else endata[[n]],
+                                   procdata[[n]]))
     names(endata) <- names(data)
     ## convert to a data frame
     as.data.frame(endata)
@@ -345,6 +357,9 @@ TrialSunshine$Group.3 <- NULL
 
 ## next add some jury characteristics
 JurySummarized <- JurySummarize()
+
+## merge the summaries to the trial sunshine data
+TrialSun.sum <- merge(
 
 ## notice that the total removed variables are incomplete, try to correct this where possible using the jury
 ## summarized data above
