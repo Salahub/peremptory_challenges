@@ -245,7 +245,7 @@ RemovedJurorEstimates <- function(tofill, data, ident) {
     temp <- FillNAs(tofill, filldata = data, identifier = ident)
     temp2 <- rowSums(data[,grepl(ident, names(data))])
     ## let's see how accurate this is
-    plot(temp, temp2)
+    plot(temp, temp2, xlab = "Observed and Filled", ylab = "Juror Sums")
     abline(0,1)
     cat("= : ", sum(temp == temp2)/length(temp2), "\n", "< : ", sum(temp2 < temp)/length(temp2), "\n", sep = "")
     ## replace the filled values less than the estimated, for consistency
@@ -264,7 +264,7 @@ StringReg <- function(strs, cosdists = TRUE) {
     upstop <- paste0(toupper(stopwords()), collapse = " | ")
     ## remove these
     strs1 <- str_replace_all(strs, upstop, " ")
-
+}
 
 
 ## DATA INSPECTION #####################
@@ -276,7 +276,9 @@ if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
 FullSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine.csv"))
 
 ## summarize onto the correct scale, the jurors
-JurorSunshine <- UniqueAgg(SwapSunshine, by = "JurorNumber", collapse = ",")
+if ("JuriesAggregated.Rds" %in% list.files()) {
+    JurorSunshine <- readRDS("JuriesAggregated.Rds")
+} else JurorSunshine <- UniqueAgg(SwapSunshine, by = "JurorNumber", collapse = ",")
 
 ## display information about juror rejection tendencies
 mosaicplot(Race ~ Disposition, data = JurorSunshine, las = 2, shade = TRUE)
@@ -525,3 +527,6 @@ axis(side = 2, at = 1:6, labels = abbreviate(levels(TrialSun.sum$Outcome), minle
 with(TrialSun.sum, plot(DefRemEst, KLdiv))
 with(TrialSun.sum, plot(ProRemEst, KLdiv))
 with(TrialSun.sum, plot(DefRemEst + ProRemEst, KLdiv))
+
+
+## GGobi, Diane Cook
