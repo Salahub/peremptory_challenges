@@ -290,8 +290,9 @@ posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.6, alphaencodi
         ## start by converting the box colours to rgb
         boxcolours <- col2rgb(rep(boxcolours, each = nrow(catprops)), alpha = FALSE)/255
         ## convert back to hex
-        boxcolours <- rgb(t(boxcolours), alpha = rep(0.9*rowcounts/max(rowcounts) + alphamin, times = ncats))
-    }
+        boxcolours <- rgb(t(boxcolours),
+                          alpha = rep(round((1-alphamin)*rowcounts/max(rowcounts) + alphamin, digits = 4), times = ncats))
+    } else boxcolours <- rep(boxcolours, each = nrow(catprops))
     if (areaencoding) boxwids <- boxwids*sqrt(rowcounts/max(rowcounts))
     ## create an empty plot
     plot(x, y, col = NA, ...)
@@ -476,11 +477,10 @@ with(TrialSun.sum, plot(jitter(DefRemEst, factor = 2), jitter(ProRemEst, factor 
                         col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.3)))
 abline(0,1)
 legend(x = "topleft", legend = levels(TrialSun.sum$DefWhiteBlack), col = racePal, pch = 20, title = "Defendant Race")
-with(TrialSun.sum, plot(DefRemEst, ProRemEst, pch = 15, cex = 2,
-                        xlab = "Defense Strike Count", ylab = "Prosecution Strike Count",
-                        col = adjustcolor(whitePal[as.numeric(DefWhiteOther)], alpha.f = 0.2)))
-abline(0,1)
-legend(x = "topleft", legend = levels(TrialSun.sum$DefWhiteOther), col = racePal, pch = 15, title = "Defendant Race")
+## this is only somewhat informative, it is difficult to see any patterns, use the custom posboxplot function
+with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal, xlab = "Defense Strike Count",
+                              ylab = "Prosecution Strike Count"))
+legend(x = "topleft", legend = levels(TrialSun.sum$DefWhiteBlack), col = racePal, pch = 20, title = "Defendant Race")
 
 ## break apart in more detail for the defense
 DefStruckMeans <- with(TrialSun.sum, sapply(levels(DefWhiteBlack),
@@ -496,6 +496,13 @@ abline(0,1)
 points(DefStruckMeans[1,], DefStruckMeans[2,], col = racePal, pch = 4, cex = 2, lwd = 1.5)
 legend(x = "topright", title = "Defendant Race", col = c(racePal,"black"), pch = c(rep(20,3),4), bg = "white",
        legend = c(levels(TrialSun.sum$DefWhiteBlack),"Mean"))
+## hard to see the patterns at the lines, jitter the proportions
+with(TrialSun.sum, plot(Race.DefRem.Black/Race.Venire.Black + runif(nrow(TrialSun.sum), min = -0.03, max = 0.03),
+                        Race.DefRem.White/Race.Venire.White, pch = 20,
+                        xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
+                        xlim = c(0,1), ylim = c(0,1), main = "Defense Strike Proportions",
+                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.1)))
+
 
 ## and for the prosecution
 ProStruckMeans <- with(TrialSun.sum, sapply(levels(DefWhiteBlack),
@@ -511,6 +518,12 @@ abline(0,1)
 points(ProStruckMeans[1,], ProStruckMeans[2,], col = racePal, pch = 4, cex = 2, lwd = 1.5)
 legend(x = "topright", title = "Defendant Race", col = c(racePal,"black"), pch = c(rep(20,3),4), bg = "white",
        legend = c(levels(TrialSun.sum$DefWhiteBlack),"Mean"))
+## again hard to see, try jittering
+with(TrialSun.sum, plot(Race.ProRem.Black/Race.Venire.Black + runif(nrow(TrialSun.sum), min = -0.03, max = 0.03),
+                        Race.ProRem.White/Race.Venire.White, pch = 20,
+                        xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
+                        xlim = c(0,1), ylim = c(0,1), main = "Prosecution Strike Proportions",
+                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.1)))
 
 ## both of these plots show a much higher proportion of the black venire is usually struck for both sides, an unsurprising result
 ## given the the black venire was shown to be smaller in the aggregate statistics, looking at raw counts next:
@@ -520,6 +533,8 @@ with(TrialSun.sum, plot(jitter(Race.DefRem.Black, factor = 2), jitter(Race.DefRe
                         xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts",
                         col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
 legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "white", legend = levels(TrialSun.sum$DefWhiteBlack))
+## use custom plot here
+with(TrialSun.sum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal))
 
 with(TrialSun.sum, plot(Race.DefRem.Black, Race.DefRem.White, pch = 15, cex = 2,
                         xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
