@@ -534,13 +534,9 @@ with(TrialSun.sum, plot(jitter(Race.DefRem.Black, factor = 2), jitter(Race.DefRe
                         col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
 legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "white", legend = levels(TrialSun.sum$DefWhiteBlack))
 ## use custom plot here
-with(TrialSun.sum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal))
-
-with(TrialSun.sum, plot(Race.DefRem.Black, Race.DefRem.White, pch = 15, cex = 2,
-                        xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
-                        xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts",
-                        col = adjustcolor(whitePal[as.numeric(DefWhiteOther)], alpha.f = 0.2)))
-legend(x = "topright", title = "Defendant Race", col = whitePal, pch = 15, bg = "white", legend = levels(TrialSun.sum$DefWhiteOther))
+with(TrialSun.sum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal,
+                              xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
+                              xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts"))
 
 ## for the prosecution
 with(TrialSun.sum, plot(jitter(Race.ProRem.Black, factor = 1.2), jitter(Race.ProRem.White, factor = 1.2), pch = 20,
@@ -548,12 +544,10 @@ with(TrialSun.sum, plot(jitter(Race.ProRem.Black, factor = 1.2), jitter(Race.Pro
                         xlim = c(0,8), ylim = c(0,8), main = "Prosecution Strike Counts",
                         col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
 legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "white", legend = levels(TrialSun.sum$DefWhiteBlack))
-
-with(TrialSun.sum, plot(Race.ProRem.Black, Race.ProRem.White, pch = 15, cex = 2,
-                        xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
-                        xlim = c(0,8), ylim = c(0,8), main = "Prosecution Strike Counts",
-                        col = adjustcolor(whitePal[as.numeric(DefWhiteOther)], alpha.f = 0.2)))
-legend(x = "topright", title = "Defendant Race", col = whitePal, pch = 15, bg = "white", legend = levels(TrialSun.sum$DefWhiteOther))
+## more of the custom plot
+with(TrialSun.sum, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal,
+                              xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
+                              xlim = c(0,13), ylim = c(0,13), main = "Prosecution Strike Counts"))
 
 
 ## this suggests that there could be a jury-based racial imbalance due to the venire rather than the racial patterns of lawyer strikes
