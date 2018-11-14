@@ -266,6 +266,48 @@ StringReg <- function(strs, cosdists = TRUE) {
     strs1 <- str_replace_all(strs, upstop, " ")
 }
 
+## create a plot which visualizes positional data patterns by a categorical variable
+## could encode density as either box sizes or through alpha levels of colour
+posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.6, alphaencoding = TRUE, alphamin = 0.1,
+                       areaencoding = FALSE, ...) {
+    ## get an important scale variable
+    ncats <- length(unique(cats))
+    ## provide box colours if none are given
+    if (is.null(boxcolours)) boxcolours <- rainbow(ncats)
+    ## first identify the unique positions
+    unqPos <- unique(cbind(x,y))
+    ## iterate through these, create tables of the categories
+    cattabs <- t(apply(unqPos, 1, function(pos) {
+        ## generate a count a table
+        table(cats[x == pos[1] & y == pos[2]])
+    }))
+    ## calculate the counts for each location for scaling
+    rowcounts <- rowSums(cattabs)
+    ## convert the count table to proportions
+    catprops <- t(apply(cbind(0,cattabs/rowcounts), 1, cumsum))
+    ## use the row counts to determine the colours and box widths
+    if (alphaencoding) {
+        ## start by converting the box colours to rgb
+        boxcolours <- col2rgb(rep(boxcolours, each = nrow(catprops)), alpha = FALSE)/255
+        ## convert back to hex
+        boxcolours <- rgb(t(boxcolours), alpha = rep(0.9*rowcounts/max(rowcounts) + alphamin, times = ncats))
+    }
+    if (areaencoding) boxwids <- boxwids*sqrt(rowcounts/max(rowcounts))
+    ## create an empty plot
+    plot(x, y, col = NA, ...)
+    ## determine some rectangle parameters
+    bottomx <- unqPos[,1] - boxwids/2
+    bottomy <- unqPos[,2] - boxwids/2
+    ## calculate rectangle corner positions
+    rectx <- bottomx + catprops*boxwids
+    recty <- cbind(rep(bottomy, times = ncats), rep(bottomy + boxwids, times = ncats))
+    ## convert the x coordinates into a pair of vectors specifying all positions
+    xvec <- lapply(1:(ncats+1), function(n) rectx[,n])
+    ## place the rectangles
+    rect(xleft = unlist(xvec[1:ncats]), ybottom = recty[,1], xright = unlist(xvec[2:(ncats+1)]),
+         ytop = recty[,2], col = boxcolours, border = boxcolours)
+}
+
 
 ## DATA INSPECTION #####################
 
@@ -276,8 +318,8 @@ if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
 FullSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine.csv"))
 
 ## summarize onto the correct scale, the jurors
-if ("JuriesAggregated.Rds" %in% list.files()) {
-    JurorSunshine <- readRDS("JuriesAggregated.Rds")
+if ("JurorAggregated.Rds" %in% list.files()) {
+    JurorSunshine <- readRDS("JurorAggregated.Rds")
 } else JurorSunshine <- UniqueAgg(SwapSunshine, by = "JurorNumber", collapse = ",")
 
 ## display information about juror rejection tendencies
@@ -406,7 +448,9 @@ TrialSunshine$Group.2 <- NULL
 TrialSunshine$Group.3 <- NULL
 
 ## next add some jury characteristics
-JurySummarized <- JurySummarize()
+if ("AllJuries.Rds" %in% list.files()) {
+    JurySummarized <- readRDS("AllJuries.Rds")
+} else JurySummarized <- JurySummarize()
 
 ## merge the summaries to the trial sunshine data
 TrialSun.sum <- merge(cbind(TrialNumberID = JurySummarized$Juries$TrialNumberID, JurySummarized$Summaries),
