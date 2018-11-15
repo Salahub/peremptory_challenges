@@ -33,9 +33,36 @@ LevRace <- sort(c("Asian","Black","Hisp","NatAm","Other","U","White"))
 LevGen <-  sort(c("F","M","U"))
 LevPol <-  sort(c("Dem","Lib","Rep","Ind","U"))
 
+## the relevant variables for the trial summaries
+TrialVars <- c("TrialNumberID", "DateOutcome", "JudgeID", "DefAttyType", "VictimName",
+               "VictimRace", "VictimGender", "CrimeLocation", "PropertyType",
+               "ZipCode.Trials", "StateTotalRemoved", "DefenseTotalRemoved",
+               "CourtTotalRemoved", "JDistrict", "JFirstName", "JLastName",
+               "JRace", "JGender", "JPoliticalAff", "JVoterRegYr", "JYrApptd",
+               "JResCity", "JResZip", "ChargeTxt", "Outcome", "Sentence.FullSunshine",
+               "DefendantID.FullSunshine", "DefendantID.DefendantToTrial", "DefRace",
+               "DefGender", "DefDOB", "DefAttyID", "DCFirstName", "DCLastName", "DCRace",
+               "DCGender", "DCPoliticalAff", "DCYrRegVote", "DCYrLicensed",
+               "DCResideCity", "DCResideZip", "ProsecutorID", "ProsecutorFirstName",
+               "ProsecutorLastName", "ProsRace", "ProsGender", "ProsPoliticalAff",
+               "PYrRegVote", "PYrLicensed", "PResideCity", "PResideZip")
+
 ## color constants
 racePal <- brewer.pal(3, "Set1") # c("steelblue","grey50","firebrick")
 whitePal <- c("steelblue","firebrick")
+
+## define a cleanup tree for charge text clean up later
+chargeTree <- list("rape" = list("statutory", "first|1", "second|2"), "sex(?=.*offense)" = list("first|1", "second|1"),
+                   "att(?=.*murder)" = list("first|1", "second|2"), "murder" = list("first|1", "second|2"),
+                   "poss" = list("stole", "firearm", "cocaine", "marijuana", "mass", "meth"),
+                   "assa" = list("serious bodily", "female", "strangul", "deadly", "official"),
+                   "breaking" = list("entering"), "pwimsd" = list("coc", "mar", "oxycodone", "her", "cs"),
+                   "larceny" = list("motor", "felon", "merchant"), "false" = list("pretense"),
+                   "driving" = list("impaired"), "kidnap" = list("first|1", "second|2"),
+                   "robb" = list("dang"), "burg" = list("first|1", "second|2"),
+                   "traffi" = list("coc", "mar", "oxycod", "her", "cs"), "indec" = list("liber"),
+                   "embezz", "disch")
+
 
 ## FUNCTIONS ###########################
 
@@ -241,12 +268,14 @@ MatRelevel <- function(data) {
 }
 
 ## write a wrapper to estimate the values of total removed jurors
-RemovedJurorEstimates <- function(tofill, data, ident) {
+RemovedJurorEstimates <- function(tofill, data, ident, plot = TRUE) {
     temp <- FillNAs(tofill, filldata = data, identifier = ident)
     temp2 <- rowSums(data[,grepl(ident, names(data))])
-    ## let's see how accurate this is
-    plot(temp, temp2, xlab = "Observed and Filled", ylab = "Juror Sums")
-    abline(0,1)
+    ## let's see how accurate this is if plotting is desired
+    if (plot) {
+        plot(temp, temp2, xlab = "Observed and Filled", ylab = "Juror Sums")
+        abline(0,1)
+    }
     cat("= : ", sum(temp == temp2)/length(temp2), "\n", "< : ", sum(temp2 < temp)/length(temp2), "\n", sep = "")
     ## replace the filled values less than the estimated, for consistency
     temp[temp < temp2] <- temp2[temp < temp2]
@@ -254,21 +283,48 @@ RemovedJurorEstimates <- function(tofill, data, ident) {
 }
 
 ## make a text-mining regularization function
-StringReg <- function(strs, cosdists = TRUE) {
-    ## first set everything to uppercase
-    strs <- toupper(strs)
+StringReg <- function(strs) {
+    ## first set everything to lowercase
+    strs <- tolower(strs)
+    ## replace specific patterns noticed
+    strs <- str_replace_all(strs, "b/e|break/enter|b&e", "breaking and entering")
+    strs <- str_replace_all(strs, "dwi", "driving while impaired")
+    strs <- str_replace_all(strs, "rwdw", "robbery with a deadly weapon")
+    strs <- str_replace_all(strs, "pwisd", "pwimsd")
+    strs <- str_replace_all(strs, "awdw", "assault with a deadly weapon")
     ## replace punctuation
     strs <- gsub("[^[:alnum:][:space:]']", "", strs)
-    ## split on spaces
-    strs <- str_split(strs, "\\s+")
-    upstop <- paste0(toupper(stopwords()), collapse = " | ")
-    ## remove these
-    strs1 <- str_replace_all(strs, upstop, " ")
+    ## return these
+    strs
+}
+
+## create a function to process such a tree structure given a list of strings
+stringTree <- function(strs, regexTree, inds = 1:length(strs), includeOther = TRUE) {
+    ## identify the sublists, and divide the data
+    sublists <- sapply(regexTree, is.list)
+    ## iterate over unnamed items (leaf nodes)
+    listdiv <- lapply(regexTree[!sublists], function(el) inds[grepl(el, strs, perl = TRUE)])
+    names(listdiv) <- unlist(regexTree[!sublists])
+    ## check if there are any sublists
+    if (!any(sublists)) {
+        if (includeOther) listdiv <- c(listdiv, other = list(inds[!(inds %in% unlist(listdiv))]))
+        ## in the case of none, treat the object as a list to iterate through
+        listdiv
+    } else {
+        ## otherwise recurse over the branches
+        finlist <- c(listdiv, lapply(names(regexTree)[sublists],
+                                     function(name) stringTree(strs[grepl(name, strs, perl = TRUE)],
+                                                               regexTree[[name]],
+                                                               inds[grepl(name, strs, perl = TRUE)],
+                                                               includeOther)))
+        names(finlist)[(length(listdiv) + 1):length(finlist)] <- names(regexTree)[sublists]
+        c(finlist, other = list(inds[!(inds %in% unlist(finlist))]))
+    }
 }
 
 ## create a plot which visualizes positional data patterns by a categorical variable
 ## could encode density as either box sizes or through alpha levels of colour
-posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.6, alphaencoding = TRUE, alphamin = 0.1,
+posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencoding = TRUE, alphamin = 0.1,
                        areaencoding = FALSE, ...) {
     ## get an important scale variable
     ncats <- length(unique(cats))
@@ -425,19 +481,6 @@ eikos(WhiteBlack ~ DefWhiteBlack + DefAttyType, data = SRaceKnown[SRaceKnown$Def
 
 ## identify the unique trials
 Trials <- unique(SwapSunshine$TrialNumberID)
-## and the variables which can be sensibly summarized for each trial
-TrialVars <- c("TrialNumberID", "DateOutcome", "JudgeID", "DefAttyType", "VictimName",
-               "VictimRace", "VictimGender", "CrimeLocation", "PropertyType",
-               "ZipCode.Trials", "StateTotalRemoved", "DefenseTotalRemoved",
-               "CourtTotalRemoved", "JDistrict", "JFirstName", "JLastName",
-               "JRace", "JGender", "JPoliticalAff", "JVoterRegYr", "JYrApptd",
-               "JResCity", "JResZip", "ChargeTxt", "Outcome", "Sentence.FullSunshine",
-               "DefendantID.FullSunshine", "DefendantID.DefendantToTrial", "DefRace",
-               "DefGender", "DefDOB", "DefAttyID", "DCFirstName", "DCLastName", "DCRace",
-               "DCGender", "DCPoliticalAff", "DCYrRegVote", "DCYrLicensed",
-               "DCResideCity", "DCResideZip", "ProsecutorID", "ProsecutorFirstName",
-               "ProsecutorLastName", "ProsRace", "ProsGender", "ProsPoliticalAff",
-               "PYrRegVote", "PYrLicensed", "PResideCity", "PResideZip")
 ## extract information about these trials, note that grouping occurs on the trial ID, defendant ID, and charge ID levels,
 ## as the trials frequency involve multiple charges and defendants, which makes them less clean
 TrialSunshine <- aggregate(SwapSunshine[,TrialVars],
@@ -460,10 +503,10 @@ TrialSun.sum <- merge(cbind(TrialNumberID = JurySummarized$Juries$TrialNumberID,
 ## notice that the total removed variables are incomplete, try to correct this where possible using the jury
 ## summarized data above
 TrialSun.sum$DefRemEst <- RemovedJurorEstimates(TrialSun.sum$DefenseTotalRemoved, data = TrialSun.sum,
-                                                ident = "Gender.DefRem")
+                                                ident = "Gender.DefRem", plot = FALSE)
 ## perform this same procedure for the prosecution removals
 TrialSun.sum$ProRemEst <- RemovedJurorEstimates(TrialSun.sum$StateTotalRemoved, data = TrialSun.sum,
-                                                ident = "Gender.ProRem")
+                                                ident = "Gender.ProRem", plot = FALSE)
 ## synthesize some other variables, simple race indicators
 TrialSun.sum$DefWhiteBlack <- as.factor(BlackWhiteOther(TrialSun.sum$DefRace))
 TrialSun.sum$DefWhiteOther <- as.factor(c("Other", "White")[grepl("White", TrialSun.sum$DefWhiteBlack) + 1])
@@ -478,9 +521,13 @@ with(TrialSun.sum, plot(jitter(DefRemEst, factor = 2), jitter(ProRemEst, factor 
 abline(0,1)
 legend(x = "topleft", legend = levels(TrialSun.sum$DefWhiteBlack), col = racePal, pch = 20, title = "Defendant Race")
 ## this is only somewhat informative, it is difficult to see any patterns, use the custom posboxplot function
+## first encode relative size of point by alpha blending
 with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal, xlab = "Defense Strike Count",
-                              ylab = "Prosecution Strike Count"))
-legend(x = "topleft", legend = levels(TrialSun.sum$DefWhiteBlack), col = racePal, pch = 20, title = "Defendant Race")
+                              ylab = "Prosecution Strike Count", boxwids = 0.8, alphamin = 0.05))
+legend(x = "topleft", legend = levels(TrialSun.sum$DefWhiteBlack), col = racePal, pch = 15, title = "Defendant Race")
+## next by area, another encoding option in this function
+with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal, xlab = "Defense Strike Count",
+                              ylab = "Prosecution Strike Count", alphaencoding = FALSE, areaencoding = TRUE))
 
 ## break apart in more detail for the defense
 DefStruckMeans <- with(TrialSun.sum, sapply(levels(DefWhiteBlack),
@@ -537,6 +584,10 @@ legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "
 with(TrialSun.sum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
                               xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts"))
+with(TrialSun.sum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal,
+                              xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
+                              xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts",
+                              alphaencoding = FALSE, areaencoding = TRUE))
 
 ## for the prosecution
 with(TrialSun.sum, plot(jitter(Race.ProRem.Black, factor = 1.2), jitter(Race.ProRem.White, factor = 1.2), pch = 20,
@@ -548,7 +599,10 @@ legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "
 with(TrialSun.sum, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
                               xlim = c(0,13), ylim = c(0,13), main = "Prosecution Strike Counts"))
-
+with(TrialSun.sum, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal,
+                              xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
+                              xlim = c(0,13), ylim = c(0,13), main = "Prosecution Strike Counts",
+                              alphaencoding = FALSE, areaencoding = FALSE))
 
 ## this suggests that there could be a jury-based racial imbalance due to the venire rather than the racial patterns of lawyer strikes
 
