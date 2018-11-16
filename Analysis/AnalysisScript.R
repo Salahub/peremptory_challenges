@@ -52,16 +52,18 @@ racePal <- brewer.pal(3, "Set1") # c("steelblue","grey50","firebrick")
 whitePal <- c("steelblue","firebrick")
 
 ## define a cleanup tree for charge text clean up later
-chargeTree <- list("rape" = list("statutory", "first|1", "second|2"), "sex(?=.*offense)" = list("first|1", "second|1"),
-                   "att(?=.*murder)" = list("first|1", "second|2"), "murder" = list("first|1", "second|2"),
-                   "poss" = list("stole", "firearm", "cocaine", "marijuana", "mass", "meth"),
+chargeTree <- list("rape" = list("statutory", "first|1", "second|2"), "sex(?=.*offense)" = list("first|1", "second|2"),
+                   "sex(?=.*offend)" = list("regis", "addr"), "murder)" = list("first|1" = list("att"), "second|2" = list("att")),
+                   "arson", "firearm" = list("pos", "disch"), "stole" = list("pos"),
+                   "marij" = list("pos", "sell|sale", "man", "pwimsd"), "coca" = list("pos", "sell|sale", "man", "pwimsd"),
+                   "cs" = list("pos", "sell|sale", "man", "pwimsd"), "hero" = list("pos", "sell|sale", "man", "pwimsd"),
+                   "oxycod" = list("pos", "sell|sale", "man", "pwimsd"), "mass" = list("pos"), "breaking" = list("entering"),
                    "assa" = list("serious bodily", "female", "strangul", "deadly", "official"),
-                   "breaking" = list("entering"), "pwimsd" = list("coc", "mar", "oxycodone", "her", "cs"),
                    "larceny" = list("motor", "felon", "merchant"), "false" = list("pretense"),
                    "driving" = list("impaired"), "kidnap" = list("first|1", "second|2"),
-                   "robb" = list("dang"), "burg" = list("first|1", "second|2"),
-                   "traffi" = list("coc", "mar", "oxycod", "her", "cs"), "indec" = list("liber"),
-                   "embezz", "disch")
+                   "robb" = list("dang"), "burg" = list("first|1", "second|2"), "indec" = list("liber"),
+                   "embezz", "disch", "manslaughter" = list("inv"), "flee" = list("arrest"),
+                   "abuse|cruelty" = list("child", "anim"))
 
 
 ## FUNCTIONS ###########################
@@ -287,11 +289,15 @@ StringReg <- function(strs) {
     ## first set everything to lowercase
     strs <- tolower(strs)
     ## replace specific patterns noticed
-    strs <- str_replace_all(strs, "b/e|break/enter|b&e", "breaking and entering")
+    strs <- str_replace_all(strs, "b/e|break/enter|b&e|break or enter|b or e", "breaking and entering")
     strs <- str_replace_all(strs, "dwi", "driving while impaired")
     strs <- str_replace_all(strs, "rwdw", "robbery with a deadly weapon")
-    strs <- str_replace_all(strs, "pwisd", "pwimsd")
+    strs <- str_replace_all(strs, "pwisd|pwmsd|pwmsd|pwitd|pwid|pwmisd|pwosd", "pwimsd")
+    strs <- str_replace_all(strs, "robery", "robbery")
     strs <- str_replace_all(strs, "awdw", "assault with a deadly weapon")
+    strs <- str_replace_all(strs, "(?<=[\\sa-z])[0-9]{2,}", "")
+    strs <- str_replace_all(strs, "att ", "attempted ")
+    strs <- str_replace_all(strs, "assult", "assault")
     ## replace punctuation
     strs <- gsub("[^[:alnum:][:space:]']", "", strs)
     ## return these
