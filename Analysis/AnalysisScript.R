@@ -13,6 +13,7 @@ library(eikosograms)
 library(RColorBrewer)
 library(stringr)
 library(tm)
+library(lme4)
 
 ## CONSTANTS ###########################
 
@@ -670,6 +671,7 @@ TrialSun.sum$CrimeType <- as.factor(TrialSun.sum$CrimeType)
 
 ## compare these to other variables
 mosaicplot(DefRace ~ CrimeType, data = TrialSun.sum, las = 2, main = "Crime and Race", shade = TRUE)
+mosaicplot(Outcome ~ CrimeType, data = TrialSun.sum, las = 2, main = "Crime and Outcome", shade = TRUE)
 boxplot(DefRemEst ~ CrimeType, data = TrialSun.sum)
 with(TrialSun.sum, posboxplot(as.numeric(CrimeType), DefRemEst, DefWhiteBlack, racePal, xaxt = "n",
                               ylab = "Defense Strike Count", xlab = "Crime Type"))
@@ -685,7 +687,9 @@ with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, CrimeType, crimePal))
 TrialSun.sum$DrugSexTheft <- as.factor(FactorReduce(TrialSun.sum$CrimeType, tokeep = c("Drug","Sex","Theft")))
 with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, DrugSexTheft, boxcolours = brewer.pal(4, "Set1")))
 
-
+## with all of that attempted, we should try to identify whether the lawyers have significantly different
+## patterns of behaviour, or whether they are mostly homogeneous, to evaluate this, try fitting a mixed model for
+## rejection at the juror level
 
 ## try looking now at the KL divergence values and see what patterns might be there
 plot(density(TrialSun.sum$KLdiv))
