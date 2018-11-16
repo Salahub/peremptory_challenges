@@ -353,7 +353,8 @@ treeAgg <- function(tree, level = 1) {
 ## create a plot which visualizes positional data patterns by a categorical variable
 ## could encode density as either box sizes or through alpha levels of colour
 posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencoding = TRUE, alphamin = 0.1,
-                       areaencoding = FALSE, ...) {
+                       areaencoding = FALSE, xlim = range(x) + boxwids*c(-1/1.05,1/1.05),
+                       ylim = range(y) + boxwids*c(-1/1.05,1/1.05), ...) {
     ## get an important scale variable
     ncats <- length(unique(cats))
     ## provide box colours if none are given
@@ -379,7 +380,7 @@ posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencodi
     } else boxcolours <- rep(boxcolours, each = nrow(catprops))
     if (areaencoding) boxwids <- boxwids*sqrt(rowcounts/max(rowcounts))
     ## create an empty plot
-    plot(x, y, col = NA, ...)
+    plot(x, y, col = NA, xlim = xlim, ylim = ylim, ...)
     ## determine some rectangle parameters
     bottomx <- unqPos[,1] - boxwids/2
     bottomy <- unqPos[,2] - boxwids/2
@@ -670,14 +671,21 @@ TrialSun.sum$CrimeType <- as.factor(TrialSun.sum$CrimeType)
 ## compare these to other variables
 mosaicplot(DefRace ~ CrimeType, data = TrialSun.sum, las = 2, main = "Crime and Race", shade = TRUE)
 boxplot(DefRemEst ~ CrimeType, data = TrialSun.sum)
+with(TrialSun.sum, posboxplot(as.numeric(CrimeType), DefRemEst, DefWhiteBlack, racePal, xaxt = "n",
+                              ylab = "Defense Strike Count", xlab = "Crime Type"))
+axis(side = 1, at = 1:7, labels = levels(TrialSun.sum$CrimeType))
 boxplot(ProRemEst ~ CrimeType, data = TrialSun.sum)
+with(TrialSun.sum, posboxplot(as.numeric(CrimeType), ProRemEst, DefWhiteBlack, racePal, xaxt = "n",
+                              ylab = "Prosecution Strike Count", xlab = "Crime Type"))
+axis(side = 1, at = 1:7, labels = levels(TrialSun.sum$CrimeType))
 
 ## try using the positional boxplots
 with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, CrimeType, crimePal))
 ## too many classes, maybe try drug, sex, theft, other
 TrialSun.sum$DrugSexTheft <- as.factor(FactorReduce(TrialSun.sum$CrimeType, tokeep = c("Drug","Sex","Theft")))
+with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, DrugSexTheft, boxcolours = brewer.pal(4, "Set1")))
 
-## try looking at specific lawyers next, see if they have patterns
+
 
 ## try looking now at the KL divergence values and see what patterns might be there
 plot(density(TrialSun.sum$KLdiv))
