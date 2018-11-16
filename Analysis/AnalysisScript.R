@@ -50,20 +50,22 @@ TrialVars <- c("TrialNumberID", "DateOutcome", "JudgeID", "DefAttyType", "Victim
 ## color constants
 racePal <- brewer.pal(3, "Set1") # c("steelblue","grey50","firebrick")
 whitePal <- c("steelblue","firebrick")
+crimePal <- brewer.pal(7, "Set1")
 
 ## define a cleanup tree for charge text clean up later
 chargeTree <- list("rape" = list("statutory", "first|1", "second|2"), "sex(?=.*offense)" = list("first|1", "second|2"),
-                   "sex(?=.*offend)" = list("regis", "addr"), "murder)" = list("first|1" = list("att"), "second|2" = list("att")),
+                   "sex(?=.*offend)" = list("regis", "addr"), "murder" = list("first|1" = list("att"), "second|2" = list("att")),
                    "arson", "firearm" = list("pos", "disch"), "stole" = list("pos"),
-                   "marij" = list("pos", "sell|sale", "man", "pwimsd"), "coca" = list("pos", "sell|sale", "man", "pwimsd"),
+                   "mari" = list("pos", "sell|sale", "man", "pwimsd"), "coca" = list("pos", "sell|sale", "man", "pwimsd"),
                    "cs" = list("pos", "sell|sale", "man", "pwimsd"), "hero" = list("pos", "sell|sale", "man", "pwimsd"),
-                   "oxycod" = list("pos", "sell|sale", "man", "pwimsd"), "mass" = list("pos"), "breaking" = list("entering"),
+                   "meth" = list("pos", "sell|sale", "man", "pwimsd"),
+                   "oxycod" = list("pos", "sell|sale", "man", "pwimsd"), "mass" = list("pos"), "break" = list("enter"),
                    "assa" = list("serious bodily", "female", "strangul", "deadly", "official"),
                    "larceny" = list("motor", "felon", "merchant"), "false" = list("pretense"),
                    "driving" = list("impaired"), "kidnap" = list("first|1", "second|2"),
                    "robb" = list("dang"), "burg" = list("first|1", "second|2"), "indec" = list("liber"),
-                   "embezz", "disch", "manslaughter" = list("inv"), "flee" = list("arrest"),
-                   "abuse|cruelty" = list("child", "anim"))
+                   "embez", "manslaughter" = list("inv"), "flee" = list("arrest"),
+                   "abuse|cruelty" = list("child", "anim"), "identity" = list("theft"))
 
 
 ## FUNCTIONS ###########################
@@ -209,12 +211,11 @@ UniqueAgg <- function(data, by, ...) {
     as.data.frame(endata)
 }
 
-## a simple helper to convert multiple races into black, white, and other, due to the prevalence of the first two
-## compared to the third
-BlackWhiteOther <- function(vals) {
+## a simple helper to convert multiple factor levels into a reduced number
+FactorReduce <- function(vals, tokeep) {
     chars <- as.character(vals)
     ## simply replace elements
-    chars[!grepl("Black|White", chars)] <- "Other"
+    chars[!grepl(paste0(tokeep, collapse = "|"), chars)] <- "Other"
     chars
 }
 
@@ -254,9 +255,9 @@ SynCols <- function(data) {
                                                    } else "Not Struck"
                                                }))
     ## create a white black other indicator
-    data$WhiteBlack <- BlackWhiteOther(data$Race)
-    data$DefWhiteBlack <- BlackWhiteOther(data$DefRace)
-    data$VicWhiteBlack <- BlackWhiteOther(data$VictimRace)
+    data$WhiteBlack <- FactorReduce(data$Race, tokeep = c("Black", "White"))
+    data$DefWhiteBlack <- FactorReduce(data$DefRace, tokeep = c("Black", "White"))
+    data$VicWhiteBlack <- FactorReduce(data$VictimRace, tokeep = c("Black", "White"))
     ## return the data with synthesized columns
     data
 }
@@ -289,15 +290,18 @@ StringReg <- function(strs) {
     ## first set everything to lowercase
     strs <- tolower(strs)
     ## replace specific patterns noticed
-    strs <- str_replace_all(strs, "b/e|break/enter|b&e|break or enter|b or e", "breaking and entering")
+    strs <- str_replace_all(strs, "b/e|break/enter|b&e|break or enter|b or e|b &/or e|b & e", "breaking and entering")
+    strs <- str_replace_all(strs, "controlled substance", "cs")
     strs <- str_replace_all(strs, "dwi", "driving while impaired")
     strs <- str_replace_all(strs, "rwdw", "robbery with a deadly weapon")
     strs <- str_replace_all(strs, "pwisd|pwmsd|pwmsd|pwitd|pwid|pwmisd|pwosd", "pwimsd")
-    strs <- str_replace_all(strs, "robery", "robbery")
+    strs <- str_replace_all(strs, "robery|rob ", "robbery")
+    strs <- str_replace_all(strs, "bulgary", "burglary")
     strs <- str_replace_all(strs, "awdw", "assault with a deadly weapon")
     strs <- str_replace_all(strs, "(?<=[\\sa-z])[0-9]{2,}", "")
     strs <- str_replace_all(strs, "att ", "attempted ")
     strs <- str_replace_all(strs, "assult", "assault")
+    strs <- str_replace_all(strs, "marj", "marijuana")
     ## replace punctuation
     strs <- gsub("[^[:alnum:][:space:]']", "", strs)
     ## return these
@@ -326,6 +330,24 @@ stringTree <- function(strs, regexTree, inds = 1:length(strs), includeOther = TR
         names(finlist)[(length(listdiv) + 1):length(finlist)] <- names(regexTree)[sublists]
         c(finlist, other = list(inds[!(inds %in% unlist(finlist))]))
     }
+}
+
+## create a tree depth helper function
+maxdepth <- function(tree, counter = 1) {
+    max(sapply(tree, function(br) if (!is.list(br)) counter else maxdepth(br, counter + 1)))
+}
+
+## create a function to aggregate a tree as specified above at the desired depth
+treeAgg <- function(tree, level = 1) {
+    ## first check the max depth of the tree
+    treedepth <- maxdepth(tree)
+    ## compare this to requested aggregation level
+    stopifnot(level <= treedepth)
+    ## aggregate at desired level with a helper function
+    agg <- function(tr, depth = 1) {
+        if (depth == level) lapply(tr, function(el) setNames(unlist(el),NULL)) else lapply(tr, function(br) agg(dr, depth + 1))
+    }
+    agg(tree)
 }
 
 ## create a plot which visualizes positional data patterns by a categorical variable
@@ -514,8 +536,8 @@ TrialSun.sum$DefRemEst <- RemovedJurorEstimates(TrialSun.sum$DefenseTotalRemoved
 TrialSun.sum$ProRemEst <- RemovedJurorEstimates(TrialSun.sum$StateTotalRemoved, data = TrialSun.sum,
                                                 ident = "Gender.ProRem", plot = FALSE)
 ## synthesize some other variables, simple race indicators
-TrialSun.sum$DefWhiteBlack <- as.factor(BlackWhiteOther(TrialSun.sum$DefRace))
-TrialSun.sum$DefWhiteOther <- as.factor(c("Other", "White")[grepl("White", TrialSun.sum$DefWhiteBlack) + 1])
+TrialSun.sum$DefWhiteBlack <- as.factor(FactorReduce(TrialSun.sum$DefRace, tokeep = c("Black", "White")))
+TrialSun.sum$DefWhiteOther <- as.factor(FactorReduce(TrialSun.sum$DefWhiteBlack, tokeep = "White"))
 ## the Kullback-Leibler divergence
 TrialSun.sum$KLdiv <- kldiv(TrialSun.sum[,grepl("Jury", names(TrialSun.sum))],
                             TrialSun.sum[,grepl("Venire", names(TrialSun.sum))])
@@ -623,7 +645,37 @@ pairs(TrialSun.sum[,paste0("Race.", rep(c("Def","Pro"), each = 2), "Rem.", rep(c
 with(TrialSun.sum, plot(DefRemEst ~ Outcome))
 with(TrialSun.sum, plot(ProRemEst ~ Outcome))
 ## nothing obvious there, but there is no control for charges/crime type
+
 ## regularize the charges
+regCharg <- StringReg(TrialSun.sum$ChargeTxt)
+## classify these into a charge tree and aggregate this at the coarsest level
+aggCharg <- treeAgg(stringTree(regCharg, chargeTree))
+## these can be further classified into crime classes
+crimes <- list()
+crimes$Sex <- unique(c(unlist(aggCharg[c("rape", "sex(?=.*offense)", "sex(?=.*offend)", "indec")]),
+                       aggCharg$other[grepl("sex", regCharg[aggCharg$other])]))
+crimes$Theft <- unique(unlist(aggCharg[c("stole", "embez", "break", "larceny", "robb", "burg", "identity")]))
+crimes$Murder <- unique(unlist(aggCharg[c("murder", "manslaughter")]))
+crimes$Drug <- unique(c(unlist(aggCharg[c("mari", "coca", "cs", "hero", "meth", "oxycod")]),
+                        aggCharg$other[grepl("para|drug|substance|pwimsd", regCharg[aggCharg$other])]))
+crimes$Violent <- unique(unlist(aggCharg[c("arson", "assa", "abuse|cruelty")]))
+crimes$Driving <- unique(c(unlist(aggCharg[c("driving")]),
+                        aggCharg$other[grepl("hit(?=.*run)|speeding", regCharg[aggCharg$other], perl = TRUE)]))
+## convert these classes into a factor for the data, start with a generic "other" vector
+TrialSun.sum$CrimeType <- rep("Other", nrow(TrialSun.sum))
+## now populate it
+for (nm in sort(names(crimes))) TrialSun.sum$CrimeType[crimes[[nm]]] <- nm
+TrialSun.sum$CrimeType <- as.factor(TrialSun.sum$CrimeType)
+
+## compare these to other variables
+mosaicplot(DefRace ~ CrimeType, data = TrialSun.sum, las = 2, main = "Crime and Race", shade = TRUE)
+boxplot(DefRemEst ~ CrimeType, data = TrialSun.sum)
+boxplot(ProRemEst ~ CrimeType, data = TrialSun.sum)
+
+## try using the positional boxplots
+with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, CrimeType, crimePal))
+## too many classes, maybe try drug, sex, theft, other
+TrialSun.sum$DrugSexTheft <- as.factor(FactorReduce(TrialSun.sum$CrimeType, tokeep = c("Drug","Sex","Theft")))
 
 ## try looking at specific lawyers next, see if they have patterns
 
