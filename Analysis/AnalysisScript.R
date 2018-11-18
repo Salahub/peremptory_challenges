@@ -14,6 +14,7 @@ library(RColorBrewer)
 library(stringr)
 library(tm)
 library(lme4)
+library(lmerTest)
 
 ## CONSTANTS ###########################
 
@@ -351,6 +352,21 @@ treeAgg <- function(tree, level = 1) {
     agg(tree)
 }
 
+## create a crime class aggregation function
+CrimeClassify <- function(tree, regChar) {
+    crimes <- list()
+    crimes$Sex <- unique(c(unlist(tree[c("rape", "sex(?=.*offense)", "sex(?=.*offend)", "indec")]),
+                           tree$other[grepl("sex", regChar[tree$other])]))
+    crimes$Theft <- unique(unlist(tree[c("stole", "embez", "break", "larceny", "robb", "burg", "identity")]))
+    crimes$Murder <- unique(unlist(tree[c("murder", "manslaughter")]))
+    crimes$Drug <- unique(c(unlist(tree[c("mari", "coca", "cs", "hero", "meth", "oxycod")]),
+                            tree$other[grepl("para|drug|substance|pwimsd", regChar[tree$other])]))
+    crimes$Violent <- unique(unlist(tree[c("arson", "assa", "abuse|cruelty")]))
+    crimes$Driving <- unique(c(unlist(tree[c("driving")]),
+                               tree$other[grepl("hit(?=.*run)|speeding", regChar[tree$other], perl = TRUE)]))
+    crimes
+}
+
 ## create a plot which visualizes positional data patterns by a categorical variable
 ## could encode density as either box sizes or through alpha levels of colour
 posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencoding = TRUE, alphamin = 0.1,
@@ -648,26 +664,25 @@ with(TrialSun.sum, plot(DefRemEst ~ Outcome))
 with(TrialSun.sum, plot(ProRemEst ~ Outcome))
 ## nothing obvious there, but there is no control for charges/crime type
 
-## regularize the charges
+## regularize the charges at the trial level
 regCharg <- StringReg(TrialSun.sum$ChargeTxt)
 ## classify these into a charge tree and aggregate this at the coarsest level
 aggCharg <- treeAgg(stringTree(regCharg, chargeTree))
 ## these can be further classified into crime classes
-crimes <- list()
-crimes$Sex <- unique(c(unlist(aggCharg[c("rape", "sex(?=.*offense)", "sex(?=.*offend)", "indec")]),
-                       aggCharg$other[grepl("sex", regCharg[aggCharg$other])]))
-crimes$Theft <- unique(unlist(aggCharg[c("stole", "embez", "break", "larceny", "robb", "burg", "identity")]))
-crimes$Murder <- unique(unlist(aggCharg[c("murder", "manslaughter")]))
-crimes$Drug <- unique(c(unlist(aggCharg[c("mari", "coca", "cs", "hero", "meth", "oxycod")]),
-                        aggCharg$other[grepl("para|drug|substance|pwimsd", regCharg[aggCharg$other])]))
-crimes$Violent <- unique(unlist(aggCharg[c("arson", "assa", "abuse|cruelty")]))
-crimes$Driving <- unique(c(unlist(aggCharg[c("driving")]),
-                        aggCharg$other[grepl("hit(?=.*run)|speeding", regCharg[aggCharg$other], perl = TRUE)]))
+crimes.trial <- CrimeClassify(aggCharg, regCharg)
 ## convert these classes into a factor for the data, start with a generic "other" vector
 TrialSun.sum$CrimeType <- rep("Other", nrow(TrialSun.sum))
 ## now populate it
 for (nm in sort(names(crimes))) TrialSun.sum$CrimeType[crimes[[nm]]] <- nm
 TrialSun.sum$CrimeType <- as.factor(TrialSun.sum$CrimeType)
+
+## do the same processing to the juror summarized data
+regCharg <- StringReg(JurorSunshine$ChargeTxt)
+aggCharg <- treeAgg(stringTree(regCharg, chargeTree))
+crimes.juror <- CrimeClassify(aggCharg, regCharg)
+JurorSunshine$CrimeType <- rep("Other", nrow(JurorSunshine))
+for (nm in sort(names(crimes))) JurorSunshine$CrimeType[crimes.juror[[nm]]] <- nm
+JurorSunshine$CrimeType <- as.factor(JurorSunshine$CrimeType)
 
 ## compare these to other variables
 mosaicplot(DefRace ~ CrimeType, data = TrialSun.sum, las = 2, main = "Crime and Race", shade = TRUE)
@@ -686,10 +701,27 @@ with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, CrimeType, crimePal))
 ## too many classes, maybe try drug, sex, theft, other
 TrialSun.sum$DrugSexTheft <- as.factor(FactorReduce(TrialSun.sum$CrimeType, tokeep = c("Drug","Sex","Theft")))
 with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, DrugSexTheft, boxcolours = brewer.pal(4, "Set1")))
+## also summarize this for the juror data
+JurorSunshine$DrugSexTheft <- as.factor(FactorReduce(JurorSunshine$CrimeType, tokeep = c("Drug","Sex","Theft")))
 
 ## with all of that attempted, we should try to identify whether the lawyers have significantly different
 ## patterns of behaviour, or whether they are mostly homogeneous, to evaluate this, try fitting a mixed model for
 ## rejection at the juror level
+mod1 <- glmer(PerempStruck ~ WhiteBlack + DefWhiteBlack + (1|DefAttyID) + (1|ProsecutorID),
+              data = JurorSunshine, family = binomial)
+## failed to converge, but note that the DefWhiteBlack has one very small group with a black and unknown defendant,
+## try grouping this with the larger black defendant group
+JurorSunshine$DefWhiteBlack2 <- JurorSunshine$DefWhiteBlack
+JurorSunshine$DefWhiteBlack2[JurorSunshine$DefWhiteBlack2 == "Black,U"] <- "Black"
+JurorSunshine$DefWhiteBlack2 <- as.factor(as.character(JurorSunshine$DefWhiteBlack2))
+## now try again
+mod1 <- glmer(PerempStruck ~ WhiteBlack + DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID),
+              data = JurorSunshine, family = binomial)
+## it converged, now expand to include charge type and region
+mod2 <- glmer(PerempStruck ~ WhiteBlack + DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID) + (1|County) +
+                  ChargeType, data = JurorSunshine, family = binomial)
+mod1 <- glm(PerempStruck ~ WhiteBlack + DefWhiteBlack, data = JurorSunshine, family = binomial)
+## that worked, but told nothing useful (no random effect control
 
 ## try looking now at the KL divergence values and see what patterns might be there
 plot(density(TrialSun.sum$KLdiv))
@@ -704,6 +736,3 @@ axis(side = 2, at = 1:6, labels = abbreviate(levels(TrialSun.sum$Outcome), minle
 with(TrialSun.sum, plot(DefRemEst, KLdiv))
 with(TrialSun.sum, plot(ProRemEst, KLdiv))
 with(TrialSun.sum, plot(DefRemEst + ProRemEst, KLdiv))
-
-
-## GGobi, Diane Cook
