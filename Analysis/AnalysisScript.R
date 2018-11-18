@@ -717,9 +717,17 @@ JurorSunshine$DefWhiteBlack2 <- as.factor(as.character(JurorSunshine$DefWhiteBla
 ## now try again
 mod1 <- glmer(PerempStruck ~ WhiteBlack + DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID),
               data = JurorSunshine, family = binomial)
-## it converged, now expand to include charge type and region
-mod2 <- glmer(PerempStruck ~ WhiteBlack + DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID) + (1|County) +
-                  ChargeType, data = JurorSunshine, family = binomial)
+## it converged, now try an interaction term between the races
+mod2 <- glmer(PerempStruck ~ WhiteBlack:DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID),
+              data = JurorSunshine, family = binomial)
+## failed to converge.... maybe subset over only cases with known races
+mod2 <- glmer(PerempStruck ~ WhiteBlack:DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID),
+              data = JurorSunshine[JurorSunshine$WhiteBlack != "Other" & JurorSunshine$DefWhiteBlack2 != "Other", ],
+              family = binomial)
+## expand to include the crime type to assess its impact
+mod2 <- glmer(PerempStruck ~ WhiteBlack + DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID) + CrimeType,
+              data = JurorSunshine, family = binomial)
+## that failed to converge as well, maybe drop the defendant race, as the earlier model found that unimportant
 mod1 <- glm(PerempStruck ~ WhiteBlack + DefWhiteBlack, data = JurorSunshine, family = binomial)
 ## that worked, but told nothing useful (no random effect control
 
