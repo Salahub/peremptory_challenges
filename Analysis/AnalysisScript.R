@@ -395,9 +395,10 @@ posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencodi
         boxcolours <- rgb(t(boxcolours),
                           alpha = rep(round((1-alphamin)*rowcounts/max(rowcounts) + alphamin, digits = 4), times = ncats))
     } else boxcolours <- rep(boxcolours, each = nrow(catprops))
-    if (areaencoding) boxwids <- boxwids*sqrt(rowcounts/max(rowcounts))
-    ## create an empty plot
+    ## create an empty plot before determining the box widths to allow default x and y limits to work
     plot(x, y, col = NA, xlim = xlim, ylim = ylim, ...)
+    ## determine box widths
+    if (areaencoding) boxwids <- boxwids*sqrt(rowcounts/max(rowcounts))
     ## determine some rectangle parameters
     bottomx <- unqPos[,1] - boxwids/2
     bottomy <- unqPos[,2] - boxwids/2
@@ -409,6 +410,24 @@ posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencodi
     ## place the rectangles
     rect(xleft = unlist(xvec[1:ncats]), ybottom = recty[,1], xright = unlist(xvec[2:(ncats+1)]),
          ytop = recty[,2], col = boxcolours, border = boxcolours)
+}
+
+## write a back to back histogram function
+backtobackhist <- function(data1, data2, colpal = c("steelblue","firebrick"), ...) {
+    ## start by generating the two histogram bin sizes
+    bins1 <- hist(data1, plot = FALSE)
+    histbreaks <- bins1$breaks
+    bins2 <- hist(data2, breaks = histbreaks, plot = FALSE)
+    maxcount <- max(c(bins2$counts, bins1$counts))
+    ## create a plot area
+    plot(NA, xlim = c(-maxcount, maxcount), ylim = extendrange(c(data1,data2), f = 0.1), xaxt = "n", ...)
+    ## add a line
+    abline(v = 0)
+    ## add the histograms
+    with(bins1, rect(xleft = -counts, ybottom = breaks[1:length(counts)], xright = rep(0, length(counts)),
+                     ytop = breaks[2:length(breaks)], col = colpal[1]))
+    with(bins2, rect(xleft = rep(0, length(counts)), ybottom = breaks[1:length(counts)], xright = counts,
+                     ytop = breaks[2:length(breaks)], col = colpal[2]))
 }
 
 
@@ -478,7 +497,7 @@ mosaicplot(PerempStruck ~ Guilty, data = SwapSunshine, main = "Strikes by Guilt"
 mosaicplot(Race ~ StruckBy, data = SRaceKnown, shade = TRUE, main = "Race of Juror to Race Removing Juror",
            las = 2)
 mosaicplot(Race ~ StruckBy, data = SRaceKnown[SRaceKnown$StruckBy != "Not Struck",], shade = TRUE,
-           main = "Race to Race Removing (Only Struck)", las = 2)
+           main = "Race to Race Removing (Only Removed)", las = 2)
 ## this plot shows no large systematic deviation between the races in their rejection habits, this suggests, that
 ## the rejection that occurs is not as simple as a group identity check
 ## this might be the wrong race to check, though, perhaps we are better comparing the defendant and victim races to
@@ -500,8 +519,12 @@ eikos(WhiteBlack ~ DefWhiteBlack + DefStruck, data = SRaceKnown, xlab_rot = 90,
 eikos(WhiteBlack ~ DefWhiteBlack + ProStruck, data = SRaceKnown, xlab_rot = 90,
       main = "Prosecution Challenges by Race of Venire Member and Defendant")
 ## very interesting, the prosecution seems far more aggressive than the defense
-mosaicplot(DefStruck ~ DefWhiteBlack + WhiteBlack, data = SRaceKnown, shade = TRUE, las = 2)
-mosaicplot(ProStruck ~ DefWhiteBlack + WhiteBlack, data = SRaceKnown, shade = TRUE, las = 2)
+SRaceKnown$DefWhiteBlack[SRaceKnown$DefWhiteBlack == "Black,U"] <- "Black"
+SRaceKnown$DefWhiteBlack <- as.factor(as.character(SRaceKnown$DefWhiteBlack))
+mosaicplot(DefStruck ~ DefWhiteBlack + WhiteBlack, dir = c("v","v","h"), data = SRaceKnown, shade = TRUE, las = 2,
+           xlab = "Defendant Race and Defence Removals", ylab = "Juror Race", main = "Defence Removal by Defendant Race")
+mosaicplot(ProStruck ~ DefWhiteBlack + WhiteBlack, dir = c("v","v","h"),  data = SRaceKnown, shade = TRUE, las = 2,
+           xlab = "Defendant Race and Prosecution Removals", ylab = "Juror Race", main = "Prosecution Removal by Defendant Race")
 
 ## that result is very interesting, the defense strike rates when conditioned on defendant race show no racial
 ## preference, with a preference to reject white jurors regardless of defendant, but those of the prosecution do,
@@ -632,7 +655,7 @@ with(TrialSun.sum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlac
                               xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts"))
 with(TrialSun.sum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
-                              xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts",
+                              xlim = c(0,13), ylim = c(0,13), main = "Defence Strike Counts",
                               alphaencoding = FALSE, areaencoding = TRUE))
 
 ## for the prosecution
@@ -648,7 +671,7 @@ with(TrialSun.sum, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlac
 with(TrialSun.sum, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
                               xlim = c(0,13), ylim = c(0,13), main = "Prosecution Strike Counts",
-                              alphaencoding = FALSE, areaencoding = FALSE))
+                              alphaencoding = FALSE, areaencoding = TRUE))
 
 ## this suggests that there could be a jury-based racial imbalance due to the venire rather than the racial patterns of lawyer strikes
 
@@ -673,7 +696,7 @@ crimes.trial <- CrimeClassify(aggCharg, regCharg)
 ## convert these classes into a factor for the data, start with a generic "other" vector
 TrialSun.sum$CrimeType <- rep("Other", nrow(TrialSun.sum))
 ## now populate it
-for (nm in sort(names(crimes))) TrialSun.sum$CrimeType[crimes[[nm]]] <- nm
+for (nm in sort(names(crimes.trial))) TrialSun.sum$CrimeType[crimes.trial[[nm]]] <- nm
 TrialSun.sum$CrimeType <- as.factor(TrialSun.sum$CrimeType)
 
 ## do the same processing to the juror summarized data
@@ -681,7 +704,7 @@ regCharg <- StringReg(JurorSunshine$ChargeTxt)
 aggCharg <- treeAgg(stringTree(regCharg, chargeTree))
 crimes.juror <- CrimeClassify(aggCharg, regCharg)
 JurorSunshine$CrimeType <- rep("Other", nrow(JurorSunshine))
-for (nm in sort(names(crimes))) JurorSunshine$CrimeType[crimes.juror[[nm]]] <- nm
+for (nm in sort(names(crimes.juror))) JurorSunshine$CrimeType[crimes.juror[[nm]]] <- nm
 JurorSunshine$CrimeType <- as.factor(JurorSunshine$CrimeType)
 
 ## compare these to other variables
