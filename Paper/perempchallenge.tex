@@ -136,29 +136,7 @@ levels for the variables in the data set. It then identifies rows which have can
 
 \section{Analysis} \label{sec:analysis}
 
-\begin{tabular}{rr|r|r|r|r|r|r|}
-  \cline{3-8}
-  & & \multicolumn{6}{ c| }{Juror Race} \\ \cline{3-8}
-  & & \multicolumn{2}{ c| }{Black} & \multicolumn{2}{ c| }{White} & \multicolumn{2}{ c| }{Other} \\ \cline{3-8}
-  & & Struck & Kept & Struck & Kept & Struck & Kept \\ \hline
-  \multicolumn{1}{|r|}{\multirow{3}{*}{Defendant Race}} & Black & 154 & 3019 & 1763 & 7942 & 38 & 384 \\ \cline{2-8}
-  \multicolumn{1}{|r|}{} & White & 101 & 927 & 968 & 5693 & 17 & 140 \\ \cline{2-8}
-  \multicolumn{1}{|r|}{} & Other & 33 & 442 & 229 & 1296 & 8 & 63 \\ \hline
-\end{tabular}
-
-Try rounding to make the patterns clearer:
-
-\begin{tabular}{rr|r|r|r|r|r|r|}
-  \cline{3-8}
-  & & \multicolumn{6}{ c| }{Juror Race} \\ \cline{3-8}
-  & & \multicolumn{2}{ c| }{Black} & \multicolumn{2}{ c| }{White} & \multicolumn{2}{ c| }{Other} \\ \cline{3-8}
-  & & Struck & Kept & Struck & Kept & Struck & Kept \\ \hline
-  \multicolumn{1}{|r|}{\multirow{3}{*}{Defendant Race}} & Black & 200 & 3000 & 1800 & 7900 & 0 & 400 \\ \cline{2-8}
-  \multicolumn{1}{|r|}{} & White & 100 & 900 & 1000 & 5700 & 0 & 100 \\ \cline{2-8}
-  \multicolumn{1}{|r|}{} & Other & 0 & 400 & 200 & 1300 & 0 & 100 \\ \hline
-\end{tabular}
-
-Rearrange the table to put large numbers first and remove extra zeros:
+First the defense behaviour (in hundreds):
 
 \begin{tabular}{rr|r|r|r|r|r|r|r}
   \cline{3-8}
@@ -173,7 +151,7 @@ Rearrange the table to put large numbers first and remove extra zeros:
                                    & \multicolumn{1}{r}{1} \\  
 \end{tabular}
 
-Now for the prosecution:
+Now for the prosecution behaviour (in hundreds):
 
 \begin{tabular}{rr|r|r|r|r|r|r|r}
   \cline{3-8}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  22 NOV 2018 19:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  22 NOV 2018 19:06
 entering extended mode
 **\input perempchallenge.tex
 (perempchallenge.tex ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -516,15 +516,14 @@ Overfull \hbox (14.34116pt too wide) in paragraph at lines 124--127
 n one joined ta-ble $[]$: cre-ation of \OT1/pcr/m/n/10 CleaningMerge
  []
 
-[2]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 197.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 175.
 
- ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 197.
-
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 175.
+ [2]
 (perempchallenge.bbl
 Underfull \hbox (badness 6910) in paragraph at lines 37--42
 []\OT1/ptm/m/n/10 N. R. Hasan.  Elim-i-nat-ing peremp-tory chal-lenges makes tr
@@ -537,30 +536,30 @@ Underfull \hbox (badness 8056) in paragraph at lines 37--42
 eliminating-peremptory-challenges-make-
  []
 
-[3]
+
 Underfull \hbox (badness 6493) in paragraph at lines 86--91
 []\OT1/ptm/m/n/10 B. Zinchuk.  Both sides wrong about Stan-ley trial.  Prince G
 eorge Cit-i-zen, March 2018.
  []
 
-) [4] (perempchallenge.aux) ) 
+) [3] (perempchallenge.aux) ) 
 Here is how much of TeX's memory you used:
  6191 strings out of 493328
  91807 string characters out of 3139124
- 208233 words of memory out of 3000000
+ 202233 words of memory out of 3000000
  9572 multiletter control sequences out of 15000+200000
  22323 words of font info for 57 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,8n,38p,344b,223s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,8n,38p,344b,202s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/
 8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program File
 s/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/font
 s/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times
 /utmri8a.pfb>
-Output written on perempchallenge.pdf (4 pages, 72300 bytes).
+Output written on perempchallenge.pdf (3 pages, 70309 bytes).
 PDF statistics:
- 36 PDF objects out of 1000 (max. 8388607)
+ 33 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
