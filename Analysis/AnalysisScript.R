@@ -579,6 +579,8 @@ TrialSun.sum$ProRemEst <- RemovedJurorEstimates(TrialSun.sum$StateTotalRemoved, 
 ## synthesize some other variables, simple race indicators
 TrialSun.sum$DefWhiteBlack <- as.factor(FactorReduce(TrialSun.sum$DefRace, tokeep = c("Black", "White")))
 TrialSun.sum$DefWhiteOther <- as.factor(FactorReduce(TrialSun.sum$DefWhiteBlack, tokeep = "White"))
+## guilt indicator
+TrialSun.sum$Guilty <- as.factor(grepl("Guilty", TrialSun.sum$Outcome))
 ## the Kullback-Leibler divergence
 TrialSun.sum$KLdiv <- kldiv(TrialSun.sum[,grepl("Jury", names(TrialSun.sum))],
                             TrialSun.sum[,grepl("Venire", names(TrialSun.sum))])
@@ -767,3 +769,10 @@ axis(side = 2, at = 1:6, labels = abbreviate(levels(TrialSun.sum$Outcome), minle
 with(TrialSun.sum, plot(DefRemEst, KLdiv))
 with(TrialSun.sum, plot(ProRemEst, KLdiv))
 with(TrialSun.sum, plot(DefRemEst + ProRemEst, KLdiv))
+
+## look at black/white juror counts by guilt
+with(TrialSun.sum, posboxplot(Race.Jury.White, Race.Jury.Black, as.factor(Guilty), boxcolours = whitePal,
+                              alphaencoding = FALSE, areaencoding = TRUE))
+## what about by politics?
+with(TrialSun.sum, posboxplot(PolAff.Jury.Rep, PolAff.Jury.Dem, as.factor(Guilty), boxcolours = whitePal,
+                              alphaencoding = FALSE, areaencoding = TRUE))
