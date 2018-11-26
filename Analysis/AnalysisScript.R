@@ -430,6 +430,36 @@ backtobackhist <- function(data1, data2, colpal = c("steelblue","firebrick"), ..
                      ytop = breaks[2:length(breaks)], col = colpal[2]))
 }
 
+## create a function for proportional line plots
+propparcoord <- function(fact, cats, levs, ylim = NULL, colpal = NULL, ...) {
+    ## extract the levels and indices of interest
+    levinds <- cats %in% levs
+    ## first get the length of the categories provided and a table of frequencies
+    ctab <- table(as.character(cats[levinds]))
+    len <- length(fact)
+    lineLen <- length(levels(fact))
+    ## generate a palette if one is not given
+    if (is.null(colpal)) colpal <- rainbow(length(ctab))
+    ## check for missing ylim value
+    if (is.null(ylim)) yrng <- c(0,1) else yrng <- ylim
+    ## create positions for relative proportions
+    rectbounds <- seq(0.75, 0.75 - 0.03*(length(ctab)+3), by = -0.03)*yrng[2]
+    ## now plot everything
+    plot(NA, xlim = c(1,lineLen), ylim = yrng, xlab = "Race", ylab = "Proportion", xaxt = 'n', ...)
+    lines(1:lineLen, table(fact)/nvenire)
+    rect(xleft = 1, xright = 1+lineLen/4, ybottom = rectbounds[1], ytop = rectbounds[2], col = "black")
+    ## plot lines and relative size rectangles
+    for (ii in 1:length(ctab)) {
+        lines(1:lineLen, table(fact[cats == names(ctab)[ii]])/ctab[names(ctab)[ii]], col = colpal[ii])
+        rect(xleft = 1, xright = 1+(lineLen/4)*ctab[ii]/len, ybottom = rectbounds[ii+1], ytop = rectbounds[ii+2],
+             col = colpal[ii])
+    }
+    ## add a legend and axis
+    legend(x = "topleft", legend = c("All", names(ctab)), lty = 1, col = c("Black", colpal))
+    text("Relative Totals", x = 1, y = 0.77*yrng[2], pos = 4)
+    axis(1, 1:lineLen, levels(fact))
+}
+
 
 ## DATA INSPECTION #####################
 
@@ -479,6 +509,45 @@ mosaicplot(Race ~ ProStruck, data = SRaceKnown[SRaceKnown$Gender == "F",],
            main = "Prosecution Removals and Race (Women)", shade = TRUE, las = 2)
 par(mfrow = c(1,1))
 ## maybe the same forces are at play here, compare to simulation?
+
+## these mosaic plots can be confusing, and seemed ineffective upon first presentation, try parallel axis plots
+## instead
+
+## first compare defense strikes, prosecution strikes, venire, and jurors
+lineLen <- length(levels(JurorSunshine$Race))
+nvenire <- nrow(JurorSunshine)
+ndisposition <- table(JurorSunshine$Disposition)
+plot(NA, xlim = c(1,lineLen), ylim = c(0,0.8), xlab = "Race", ylab = "Proportion", xaxt = 'n')
+lines(1:lineLen, table(JurorSunshine$Race)/sum(table(JurorSunshine$Race)), col = "green")
+lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "S_rem"])/ndisposition["S_rem"],
+      col = "red")
+lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "D_rem"])/ndisposition["D_rem"],
+      col = "blue")
+lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "Kept"])/ndisposition["Kept"])
+axis(side = 1, at = 1:lineLen, labels = levels(JurorSunshine$Race))
+## add a legend and a barplot to give scale information
+legend(x = "topleft", legend = c("Venire", "Jury", "Defence Struck", "Prosecution Struck"), lty = 1,
+       col = c("green","black","blue","red"))
+text("Relative Totals", x = 1, y = 0.6, pos = 4)
+rect(xleft = 1, xright = 3, ybottom = 0.55, ytop = 0.58, col = "green")
+rect(xleft = 1, xright = 1+2*ndisposition["Kept"]/nvenire, ybottom = 0.52, ytop = 0.55, col = "black")
+rect(xleft = 1, xright = 1+2*ndisposition["D_rem"]/nvenire, ybottom = 0.49, ytop = 0.52, col = "blue")
+rect(xleft = 1, xright = 1+2*ndisposition["S_rem"]/nvenire, ybottom = 0.46, ytop = 0.49, col = "red")
+## try also by encoding in line thickness
+plot(NA, xlim = c(1,lineLen), ylim = c(0,0.8), xlab = "Race", ylab = "Proportion", xaxt = 'n')
+lines(1:lineLen, table(JurorSunshine$Race)/nvenire, col = "green", lwd = 5)
+lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "S_rem"])/ndisposition["S_rem"],
+      col = "red", lwd = 5*(ndisposition["S_rem"]/nvenire))
+lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "D_rem"])/ndisposition["D_rem"],
+      col = "blue", lwd = 5*(ndisposition["D_rem"]/nvenire))
+lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "Kept"])/ndisposition["Kept"],
+      lwd = 5*ndisposition["Kept"]/nvenire)
+axis(side = 1, at = 1:lineLen, labels = levels(JurorSunshine$Race))
+legend(x = "topleft", legend = c("Venire", "Jury", "Defence Struck", "Prosecution Struck"), lty = 1,
+       col = c("green","black","blue","red"))
+
+## now view the defense in detail
+plot(NA,
 
 ## however, this suggests another question: is this strategy actually successful? That is, does there appear to
 ## be a relation between the number of peremptory challenges and the court case outcome?
