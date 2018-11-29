@@ -50,7 +50,7 @@ TrialVars <- c("TrialNumberID", "DateOutcome", "JudgeID", "DefAttyType", "Victim
                "PYrRegVote", "PYrLicensed", "PResideCity", "PResideZip")
 
 ## color constants
-racePal <- brewer.pal(3, "Set1") # c("steelblue","grey50","firebrick")
+racePal <- brewer.pal(3, "RdYlBu") # c("steelblue","grey50","firebrick")
 whitePal <- c("steelblue","firebrick")
 crimePal <- brewer.pal(7, "Set1")
 
@@ -369,13 +369,19 @@ CrimeClassify <- function(tree, regChar) {
 
 ## create a plot which visualizes positional data patterns by a categorical variable
 ## could encode density as either box sizes or through alpha levels of colour
+## the areal representation breaks the "dimensionality" rule of data in Edward Tufte's "The Visual Display of Information",
+## to limit the dimensionality of a representation to at most the dimensionality of the data itself
+## place the legend labels in the largest box instead of off to the side (didn't really work...)
 posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencoding = TRUE, alphamin = 0.1,
-                       areaencoding = FALSE, xlim = range(x) + boxwids*c(-1/1.05,1/1.05),
+                       areaencoding = FALSE, xlim = range(x) + boxwids*c(-1/1.05,1/1.05), inc.leg = TRUE,
                        ylim = range(y) + boxwids*c(-1/1.05,1/1.05), ...) {
     ## get an important scale variable
     ncats <- length(unique(cats))
     ## provide box colours if none are given
-    if (is.null(boxcolours)) boxcolours <- rainbow(ncats)
+    if (is.null(boxcolours)) {
+        boxcols <- rainbow(ncats)
+        boxcolours <- boxcols
+    } else boxcols <- boxcolours
     ## first identify the unique positions
     unqPos <- unique(cbind(x,y))
     ## iterate through these, create tables of the categories
@@ -390,11 +396,11 @@ posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencodi
     ## use the row counts to determine the colours and box widths
     if (alphaencoding) {
         ## start by converting the box colours to rgb
-        boxcolours <- col2rgb(rep(boxcolours, each = nrow(catprops)), alpha = FALSE)/255
+        boxcols <- col2rgb(rep(boxcols, each = nrow(catprops)), alpha = FALSE)/255
         ## convert back to hex
-        boxcolours <- rgb(t(boxcolours),
+        boxcols <- rgb(t(boxcols),
                           alpha = rep(round((1-alphamin)*rowcounts/max(rowcounts) + alphamin, digits = 4), times = ncats))
-    } else boxcolours <- rep(boxcolours, each = nrow(catprops))
+    } else boxcols <- rep(boxcols, each = nrow(catprops))
     ## create an empty plot before determining the box widths to allow default x and y limits to work
     plot(x, y, col = NA, xlim = xlim, ylim = ylim, ...)
     ## determine box widths
@@ -409,7 +415,10 @@ posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencodi
     xvec <- lapply(1:(ncats+1), function(n) rectx[,n])
     ## place the rectangles
     rect(xleft = unlist(xvec[1:ncats]), ybottom = recty[,1], xright = unlist(xvec[2:(ncats+1)]),
-         ytop = recty[,2], col = boxcolours, border = boxcolours)
+         ytop = recty[,2], col = boxcols, border = boxcols)
+    ## include a legend if desired
+    if (inc.leg) legend(x = "top", legend = colnames(rectx)[-1],fill = boxcolours, bty = "n",
+                        xpd = NA, horiz = TRUE)
 }
 
 ## write a back to back histogram function
@@ -431,32 +440,52 @@ backtobackhist <- function(data1, data2, colpal = c("steelblue","firebrick"), ..
 }
 
 ## create a function for proportional line plots
-propparcoord <- function(fact, cats, levs, ylim = NULL, colpal = NULL, ...) {
+## incorporate possibility to display in a non-proportional absolute way
+propparcoord <- function(fact, cats, levs, proportional = TRUE, includerel = proportional, ylim = NULL,
+                         colpal = NULL, ...) {
+    ## check if the factor is indeed a factor
+    if (!is.factor(fact)) fact <- as.factor(fact)
     ## extract the levels and indices of interest
     levinds <- cats %in% levs
-    ## first get the length of the categories provided and a table of frequencies
+    ## get the length of the categories provided and a table of frequencies
     ctab <- table(as.character(cats[levinds]))
     len <- length(fact)
     lineLen <- length(levels(fact))
+    ## set the ylim and other values based on whether a proportional plot is desired
+    factab <- table(fact)
+    if (proportional) factab <- factab/len else if (is.null(ylim)) ylim <- c(0, max(factab))
     ## generate a palette if one is not given
     if (is.null(colpal)) colpal <- rainbow(length(ctab))
     ## check for missing ylim value
     if (is.null(ylim)) yrng <- c(0,1) else yrng <- ylim
-    ## create positions for relative proportions
-    rectbounds <- seq(0.75, 0.75 - 0.03*(length(ctab)+3), by = -0.03)*yrng[2]
     ## now plot everything
-    plot(NA, xlim = c(1,lineLen), ylim = yrng, xlab = "Race", ylab = "Proportion", xaxt = 'n', ...)
-    lines(1:lineLen, table(fact)/nvenire)
-    rect(xleft = 1, xright = 1+lineLen/4, ybottom = rectbounds[1], ytop = rectbounds[2], col = "black")
-    ## plot lines and relative size rectangles
+    if (proportional) ynm <- "Proportion" else ynm <- "Count"
+    plot(NA, xlim = c(1,lineLen), ylim = yrng, xlab = "Race", ylab = ynm, xaxt = 'n', ...)
+    lines(1:lineLen, factab)
+    ## create positions for relative proportions bar chart if this is desired
+    if (includerel) {
+        ## specify bar chart rectangle bounds
+        rectbounds <- seq(0.75, 0.75 - 0.03*(length(ctab)+3), by = -0.03)*yrng[2]
+        ## add the reference "total population" bar
+        rect(xleft = 1, xright = 1+lineLen/4, ybottom = rectbounds[1], ytop = rectbounds[2], col = "black")
+    }
+    ## plot lines and relative size rectangles, depending on options
     for (ii in 1:length(ctab)) {
-        lines(1:lineLen, table(fact[cats == names(ctab)[ii]])/ctab[names(ctab)[ii]], col = colpal[ii])
-        rect(xleft = 1, xright = 1+(lineLen/4)*ctab[ii]/len, ybottom = rectbounds[ii+1], ytop = rectbounds[ii+2],
-             col = colpal[ii])
+        ## get the counts for the subset selected by ii
+        subsetab <- table(fact[cats == names(ctab)[ii]])
+        ## set these proportional if desired
+        if (proportional) subsetab <- subsetab/ctab[names(ctab)[ii]]
+        ## place these in a line
+        lines(1:lineLen, subsetab, col = colpal[ii])
+        ## add the appropriate bar if desired
+        if (includerel) {
+            rect(xleft = 1, xright = 1+(lineLen/4)*ctab[ii]/len, ybottom = rectbounds[ii+1], ytop = rectbounds[ii+2],
+                 col = colpal[ii])
+        }
     }
     ## add a legend and axis
     legend(x = "topleft", legend = c("All", names(ctab)), lty = 1, col = c("Black", colpal))
-    text("Relative Totals", x = 1, y = 0.77*yrng[2], pos = 4)
+    if (includerel) text("Relative Totals", x = 1, y = 0.77*yrng[2], pos = 4)
     axis(1, 1:lineLen, levels(fact))
 }
 
