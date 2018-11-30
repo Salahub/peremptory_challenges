@@ -442,10 +442,12 @@ backtobackhist <- function(data1, data2, colpal = c("steelblue","firebrick"), ..
 
 ## create a function for proportional line plots
 ## incorporate possibility to display in a non-proportional absolute way
-propparcoord <- function(fact, cats, levs, proportional = TRUE, includerel = proportional, ylim = NULL,
+propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includerel = proportional, ylim = NULL,
                          colpal = NULL, ...) {
     ## check if the factor is indeed a factor
     if (!is.factor(fact)) fact <- as.factor(fact)
+    ## check if levs have been supplied
+    if (is.null(levs)) levs <- unique(cats)
     ## extract the levels and indices of interest
     levinds <- cats %in% levs
     ## get the length of the categories provided and a table of frequencies
@@ -551,7 +553,13 @@ with(JurorSunshine, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem
 with(JurorSunshine, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
                                  colpal = dispPal, proportional = FALSE))
 ## now view the defense in detail
-plot(NA,
+with(JurorSunshine[JurorSunshine$Disposition == "D_rem",],
+     propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
+                  proportional = TRUE, ylim = c(0,0.8)))
+## and the prosecution
+with(JurorSunshine[JurorSunshine$Disposition == "S_rem",],
+     propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
+                  proportional = TRUE, ylim = c(0,0.7)))
 
 ## however, this suggests another question: is this strategy actually successful? That is, does there appear to
 ## be a relation between the number of peremptory challenges and the court case outcome?
