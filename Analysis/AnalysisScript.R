@@ -53,6 +53,7 @@ TrialVars <- c("TrialNumberID", "DateOutcome", "JudgeID", "DefAttyType", "Victim
 racePal <- brewer.pal(3, "RdYlBu") # c("steelblue","grey50","firebrick")
 whitePal <- c("steelblue","firebrick")
 crimePal <- brewer.pal(7, "Set1")
+dispPal <- brewer.pal(3, "Set2")
 
 ## define a cleanup tree for charge text clean up later
 chargeTree <- list("rape" = list("statutory", "first|1", "second|2"), "sex(?=.*offense)" = list("first|1", "second|2"),
@@ -543,38 +544,12 @@ par(mfrow = c(1,1))
 ## instead
 
 ## first compare defense strikes, prosecution strikes, venire, and jurors
-lineLen <- length(levels(JurorSunshine$Race))
-nvenire <- nrow(JurorSunshine)
-ndisposition <- table(JurorSunshine$Disposition)
-plot(NA, xlim = c(1,lineLen), ylim = c(0,0.8), xlab = "Race", ylab = "Proportion", xaxt = 'n')
-lines(1:lineLen, table(JurorSunshine$Race)/sum(table(JurorSunshine$Race)), col = "green")
-lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "S_rem"])/ndisposition["S_rem"],
-      col = "red")
-lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "D_rem"])/ndisposition["D_rem"],
-      col = "blue")
-lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "Kept"])/ndisposition["Kept"])
-axis(side = 1, at = 1:lineLen, labels = levels(JurorSunshine$Race))
-## add a legend and a barplot to give scale information
-legend(x = "topleft", legend = c("Venire", "Jury", "Defence Struck", "Prosecution Struck"), lty = 1,
-       col = c("green","black","blue","red"))
-text("Relative Totals", x = 1, y = 0.6, pos = 4)
-rect(xleft = 1, xright = 3, ybottom = 0.55, ytop = 0.58, col = "green")
-rect(xleft = 1, xright = 1+2*ndisposition["Kept"]/nvenire, ybottom = 0.52, ytop = 0.55, col = "black")
-rect(xleft = 1, xright = 1+2*ndisposition["D_rem"]/nvenire, ybottom = 0.49, ytop = 0.52, col = "blue")
-rect(xleft = 1, xright = 1+2*ndisposition["S_rem"]/nvenire, ybottom = 0.46, ytop = 0.49, col = "red")
-## try also by encoding in line thickness
-plot(NA, xlim = c(1,lineLen), ylim = c(0,0.8), xlab = "Race", ylab = "Proportion", xaxt = 'n')
-lines(1:lineLen, table(JurorSunshine$Race)/nvenire, col = "green", lwd = 5)
-lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "S_rem"])/ndisposition["S_rem"],
-      col = "red", lwd = 5*(ndisposition["S_rem"]/nvenire))
-lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "D_rem"])/ndisposition["D_rem"],
-      col = "blue", lwd = 5*(ndisposition["D_rem"]/nvenire))
-lines(1:lineLen, table(JurorSunshine$Race[JurorSunshine$Disposition == "Kept"])/ndisposition["Kept"],
-      lwd = 5*ndisposition["Kept"]/nvenire)
-axis(side = 1, at = 1:lineLen, labels = levels(JurorSunshine$Race))
-legend(x = "topleft", legend = c("Venire", "Jury", "Defence Struck", "Prosecution Struck"), lty = 1,
-       col = c("green","black","blue","red"))
-
+with(JurorSunshine, propparcoord(Race, Disposition, levs = c("Kept","S_rem","D_rem"),
+                                 colpal = dispPal, ylim = c(0,0.7)))
+with(JurorSunshine, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
+                                 colpal = dispPal, ylim = c(0,0.7)))
+with(JurorSunshine, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
+                                 colpal = dispPal, proportional = FALSE))
 ## now view the defense in detail
 plot(NA,
 
@@ -826,6 +801,10 @@ TrialSun.sum$DrugSexTheft <- as.factor(FactorReduce(TrialSun.sum$CrimeType, toke
 with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, DrugSexTheft, boxcolours = brewer.pal(4, "Set1")))
 ## also summarize this for the juror data
 JurorSunshine$DrugSexTheft <- as.factor(FactorReduce(JurorSunshine$CrimeType, tokeep = c("Drug","Sex","Theft")))
+
+## try something different, plot the tendency of the lawyers themselves
+## idea: horizontal axis is lawyers, vertical is strikes
+
 
 ## with all of that attempted, we should try to identify whether the lawyers have significantly different
 ## patterns of behaviour, or whether they are mostly homogeneous, to evaluate this, try fitting a mixed model for
