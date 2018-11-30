@@ -8,7 +8,6 @@
 
 ## PACKAGES ############################
 library(readxl)
-library(vcd)
 
 
 ## CONSTANTS ###########################
@@ -428,6 +427,13 @@ FullSunshine <- as.data.frame(FullSunshine)
 ## remove some unnecessary columns
 FullSunshine$ID <- NULL
 FullSunshine$TrialIDAuto <- NULL
+## combine the name columns to produce more useful columns
+FullSunshine$JName <- paste(FullSunshine$JFirstName, FullSunshine$JLastName)
+FullSunshine$JName[FullSunshine$JName == "U U"] <- "U"
+FullSunshine$DefAttyName <- paste(FullSunshine$DCFirstName, FullSunshine$DCLastName)
+FullSunshine$DefAttyName[FullSunshine$DefAttyName == "U U"] <- "U"
+FullSunshine$ProsName <- paste(FullSunshine$ProsecutorFirstName, FullSunshine$ProsecutorLastName)
+FullSunshine$ProsName[FullSunshine$ProsName == "U U"] <- "U"
 
 ## save this
 if (!("FullSunshine.csv" %in% list.files())) write.csv(FullSunshine, "FullSunshine.csv", row.names = FALSE)
