@@ -463,6 +463,7 @@ propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includere
     if (proportional) factab <- factab/len else if (is.null(ylim)) ylim <- c(0, max(factab))
     ## generate a palette if one is not given
     if (is.null(colpal)) colpal <- rainbow(length(ctab))
+    colpal <- colpal[ordering]
     ## check for missing ylim value
     if (is.null(ylim)) yrng <- c(0,1) else yrng <- ylim
     ## now plot everything
@@ -472,7 +473,7 @@ propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includere
     ## create positions for relative proportions bar chart if this is desired
     if (includerel) {
         ## specify bar chart rectangle bounds
-        rectbounds <- seq(0.75, 0.75 - 0.03*(length(ctab)+3), by = -0.03)*yrng[2]
+        rectbounds <- seq(0.7, 0.7 - 0.03*(length(ctab)+3), by = -0.03)*yrng[2]
         ## add the reference "total population" bar
         rect(xleft = brptpos, xright = 1+brwid/4, ybottom = rectbounds[1], ytop = rectbounds[2], col = "black")
     }
@@ -491,9 +492,48 @@ propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includere
         }
     }
     ## add a legend and axis
-    legend(x = legpos, legend = c("All", names(ctab)), lty = 1, col = c("Black", colpal))
-    if (includerel) text("Relative Totals", x = 1, y = 0.77*yrng[2], pos = 4)
+    legend(x = legpos, legend = c("All", names(ctab)), lty = 1, col = c("Black", colpal), title = deparse(substitute(cats)))
+    if (includerel) text("Relative Totals", x = 1, y = 0.72*yrng[2], pos = 4)
     axis(1, 1:lineLen, levels(fact)[ordering])
+}
+
+## make a specific line plot function
+parcoordrace <- function() {
+    ## clean up the defwhiteblack variable
+    DefWhiteBlack_clean <- as.factor(as.character(gsub(",U", "", JurorSunshine$DefWhiteBlack)))
+    ## first generate the necessary mixed factor
+    jurorDef <- with(JurorSunshine, as.factor(paste(DefWhiteBlack_clean, WhiteBlack, sep = ":")))
+    ## generate positions to associate these factor levels
+    xpos <- rep(1:4, each = 3) + rep(c(-0.2,0,0.2), times = 4)
+    ## choose disposition levels
+    displevs <- c("", "Kept", "S_rem", "D_rem")
+    ## create a table based on the mixed factor
+    mixtab <- with(JurorSunshine, lapply(displevs,
+                                         function(disp) {
+                                             tab <- table(jurorDef[grepl(disp,Disposition)])/sum(grepl(disp,Disposition))
+                                             wraptab <- c(tab,tab[1:3])
+                                             wraptab
+                                         }))
+    ## define a palette
+    colpal <- brewer.pal(length(displevs) - 1, "Set2")
+    ## extract the max value for plotting purposes
+    maxtab <- max(unlist(mixtab))
+    ## plot all tables using different colours
+    lapply(1:length(mixtab), function(ind) {
+        if (ind == 1) {
+            plot(x = xpos, y = mixtab[[ind]], xlim = range(xpos), ylim = c(0,maxtab), xlab = "", xaxt = "n", ylab = "Proportion of Disposition",
+                 col = "black", type = 'l', yaxt = 'n')
+        } else lines(xpos, mixtab[[ind]], col = NA, type = 'b')})
+    ## add a legend
+    legend(x = "top", col = c("black",colpal), lty = 1, legend = c("All", displevs[2:length(displevs)]))
+    ## add axes
+    axis(side = 2, at = round(seq(0, maxtab, length.out = 3), digits = 2))
+    axis(1, at = xpos, labels = rep(c("Black","Other","White"), times = 4))
+    axis(1, at = 1:4, labels = c("Black Defendant","Other","White Defendant","Black Defendant"), pos = -0.05, xpd = NA, tick = FALSE)
+    ## add guide lines coloured by disposition
+    lapply(2:length(displevs),
+           function(ind) sapply(1:12, function(n) lines(x = rep(xpos[n],2)+0.01*(ind-3),y = c(mixtab[[1]][n], mixtab[[ind]][n]), lwd = 3,
+                                                       col = colpal[ind-1])))
 }
 
 
