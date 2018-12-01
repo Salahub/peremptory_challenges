@@ -443,7 +443,9 @@ backtobackhist <- function(data1, data2, colpal = c("steelblue","firebrick"), ..
 ## create a function for proportional line plots
 ## incorporate possibility to display in a non-proportional absolute way
 propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includerel = proportional, ylim = NULL,
-                         colpal = NULL, ...) {
+                         colpal = NULL, ordering = NULL, legpos = "topleft", brptpos = 1, brwid = 4, ...) {
+    ## create the x label
+    xnm <- deparse(substitute(fact))
     ## check if the factor is indeed a factor
     if (!is.factor(fact)) fact <- as.factor(fact)
     ## check if levs have been supplied
@@ -454,6 +456,8 @@ propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includere
     ctab <- table(as.character(cats[levinds]))
     len <- length(fact)
     lineLen <- length(levels(fact))
+    ## check if order is null and allow reordering
+    if (is.null(ordering)) ordering <- 1:lineLen
     ## set the ylim and other values based on whether a proportional plot is desired
     factab <- table(fact)
     if (proportional) factab <- factab/len else if (is.null(ylim)) ylim <- c(0, max(factab))
@@ -463,14 +467,14 @@ propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includere
     if (is.null(ylim)) yrng <- c(0,1) else yrng <- ylim
     ## now plot everything
     if (proportional) ynm <- "Proportion" else ynm <- "Count"
-    plot(NA, xlim = c(1,lineLen), ylim = yrng, xlab = "Race", ylab = ynm, xaxt = 'n', ...)
-    lines(1:lineLen, factab)
+    plot(NA, xlim = c(1,lineLen), ylim = yrng, xlab = xnm, ylab = ynm, xaxt = 'n', ...)
+    lines(1:lineLen, factab[ordering])
     ## create positions for relative proportions bar chart if this is desired
     if (includerel) {
         ## specify bar chart rectangle bounds
         rectbounds <- seq(0.75, 0.75 - 0.03*(length(ctab)+3), by = -0.03)*yrng[2]
         ## add the reference "total population" bar
-        rect(xleft = 1, xright = 1+lineLen/4, ybottom = rectbounds[1], ytop = rectbounds[2], col = "black")
+        rect(xleft = brptpos, xright = 1+brwid/4, ybottom = rectbounds[1], ytop = rectbounds[2], col = "black")
     }
     ## plot lines and relative size rectangles, depending on options
     for (ii in 1:length(ctab)) {
@@ -479,17 +483,17 @@ propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includere
         ## set these proportional if desired
         if (proportional) subsetab <- subsetab/ctab[names(ctab)[ii]]
         ## place these in a line
-        lines(1:lineLen, subsetab, col = colpal[ii])
+        lines(1:lineLen, subsetab[ordering], col = colpal[ii])
         ## add the appropriate bar if desired
         if (includerel) {
-            rect(xleft = 1, xright = 1+(lineLen/4)*ctab[ii]/len, ybottom = rectbounds[ii+1], ytop = rectbounds[ii+2],
+            rect(xleft = brptpos, xright = 1+(brwid/4)*ctab[ii]/len, ybottom = rectbounds[ii+1], ytop = rectbounds[ii+2],
                  col = colpal[ii])
         }
     }
     ## add a legend and axis
-    legend(x = "topleft", legend = c("All", names(ctab)), lty = 1, col = c("Black", colpal))
+    legend(x = legpos, legend = c("All", names(ctab)), lty = 1, col = c("Black", colpal))
     if (includerel) text("Relative Totals", x = 1, y = 0.77*yrng[2], pos = 4)
-    axis(1, 1:lineLen, levels(fact))
+    axis(1, 1:lineLen, levels(fact)[ordering])
 }
 
 
@@ -549,17 +553,24 @@ par(mfrow = c(1,1))
 with(JurorSunshine, propparcoord(Race, Disposition, levs = c("Kept","S_rem","D_rem"),
                                  colpal = dispPal, ylim = c(0,0.7)))
 with(JurorSunshine, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
-                                 colpal = dispPal, ylim = c(0,0.7)))
+                                 colpal = dispPal, ylim = c(0,0.7), ordering = c(3,1,2), includerel = FALSE,
+                                 legpos = "topright"))
 with(JurorSunshine, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
                                  colpal = dispPal, proportional = FALSE))
 ## now view the defense in detail
 with(JurorSunshine[JurorSunshine$Disposition == "D_rem",],
      propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
-                  proportional = TRUE, ylim = c(0,0.8)))
+                  proportional = FALSE, ordering = c(1,3,2), main = "Defense Strikes by Defendant Race"))
+with(JurorSunshine[JurorSunshine$Disposition == "D_rem",],
+     propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
+                  ylim = c(0,0.8), brwid = 2, ordering = c(1,3,2), main = "Defense Strikes by Defendant Race"))
 ## and the prosecution
 with(JurorSunshine[JurorSunshine$Disposition == "S_rem",],
      propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
-                  proportional = TRUE, ylim = c(0,0.7)))
+                  proportional = FALSE, ordering = c(1,3,2)))
+with(JurorSunshine[JurorSunshine$Disposition == "S_rem",],
+     propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
+                  ylim = c(0,0.7)))
 
 ## however, this suggests another question: is this strategy actually successful? That is, does there appear to
 ## be a relation between the number of peremptory challenges and the court case outcome?
