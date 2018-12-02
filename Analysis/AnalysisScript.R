@@ -507,6 +507,7 @@ parcoordrace <- function() {
     xpos <- rep(1:4, each = 3) + rep(c(-0.2,0,0.2), times = 4)
     ## choose disposition levels
     displevs <- c("", "Kept", "S_rem", "D_rem")
+    nicelevs <- c("All", "Jury", "Pro. Struck", "Def. Struck")
     ## create a table based on the mixed factor
     mixtab <- with(JurorSunshine, lapply(displevs,
                                          function(disp) {
@@ -523,17 +524,23 @@ parcoordrace <- function() {
         if (ind == 1) {
             plot(x = xpos, y = mixtab[[ind]], xlim = range(xpos), ylim = c(0,maxtab), xlab = "", xaxt = "n", ylab = "Proportion of Disposition",
                  col = "black", type = 'l', yaxt = 'n')
-        } else lines(xpos, mixtab[[ind]], col = NA, type = 'b')})
-    ## add a legend
-    legend(x = "top", col = c("black",colpal), lty = 1, legend = c("All", displevs[2:length(displevs)]))
+        } else lines(xpos+0.006*(ind-3)+0.003, mixtab[[ind]], col = colpal[ind-1], lty = 2)})
     ## add axes
     axis(side = 2, at = round(seq(0, maxtab, length.out = 3), digits = 2))
     axis(1, at = xpos, labels = rep(c("Black","Other","White"), times = 4))
     axis(1, at = 1:4, labels = c("Black Defendant","Other","White Defendant","Black Defendant"), pos = -0.05, xpd = NA, tick = FALSE)
     ## add guide lines coloured by disposition
     lapply(2:length(displevs),
-           function(ind) sapply(1:12, function(n) lines(x = rep(xpos[n],2)+0.01*(ind-3),y = c(mixtab[[1]][n], mixtab[[ind]][n]), lwd = 3,
-                                                       col = colpal[ind-1])))
+           function(ind) {
+               sapply(1:12, function(n) rect(xleft = rep(xpos[n],2)+0.006*(ind-3), xright = rep(xpos[n],2)+0.006*(ind-2),
+                                             ybottom = mixtab[[1]][n], ytop = mixtab[[ind]][n], border = colpal[ind-1],
+                                             col = colpal[ind-1]))
+           })
+    ## add legend-ish text
+    text(x = xpos[1]-0.01, y = mixtab[[2]][1] + 0.0075, labels = nicelevs[2], pos = 2, cex = 0.75, srt = 90,
+         col = colpal[1])
+    text(x = xpos[1]+0.01, y = mixtab[[3]][1]-0.02, labels = nicelevs[3], pos = 1, cex = 0.75, srt = 90, col = colpal[2])
+    text(x = xpos[1]+0.02, y = mixtab[[4]][1]+0.04, labels = nicelevs[4], pos = 1, cex = 0.75, srt = 90, col = colpal[3])
 }
 
 
