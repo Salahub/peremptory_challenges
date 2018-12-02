@@ -39,18 +39,17 @@ LevPol <-  sort(c("Dem","Lib","Rep","Ind","U"))
 TrialVars <- c("TrialNumberID", "DateOutcome", "JudgeID", "DefAttyType", "VictimName",
                "VictimRace", "VictimGender", "CrimeLocation", "PropertyType",
                "ZipCode.Trials", "StateTotalRemoved", "DefenseTotalRemoved",
-               "CourtTotalRemoved", "JDistrict", "JFirstName", "JLastName",
-               "JRace", "JGender", "JPoliticalAff", "JVoterRegYr", "JYrApptd",
-               "JResCity", "JResZip", "ChargeTxt", "Outcome", "Sentence.FullSunshine",
-               "DefendantID.FullSunshine", "DefendantID.DefendantToTrial", "DefRace",
-               "DefGender", "DefDOB", "DefAttyID", "DCFirstName", "DCLastName", "DCRace",
-               "DCGender", "DCPoliticalAff", "DCYrRegVote", "DCYrLicensed",
-               "DCResideCity", "DCResideZip", "ProsecutorID", "ProsecutorFirstName",
-               "ProsecutorLastName", "ProsRace", "ProsGender", "ProsPoliticalAff",
-               "PYrRegVote", "PYrLicensed", "PResideCity", "PResideZip")
+               "CourtTotalRemoved", "JDistrict", "JName", "JRace", "JGender",
+               "JPoliticalAff", "JVoterRegYr", "JYrApptd", "JResCity", "JResZip",
+               "ChargeTxt", "Outcome", "Sentence.FullSunshine", "DefendantID.FullSunshine",
+               "DefendantID.DefendantToTrial", "DefRace", "DefGender", "DefDOB", "DefAttyID",
+               "DefAttyName", "DCRace", "DCGender", "DCPoliticalAff", "DCYrRegVote",
+               "DCYrLicensed", "DCResideCity", "DCResideZip", "ProsecutorID", "ProsName",
+               "ProsRace", "ProsGender", "ProsPoliticalAff", "PYrRegVote", "PYrLicensed",
+               "PResideCity", "PResideZip")
 
 ## color constants
-racePal <- brewer.pal(3, "RdYlBu") # c("steelblue","grey50","firebrick")
+racePal <- brewer.pal(3, "Set2") # c("steelblue","grey50","firebrick")
 whitePal <- c("steelblue","firebrick")
 crimePal <- brewer.pal(7, "Set1")
 dispPal <- brewer.pal(3, "Set2")
@@ -522,7 +521,7 @@ parcoordrace <- function() {
     ## plot all tables using different colours
     lapply(1:length(mixtab), function(ind) {
         if (ind == 1) {
-            plot(x = xpos, y = mixtab[[ind]], xlim = range(xpos), ylim = c(0,maxtab), xlab = "", xaxt = "n", ylab = "Proportion of Disposition",
+            plot(x = xpos, y = mixtab[[ind]], xlim = range(xpos), ylim = c(0,maxtab), xlab = "", xaxt = "n", ylab = "Proportion of Data",
                  col = "black", type = 'l', yaxt = 'n')
         } else lines(xpos+0.006*(ind-3)+0.003, mixtab[[ind]], col = colpal[ind-1], lty = 2)})
     ## add axes
@@ -870,7 +869,11 @@ JurorSunshine$DrugSexTheft <- as.factor(FactorReduce(JurorSunshine$CrimeType, to
 
 ## try something different, plot the tendency of the lawyers themselves
 ## idea: horizontal axis is lawyers, vertical is strikes
-
+LawyerTends <- lapply(unique(c(TrialSun.sum$DefAttyName, TrialSun.sum$ProsName)),
+                      function(name) list(Prosecution = TrialSun.sum$ProRemEst[sapply(TrialSun.sum$DefAttyName,
+                                                                                      function(nms) name %in% nms)],
+                                          Defense = TrialSun.sum$DefRemEst[sapply(TrialSun.sum$ProsName,
+                                                                                  function(nms) name %in% nms)]))
 
 ## with all of that attempted, we should try to identify whether the lawyers have significantly different
 ## patterns of behaviour, or whether they are mostly homogeneous, to evaluate this, try fitting a mixed model for
@@ -885,6 +888,7 @@ JurorSunshine$DefWhiteBlack2 <- as.factor(as.character(JurorSunshine$DefWhiteBla
 ## now try again
 mod1 <- glmer(PerempStruck ~ WhiteBlack + DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID),
               data = JurorSunshine, family = binomial)
+mod1prof <- profile(mod1)
 ## it converged, now try an interaction term between the races
 mod2 <- glmer(PerempStruck ~ WhiteBlack:DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID),
               data = JurorSunshine, family = binomial)
