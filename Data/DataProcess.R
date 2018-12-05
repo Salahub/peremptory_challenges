@@ -206,25 +206,31 @@ SimpleSwapper <- function(data, CorrectLevs, auto = FALSE) {
 
 ## now create a function to address the errors possibly identified in the above function automatically
 SwapErrorFix <- function(errorData, CorrectLevs) {
-    ## extract the data and data in error
-    fulldata <- errorData$Data
-    ## get the relevant columns
-    colInds <- match(names(CorrectLevs), names(fulldata))
-    ## go through the specified variables and remove errors
-    fixed <- lapply(1:length(colInds),
-                    function(ind) {
-                        var <- fulldata[,colInds[ind]]
-                        var <- levels(var)[as.numeric(var)]
-                        inds <- !(var %in% CorrectLevs[[ind]])
-                        cat(names(CorrectLevs)[ind], ": ", sum(inds),
-                            " errors\n", sep = "")
-                        var[inds] <- "U"
-                        as.factor(var)
-                    })
-    ## insert these fixed values
-    fulldata[, colInds] <- fixed
-    ## return this
-    fulldata
+    ## check if we are in the case without errors
+    if (!identical(names(errorData), c("Data", "Errors"))) {
+        cat("No errors\n")
+        return(errorData)
+    } else {
+        ## extract the data and data in error
+        fulldata <- errorData$Data
+        ## get the relevant columns
+        colInds <- match(names(CorrectLevs), names(fulldata))
+        ## go through the specified variables and remove errors
+        fixed <- lapply(1:length(colInds),
+                        function(ind) {
+                            var <- fulldata[,colInds[ind]]
+                            var <- levels(var)[as.numeric(var)]
+                            inds <- !(var %in% CorrectLevs[[ind]])
+                            cat(names(CorrectLevs)[ind], ": ", sum(inds),
+                                " errors\n", sep = "")
+                            var[inds] <- "U"
+                            as.factor(var)
+                        })
+        ## insert these fixed values
+        fulldata[, colInds] <- fixed
+        ## return this
+        fulldata
+    }
 }
 
 ## write a wrapper to perform this swapping and error correction in one call
@@ -608,15 +614,17 @@ FullSunshine$DefAttyName[FullSunshine$DefAttyName == "U U"] <- "U"
 FullSunshine$ProsName <- paste(FullSunshine$ProsecutorFirstName, FullSunshine$ProsecutorLastName)
 FullSunshine$ProsName[FullSunshine$ProsName == "U U"] <- "U"
 
+## Checkpoint 1: the clean data has been processed, none of the swaps, synthesis, or expansion has taken place
 ## save this
 if (!("FullSunshine.csv" %in% list.files())) write.csv(FullSunshine, "FullSunshine.csv", row.names = FALSE)
+## load if the desire is to start at checkpoint 1
+if (!("FullSunshine" %in% ls())) FullSunshine <- read.csv("FullSunshine.csv")
 
-## check for column swaps
+## Note: the below swap functions have been set to auto as the function's performance in these cases has already
+## been assessed, and so the swaps have already been inspected, it is critical for new data that "auto" be switched
+## off to take full advantage of this functionality, and so the wrapper "SwapandError" should not be used
 ## in the juror data
-sun.swap <- SimpleSwapper(FullSunshine, CorrectLevs = list(Race = LevRace,
-                                                               Gender = LevGen,
-                                                               PoliticalAffiliation = LevPol))
-sun.swapJuror <- SwapErrorFix(sun.swap, CorrectLevs = list(Race = LevRace,
+sun.swapJuror <- SwapandError(FullSunshine, CorrectLevs = list(Race = LevRace,
                                                                Gender = LevGen,
                                                                PoliticalAffiliation = LevPol))
 ## in the judge data
@@ -637,22 +645,15 @@ sun.swap <- SimpleSwapper(sun.swapJudge, CorrectLevs = list(ProsRace = LevRace,
 ## a quick check of the levels of the defendant data finds only one error
 levels(sun.swap$DefGender)
 levels(sun.swap$DefRace)
-sun.swap <- SimpleSwapper(sun.swap, CorrectLevs = list(DefRace = LevRace,
+sun.swap <- SwapandError(sun.swap, CorrectLevs = list(DefRace = LevRace,
                                                                DefGender = LevGen))
-sun.swap <- SwapErrorFix(sun.swap, CorrectLevs = list(DefRace = LevRace,
-                                                              DefGender = LevGen))
 ## next the attorney data
-sun.swap <- SimpleSwapper(sun.swap, CorrectLevs = list(DCRace = LevRace,
-                                                               DCGender = LevGen,
-                                                               DCPoliticalAff = LevPol))
-sun.swap <- SwapErrorFix(sun.swap, CorrectLevs =  list(DCRace = LevRace,
+sun.swap <- SwapandError(sun.swap, CorrectLevs = list(DCRace = LevRace,
                                                                DCGender = LevGen,
                                                                DCPoliticalAff = LevPol))
 ## finally the victim data
-sun.swap <- SimpleSwapper(sun.swap, CorrectLevs = list(VictimRace = LevRace,
+sun.swap <- SwapandError(sun.swap, CorrectLevs = list(VictimRace = LevRace,
                                                                VictimGender = LevGen))
-sun.swap <- SwapErrorFix(sun.swap, CorrectLevs = list(VictimRace = LevRace,
-                                                              VictimGender = LevGen))
 ## this leaves the data error-free (in at least the race/gender/politics columns)
 
 ## fix the outcome data, which had some improper levels
