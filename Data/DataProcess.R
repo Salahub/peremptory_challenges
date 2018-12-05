@@ -760,4 +760,3 @@ sun.trialsum$KLdiv <- kldiv(sun.trialsum[,grepl("Jury", names(sun.trialsum))],
 ## save this
 saveRDS(sun.trialsum, "TrialAggregated.Rds")
 saveRDS(sun.jursum, "AllJuries.Rds")
-
