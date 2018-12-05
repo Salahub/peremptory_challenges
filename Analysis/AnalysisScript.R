@@ -206,14 +206,20 @@ parcoordrace <- function() {
 
 ## load the data if it is not loaded
 if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
-    SwapSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
+    sun.swap <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
 } else source(paste0(ThesisDir, "/DataProcess.R"))
 FullSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine.csv"))
 
 ## summarize onto the correct scale, the jurors
-if ("JurorAggregated.Rds" %in% list.files()) {
-    JurorSunshine <- readRDS("JurorAggregated.Rds")
-} else JurorSunshine <- UniqueAgg(SwapSunshine, by = "JurorNumber", collapse = ",")
+if ("JurorAggregated.Rds" %in% list.files(ThesisDir)) {
+    sun.juror <- readRDS("JurorAggregated.Rds")
+} else sun.juror <- UniqueAgg(sun.swap, by = "JurorNumber", collapse = ",")
+
+## also load the data summarized onto the trial scale
+if ("TrialAggregated.Rds" %in% list.files(ThesisDir)) {
+    sun.trialsum <- readRDS("TrialAggregated.Rds")
+} else warning(paste0("No trial aggregated data found in ", ThesisDir))
+
 
 ## display information about juror rejection tendencies
 mosaicplot(Race ~ Disposition, data = JurorSunshine, las = 2, shade = TRUE)
