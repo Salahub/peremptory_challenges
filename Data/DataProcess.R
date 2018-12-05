@@ -369,12 +369,12 @@ SynCols <- function(data) {
 ## make a function to summarize trial jury data
 JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "PoliticalAffiliation")) {
     ## check if a juror summary object exists already
-    if (!("JurorSunshine" %in% ls(.GlobalEnv))) {
+    if (!("sun.juror" %in% ls(.GlobalEnv))) {
         ## first group the data for easy access
-        Juries <- aggregate(SwapSunshine[, Varnames],
-                            by = list(TrialNumberID = SwapSunshine$TrialNumberID, JurorNumer = SwapSunshine$JurorNumber),
+        Juries <- aggregate(sun.swap[, Varnames],
+                            by = list(TrialNumberID = sun.swap$TrialNumberID, JurorNumer = sun.swap$JurorNumber),
                             unique)
-    } else Juries <- JurorSunshine
+    } else Juries <- sun.juror
     ## in either case, perform aggregation by trial instance
     Juries <- aggregate(Juries[, Varnames],
                         by = list(TrialNumberID = Juries$TrialNumberID),
@@ -696,6 +696,8 @@ levels(sun.swap$DefAttyType) <- c("App Priv", "Public", "Private",
 sun.swap$Guilty <- grepl("Guilty", sun.swap$Outcome)
 
 ## now perform tree classification of crimes
+## first cast sun.swap as a data frame
+sun.swap <- as.data.frame(sun.swap)
 ## regularize the charges
 chargFact <- as.factor(sun.swap$ChargeTxt)
 regCharg <- StringReg(levels(chargFact))[as.numeric(chargFact)]
@@ -715,10 +717,13 @@ sun.swap <- SynCols(sun.swap)
 ## now organize this on the juror scale
 sun.juror <- UniqueAgg(sun.swap, by = "JurorNumber", collapse = ",")
 
-## save the full sunshine data
+## Checkpoint 2: the swapped data has been processed and summarized to be on the scale of individual jurors
+## save the swapped data
 write.csv(sun.swap, "FullSunshine_Swapped.csv", row.names = FALSE)
+## and the juror summarized data
+saveRDS(sun.juror, "JurorAggregated.Rds")
 
-## summarize by trial
+## summarize by trial, get the unique trials
 Trials <- unique(sun.swap$TrialNumberID)
 ## extract information about these trials, note that grouping occurs on the trial ID, defendant ID, and charge ID levels,
 ## as the trials frequency involve multiple charges and defendants, which makes them less clean
@@ -734,7 +739,7 @@ sun.trial$Group.3 <- NULL
 sun.jursum <- JurySummarize()
 
 ## merge the summaries to the trial sunshine data
-sun.trialsum <- merge(cbind(TrialNumberID = sun.jurysum$Juries$TrialNumberID, sun.jursum$Summaries),
+sun.trialsum <- merge(cbind(TrialNumberID = sun.jursum$Juries$TrialNumberID, sun.jursum$Summaries),
                       sun.trial, all = TRUE)
 
 ## notice that the total removed variables are incomplete, try to correct this where possible using the jury
@@ -751,4 +756,8 @@ sun.trialsum$DefWhiteOther <- as.factor(FactorReduce(sun.trialsum$DefWhiteBlack,
 sun.trialsum$KLdiv <- kldiv(sun.trialsum[,grepl("Jury", names(sun.trialsum))],
                             sun.trialsum[,grepl("Venire", names(sun.trialsum))])
 
+## Checkpoint 3: the data has been set to the trial level and summarized
+## save this
+saveRDS(sun.trialsum, "TrialAggregated.Rds")
+saveRDS(sun.jursum, "AllJuries.Rds")
 
