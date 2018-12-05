@@ -35,302 +35,14 @@ LevRace <- sort(c("Asian","Black","Hisp","NatAm","Other","U","White"))
 LevGen <-  sort(c("F","M","U"))
 LevPol <-  sort(c("Dem","Lib","Rep","Ind","U"))
 
-## the relevant variables for the trial summaries
-TrialVars <- c("TrialNumberID", "DateOutcome", "JudgeID", "DefAttyType", "VictimName",
-               "VictimRace", "VictimGender", "CrimeLocation", "PropertyType",
-               "ZipCode.Trials", "StateTotalRemoved", "DefenseTotalRemoved",
-               "CourtTotalRemoved", "JDistrict", "JName", "JRace", "JGender",
-               "JPoliticalAff", "JVoterRegYr", "JYrApptd", "JResCity", "JResZip",
-               "ChargeTxt", "Outcome", "Sentence.FullSunshine", "DefendantID.FullSunshine",
-               "DefendantID.DefendantToTrial", "DefRace", "DefGender", "DefDOB", "DefAttyID",
-               "DefAttyName", "DCRace", "DCGender", "DCPoliticalAff", "DCYrRegVote",
-               "DCYrLicensed", "DCResideCity", "DCResideZip", "ProsecutorID", "ProsName",
-               "ProsRace", "ProsGender", "ProsPoliticalAff", "PYrRegVote", "PYrLicensed",
-               "PResideCity", "PResideZip")
-
 ## color constants
 racePal <- brewer.pal(3, "Set2") # c("steelblue","grey50","firebrick")
 whitePal <- c("steelblue","firebrick")
 crimePal <- brewer.pal(7, "Set1")
 dispPal <- brewer.pal(3, "Set2")
 
-## define a cleanup tree for charge text clean up later
-chargeTree <- list("rape" = list("statutory", "first|1", "second|2"), "sex(?=.*offense)" = list("first|1", "second|2"),
-                   "sex(?=.*offend)" = list("regis", "addr"), "murder" = list("first|1" = list("att"), "second|2" = list("att")),
-                   "arson", "firearm" = list("pos", "disch"), "stole" = list("pos"),
-                   "mari" = list("pos", "sell|sale", "man", "pwimsd"), "coca" = list("pos", "sell|sale", "man", "pwimsd"),
-                   "cs" = list("pos", "sell|sale", "man", "pwimsd"), "hero" = list("pos", "sell|sale", "man", "pwimsd"),
-                   "meth" = list("pos", "sell|sale", "man", "pwimsd"),
-                   "oxycod" = list("pos", "sell|sale", "man", "pwimsd"), "mass" = list("pos"), "break" = list("enter"),
-                   "assa" = list("serious bodily", "female", "strangul", "deadly", "official"),
-                   "larceny" = list("motor", "felon", "merchant"), "false" = list("pretense"),
-                   "driving" = list("impaired"), "kidnap" = list("first|1", "second|2"),
-                   "robb" = list("dang"), "burg" = list("first|1", "second|2"), "indec" = list("liber"),
-                   "embez", "manslaughter" = list("inv"), "flee" = list("arrest"),
-                   "abuse|cruelty" = list("child", "anim"), "identity" = list("theft"))
-
 
 ## FUNCTIONS ###########################
-
-## make a function to summarize trial jury data
-JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "PoliticalAffiliation")) {
-    ## check if a juror summary object exists already
-    if (!("JurorSunshine" %in% ls(.GlobalEnv))) {
-        ## first group the data for easy access
-        Juries <- aggregate(SwapSunshine[, Varnames],
-                            by = list(TrialNumberID = SwapSunshine$TrialNumberID, JurorNumer = SwapSunshine$JurorNumber),
-                            unique)
-    } else Juries <- JurorSunshine
-    ## in either case, perform aggregation by trial instance
-    Juries <- aggregate(Juries[, Varnames],
-                        by = list(TrialNumberID = Juries$TrialNumberID),
-                        function(var) var)
-    ## clean up the names
-    names(Juries)[grepl("Polit", names(Juries))] <- "PolAff"
-    Varnames[4] <- "PolAff"
-    ## now summarize relevant features
-    Summary <- apply(Juries[, Varnames], 1,
-                     function(row) {
-                         ## get final jury indices
-                         disps <- unlist(row$Disposition)
-                         foreman <- grepl("Foreman", disps)
-                         finJur <- grepl("Foreman|Kept", disps)
-                         defStruck <- grepl("D_rem", disps)
-                         proStruck <- grepl("S_rem", disps)
-                         ## process all variables
-                         newrow <- sapply(row,
-                                          function(el) {
-                                              c(Jury = table(unlist(el)[finJur]),
-                                                Venire = table(unlist(el)),
-                                                DefRem = table(unlist(el)[defStruck]),
-                                                ProRem = table(unlist(el)[proStruck]))
-                                          })
-                         newrow$Disposition <- NULL
-                         newrow <- c(unlist(newrow), ForeRace = row$Race[foreman],
-                                     ForeGender = row$Gender[foreman], ForePol = row$PolAff[foreman])
-                         if (sum(foreman) > 1) {
-                             names(newrow)[names(newrow) == "ForeRace1"] <- "ForeRace"
-                             names(newrow)[names(newrow) == "ForeGender1"] <- "ForeGender"
-                             names(newrow)[names(newrow) == "ForePol1"] <- "ForePol"
-                         }
-                         newrow
-                    })
-    ## perform some clean up
-    longest <- sapply(Summary, length)
-    longest <- which(longest == max(longest))[1]
-    longNames <- names(Summary[[longest]])
-    Summary <- lapply(names(Summary[[longest]]),
-                      function(name) unname(sapply(Summary,
-                                                   function(el) el[name])))
-    names(Summary) <- longNames
-    Summary <- lapply(longNames,
-                      function(nm) {
-                          if (grepl("ForeGender", nm)) {
-                              Summary[[nm]] <- factor(Summary[[nm]], levels = 1:3, labels = LevGen)
-                          } else if (grepl("ForePol", nm)) {
-                              Summary[[nm]] <- factor(Summary[[nm]], levels = 1:5, labels = LevPol)
-                          } else if (grepl("ForeRace", nm)) {
-                              Summary[[nm]] <- factor(Summary[[nm]], levels = 1:7, labels = LevRace)
-                          } else Summary[[nm]]
-                      })
-    names(Summary) <- longNames
-    ## return these
-    list(Juries = Juries, Summaries = as.data.frame(Summary))
-}
-
-## the previous function is designed poorly, instead use generics
-Simplifier <- function(col, ...) {
-    UseMethod("Simplifier")
-}
-
-## code up methods for the types to be seen
-Simplifier.default <- function(col, collapse = "") paste0(col, collapse = collapse)
-Simplifier.numeric <- function(col, na.rm = TRUE, trim = 0, ...) mean.default(col, trim = trim, na.rm = na.rm)
-Simplifier.factor <- function(col, collapse = "", ...) paste0(sort(as.character(levels(col)[as.numeric(col)])),
-                                                              collapse = collapse)
-Simplifier.character <- function(col, collapse = "", ...) paste0(sort(col), collapse = collapse)
-
-## create a grouping wrapper which does unique aggregation of a data set
-UniqueAgg <- function(data, by, ...) {
-    ## convert data to a data frame for regularity
-    if (!is.data.frame(data)) data <- as.data.frame(data)
-    ## identify the grouping column by in the data
-    by.groups <- names(data) == by
-    ## provide nice error handling
-    stopifnot(sum(by.groups) > 0)
-    ## first identify which rows are already unique
-    groups <- as.numeric(as.factor(unlist(data[by.groups])))
-    unqRows <- sapply(groups, function(el) sum(groups == el) == 1)
-    ## consider grouping only the other rows using the unique function
-    endata <- data[unqRows,]
-    unqdata <- aggregate(data[!unqRows, !by.groups], by = list(data[!unqRows, by.groups]), unique)
-    ## reorder to make sure everything is compatible
-    names(unqdata)[1] <- by
-    unqdata <- unqdata[,match(names(endata), names(unqdata))]
-    ## now use the Simplifier helper defined above to process these results
-    procdata <- lapply(unqdata, function(col) sapply(col, Simplifier, ...))
-    ## append everything together
-    endata <- lapply(1:length(endata),
-                     function(n) c(if (is.factor(endata[[n]])) as.character(endata[[n]]) else endata[[n]],
-                                   procdata[[n]]))
-    names(endata) <- names(data)
-    ## convert to a data frame
-    as.data.frame(endata)
-}
-
-## a simple helper to convert multiple factor levels into a reduced number
-FactorReduce <- function(vals, tokeep) {
-    chars <- as.character(vals)
-    ## simply replace elements
-    chars[!grepl(paste0(tokeep, collapse = "|"), chars)] <- "Other"
-    chars
-}
-
-## another simple processing function to correct NA's given some other identifier and data set
-FillNAs <- function(dataNAs, filldata, identifier) {
-    ## extract the relevant column indices in a flexible way
-    if (is.null(colnames(filldata))) {
-        relcol <- grepl(identifier, names(filldata))
-    } else relcol <- grepl(identifier, colnames(filldata))
-    ## first identify the relevant rows in the data NAs
-    relRows <- is.na(dataNAs)
-    ## take the relevant rows of the filldata
-    filldata <- matrix(unlist(filldata[relcol]), ncol = sum(relcol))
-    rowfiller <- rowSums(filldata[relRows,])
-    ## return the filled data
-    dataNAs[relRows] <- rowfiller
-    dataNAs
-}
-
-## in order to make the process of pre-processing the data and adding desired columns, place the pre-processing into a
-## flexible function and add operations as desired
-SynCols <- function(data) {
-    ## too busy, synthesize some variables to clearly indicate the results of defense and prosecution selection
-    data$VisibleMinor <- data$Race != "White"
-    data$PerempStruck <- grepl("S_rem|D_rem", data$Disposition)
-    data$DefStruck <- data$Disposition == "D_rem"
-    data$ProStruck <- data$Disposition == "S_rem"
-    data$CauseRemoved <- data$Disposition == "C_rem"
-    ## lets look at which race struck each juror
-    data$StruckBy <- as.factor(sapply(1:nrow(data),
-                                               function(ind) {
-                                                   dis <- as.character(data$Disposition[ind])
-                                                   if (dis == "S_rem") {
-                                                       as.character(data$ProsRace[ind])
-                                                   } else if (dis == "D_rem") {
-                                                       as.character(data$DCRace[ind])
-                                                   } else "Not Struck"
-                                               }))
-    ## create a white black other indicator
-    data$WhiteBlack <- FactorReduce(data$Race, tokeep = c("Black", "White"))
-    data$DefWhiteBlack <- FactorReduce(data$DefRace, tokeep = c("Black", "White"))
-    data$VicWhiteBlack <- FactorReduce(data$VictimRace, tokeep = c("Black", "White"))
-    ## return the data with synthesized columns
-    data
-}
-
-## write a function to re-level factor variables to make mosaic plots cleaner
-MatRelevel <- function(data) {
-    temp <- lapply(data, function(el) if (is.factor(el)) as.factor(levels(el)[as.numeric(el)]) else el)
-    temp <- as.data.frame(temp)
-    names(temp) <- names(data)
-    temp
-}
-
-## write a wrapper to estimate the values of total removed jurors
-RemovedJurorEstimates <- function(tofill, data, ident, plot = TRUE) {
-    temp <- FillNAs(tofill, filldata = data, identifier = ident)
-    temp2 <- rowSums(data[,grepl(ident, names(data))])
-    ## let's see how accurate this is if plotting is desired
-    if (plot) {
-        plot(temp, temp2, xlab = "Observed and Filled", ylab = "Juror Sums")
-        abline(0,1)
-    }
-    cat("= : ", sum(temp == temp2)/length(temp2), "\n", "< : ", sum(temp2 < temp)/length(temp2), "\n", sep = "")
-    ## replace the filled values less than the estimated, for consistency
-    temp[temp < temp2] <- temp2[temp < temp2]
-    temp
-}
-
-## make a text-mining regularization function
-StringReg <- function(strs) {
-    ## first set everything to lowercase
-    strs <- tolower(strs)
-    ## replace specific patterns noticed
-    strs <- str_replace_all(strs, "b/e|break/enter|b&e|break or enter|b or e|b &/or e|b & e", "breaking and entering")
-    strs <- str_replace_all(strs, "controlled substance", "cs")
-    strs <- str_replace_all(strs, "dwi", "driving while impaired")
-    strs <- str_replace_all(strs, "rwdw", "robbery with a deadly weapon")
-    strs <- str_replace_all(strs, "pwisd|pwmsd|pwmsd|pwitd|pwid|pwmisd|pwosd", "pwimsd")
-    strs <- str_replace_all(strs, "robery|rob ", "robbery")
-    strs <- str_replace_all(strs, "bulgary", "burglary")
-    strs <- str_replace_all(strs, "awdw", "assault with a deadly weapon")
-    strs <- str_replace_all(strs, "(?<=[\\sa-z])[0-9]{2,}", "")
-    strs <- str_replace_all(strs, "att ", "attempted ")
-    strs <- str_replace_all(strs, "assult", "assault")
-    strs <- str_replace_all(strs, "marj", "marijuana")
-    ## replace punctuation
-    strs <- gsub("[^[:alnum:][:space:]']", "", strs)
-    ## return these
-    strs
-}
-
-## create a function to process such a tree structure given a list of strings
-stringTree <- function(strs, regexTree, inds = 1:length(strs), includeOther = TRUE) {
-    ## identify the sublists, and divide the data
-    sublists <- sapply(regexTree, is.list)
-    ## iterate over unnamed items (leaf nodes)
-    listdiv <- lapply(regexTree[!sublists], function(el) inds[grepl(el, strs, perl = TRUE)])
-    names(listdiv) <- unlist(regexTree[!sublists])
-    ## check if there are any sublists
-    if (!any(sublists)) {
-        if (includeOther) listdiv <- c(listdiv, other = list(inds[!(inds %in% unlist(listdiv))]))
-        ## in the case of none, treat the object as a list to iterate through
-        listdiv
-    } else {
-        ## otherwise recurse over the branches
-        finlist <- c(listdiv, lapply(names(regexTree)[sublists],
-                                     function(name) stringTree(strs[grepl(name, strs, perl = TRUE)],
-                                                               regexTree[[name]],
-                                                               inds[grepl(name, strs, perl = TRUE)],
-                                                               includeOther)))
-        names(finlist)[(length(listdiv) + 1):length(finlist)] <- names(regexTree)[sublists]
-        c(finlist, other = list(inds[!(inds %in% unlist(finlist))]))
-    }
-}
-
-## create a tree depth helper function
-maxdepth <- function(tree, counter = 1) {
-    max(sapply(tree, function(br) if (!is.list(br)) counter else maxdepth(br, counter + 1)))
-}
-
-## create a function to aggregate a tree as specified above at the desired depth
-treeAgg <- function(tree, level = 1) {
-    ## first check the max depth of the tree
-    treedepth <- maxdepth(tree)
-    ## compare this to requested aggregation level
-    stopifnot(level <= treedepth)
-    ## aggregate at desired level with a helper function
-    agg <- function(tr, depth = 1) {
-        if (depth == level) lapply(tr, function(el) setNames(unlist(el),NULL)) else lapply(tr, function(br) agg(dr, depth + 1))
-    }
-    agg(tree)
-}
-
-## create a crime class aggregation function
-CrimeClassify <- function(tree, regChar) {
-    crimes <- list()
-    crimes$Sex <- unique(c(unlist(tree[c("rape", "sex(?=.*offense)", "sex(?=.*offend)", "indec")]),
-                           tree$other[grepl("sex", regChar[tree$other])]))
-    crimes$Theft <- unique(unlist(tree[c("stole", "embez", "break", "larceny", "robb", "burg", "identity")]))
-    crimes$Murder <- unique(unlist(tree[c("murder", "manslaughter")]))
-    crimes$Drug <- unique(c(unlist(tree[c("mari", "coca", "cs", "hero", "meth", "oxycod")]),
-                            tree$other[grepl("para|drug|substance|pwimsd", regChar[tree$other])]))
-    crimes$Violent <- unique(unlist(tree[c("arson", "assa", "abuse|cruelty")]))
-    crimes$Driving <- unique(c(unlist(tree[c("driving")]),
-                               tree$other[grepl("hit(?=.*run)|speeding", regChar[tree$other], perl = TRUE)]))
-    crimes
-}
 
 ## create a plot which visualizes positional data patterns by a categorical variable
 ## could encode density as either box sizes or through alpha levels of colour
@@ -384,24 +96,6 @@ posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencodi
     ## include a legend if desired
     if (inc.leg) legend(x = "top", legend = colnames(rectx)[-1],fill = boxcolours, bty = "n",
                         xpd = NA, horiz = TRUE)
-}
-
-## write a back to back histogram function
-backtobackhist <- function(data1, data2, colpal = c("steelblue","firebrick"), ...) {
-    ## start by generating the two histogram bin sizes
-    bins1 <- hist(data1, plot = FALSE)
-    histbreaks <- bins1$breaks
-    bins2 <- hist(data2, breaks = histbreaks, plot = FALSE)
-    maxcount <- max(c(bins2$counts, bins1$counts))
-    ## create a plot area
-    plot(NA, xlim = c(-maxcount, maxcount), ylim = extendrange(c(data1,data2), f = 0.1), xaxt = "n", ...)
-    ## add a line
-    abline(v = 0)
-    ## add the histograms
-    with(bins1, rect(xleft = -counts, ybottom = breaks[1:length(counts)], xright = rep(0, length(counts)),
-                     ytop = breaks[2:length(breaks)], col = colpal[1]))
-    with(bins2, rect(xleft = rep(0, length(counts)), ybottom = breaks[1:length(counts)], xright = counts,
-                     ytop = breaks[2:length(breaks)], col = colpal[2]))
 }
 
 ## create a function for proportional line plots
@@ -524,10 +218,6 @@ if ("JurorAggregated.Rds" %in% list.files()) {
 ## display information about juror rejection tendencies
 mosaicplot(Race ~ Disposition, data = JurorSunshine, las = 2, shade = TRUE)
 
-## synthesize some variables
-SwapSunshine <- SynCols(SwapSunshine)
-JurorSunshine <- SynCols(JurorSunshine)
-
 ## create a race filtered data set
 SRaceKnown <- JurorSunshine[JurorSunshine$Race != "U",]
 SRaceKnown <- MatRelevel(SRaceKnown)
@@ -588,9 +278,7 @@ with(JurorSunshine[JurorSunshine$Disposition == "S_rem",],
 ## this may be difficult, there are a lot of factors to consider:
 ##                  - the lawyer and their track record
 ##                  - how to judge the success/failure of the case
-## start by making a simple indicator of guilty/not guilty ignoring the complexities of such a verdict
-SwapSunshine$Guilty <- grepl("Guilty", SwapSunshine$Outcome)
-## see if the presence of challenges is related to this verdict
+## see if the presence of challenges is related to the verdict
 mosaicplot(PerempStruck ~ Guilty, data = SwapSunshine, main = "Strikes by Guilt", shade = TRUE)
 ## on the level of jurors, this is certainly not the case, but this is not the correct scale for the question being
 ## asked, this question will be addressed again in the case-summarized data
@@ -651,42 +339,10 @@ eikos(WhiteBlack ~ DefWhiteBlack + DefAttyType, data = SRaceKnown[SRaceKnown$Def
 ## this last plot shows that different types of lawyers may have different strategies, suggests a new investigation:
 ## that of lawyer strategy and success based on lawyer tendencies, aggregating by trial first will be easiest
 
-## identify the unique trials
-Trials <- unique(SwapSunshine$TrialNumberID)
-## extract information about these trials, note that grouping occurs on the trial ID, defendant ID, and charge ID levels,
-## as the trials frequency involve multiple charges and defendants, which makes them less clean
-TrialSunshine <- aggregate(SwapSunshine[,TrialVars],
-                           by = list(SwapSunshine$TrialNumberID, SwapSunshine$DefendantID.DefendantToTrial,
-                                     SwapSunshine$ID.Charges),
-                           unique)
-TrialSunshine$Group.1 <- NULL
-TrialSunshine$Group.2 <- NULL
-TrialSunshine$Group.3 <- NULL
-
 ## next add some jury characteristics
 if ("AllJuries.Rds" %in% list.files()) {
     JurySummarized <- readRDS("AllJuries.Rds")
 } else JurySummarized <- JurySummarize()
-
-## merge the summaries to the trial sunshine data
-TrialSun.sum <- merge(cbind(TrialNumberID = JurySummarized$Juries$TrialNumberID, JurySummarized$Summaries),
-                      TrialSunshine, all = TRUE)
-
-## notice that the total removed variables are incomplete, try to correct this where possible using the jury
-## summarized data above
-TrialSun.sum$DefRemEst <- RemovedJurorEstimates(TrialSun.sum$DefenseTotalRemoved, data = TrialSun.sum,
-                                                ident = "Gender.DefRem", plot = FALSE)
-## perform this same procedure for the prosecution removals
-TrialSun.sum$ProRemEst <- RemovedJurorEstimates(TrialSun.sum$StateTotalRemoved, data = TrialSun.sum,
-                                                ident = "Gender.ProRem", plot = FALSE)
-## synthesize some other variables, simple race indicators
-TrialSun.sum$DefWhiteBlack <- as.factor(FactorReduce(TrialSun.sum$DefRace, tokeep = c("Black", "White")))
-TrialSun.sum$DefWhiteOther <- as.factor(FactorReduce(TrialSun.sum$DefWhiteBlack, tokeep = "White"))
-## guilt indicator
-TrialSun.sum$Guilty <- as.factor(grepl("Guilty", TrialSun.sum$Outcome))
-## the Kullback-Leibler divergence
-TrialSun.sum$KLdiv <- kldiv(TrialSun.sum[,grepl("Jury", names(TrialSun.sum))],
-                            TrialSun.sum[,grepl("Venire", names(TrialSun.sum))])
 
 ## now look at removals across trials for defense and prosecution
 with(TrialSun.sum, plot(jitter(DefRemEst, factor = 2), jitter(ProRemEst, factor = 2), pch = 20,
@@ -791,18 +447,6 @@ pairs(TrialSun.sum[,paste0("Race.", rep(c("Def","Pro"), each = 2), "Rem.", rep(c
 with(TrialSun.sum, plot(DefRemEst ~ Outcome))
 with(TrialSun.sum, plot(ProRemEst ~ Outcome))
 ## nothing obvious there, but there is no control for charges/crime type
-
-## regularize the charges at the trial level
-regCharg <- StringReg(TrialSun.sum$ChargeTxt)
-## classify these into a charge tree and aggregate this at the coarsest level
-aggCharg <- treeAgg(stringTree(regCharg, chargeTree))
-## these can be further classified into crime classes
-crimes.trial <- CrimeClassify(aggCharg, regCharg)
-## convert these classes into a factor for the data, start with a generic "other" vector
-TrialSun.sum$CrimeType <- rep("Other", nrow(TrialSun.sum))
-## now populate it
-for (nm in sort(names(crimes.trial))) TrialSun.sum$CrimeType[crimes.trial[[nm]]] <- nm
-TrialSun.sum$CrimeType <- as.factor(TrialSun.sum$CrimeType)
 
 ## do the same processing to the juror summarized data
 regCharg <- StringReg(JurorSunshine$ChargeTxt)
