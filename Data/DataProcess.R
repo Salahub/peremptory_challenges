@@ -32,87 +32,8 @@ LevPol <- sort(c("D","L","R","I","U"))
 
 ## FUNCTIONS ###########################
 
-## a simple row extension helper generic function
-extendRows <- function(object, nrows) {
-    ## now use the appropriate method
-    UseMethod("extendRows", object)
-}
-
-## create a matrix method
-extendRows.matrix <- function(mat, nrows) {
-    ## first define the extension data
-    NArows <- matrix(NA, nrow = nrows, ncol = ncol(mat))
-    ## simply add the specified number of NA rows
-    rbind(mat, NArows)
-}
-
-## create a data.frame method
-extendRows.data.frame <- function(dataframe, nrows) {
-    ## first define the extension data
-    NArows <- matrix(NA, nrow = nrows, ncol = ncol(dataframe))
-    ## similar to before, but change the names first
-    colnames(NArows) <- colnames(dataframe)
-    rbind(dataframe, NArows)
-}
-
-## a function to, given an ID, populate the relevant columns of a data frame using a second data set
-IDMatch <- function(target, data, IDcolumn = NULL, safeMode = FALSE, sufx = "_1") {
-    ## extract names (useful later)
-    dataNames <- colnames(data)
-    targetNames <- colnames(target)
-    ## perform some simple checks of provided arguments
-    if (is.null(IDcolumn)) {
-        IDcolumn <- dataNames[1]
-    }
-    stopifnot(IDcolumn %in% targetNames, IDcolumn %in% dataNames)
-    ## sort the target to make the join simpler
-    target <- target[order(target[,IDcolumn]),]
-    ## compare the ID values between the two data sets
-    dataFact <- data[,IDcolumn]
-    targFact <- target[,IDcolumn]
-    dataCommon <- dataFact %in% targFact
-    ## extend the target if necessary
-    if (!all(dataCommon)) {
-        target <- extendRows(target, sum(!dataCommon))
-        target[, IDcolumn] <- c(targFact, dataFact[!dataCommon])
-        targFact <- target[, IDcolumn]
-    }
-    ## now add the necessary columns to the data
-    ## start by matching the data to the target
-    dataMatch <- match(dataFact, targFact)
-    ## now extract the correct ordering of the values
-    dataOrd <- order(dataMatch)
-    ## generate the correct number of entries
-    dataInds <- rep(dataOrd, times = diff(c(dataMatch[dataOrd],nrow(target)+1)))
-    ## apply this ordering an repetition to the data, removing spurious repetition
-    dataNew <- data[dataInds,]
-    dataNew[dataNew[,IDcolumn] != targFact,] <- NA
-    ## combine this with the other data
-    amalgam <- cbind(target, dataNew)
-    ## rename the merged data to make duplicates clearer
-    tempNewNames <- paste(dataNames, c("", sufx)[dataNames %in% targetNames + 1], sep = "")
-    names(amalgam) <- c(targetNames, tempNewNames)
-    ## perform error check for "safe" merging if desired, and to make cleaning easier
-    if (safeMode) {
-        ## start by finding the unique column names
-        uniqueCols <- unique(colnames(amalgam))
-        ## find duplicates
-        dupCols <- sapply(uniqueCols, function(nm) sum(colnames(amalgam) == nm) > 1)
-        ## iterate through duplicates to check status
-        matchingDups <- sapply(uniqueCols[dupCols],
-                               function(nm) is.logical(all.equal(amalgam[,nm],
-                                                                 amalgam[,colnames(amalgam) == nm][,2])))
-        ## provide warning if this fails
-        if (any(!matchingDups)) warning(c("Duplicate columns ",
-                                          paste(uniqueCols[dupCols][!matchingDups],collapse=", "),
-                                          " did not match"))
-
-    }
-    ## return the merged data
-    amalgam
-}
-
-## create a descriptive merge function (somewhat replaces the above) for cleaning
+## Loading and cleaning ################
+## create a descriptive merge function for cleaning (essentially a 'merge' wrapper)
 CleaningMerge <- function(x, y, ...) {
     ## start by creating the merge
     ## first match arguments
@@ -153,75 +74,8 @@ CleaningMerge <- function(x, y, ...) {
     } else list(Merge = Merged[!xExpInds,], Xfails = X_missing, Yfails = Y_missing)
 }
 
-## write a helper for IdentifySwap to made the code cleaner
-RowSwap <- function(row, CorrectLevels, interactive = FALSE) {
-    ## begin by identifying the swap candidate combinations which are complete, i.e. include all factors
-    candComb <- as.data.frame(lapply(row,
-                                     function(el) which(sapply(CorrectLevels,
-                                                               function(levs) el %in% levs))))
-    compRows <- apply(candComb, 1, function(row) all(1:length(CorrectLevels) %in% row))
-    ## first consider the interactive case to select from these
-    if (interactive) {
-        ## in this case the row and correct levels should be printed
-        print(CorrectLevels)
-        print(row)
-        ## communicate the swap options available to the user
-        cat("Candidate swaps:\n")
-        print(candComb[compRows,])
-        ## ask for input
-        comb <- as.numeric(readline("Choose a recombination row: "))
-    ## otherwise simply take the first
-    } else {
-        comb <- 1
-    }
-    ## return the specified input
-    return(row[order(as.matrix(candComb[compRows,][comb,]))])
-}
-
-## to address the possible data entry errors for adjacent columns, introduce a cleaner function
-IdentifySwap <- function(data, CorrectLevels = NULL, autoswap = FALSE) {
-    ## match the data names to the correct level specifications
-    factorMatch <- match(names(CorrectLevels), names(data))
-    ## now adjust the factors being checked to avoid issues
-    data[,factorMatch] <- lapply(factorMatch, function(fact) as.character(data[,fact]))
-    ## perform an inclusion check
-    missingFact <- is.na(factorMatch)
-    if (any(missingFact)) warning(paste(names(CorrectLevels)[missingFact], collapse = ", "),
-                                  " not included in the data")
-    ## for each, check the possibilty of swaps
-    SwapPoss <- sapply(which(!is.na(missingFact)),
-                       function(ind) !(data[,factorMatch[ind]] %in% CorrectLevels[[ind]]))
-    Swaps <- apply(SwapPoss, 1, function(row) sum(row) > 1)
-    ## and record the columns which seem to have errors
-    Errors <- apply(SwapPoss, 1, function(row) sum(row) == 1)
-    ## finally, produce a correct levels object without names, as they are no long necessary and produce warnings
-    CorrectLevels.unnamed <- CorrectLevels
-    names(CorrectLevels.unnamed) <- NULL
-    ## now look through the data, with interactive display in the case that autoswapping is not desired
-    if (!autoswap) {
-        ## iterate through the selected rows
-        for (ii in which(Swaps)) {
-            ## for each row call the interactive RowSwap function
-            newRow <- RowSwap(data[ii, factorMatch[!missingFact]],
-                              CorrectLevels.unnamed[!missingFact], interactive = TRUE)
-            ## replace the row elements
-            data[ii, factorMatch] <- newRow
-        }
-    } else {
-        ## in this case there is no desire for interactive selection, so simply perform the swap
-        data[which(Swaps), factorMatch] <- t(apply(data[which(Swaps), factorMatch[!missingFact]], 1,
-                                                 function(row) RowSwap(row, CorrectLevels.unnamed[!missingFact])))
-        ## print a small summary of number of swaps performed
-        cat("Swapped ", sum(Swaps), " columns \n", sep = "")
-    }
-    ## return the resulting data, with factors reinstated
-    data[, factorNames] <- lapply(factorNames, function(name) as.factor(data[,name]))
-    return(data)
-}
-
-## this construct seemed too complicated, make a simpler one which has fewer complexities to account for efficiency and
-## modularity, this function does not need to be modular or efficient, just helpful
-SimpleSwapper <- function(data, CorrectLevs) {
+## a function to identify and perform swaps with user input
+SimpleSwapper <- function(data, CorrectLevs, auto = FALSE) {
     ## first match the data to the columns of interest
     colInds <- match(names(CorrectLevs), names(data))
     ## extract the levels of the columns of interest to check if there are any potential swaps
@@ -254,7 +108,8 @@ SimpleSwapper <- function(data, CorrectLevs) {
     ## communicate to the user and ask for input
     cat("There are ", sum(Swaps|FalErr), " swaps to check\n", sep = "")
     cat("Additionally, it seems there are ", sum(PotErr & !UnkInd), " errors in entries\n", sep = "")
-    ErrorReturn <- as.logical(readline("Return the errors? (T/F): "))
+    ## unless automated
+    if (auto) ErrorReturn <- TRUE else ErrorReturn <- as.logical(readline("Return the errors? (T/F): "))
     ## now, if there are possible swaps investigate them
     if (sum(Swaps|FalErr) != 0) {
         ## create a temporary storage structure
@@ -281,8 +136,10 @@ SimpleSwapper <- function(data, CorrectLevs) {
             rownames(goodComb) <- NULL
             cat("Potential combinations:\n")
             print(t(apply(goodComb,1,order)))
-            ## take user input
-            acceptedComb <- as.numeric(readline("Enter a combination choice (0 for error, <enter> to accept first): "))
+            ## take user input or automatically determine value
+            if (auto) {
+                if (!any(compRows)) acceptedComb <- 0 else acceptedComb <- 1
+            } else acceptedComb <- as.numeric(readline("Enter a combination choice (0 for error, <enter> to accept first): "))
             ## handle special cases, 0 if a true error has been identified
             if (identical(acceptedComb,0)) { ## 0 if a true error has been identified
                 ErrInds <- c(ErrInds, SwapInds[ii])
@@ -338,6 +195,30 @@ SwapErrorFix <- function(errorData, CorrectLevs) {
     fulldata[, colInds] <- fixed
     ## return this
     fulldata
+}
+
+## write a wrapper to perform this swapping and error correction in one call
+SwapandError <- function(data, CorrectLevs) {
+    swapped <- SimpleSwapper(data = data, CorrectLevs = CorrectLevs, auto = TRUE)
+    fixed <- SwapErrorFix(errorData = swapped, CorrectLevs = CorrectLevs)
+    fixed
+}
+
+## Variable Synthesis ##################
+## Kullback-Leibler divergence function
+kldiv <- function(samp, dist) {
+    ## convert to matrices
+    mat1 <- as.matrix(samp)
+    mat2 <- as.matrix(dist)
+    ## make into proper distributions
+    mat1 <- mat1/rowSums(mat1)
+    mat2 <- mat2/rowSums(mat2)
+    ## take the log ratio
+    logratio <- log(mat1/mat2)
+    ## multiply by correct matrix
+    vals <- mat1*logratio
+    ## take the row sums
+    rowSums(vals, na.rm = TRUE)
 }
 
 

@@ -72,22 +72,6 @@ chargeTree <- list("rape" = list("statutory", "first|1", "second|2"), "sex(?=.*o
 
 ## FUNCTIONS ###########################
 
-## make a Kullback-Leibler divergence function
-kldiv <- function(samp, dist) {
-    ## convert to matrices
-    mat1 <- as.matrix(samp)
-    mat2 <- as.matrix(dist)
-    ## make into proper distributions
-    mat1 <- mat1/rowSums(mat1)
-    mat2 <- mat2/rowSums(mat2)
-    ## take the log ratio
-    logratio <- log(mat1/mat2)
-    ## multiply by correct matrix
-    vals <- mat1*logratio
-    ## take the row sums
-    rowSums(vals, na.rm = TRUE)
-}
-
 ## make a function to summarize trial jury data
 JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "PoliticalAffiliation")) {
     ## check if a juror summary object exists already
@@ -152,25 +136,6 @@ JurySummarize <- function(Varnames = c("Disposition", "Race", "Gender", "Politic
     names(Summary) <- longNames
     ## return these
     list(Juries = Juries, Summaries = as.data.frame(Summary))
-}
-
-## write a scale converting summarize function which accepts arguments on how to handle different data types
-ColProc <- function(col, typelist = list(character = paste0, numeric = mean, factor = paste0),
-                           opts = list(character = list(collapse = ""), numeric = list(na.rm = TRUE),
-                                       factor = list(collapse = ""))) {
-    ## identify the class being handled
-    cl <- class(col)
-    ## address lists by unlisting, unless otherwise specified
-    if (cl == "list" && !("list" %in% typelist)) {
-        col <- unlist(col)
-        cl <- class(col)
-    }
-    ## identify the function being used
-    func <- do.call(switch, c(cl, typelist))
-    ## and the optional arguments
-    optarg <- do.call(switch, c(cl, opts))
-    ## evaluate
-    do.call(func, c(list(col),optarg))
 }
 
 ## the previous function is designed poorly, instead use generics
