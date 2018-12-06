@@ -57,7 +57,7 @@ TrialVars <- c("TrialNumberID", "DateOutcome", "JudgeID", "DefAttyType", "Victim
                "DefAttyName", "DCRace", "DCGender", "DCPoliticalAff", "DCYrRegVote",
                "DCYrLicensed", "DCResideCity", "DCResideZip", "ProsecutorID", "ProsName",
                "ProsRace", "ProsGender", "ProsPoliticalAff", "PYrRegVote", "PYrLicensed",
-               "PResideCity", "PResideZip", "Guilty", "CrimeType")
+               "PResideCity", "PResideZip", "Guilty", "CrimeType", "DefWhiteBlack")
 
 
 ## FUNCTIONS ###########################

@@ -201,10 +201,26 @@ parcoordrace <- function() {
     text(x = xpos[1]+0.02, y = mixtab[[4]][1]+0.04, labels = nicelevs[4], pos = 1, cex = 0.75, srt = 90, col = colpal[3])
 }
 
+## a function to re-level factor variables to make mosaic plots cleaner
+MatRelevel <- function(data) {
+    temp <- lapply(data, function(el) if (is.factor(el)) as.factor(levels(el)[as.numeric(el)]) else el)
+    temp <- as.data.frame(temp)
+    names(temp) <- names(data)
+    temp
+}
+
+## a simple helper to convert multiple factor levels into a single 'other' level
+FactorReduce <- function(vals, tokeep) {
+    chars <- as.character(vals)
+    ## simply replace elements
+    chars[!grepl(paste0(tokeep, collapse = "|"), chars)] <- "Other"
+    chars
+}
+
 
 ## DATA INSPECTION #####################
 
-## load the data if it is not loaded
+## load the data
 if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
     sun.swap <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
 } else source(paste0(ThesisDir, "/DataProcess.R"))
@@ -212,70 +228,74 @@ FullSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine.csv"))
 
 ## summarize onto the correct scale, the jurors
 if ("JurorAggregated.Rds" %in% list.files(ThesisDir)) {
-    sun.juror <- readRDS("JurorAggregated.Rds")
+    sun.juror <- readRDS(paste0(ThesisDir, "/JurorAggregated.Rds"))
 } else sun.juror <- UniqueAgg(sun.swap, by = "JurorNumber", collapse = ",")
 
 ## also load the data summarized onto the trial scale
 if ("TrialAggregated.Rds" %in% list.files(ThesisDir)) {
-    sun.trialsum <- readRDS("TrialAggregated.Rds")
+    sun.trialsum <- readRDS(paste0(ThesisDir, "/TrialAggregated.Rds"))
 } else warning(paste0("No trial aggregated data found in ", ThesisDir))
 
+## there are two juries without charges or other info (noted in the early data cleaning but kept for other analysis), remove these
+sun.trialsum <- sun.trialsum[!(sun.trialsum$TrialNumberID %in% c("590-128","710-01")),]
 
 ## display information about juror rejection tendencies
-mosaicplot(Race ~ Disposition, data = JurorSunshine, las = 2, shade = TRUE)
+mosaicplot(Race ~ Disposition, data = sun.juror, las = 2, shade = TRUE)
 
 ## create a race filtered data set
-SRaceKnown <- JurorSunshine[JurorSunshine$Race != "U",]
-SRaceKnown <- MatRelevel(SRaceKnown)
+sun.raceknown <- sun.juror[sun.juror$Race != "U",]
+sun.raceknown <- MatRelevel(sun.raceknown)
 
 ## try plotting these
-mosaicplot(Race ~ PerempStruck, data = SRaceKnown, main = "Race vs. Removal", shade = TRUE, las = 2)
-mosaicplot(Race ~ Disposition, data = SRaceKnown, main = "Race by Trial Status", shade = TRUE, las = 2)
-mosaicplot(Race ~ DefStruck, data = SRaceKnown, main = "Race by Defense Removal", shade = TRUE, las = 2)
-mosaicplot(Race ~ ProStruck, data = SRaceKnown, main = "Race by Prosecution Removal", shade = TRUE, las = 2)
-mosaicplot(Race ~ CauseRemoved, data = SRaceKnown, main = "Race by Removal with Cause", shade = TRUE, las = 2)
+mosaicplot(Race ~ PerempStruck, data = sun.raceknown, main = "Race vs. Removal", shade = TRUE, las = 2)
+mosaicplot(Race ~ Disposition, data = sun.raceknown, main = "Race by Trial Status", shade = TRUE, las = 2)
+mosaicplot(Race ~ DefStruck, data = sun.raceknown, main = "Race by Defense Removal", shade = TRUE, las = 2)
+mosaicplot(Race ~ ProStruck, data = sun.raceknown, main = "Race by Prosecution Removal", shade = TRUE, las = 2)
+mosaicplot(Race ~ CauseRemoved, data = sun.raceknown, main = "Race by Removal with Cause", shade = TRUE, las = 2)
 ## it seems that there are significantly different strike habits between the defense and prosecution, but that
 ## generally the system does not strike at different rates on average
 ## recall the paper "Ideological Imbalance and the Peremptory Challenge"
 par(mfrow = c(1,2))
-mosaicplot(Race ~ PoliticalAffiliation, data = SRaceKnown[SRaceKnown$Gender == "M",],
+mosaicplot(Race ~ PoliticalAffiliation, data = sun.raceknown[sun.raceknown$Gender == "M",],
            main = "Affiliation and Race (Men)", shade = TRUE, las = 2)
-mosaicplot(Race ~ PoliticalAffiliation, data = SRaceKnown[SRaceKnown$Gender == "F",],
+mosaicplot(Race ~ PoliticalAffiliation, data = sun.raceknown[sun.raceknown$Gender == "F",],
            main = "Affiliation and Race (Women)", shade = TRUE, las = 2)
-mosaicplot(Race ~ DefStruck, data = SRaceKnown[SRaceKnown$Gender == "M",],
+mosaicplot(Race ~ DefStruck, data = sun.raceknown[sun.raceknown$Gender == "M",],
            main = "Defense Removals and Race (Men)", shade = TRUE, las = 2)
-mosaicplot(Race ~ DefStruck, data = SRaceKnown[SRaceKnown$Gender == "F",],
+mosaicplot(Race ~ DefStruck, data = sun.raceknown[sun.raceknown$Gender == "F",],
            main = "Defense Removals and Race (Women)", shade = TRUE, las = 2)
-mosaicplot(Race ~ ProStruck, data = SRaceKnown[SRaceKnown$Gender == "M",],
+mosaicplot(Race ~ ProStruck, data = sun.raceknown[sun.raceknown$Gender == "M",],
            main = "Prosecution Removals and Race (Men)", shade = TRUE, las = 2)
-mosaicplot(Race ~ ProStruck, data = SRaceKnown[SRaceKnown$Gender == "F",],
+mosaicplot(Race ~ ProStruck, data = sun.raceknown[sun.raceknown$Gender == "F",],
            main = "Prosecution Removals and Race (Women)", shade = TRUE, las = 2)
 par(mfrow = c(1,1))
 ## maybe the same forces are at play here, compare to simulation?
+## alternatively, the strong relationship between race and political affiliation provides motivation for even an
+## unbiased lawyer to preferentially strike one race or the other
 
 ## these mosaic plots can be confusing, and seemed ineffective upon first presentation, try parallel axis plots
 ## instead
 
 ## first compare defense strikes, prosecution strikes, venire, and jurors
-with(JurorSunshine, propparcoord(Race, Disposition, levs = c("Kept","S_rem","D_rem"),
+with(sun.juror, propparcoord(Race, Disposition, levs = c("Kept","S_rem","D_rem"),
                                  colpal = dispPal, ylim = c(0,0.7)))
-with(JurorSunshine, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
+with(sun.juror, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
                                  colpal = dispPal, ylim = c(0,0.7), ordering = c(3,1,2), includerel = FALSE,
                                  legpos = "topright"))
-with(JurorSunshine, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
+with(sun.juror, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
                                  colpal = dispPal, proportional = FALSE))
 ## now view the defense in detail
-with(JurorSunshine[JurorSunshine$Disposition == "D_rem",],
+with(sun.juror[sun.juror$Disposition == "D_rem",],
      propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
                   proportional = FALSE, ordering = c(1,3,2), main = "Defense Strikes by Defendant Race"))
-with(JurorSunshine[JurorSunshine$Disposition == "D_rem",],
+with(sun.juror[sun.juror$Disposition == "D_rem",],
      propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
                   ylim = c(0,0.8), brwid = 2, ordering = c(1,3,2), main = "Defense Strikes by Defendant Race"))
 ## and the prosecution
-with(JurorSunshine[JurorSunshine$Disposition == "S_rem",],
+with(sun.juror[sun.juror$Disposition == "S_rem",],
      propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
                   proportional = FALSE, ordering = c(1,3,2)))
-with(JurorSunshine[JurorSunshine$Disposition == "S_rem",],
+with(sun.juror[sun.juror$Disposition == "S_rem",],
      propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
                   ylim = c(0,0.7)))
 
@@ -285,58 +305,58 @@ with(JurorSunshine[JurorSunshine$Disposition == "S_rem",],
 ##                  - the lawyer and their track record
 ##                  - how to judge the success/failure of the case
 ## see if the presence of challenges is related to the verdict
-mosaicplot(PerempStruck ~ Guilty, data = SwapSunshine, main = "Strikes by Guilt", shade = TRUE)
+mosaicplot(PerempStruck ~ Guilty, data = sun.swap, main = "Strikes by Guilt", shade = TRUE)
 ## on the level of jurors, this is certainly not the case, but this is not the correct scale for the question being
 ## asked, this question will be addressed again in the case-summarized data
 
 ## a third obvious question is a comparison of which races strike or keep which others, used the synthesized variable
 ## above to try and identify this
-mosaicplot(Race ~ StruckBy, data = SRaceKnown, shade = TRUE, main = "Race of Juror to Race Removing Juror",
+mosaicplot(Race ~ StruckBy, data = sun.raceknown, shade = TRUE, main = "Race of Juror to Race Removing Juror",
            las = 2)
-mosaicplot(Race ~ StruckBy, data = SRaceKnown[SRaceKnown$StruckBy != "Not Struck",], shade = TRUE,
+mosaicplot(Race ~ StruckBy, data = sun.raceknown[sun.raceknown$StruckBy != "Not Struck",], shade = TRUE,
            main = "Race to Race Removing (Only Removed)", las = 2)
 ## this plot shows no large systematic deviation between the races in their rejection habits, this suggests, that
 ## the rejection that occurs is not as simple as a group identity check
 ## this might be the wrong race to check, though, perhaps we are better comparing the defendant and victim races to
 ## strike habits
 par(mfrow = c(1,3))
-mosaicplot(Race ~ DefRace, data = SRaceKnown[SRaceKnown$DefStruck,], shade = TRUE,
+mosaicplot(Race ~ DefRace, data = sun.raceknown[as.logical(sun.raceknown$DefStruck),], shade = TRUE,
            main = "Race of Defense-Struck Jurors to Defendant Race", las = 2)
-mosaicplot(Race ~ DefRace, data = SRaceKnown[SRaceKnown$ProStruck,], shade = TRUE,
+mosaicplot(Race ~ DefRace, data = sun.raceknown[as.logical(sun.raceknown$ProStruck),], shade = TRUE,
            main = "Race of Prosecution-Struck Jurors to Defendant Race", las = 2)
-mosaicplot(Race ~ DefRace, data = SRaceKnown, las = 2, shade = TRUE, main = "Race of Defendant to Venire Race")
+mosaicplot(Race ~ DefRace, data = sun.raceknown, las = 2, shade = TRUE, main = "Race of Defendant to Venire Race")
 par(mfrow = c(1,1))
 ## this makes the defense look as if they are not racist, though the comparison to the venire distributions in the third
 ## panel makes that clearer
 ## these distributions to the venire distribution relative to defendant race, first combine the smaller races into one
 ## category to make the plot less noisy and more identifiable
 ## now look at how the two behave relative in their rejections and their acceptance
-eikos(WhiteBlack ~ DefWhiteBlack + DefStruck, data = SRaceKnown, xlab_rot = 90,
+eikos(WhiteBlack ~ DefWhiteBlack + DefStruck, data = sun.raceknown, xlab_rot = 90,
       main = "Defense Challenges by Race of Venire Member and Defendant")
-eikos(WhiteBlack ~ DefWhiteBlack + ProStruck, data = SRaceKnown, xlab_rot = 90,
+eikos(WhiteBlack ~ DefWhiteBlack + ProStruck, data = sun.raceknown, xlab_rot = 90,
       main = "Prosecution Challenges by Race of Venire Member and Defendant")
 ## very interesting, the prosecution seems far more aggressive than the defense
-SRaceKnown$DefWhiteBlack[SRaceKnown$DefWhiteBlack == "Black,U"] <- "Black"
-SRaceKnown$DefWhiteBlack <- as.factor(as.character(SRaceKnown$DefWhiteBlack))
-mosaicplot(DefStruck ~ DefWhiteBlack + WhiteBlack, dir = c("v","v","h"), data = SRaceKnown, shade = TRUE, las = 2,
+sun.raceknown$DefWhiteBlack[sun.raceknown$DefWhiteBlack == "Black,U"] <- "Black"
+sun.raceknown$DefWhiteBlack <- as.factor(as.character(sun.raceknown$DefWhiteBlack))
+mosaicplot(DefStruck ~ DefWhiteBlack + WhiteBlack, dir = c("v","v","h"), data = sun.raceknown, shade = TRUE, las = 2,
            xlab = "Defendant Race and Defence Removals", ylab = "Juror Race", main = "Defence Removal by Defendant Race")
-mosaicplot(ProStruck ~ DefWhiteBlack + WhiteBlack, dir = c("v","v","h"),  data = SRaceKnown, shade = TRUE, las = 2,
+mosaicplot(ProStruck ~ DefWhiteBlack + WhiteBlack, dir = c("v","v","h"),  data = sun.raceknown, shade = TRUE, las = 2,
            xlab = "Defendant Race and Prosecution Removals", ylab = "Juror Race", main = "Prosecution Removal by Defendant Race")
 
 ## that result is very interesting, the defense strike rates when conditioned on defendant race show no racial
 ## preference, with a preference to reject white jurors regardless of defendant, but those of the prosecution do,
 ## maybe by victim race?
-mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$DefStruck,], shade = TRUE,
+mosaicplot(Race ~ VictimRace, data = sun.raceknown[as.logical(sun.raceknown$DefStruck),], shade = TRUE,
            main = "Race of Defense-Struck Jurors to Defendant Race", las = 2)
-mosaicplot(Race ~ VictimRace, data = SRaceKnown[SRaceKnown$ProStruck,], shade = TRUE,
+mosaicplot(Race ~ VictimRace, data = sun.raceknown[as.logical(sun.raceknown$ProStruck),], shade = TRUE,
            main = "Race of Prosecution-Struck Jurors to Defendant Race", las = 2)
 ## hard to see anything there, the majority of victim races are unknown, maybe looking at the races removed by defense
 ## attorney type
-mosaicplot(DefAttyType ~ Race, data = SRaceKnown[SRaceKnown$DefStruck,], shade = TRUE, las = 2,
+mosaicplot(DefAttyType ~ Race, data = sun.raceknown[as.logical(sun.raceknown$DefStruck),], shade = TRUE, las = 2,
            main = "Race of Defense-Struck Jurors to Defense Attorney Type")
-mosaicplot(WhiteBlack ~ DefAttyType, data = SRaceKnown[SRaceKnown$DefStruck,], shade = TRUE, las = 2,
+mosaicplot(WhiteBlack ~ DefAttyType, data = sun.raceknown[as.logical(sun.raceknown$DefStruck),], shade = TRUE, las = 2,
            main = "Race of Defense-Strick Jurors to Defense Attorney Type")
-eikos(WhiteBlack ~ DefWhiteBlack + DefAttyType, data = SRaceKnown[SRaceKnown$DefStruck,],
+eikos(WhiteBlack ~ DefWhiteBlack + DefAttyType, data = sun.raceknown[as.logical(sun.raceknown$DefStruck),],
       xlab_rot = 90)
 ## so what have we seen above is that the prosecuton and defense seem to behave very differently in their jury selection
 ## tactics, the defense seems to reject white individuals at a high rate regardless of the defendant, while the prosecution
@@ -345,42 +365,42 @@ eikos(WhiteBlack ~ DefWhiteBlack + DefAttyType, data = SRaceKnown[SRaceKnown$Def
 ## this last plot shows that different types of lawyers may have different strategies, suggests a new investigation:
 ## that of lawyer strategy and success based on lawyer tendencies, aggregating by trial first will be easiest
 
-## next add some jury characteristics
-if ("AllJuries.Rds" %in% list.files()) {
-    JurySummarized <- readRDS("AllJuries.Rds")
-} else JurySummarized <- JurySummarize()
+## load the jury summaries
+if ("AllJuries.Rds" %in% list.files(ThesisDir)) {
+    sun.jursum <- readRDS(paste0(ThesisDir, "/AllJuries.Rds"))
+} else cat(paste0("No file 'AllJuries.Rds' in ", ThesisDir))
 
 ## now look at removals across trials for defense and prosecution
-with(TrialSun.sum, plot(jitter(DefRemEst, factor = 2), jitter(ProRemEst, factor = 2), pch = 20,
+with(sun.trialsum, plot(jitter(DefRemEst, factor = 2), jitter(ProRemEst, factor = 2), pch = 20,
                         xlab = "Defense Strike Count (jittered)", ylab = "Prosecution Strike Count (jittered)",
                         col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.3)))
 abline(0,1)
-legend(x = "topleft", legend = levels(TrialSun.sum$DefWhiteBlack), col = racePal, pch = 20, title = "Defendant Race")
+legend(x = "topleft", legend = levels(sun.trialsum$DefWhiteBlack), col = racePal, pch = 20, title = "Defendant Race")
 ## this is only somewhat informative, it is difficult to see any patterns, use the custom posboxplot function
 ## first encode relative size of point by alpha blending
-with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal, xlab = "Defense Strike Count",
+with(sun.trialsum, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal, xlab = "Defense Strike Count",
                               ylab = "Prosecution Strike Count", boxwids = 0.8, alphamin = 0.05))
-legend(x = "topleft", legend = levels(TrialSun.sum$DefWhiteBlack), col = racePal, pch = 15, title = "Defendant Race")
+legend(x = "topleft", legend = levels(sun.trialsum$DefWhiteBlack), col = racePal, pch = 15, title = "Defendant Race")
 ## next by area, another encoding option in this function
-with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal, xlab = "Defense Strike Count",
+with(sun.trialsum, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal, xlab = "Defense Strike Count",
                               ylab = "Prosecution Strike Count", alphaencoding = FALSE, areaencoding = TRUE))
 
 ## break apart in more detail for the defense
-DefStruckMeans <- with(TrialSun.sum, sapply(levels(DefWhiteBlack),
+DefStruckMeans <- with(sun.trialsum, sapply(levels(DefWhiteBlack),
                                             function(rc) c(mean((Race.DefRem.Black/Race.Venire.Black)[DefWhiteBlack == rc],
                                                                 na.rm = TRUE),
                                                            mean((Race.DefRem.White/Race.Venire.White)[DefWhiteBlack == rc],
                                                                 na.rm = TRUE))))
-with(TrialSun.sum, plot(Race.DefRem.Black/Race.Venire.Black, Race.DefRem.White/Race.Venire.White, pch = 20,
+with(sun.trialsum, plot(Race.DefRem.Black/Race.Venire.Black, Race.DefRem.White/Race.Venire.White, pch = 20,
                         xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
                         xlim = c(0,1), ylim = c(0,1), main = "Defense Strike Proportions",
                         col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
 abline(0,1)
 points(DefStruckMeans[1,], DefStruckMeans[2,], col = racePal, pch = 4, cex = 2, lwd = 1.5)
 legend(x = "topright", title = "Defendant Race", col = c(racePal,"black"), pch = c(rep(20,3),4), bg = "white",
-       legend = c(levels(TrialSun.sum$DefWhiteBlack),"Mean"))
+       legend = c(levels(sun.trialsum$DefWhiteBlack),"Mean"))
 ## hard to see the patterns at the lines, jitter the proportions
-with(TrialSun.sum, plot(Race.DefRem.Black/Race.Venire.Black + runif(nrow(TrialSun.sum), min = -0.03, max = 0.03),
+with(sun.trialsum, plot(Race.DefRem.Black/Race.Venire.Black + runif(nrow(sun.trialsum), min = -0.03, max = 0.03),
                         Race.DefRem.White/Race.Venire.White, pch = 20,
                         xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
                         xlim = c(0,1), ylim = c(0,1), main = "Defense Strike Proportions",
@@ -388,21 +408,21 @@ with(TrialSun.sum, plot(Race.DefRem.Black/Race.Venire.Black + runif(nrow(TrialSu
 
 
 ## and for the prosecution
-ProStruckMeans <- with(TrialSun.sum, sapply(levels(DefWhiteBlack),
+ProStruckMeans <- with(sun.trialsum, sapply(levels(DefWhiteBlack),
                                             function(rc) c(mean((Race.ProRem.Black/Race.Venire.Black)[DefWhiteBlack == rc],
                                                                 na.rm = TRUE),
                                                            mean((Race.ProRem.White/Race.Venire.White)[DefWhiteBlack == rc],
                                                                 na.rm = TRUE))))
-with(TrialSun.sum, plot(Race.ProRem.Black/Race.Venire.Black, Race.ProRem.White/Race.Venire.White, pch = 20,
+with(sun.trialsum, plot(Race.ProRem.Black/Race.Venire.Black, Race.ProRem.White/Race.Venire.White, pch = 20,
                         xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
                         xlim = c(0,1), ylim = c(0,1), main = "Prosecution Strike Proportions",
                         col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
 abline(0,1)
 points(ProStruckMeans[1,], ProStruckMeans[2,], col = racePal, pch = 4, cex = 2, lwd = 1.5)
 legend(x = "topright", title = "Defendant Race", col = c(racePal,"black"), pch = c(rep(20,3),4), bg = "white",
-       legend = c(levels(TrialSun.sum$DefWhiteBlack),"Mean"))
+       legend = c(levels(sun.trialsum$DefWhiteBlack),"Mean"))
 ## again hard to see, try jittering
-with(TrialSun.sum, plot(Race.ProRem.Black/Race.Venire.Black + runif(nrow(TrialSun.sum), min = -0.03, max = 0.03),
+with(sun.trialsum, plot(Race.ProRem.Black/Race.Venire.Black + runif(nrow(sun.trialsum), min = -0.03, max = 0.03),
                         Race.ProRem.White/Race.Venire.White, pch = 20,
                         xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
                         xlim = c(0,1), ylim = c(0,1), main = "Prosecution Strike Proportions",
@@ -411,130 +431,86 @@ with(TrialSun.sum, plot(Race.ProRem.Black/Race.Venire.Black + runif(nrow(TrialSu
 ## both of these plots show a much higher proportion of the black venire is usually struck for both sides, an unsurprising result
 ## given the the black venire was shown to be smaller in the aggregate statistics, looking at raw counts next:
 ## for the defense
-with(TrialSun.sum, plot(jitter(Race.DefRem.Black, factor = 2), jitter(Race.DefRem.White, factor = 2), pch = 20,
+with(sun.trialsum, plot(jitter(Race.DefRem.Black, factor = 2), jitter(Race.DefRem.White, factor = 2), pch = 20,
                         xlab = "Black Venire Strike Count (jittered)", ylab = "White Venire Strike Count (jittered)",
                         xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts",
                         col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
-legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "white", legend = levels(TrialSun.sum$DefWhiteBlack))
+legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "white", legend = levels(sun.trialsum$DefWhiteBlack))
 ## use custom plot here
-with(TrialSun.sum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal,
+with(sun.trialsum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
                               xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts"))
-with(TrialSun.sum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal,
+with(sun.trialsum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
                               xlim = c(0,13), ylim = c(0,13), main = "Defence Strike Counts",
                               alphaencoding = FALSE, areaencoding = TRUE))
 
 ## for the prosecution
-with(TrialSun.sum, plot(jitter(Race.ProRem.Black, factor = 1.2), jitter(Race.ProRem.White, factor = 1.2), pch = 20,
+with(sun.trialsum, plot(jitter(Race.ProRem.Black, factor = 1.2), jitter(Race.ProRem.White, factor = 1.2), pch = 20,
                         xlab = "Black Venire Strike Count (jittered)", ylab = "White Venire Strike Count (jittered)",
                         xlim = c(0,8), ylim = c(0,8), main = "Prosecution Strike Counts",
                         col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
-legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "white", legend = levels(TrialSun.sum$DefWhiteBlack))
+legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "white", legend = levels(sun.trialsum$DefWhiteBlack))
 ## more of the custom plot
-with(TrialSun.sum, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal,
+with(sun.trialsum, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
                               xlim = c(0,13), ylim = c(0,13), main = "Prosecution Strike Counts"))
-with(TrialSun.sum, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal,
+with(sun.trialsum, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
                               xlim = c(0,13), ylim = c(0,13), main = "Prosecution Strike Counts",
                               alphaencoding = FALSE, areaencoding = TRUE))
 
-## this suggests that there could be a jury-based racial imbalance due to the venire rather than the racial patterns of lawyer strikes
+## interesting, this shows some patterns in lawyer behaviour at the trial level
 
-## let's look at the rejection profiles using a pairs plot
-pairs(TrialSun.sum[,paste0("Race.", rep(c("Def","Pro"), each = 2), "Rem.", rep(c("Black","White"),2))],
-      col = adjustcolor(racePal[as.numeric(TrialSun.sum$DefWhiteBlack)], alpha.f = 0.2), pch = 15)
-pairs(TrialSun.sum[,paste0("Race.", rep(c("Def","Pro"), each = 2), "Rem.", rep(c("Black","White"),2))],
-      col = adjustcolor(whitePal[as.numeric(TrialSun.sum$DefWhiteOther)], alpha.f = 0.2), pch = 15, cex = 2)
-
-## hard to see anything from that, there don't seem to be any obvious patterns
 ## so there are some obvious patterns we can see in the aggregated data and in the individual cases, see if these affect outcomes
-with(TrialSun.sum, plot(DefRemEst ~ Outcome))
-with(TrialSun.sum, plot(ProRemEst ~ Outcome))
+with(sun.trialsum, plot(DefRemEst ~ Outcome))
+with(sun.trialsum, plot(ProRemEst ~ Outcome))
 ## nothing obvious there, but there is no control for charges/crime type
 
-## do the same processing to the juror summarized data
-regCharg <- StringReg(JurorSunshine$ChargeTxt)
-aggCharg <- treeAgg(stringTree(regCharg, chargeTree))
-crimes.juror <- CrimeClassify(aggCharg, regCharg)
-JurorSunshine$CrimeType <- rep("Other", nrow(JurorSunshine))
-for (nm in sort(names(crimes.juror))) JurorSunshine$CrimeType[crimes.juror[[nm]]] <- nm
-JurorSunshine$CrimeType <- as.factor(JurorSunshine$CrimeType)
-
 ## compare these to other variables
-mosaicplot(DefRace ~ CrimeType, data = TrialSun.sum, las = 2, main = "Crime and Race", shade = TRUE)
-mosaicplot(Outcome ~ CrimeType, data = TrialSun.sum, las = 2, main = "Crime and Outcome", shade = TRUE)
-boxplot(DefRemEst ~ CrimeType, data = TrialSun.sum)
-with(TrialSun.sum, posboxplot(as.numeric(CrimeType), DefRemEst, DefWhiteBlack, racePal, xaxt = "n",
+mosaicplot(DefRace ~ CrimeType, data = sun.trialsum, las = 2, main = "Crime and Race", shade = TRUE)
+mosaicplot(Outcome ~ CrimeType, data = sun.trialsum, las = 2, main = "Crime and Outcome", shade = TRUE)
+boxplot(DefRemEst ~ CrimeType, data = sun.trialsum)
+with(sun.trialsum, posboxplot(as.numeric(CrimeType), DefRemEst, DefWhiteBlack, racePal, xaxt = "n",
                               ylab = "Defense Strike Count", xlab = "Crime Type"))
-axis(side = 1, at = 1:7, labels = levels(TrialSun.sum$CrimeType))
-boxplot(ProRemEst ~ CrimeType, data = TrialSun.sum)
-with(TrialSun.sum, posboxplot(as.numeric(CrimeType), ProRemEst, DefWhiteBlack, racePal, xaxt = "n",
+axis(side = 1, at = 1:7, labels = levels(sun.trialsum$CrimeType))
+boxplot(ProRemEst ~ CrimeType, data = sun.trialsum)
+with(sun.trialsum, posboxplot(as.numeric(CrimeType), ProRemEst, DefWhiteBlack, racePal, xaxt = "n",
                               ylab = "Prosecution Strike Count", xlab = "Crime Type"))
-axis(side = 1, at = 1:7, labels = levels(TrialSun.sum$CrimeType))
+axis(side = 1, at = 1:7, labels = levels(sun.trialsum$CrimeType))
 
 ## try using the positional boxplots
-with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, CrimeType, crimePal))
+with(sun.trialsum, posboxplot(DefRemEst, ProRemEst, CrimeType, crimePal))
 ## too many classes, maybe try drug, sex, theft, other
-TrialSun.sum$DrugSexTheft <- as.factor(FactorReduce(TrialSun.sum$CrimeType, tokeep = c("Drug","Sex","Theft")))
-with(TrialSun.sum, posboxplot(DefRemEst, ProRemEst, DrugSexTheft, boxcolours = brewer.pal(4, "Set1")))
+sun.trialsum$DrugSexTheft <- as.factor(FactorReduce(sun.trialsum$CrimeType, tokeep = c("Drug","Sex","Theft")))
+with(sun.trialsum, posboxplot(DefRemEst, ProRemEst, DrugSexTheft, boxcolours = brewer.pal(4, "Set1")))
 ## also summarize this for the juror data
-JurorSunshine$DrugSexTheft <- as.factor(FactorReduce(JurorSunshine$CrimeType, tokeep = c("Drug","Sex","Theft")))
+sun.juror$DrugSexTheft <- as.factor(FactorReduce(sun.juror$CrimeType, tokeep = c("Drug","Sex","Theft")))
 
 ## try something different, plot the tendency of the lawyers themselves
 ## idea: horizontal axis is lawyers, vertical is strikes
-LawyerTends <- lapply(unique(c(TrialSun.sum$DefAttyName, TrialSun.sum$ProsName)),
-                      function(name) list(Prosecution = TrialSun.sum$ProRemEst[sapply(TrialSun.sum$DefAttyName,
+LawyerTends <- lapply(unique(c(sun.trialsum$DefAttyName,sun.trialsum$ProsName)),
+                      function(name) list(Prosecution = sun.trialsum$ProRemEst[sapply(sun.trialsum$DefAttyName,
                                                                                       function(nms) name %in% nms)],
-                                          Defense = TrialSun.sum$DefRemEst[sapply(TrialSun.sum$ProsName,
+                                          Defense = sun.trialsum$DefRemEst[sapply(sun.trialsum$ProsName,
                                                                                   function(nms) name %in% nms)]))
+## order these by those who did both, then defense, then prosecution
+LawyerOrder <- order(sapply(LawyerTends, function(lst) {
+    lstlens <- sapply(lst, function(el) length(el) > 0)
+    if (all(lstlens)) {
+        0
+    } else if (lstlens[[2]]) {
+        1
+    } else 2}
+    ))
+## reorder the lawyer tendencies
+LawyerTends <- LawyerTends[LawyerOrder]
+## plot these
+plot(NA, xlim = c(1,length(LawyerTends)), ylim = c(0, max(unlist(LawyerTends), na.rm = TRUE)))
+invisible(lapply(1:length(LawyerTends), function(ind) {
+    vals <- LawyerTends[[ind]]
+    points(rep(ind, length(vals$Defense)), vals$Defense, col = adjustcolor("steelblue", alpha.f = 0.1), pch = 20)
+    points(rep(ind, length(vals$Prosecution)), vals$Prosecution, col = adjustcolor("red", alpha.f = 0.1), pch = 20)
+}))
+lines(1:length(LawyerTends), sapply(LawyerTends, function(el) mean(unlist(el), na.rm = TRUE)))
 
-## with all of that attempted, we should try to identify whether the lawyers have significantly different
-## patterns of behaviour, or whether they are mostly homogeneous, to evaluate this, try fitting a mixed model for
-## rejection at the juror level
-mod1 <- glmer(PerempStruck ~ WhiteBlack + DefWhiteBlack + (1|DefAttyID) + (1|ProsecutorID),
-              data = JurorSunshine, family = binomial)
-## failed to converge, but note that the DefWhiteBlack has one very small group with a black and unknown defendant,
-## try grouping this with the larger black defendant group
-JurorSunshine$DefWhiteBlack2 <- JurorSunshine$DefWhiteBlack
-JurorSunshine$DefWhiteBlack2[JurorSunshine$DefWhiteBlack2 == "Black,U"] <- "Black"
-JurorSunshine$DefWhiteBlack2 <- as.factor(as.character(JurorSunshine$DefWhiteBlack2))
-## now try again
-mod1 <- glmer(PerempStruck ~ WhiteBlack + DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID),
-              data = JurorSunshine, family = binomial)
-mod1prof <- profile(mod1)
-## it converged, now try an interaction term between the races
-mod2 <- glmer(PerempStruck ~ WhiteBlack:DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID),
-              data = JurorSunshine, family = binomial)
-## failed to converge.... maybe subset over only cases with known races
-mod2 <- glmer(PerempStruck ~ WhiteBlack:DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID),
-              data = JurorSunshine[JurorSunshine$WhiteBlack != "Other" & JurorSunshine$DefWhiteBlack2 != "Other", ],
-              family = binomial)
-## expand to include the crime type to assess its impact
-mod2 <- glmer(PerempStruck ~ WhiteBlack + DefWhiteBlack2 + (1|DefAttyID) + (1|ProsecutorID) + CrimeType,
-              data = JurorSunshine, family = binomial)
-## that failed to converge as well, maybe drop the defendant race, as the earlier model found that unimportant
-mod1 <- glm(PerempStruck ~ WhiteBlack + DefWhiteBlack, data = JurorSunshine, family = binomial)
-## that worked, but told nothing useful (no random effect control
-
-## try looking now at the KL divergence values and see what patterns might be there
-plot(density(TrialSun.sum$KLdiv))
-hist(TrialSun.sum$KLdiv)
-## looks like a gamma or beta distribution
-## plot the KL div by guilt status
-with(TrialSun.sum, plot(KLdiv ~ Outcome))
-par(mar = c(5.1,6.1,4.1,2.1))
-with(TrialSun.sum, plot(KLdiv, jitter(as.numeric(Outcome)), yaxt = 'n'))
-axis(side = 2, at = 1:6, labels = abbreviate(levels(TrialSun.sum$Outcome), minlength = 5), las = 2)
-## no strong relationship there that can be seen
-with(TrialSun.sum, plot(DefRemEst, KLdiv))
-with(TrialSun.sum, plot(ProRemEst, KLdiv))
-with(TrialSun.sum, plot(DefRemEst + ProRemEst, KLdiv))
-
-## look at black/white juror counts by guilt
-with(TrialSun.sum, posboxplot(Race.Jury.White, Race.Jury.Black, as.factor(Guilty), boxcolours = whitePal,
-                              alphaencoding = FALSE, areaencoding = TRUE))
-## what about by politics?
-with(TrialSun.sum, posboxplot(PolAff.Jury.Rep, PolAff.Jury.Dem, as.factor(Guilty), boxcolours = whitePal,
-                              alphaencoding = FALSE, areaencoding = TRUE))
