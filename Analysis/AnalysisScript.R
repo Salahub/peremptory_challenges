@@ -225,7 +225,7 @@ parcoordracev2 <- function(desDisp = c(1,2,5)) {
            function(ii) sapply(1:dim(condout)[3],
                                function(jj) {
                                    data <- condout[desDisp,ii,jj]
-                                   barplot(data, ylim = c(0,max(condout[desDisp,,])),
+                                   barplot(data, ylim = c(0,max(condout[desDisp,,])), xaxt = 'n', yaxt = 'n'
                                            xlab = paste0(tabnames$DefWhiteBlack_clean[ii], " Defendant"),
                                            ylab = paste0(tabnames$WhiteBlack[jj], " Venireperson"), col = temPal)
                                })))
@@ -285,7 +285,8 @@ sun.trialsum <- sun.trialsum[!(sun.trialsum$TrialNumberID %in% c("590-128","710-
 mosaicplot(Race ~ Disposition, data = sun.juror, las = 2, shade = TRUE)
 
 ## create a race filtered data set
-sun.raceknown <- sun.juror[sun.juror$Race != "U",]
+sun.raceknown <- sun.juror[sun.juror$Race != "U" & sun.juror$DefRace != "U",]
+sun.raceknown$DefWhiteBlack <- gsub(",U", "", sun.raceknown$DefWhiteBlack)
 sun.raceknown <- MatRelevel(sun.raceknown)
 
 ## try plotting these
@@ -320,6 +321,31 @@ par(mfrow = c(1,1))
 ## begin with an overall plot displaying the data at a high level
 parcoordrace()
 parcoordracev2()
+## but are these differences significant?
+## the independence we want to test here is that of (Race, Disposition)|(Defendant Race)
+## filter the data to remove small categories
+sun.chitest <- sun.raceknown
+sun.chitest$Disposition <- gsub("U_rem", "Unknown", gsub("Foreman", "Kept", sun.chitest$Disposition))
+## start by generating a table
+dispTab <- table(sun.chitest[,c("DefWhiteBlack", "Disposition", "WhiteBlack")])
+## now apply chi-square tests across the proper margin, start by simply generating the residuals
+dispRes <- lapply(1:dim(dispTab)[1], function(ind) {
+    ## extract the two way table of this index
+    tab <- dispTab[ind,,]
+    tabdf <- dim(tab) - 1
+    ## calculate the expected values
+    exp <- outer(rowSums(tab), colSums(tab))/sum(tab)
+    ## and residuals
+    resids <- (tab - exp)/sqrt(exp)
+    ## calculate the observed chi-sq value
+    chival <- sum(resids^2)
+    ## and the p value
+    pval <- 1 - pchisq(chival, df = tadbf[1]*tabdf[2])
+    ## return these in a list
+    list(pval = pval, chisq = chival, df = tabdf[1]*tabdf[2], residuals = resids)
+})
+
+
 
 ##  compare defense strikes, prosecution strikes, venire, and jurors
 with(sun.juror, propparcoord(Race, Disposition, levs = c("Kept","S_rem","D_rem"),
@@ -558,4 +584,3 @@ invisible(lapply(1:length(LawyerTends), function(ind) {
     points(rep(ind, length(vals$Prosecution)), vals$Prosecution, col = adjustcolor("red", alpha.f = 0.1), pch = 20)
 }))
 lines(1:length(LawyerTends), sapply(LawyerTends, function(el) mean(unlist(el), na.rm = TRUE)))
-
