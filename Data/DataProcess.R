@@ -357,9 +357,9 @@ SynCols <- function(data) {
                                                    } else "Not Struck"
                                                }))
     ## create a white black other indicator
-    data$WhiteBlack <- FactorReduce(data$Race, tokeep = c("Black", "White"))
-    data$DefWhiteBlack <- FactorReduce(data$DefRace, tokeep = c("Black", "White"))
-    data$VicWhiteBlack <- FactorReduce(data$VictimRace, tokeep = c("Black", "White"))
+    data$WhiteBlack <- FactorReduce(data$Race, tokeep = c("Black", "White", "U"))
+    data$DefWhiteBlack <- FactorReduce(data$DefRace, tokeep = c("Black", "White", "U"))
+    data$VicWhiteBlack <- FactorReduce(data$VictimRace, tokeep = c("Black", "White", "U"))
     ## return the data with synthesized columns
     data
 }
@@ -750,8 +750,8 @@ sun.trialsum$DefRemEst <- RemovedJurorEstimates(sun.trialsum$DefenseTotalRemoved
 sun.trialsum$ProRemEst <- RemovedJurorEstimates(sun.trialsum$StateTotalRemoved, data = sun.trialsum,
                                                 ident = "Gender.ProRem", plot = FALSE)
 ## synthesize some other variables, simple race indicators
-sun.trialsum$DefWhiteBlack <- as.factor(FactorReduce(sun.trialsum$DefRace, tokeep = c("Black", "White")))
-sun.trialsum$DefWhiteOther <- as.factor(FactorReduce(sun.trialsum$DefWhiteBlack, tokeep = "White"))
+sun.trialsum$DefWhiteBlack <- as.factor(FactorReduce(sun.trialsum$DefRace, tokeep = c("Black", "White", "U")))
+sun.trialsum$DefWhiteOther <- as.factor(FactorReduce(sun.trialsum$DefWhiteBlack, tokeep = "White", "U"))
 ## the Kullback-Leibler divergence
 sun.trialsum$KLdiv <- kldiv(sun.trialsum[,grepl("Jury", names(sun.trialsum))],
                             sun.trialsum[,grepl("Venire", names(sun.trialsum))])
