@@ -158,19 +158,19 @@ propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includere
 ## make a specific line plot function
 parcoordrace <- function() {
     ## clean up the defwhiteblack variable
-    DefWhiteBlack_clean <- as.factor(as.character(gsub(",U", "", JurorSunshine$DefWhiteBlack)))
+    DefWhiteBlack_clean <- as.factor(as.character(gsub(",Other|,U", "", sun.juror$DefWhiteBlack)))
     ## first generate the necessary mixed factor
-    jurorDef <- with(JurorSunshine, as.factor(paste(DefWhiteBlack_clean, WhiteBlack, sep = ":")))
+    jurorDef <- with(sun.juror, as.factor(paste(DefWhiteBlack_clean, WhiteBlack, sep = ":")))
     ## generate positions to associate these factor levels
-    xpos <- rep(1:4, each = 3) + rep(c(-0.2,0,0.2), times = 4)
+    xpos <- rep(1:5, each = 4) + rep(c(-0.21,-0.07,0.07,0.21), times = 5)
     ## choose disposition levels
-    displevs <- c("", "Kept", "S_rem", "D_rem")
-    nicelevs <- c("All", "Jury", "Pro. Struck", "Def. Struck")
+    displevs <- c("", "Kept", "S_rem", "D_rem", "C_rem")
+    nicelevs <- c("All", "Jury", "Pros.", "Def.", "Cause")
     ## create a table based on the mixed factor
-    mixtab <- with(JurorSunshine, lapply(displevs,
+    mixtab <- with(sun.juror, lapply(displevs,
                                          function(disp) {
                                              tab <- table(jurorDef[grepl(disp,Disposition)])/sum(grepl(disp,Disposition))
-                                             wraptab <- c(tab,tab[1:3])
+                                             wraptab <- c(tab,tab[1:4])
                                              wraptab
                                          }))
     ## define a palette
@@ -182,15 +182,16 @@ parcoordrace <- function() {
         if (ind == 1) {
             plot(x = xpos, y = mixtab[[ind]], xlim = range(xpos), ylim = c(0,maxtab), xlab = "", xaxt = "n", ylab = "Proportion of Data",
                  col = "black", type = 'l', yaxt = 'n')
-        } else lines(xpos+0.006*(ind-3)+0.003, mixtab[[ind]], col = colpal[ind-1], lty = 2)})
+        } else lines(xpos+0.006*(ind-4)+0.003, mixtab[[ind]], col = colpal[ind-1], lty = 2)})
     ## add axes
     axis(side = 2, at = round(seq(0, maxtab, length.out = 3), digits = 2))
-    axis(1, at = xpos, labels = rep(c("Black","Other","White"), times = 4))
-    axis(1, at = 1:4, labels = c("Black Defendant","Other","White Defendant","Black Defendant"), pos = -0.05, xpd = NA, tick = FALSE)
+    axis(1, at = xpos, labels = rep(c("Black","Other","Unknown","White"), times = 5))
+    axis(1, at = 1:5, labels = c("Black Defendant","Other","Unknown Defendant","White Defendant","Black Defendant"),
+         pos = -0.05, xpd = NA, tick = FALSE)
     ## add guide lines coloured by disposition
     lapply(2:length(displevs),
            function(ind) {
-               sapply(1:12, function(n) rect(xleft = rep(xpos[n],2)+0.006*(ind-3), xright = rep(xpos[n],2)+0.006*(ind-2),
+               sapply(1:20, function(n) rect(xleft = rep(xpos[n],2)+0.006*(ind-4), xright = rep(xpos[n],2)+0.006*(ind-3),
                                              ybottom = mixtab[[1]][n], ytop = mixtab[[ind]][n], border = colpal[ind-1],
                                              col = colpal[ind-1]))
            })
@@ -199,6 +200,47 @@ parcoordrace <- function() {
          col = colpal[1])
     text(x = xpos[1]+0.01, y = mixtab[[3]][1]-0.02, labels = nicelevs[3], pos = 1, cex = 0.75, srt = 90, col = colpal[2])
     text(x = xpos[1]+0.02, y = mixtab[[4]][1]+0.04, labels = nicelevs[4], pos = 1, cex = 0.75, srt = 90, col = colpal[3])
+    text(x = xpos[1]+0.03, y = mixtab[[5]][1], labels = nicelevs[5], pos = 1, cex = 0.75, srt = 90, col = colpal[4])
+}
+
+## another attempt at this parcoord function which uses tables instead of the lapply used above
+parcoordracev2 <- function(desDisp = c(1,2,5)) {
+    ## remove the unknown jurors
+    temp.juror <- sun.juror[sun.juror$WhiteBlack != "U" & sun.juror$DefWhiteBlack != "U",]
+    temp.juror$WhiteBlack <- as.factor(as.character(temp.juror$WhiteBlack))
+    temp.juror$DefWhiteBlack <- as.factor(as.character(temp.juror$DefWhiteBlack))
+    ## clean the defendants up
+    temp.juror$DefWhiteBlack_clean <- as.factor(as.character(gsub(",Other|,U", "", temp.juror$DefWhiteBlack)))
+    ## make a table
+    outcometab <- table(temp.juror[,c("Disposition", "DefWhiteBlack_clean", "WhiteBlack")])
+    ## create a palette for the margins of interest
+    temPal <- brewer.pal(length(desDisp), "Set2")
+    ## get the dimension names
+    tabnames <- dimnames(outcometab)
+    ## convert this to the conditional probability distribution of outcome given defendant, venire, race
+    condout <- apply(outcometab, c(2,3), function(margin) margin/sum(margin))
+    ## plot these as barcharts to show distributional differences
+    par(mfrow = c(3,3))
+    invisible(sapply(1:dim(condout)[2],
+           function(ii) sapply(1:dim(condout)[3],
+                               function(jj) {
+                                   data <- condout[desDisp,ii,jj]
+                                   barplot(data, ylim = c(0,max(condout[desDisp,,])),
+                                           xlab = paste0(tabnames$DefWhiteBlack_clean[ii], " Defendant"),
+                                           ylab = paste0(tabnames$WhiteBlack[jj], " Venireperson"), col = temPal)
+                               })))
+    ## another way to plot this: parallel coordinates
+    dims <- dim(condout)
+    xpos <- rep(1:dims[2], each = dims[3]) + rep(seq(-0.2, 0.2, length.out = dims[3]), times = dims[2])
+    ## plot the lines
+    dev.new()
+    plot(NA, xlim = range(xpos), ylim = c(0, max(condout[desDisp,,])), xaxt = 'n', xlab = "",
+         ylab = "Conditional Probability of Disposition")
+    invisible(lapply(1:length(desDisp), function(ind) lines(xpos,condout[desDisp[ind],,], col = temPal[ind])))
+    axis(1, at = xpos, labels = rep(tabnames[[3]], times = dims[2]))
+    axis(1, at = 1:dims[2], labels = tabnames[[2]], xpd = NA, tick = FALSE, pos = -0.1*max(condout[desDisp,,]))
+    legend(x = "top", horiz = TRUE, legend = tabnames[[1]][desDisp], col = temPal, inset = -0.05, cex = 0.7,
+           lty = 1, bg = "white", xpd = NA)
 }
 
 ## a function to re-level factor variables to make mosaic plots cleaner
@@ -275,8 +317,11 @@ par(mfrow = c(1,1))
 
 ## these mosaic plots can be confusing, and seemed ineffective upon first presentation, try parallel axis plots
 ## instead
+## begin with an overall plot displaying the data at a high level
+parcoordrace()
+parcoordracev2()
 
-## first compare defense strikes, prosecution strikes, venire, and jurors
+##  compare defense strikes, prosecution strikes, venire, and jurors
 with(sun.juror, propparcoord(Race, Disposition, levs = c("Kept","S_rem","D_rem"),
                                  colpal = dispPal, ylim = c(0,0.7)))
 with(sun.juror, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
