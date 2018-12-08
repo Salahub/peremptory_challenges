@@ -225,7 +225,7 @@ parcoordracev2 <- function(desDisp = c(1,2,5)) {
            function(ii) sapply(1:dim(condout)[3],
                                function(jj) {
                                    data <- condout[desDisp,ii,jj]
-                                   barplot(data, ylim = c(0,max(condout[desDisp,,])), xaxt = 'n', yaxt = 'n'
+                                   barplot(data, ylim = c(0,max(condout[desDisp,,])), xaxt = 'n', yaxt = 'n',
                                            xlab = paste0(tabnames$DefWhiteBlack_clean[ii], " Defendant"),
                                            ylab = paste0(tabnames$WhiteBlack[jj], " Venireperson"), col = temPal)
                                })))
@@ -329,7 +329,7 @@ sun.chitest$Disposition <- gsub("U_rem", "Unknown", gsub("Foreman", "Kept", sun.
 ## start by generating a table
 dispTab <- table(sun.chitest[,c("DefWhiteBlack", "Disposition", "WhiteBlack")])
 ## now apply chi-square tests across the proper margin, start by simply generating the residuals
-dispRes <- lapply(1:dim(dispTab)[1], function(ind) {
+dispRes <- lapply(setNames(1:dim(dispTab)[1], dimnames(dispTab)[[1]]), function(ind) {
     ## extract the two way table of this index
     tab <- dispTab[ind,,]
     tabdf <- dim(tab) - 1
@@ -340,12 +340,47 @@ dispRes <- lapply(1:dim(dispTab)[1], function(ind) {
     ## calculate the observed chi-sq value
     chival <- sum(resids^2)
     ## and the p value
-    pval <- 1 - pchisq(chival, df = tadbf[1]*tabdf[2])
+    pval <- 1 - pchisq(chival, df = tabdf[1]*tabdf[2])
     ## return these in a list
     list(pval = pval, chisq = chival, df = tabdf[1]*tabdf[2], residuals = resids)
 })
+## so, there is a significant difference in behaviour at the 5% level, and it is highly significant for white and black jurors
 
+## but these results do not control for much, there could be many factors confounding this result
+## first create a new data set for the model building
+sun.jurmod <- sun.raceknown
+sun.jurmod$DefVisMin <- sun.jurmod$DefWhiteBlack != "White"
+sun.jurmod$VisMin <- sun.jurmod$WhiteBlack != "White"
+sun.jurmod$DefStruck <- as.logical(sun.jurmod$DefStruck)
+sun.jurmod$ProStruck <- as.logical(sun.jurmod$ProStruck)
+## now the tricky part, predicting the rejection of a potential juror based on a host of factors, the problem is that we must
+## perform multinomial regression on the data, but this multinomial regression makes comparison of certain parameters
+## impossible, i.e. there is no mathematical way to compare the impact of race for prosecution and defense rejection statistically
+## start by building separate defense and prosecution rejection models
+mod.def1 <- glm(DefStruck ~ Race + DefRace + Gender + DefGender + CrimeType + DefAttyType + PoliticalAffiliation,
+               data = sun.jurmod, family = binomial)
+## very poorly fit model, but the reason should be fairly clear, the crime data in particular has very specific and small
+## classes, try building up the model instead, and using the simpler race variable
+mod.def2 <- glm(DefStruck ~ RaceSimp*DefRaceSimp, data = sun.jurmod, family = binomial)
+mod.def3 <- update(mod.def2, formula = DefStruck ~ RaceSimp + DefRaceSimp)
 
+## idea: instead of multinomial regression, do poisson regression on the dispTab above, this allows comparisons
+sun.pdat <- data.frame(DefRace = rep(c("Black", "Other", "White"), times = 12),
+                       Disposition = rep(rep(c("C_rem", "D_rem", "Kept", "S_rem"), each = 3), times = 3),
+                       Race = rep(c("Black", "Other", "White"), each = 12),
+                       Count = c(dispTab[,c("C_rem","D_rem","Kept","S_rem"),]))
+## estimate the saturated model first
+mod.psat <- glm(Count ~ DefRace*Disposition*Race, family = poisson, data = sun.pdat)
+## now test if the final interaction term can be removed
+mod.p1 <- update(mod.psat, formula = Count ~ DefRace*Disposition + DefRace*Race + Disposition*Race)
+## look at the significance
+1 - pchisq(mod.p1$deviance, mod.p1$df.residual)
+## so, quite clearly, we cannot remove the three way interaction from the model, as it is highly significant
+## the interpretation: the distribution of strikes, kept, etc. depends on both the venire member race and the defendant race
+## still, this is perhaps not precise enough, if we change this data to only delineate between those kept and the behaviour of
+## the lawyers
+sun.pdat2 <- sun.pdat[sun.pdat$Disposition != "C_rem",]
+mod.psat2 <- glm(Count ~ DefRace*Disposition*Race, family = poisson, data = sun.pdat2)
 
 ##  compare defense strikes, prosecution strikes, venire, and jurors
 with(sun.juror, propparcoord(Race, Disposition, levs = c("Kept","S_rem","D_rem"),
