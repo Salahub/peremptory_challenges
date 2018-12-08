@@ -364,6 +364,23 @@ SynCols <- function(data) {
     data
 }
 
+## write functions to process the sentences
+SentenceProcess <- function(sentencing) {
+    sents <- tolower(sentencing)
+    ## identify sentences in months, years, and days
+    monthsent <- str_extract(sents, "[0-9\\-]+\\s*(?=m)")
+    daysent <- str_extract(sents, "[0-9\\-]+\\s*(?=d)")
+    yearsent <- str_extract(sents, "[0-9\\-]+\\s*(?=y)")
+    ## extract life without parole
+    lwp <- str_extract(sents, "parol[e]*")
+    ## and with parole
+    life <- str_extract(sents, "life")
+    life[!is.na(lwp)] <- NA
+    ## get restitutions
+    resti <- str_extract(sents, "[0-9,]+\\s*(?=restitu)|\\$[0-9,]+")
+    ## get supervised probation
+    suprob <- str_extract(sents, "sup.*pro")
+}
 
 ## Summary Functions ###################
 ## make a function to summarize trial jury data
@@ -751,7 +768,7 @@ sun.trialsum$ProRemEst <- RemovedJurorEstimates(sun.trialsum$StateTotalRemoved, 
                                                 ident = "Gender.ProRem", plot = FALSE)
 ## synthesize some other variables, simple race indicators
 sun.trialsum$DefWhiteBlack <- as.factor(FactorReduce(sun.trialsum$DefRace, tokeep = c("Black", "White", "U")))
-sun.trialsum$DefWhiteOther <- as.factor(FactorReduce(sun.trialsum$DefWhiteBlack, tokeep = "White", "U"))
+sun.trialsum$DefWhiteOther <- as.factor(FactorReduce(sun.trialsum$DefWhiteBlack, tokeep = c("White", "U")))
 ## the Kullback-Leibler divergence
 sun.trialsum$KLdiv <- kldiv(sun.trialsum[,grepl("Jury", names(sun.trialsum))],
                             sun.trialsum[,grepl("Venire", names(sun.trialsum))])
