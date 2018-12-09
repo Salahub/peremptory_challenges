@@ -712,6 +712,10 @@ levels(sun.swap$DefAttyType) <- c("App Priv", "Public", "Private",
 ## add a guilt indicator
 sun.swap$Guilty <- grepl("Guilty", sun.swap$Outcome)
 
+## add a simple indicator of defendant race matching juror race if they are both known
+sun.swap$RaceMatch <- sun.swap$Race == sun.swap$DefRace
+sun.swap$RaceMatch[sun.swap$Race == "U" | sun.swap$DefRace == "U"] <- NA
+
 ## now perform tree classification of crimes
 ## first cast sun.swap as a data frame
 sun.swap <- as.data.frame(sun.swap)
