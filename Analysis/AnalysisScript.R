@@ -204,41 +204,52 @@ parcoordrace <- function() {
 }
 
 ## another attempt at this parcoord function which uses tables instead of the lapply used above
-parcoordracev2 <- function(desDisp = c(1,2,5)) {
-    ## remove the unknown jurors
-    temp.juror <- sun.juror[sun.juror$WhiteBlack != "U" & sun.juror$DefWhiteBlack != "U",]
-    temp.juror$WhiteBlack <- as.factor(as.character(temp.juror$WhiteBlack))
-    temp.juror$DefWhiteBlack <- as.factor(as.character(temp.juror$DefWhiteBlack))
-    ## clean the defendants up
-    temp.juror$DefWhiteBlack_clean <- as.factor(as.character(gsub(",Other|,U", "", temp.juror$DefWhiteBlack)))
-    ## make a table
-    outcometab <- table(temp.juror[,c("Disposition", "DefWhiteBlack_clean", "WhiteBlack")])
-    ## create a palette for the margins of interest
-    temPal <- brewer.pal(length(desDisp), "Set2")
+parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL) {
+    ## if no table is provided display all of the data
+    if (is.null(tabl)) {
+        ## remove the unknown jurors
+        temp.juror <- sun.juror[sun.juror$WhiteBlack != "U" & sun.juror$DefWhiteBlack != "U",]
+        temp.juror$WhiteBlack <- as.factor(as.character(temp.juror$WhiteBlack))
+        temp.juror$DefWhiteBlack <- as.factor(as.character(temp.juror$DefWhiteBlack))
+        ## clean the defendants up
+        temp.juror$DefWhiteBlack_clean <- as.factor(as.character(gsub(",Other|,U", "", temp.juror$DefWhiteBlack)))
+        ## make a table
+        outcometab <- table(temp.juror[,c("Disposition", "DefWhiteBlack_clean", "WhiteBlack")])
+    } else { ## handle the case of a table being provided
+        outcometab <- tabl
+    }
+    ## determine margin indices
+    nontrace <- (1:3)[1:3 != tracemar]
     ## get the dimension names
     tabnames <- dimnames(outcometab)
-    ## convert this to the conditional probability distribution of outcome given defendant, venire, race
-    condout <- apply(outcometab, c(2,3), function(margin) margin/sum(margin))
+    ## handle a null desired level setting
+    if (is.null(deslev)) deslev <- 1:length(tabnames[[tracemar]])
+    ## create a palette for the margins of interest
+    temPal <- brewer.pal(length(deslev), "Set2")
+    ## convert this to the conditional probability distribution of outcome given non trace margins
+    condout <- apply(outcometab, nontrace, function(margin) margin/sum(margin))
+    condout <-
     ## plot these as barcharts to show distributional differences
-    par(mfrow = c(3,3))
-    invisible(sapply(1:dim(condout)[2],
-           function(ii) sapply(1:dim(condout)[3],
-                               function(jj) {
-                                   data <- condout[desDisp,ii,jj]
-                                   barplot(data, ylim = c(0,max(condout[desDisp,,])), xaxt = 'n', yaxt = 'n',
-                                           xlab = paste0(tabnames$DefWhiteBlack_clean[ii], " Defendant"),
-                                           ylab = paste0(tabnames$WhiteBlack[jj], " Venireperson"), col = temPal)
-                               })))
+    ##par(mfrow = c(3,3))
+    ##invisible(sapply(1:dim(condout)[2],
+    ##       function(ii) sapply(1:dim(condout)[3],
+    ##                           function(jj) {
+    ##                               data <- condout[desDisp,ii,jj]
+    ##                               barplot(data, ylim = c(0,max(condout[desDisp,,])), xaxt = 'n', yaxt = 'n',
+    ##                                       xlab = paste0(tabnames$DefWhiteBlack_clean[ii], " Defendant"),
+    ##                                       ylab = paste0(tabnames$WhiteBlack[jj], " Venireperson"), col = temPal)
+    ##                           })))
     ## another way to plot this: parallel coordinates
     dims <- dim(condout)
-    xpos <- rep(1:dims[2], each = dims[3]) + rep(seq(-0.2, 0.2, length.out = dims[3]), times = dims[2])
+    xpos <- rep(1:dims[nontrace[1]], each = dims[nontrace[2]]) +
+        rep(seq(-0.2, 0.2, length.out = dims[nontrace[2]]), times = dims[nontrace[1]])
     ## plot the lines
     dev.new()
-    plot(NA, xlim = range(xpos), ylim = c(0, max(condout[desDisp,,])), xaxt = 'n', xlab = "",
+    plot(NA, xlim = range(xpos), ylim = c(0, max(condout[deslev,,])), xaxt = 'n', xlab = "",
          ylab = "Conditional Probability of Disposition")
-    invisible(lapply(1:length(desDisp), function(ind) lines(xpos,condout[desDisp[ind],,], col = temPal[ind])))
-    axis(1, at = xpos, labels = rep(tabnames[[3]], times = dims[2]))
-    axis(1, at = 1:dims[2], labels = tabnames[[2]], xpd = NA, tick = FALSE, pos = -0.1*max(condout[desDisp,,]))
+    invisible(lapply(1:length(deslev), function(ind) lines(xpos,condout[deslev[ind],,], col = temPal[ind])))
+    axis(1, at = xpos, labels = rep(tabnames[[nontrace[2]]], times = dims[nontrace[1]]))
+    axis(1, at = 1:dims[nontrace[1]], labels = tabnames[[nontrace[1]]], xpd = NA, tick = FALSE, pos = -0.1*max(condout[deslev,,]))
     legend(x = "top", horiz = TRUE, legend = tabnames[[1]][desDisp], col = temPal, inset = -0.05, cex = 0.7,
            lty = 1, bg = "white", xpd = NA)
 }
@@ -389,13 +400,13 @@ dispTab.pol <- table(MatRelevel(sun.chitest[!(sun.chitest$PoliticalAffiliation %
                                             c("Disposition","PoliticalAffiliation","WhiteBlack","DefWhiteBlack")]))
 dispTab.pol <- dispTab.pol[c("C_rem","D_rem","Kept","S_rem"),,,]
 ## convert to a data frame for fitting
-sun.pdat <- data.frame(Disposition = rep(c("C_rem", "D_rem", "Kept", "S_rem"), times = 27),
-                       Politic = rep(rep(c("Dem", "Ind", "Rep"), each = 4), times = 9),
-                       Race = rep(rep(c("Black", "Other", "White"), each = 12), times = 3),
-                       DefRace = rep(c("Black", "Other", "White"), each = 36),
+sun.pdat <- data.frame(Disp_ = rep(c("C_rem", "D_rem", "Kept", "S_rem"), times = 27),
+                       Pol_ = rep(rep(c("Dem", "Ind", "Rep"), each = 4), times = 9),
+                       Race_ = rep(rep(c("Black", "Other", "White"), each = 12), times = 3),
+                       Def_ = rep(c("Black", "Other", "White"), each = 36),
                        Count = c(dispTab.pol[,,,]))
-## fit a model analogous to those fit above, now controlled for politics
-mod.psat <- glm(Count ~ DefRace*Disposition*Race + Politic, family = poisson, data = sun.pdat)
+## fit a model analogous to those fit above, now controlled for political choices in disposition
+mod.psat <- glm(Count ~ Def_*Disp_*Race_+ Pol_*Disp_, family = poisson, data = sun.pdat)
 
 ##  compare defense strikes, prosecution strikes, venire, and jurors
 with(sun.juror, propparcoord(Race, Disposition, levs = c("Kept","S_rem","D_rem"),
