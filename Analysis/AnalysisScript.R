@@ -365,22 +365,37 @@ mod.def2 <- glm(DefStruck ~ RaceSimp*DefRaceSimp, data = sun.jurmod, family = bi
 mod.def3 <- update(mod.def2, formula = DefStruck ~ RaceSimp + DefRaceSimp)
 
 ## idea: instead of multinomial regression, do poisson regression on the dispTab above, this allows comparisons
-sun.pdat <- data.frame(DefRace = rep(c("Black", "Other", "White"), times = 12),
+sun.rdat <- data.frame(DefRace = rep(c("Black", "Other", "White"), times = 12),
                        Disposition = rep(rep(c("C_rem", "D_rem", "Kept", "S_rem"), each = 3), times = 3),
                        Race = rep(c("Black", "Other", "White"), each = 12),
                        Count = c(dispTab[,c("C_rem","D_rem","Kept","S_rem"),]))
 ## estimate the saturated model first
-mod.psat <- glm(Count ~ DefRace*Disposition*Race, family = poisson, data = sun.pdat)
+mod.rsat <- glm(Count ~ DefRace*Disposition*Race, family = poisson, data = sun.rdat)
 ## now test if the final interaction term can be removed
-mod.p1 <- update(mod.psat, formula = Count ~ DefRace*Disposition + DefRace*Race + Disposition*Race)
+mod.r1 <- update(mod.rsat, formula = Count ~ DefRace*Disposition + DefRace*Race + Disposition*Race)
 ## look at the significance
-1 - pchisq(mod.p1$deviance, mod.p1$df.residual)
+1 - pchisq(mod.r1$deviance, mod.r1$df.residual)
 ## so, quite clearly, we cannot remove the three way interaction from the model, as it is highly significant
 ## the interpretation: the distribution of strikes, kept, etc. depends on both the venire member race and the defendant race
 ## still, this is perhaps not precise enough, if we change this data to only delineate between those kept and the behaviour of
 ## the lawyers
-sun.pdat2 <- sun.pdat[sun.pdat$Disposition != "C_rem",]
-mod.psat2 <- glm(Count ~ DefRace*Disposition*Race, family = poisson, data = sun.pdat2)
+sun.rdat2 <- sun.rdat[sun.rdat$Disposition != "C_rem",]
+mod.rsat2 <- glm(Count ~ DefRace*Disposition*Race, family = poisson, data = sun.rdat2)
+
+## this is an interesting result, but perhaps it is related to political affiliation (as indicated by the ideological balance
+## paper)
+## create a table to test this hypothesis
+dispTab.pol <- table(MatRelevel(sun.chitest[!(sun.chitest$PoliticalAffiliation %in% c("Lib","U")),
+                                            c("Disposition","PoliticalAffiliation","WhiteBlack","DefWhiteBlack")]))
+dispTab.pol <- dispTab.pol[c("C_rem","D_rem","Kept","S_rem"),,,]
+## convert to a data frame for fitting
+sun.pdat <- data.frame(Disposition = rep(c("C_rem", "D_rem", "Kept", "S_rem"), times = 27),
+                       Politic = rep(rep(c("Dem", "Ind", "Rep"), each = 4), times = 9),
+                       Race = rep(rep(c("Black", "Other", "White"), each = 12), times = 3),
+                       DefRace = rep(c("Black", "Other", "White"), each = 36),
+                       Count = c(dispTab.pol[,,,]))
+## fit a model analogous to those fit above, now controlled for politics
+mod.psat <- glm(Count ~ DefRace*Disposition*Race + Politic, family = poisson, data = sun.pdat)
 
 ##  compare defense strikes, prosecution strikes, venire, and jurors
 with(sun.juror, propparcoord(Race, Disposition, levs = c("Kept","S_rem","D_rem"),
