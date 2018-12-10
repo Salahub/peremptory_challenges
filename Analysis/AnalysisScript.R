@@ -204,7 +204,7 @@ parcoordrace <- function() {
 }
 
 ## another attempt at this parcoord function which uses tables instead of the lapply used above
-parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL) {
+parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE) {
     ## if no table is provided display all of the data
     if (is.null(tabl)) {
         ## remove the unknown jurors
@@ -228,7 +228,11 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL) {
     temPal <- brewer.pal(length(deslev), "Set2")
     ## convert this to the conditional probability distribution of outcome given non trace margins
     condout <- apply(outcometab, nontrace, function(margin) margin/sum(margin))
-    condout <-
+    ## extract the desired levels from the margin of interest
+    evEnv <- environment()
+    condoutinds <- condoutcall <- quote(condout[,,])
+    condoutcall[[tracemar+2]] <- deslev
+    condout <- eval(condoutcall, envir = evEnv)
     ## plot these as barcharts to show distributional differences
     ##par(mfrow = c(3,3))
     ##invisible(sapply(1:dim(condout)[2],
@@ -244,14 +248,25 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL) {
     xpos <- rep(1:dims[nontrace[1]], each = dims[nontrace[2]]) +
         rep(seq(-0.2, 0.2, length.out = dims[nontrace[2]]), times = dims[nontrace[1]])
     ## plot the lines
-    dev.new()
-    plot(NA, xlim = range(xpos), ylim = c(0, max(condout[deslev,,])), xaxt = 'n', xlab = "",
+    plot(NA, xlim = range(xpos), ylim = c(0, max(condout[,,])), xaxt = 'n', xlab = "",
          ylab = "Conditional Probability of Disposition")
-    invisible(lapply(1:length(deslev), function(ind) lines(xpos,condout[deslev[ind],,], col = temPal[ind])))
+    ## calculate and plot the mean line
+    meanline <- apply(condout, nontrace, mean)
+    lines(xpos, meanline)
+    ## add the lines for each value
+    invisible(lapply(1:length(deslev), function(ind) {
+        tempind <- condoutinds
+        tempind[[tracemar + 2]] <- ind
+        yvals <- eval(tempind, envir = evEnv)
+        adjx <- xpos + wid*(ind - (1/2)*(1 + length(deslev)))
+        if (addlines) lines(adjx, yvals, col = temPal[ind], lty = 2)
+        rect(xleft = adjx - (1/2)*wid, xright = adjx + (1/2)*wid, ybottom = meanline,
+             ytop = yvals, col = temPal[ind])
+    }))
     axis(1, at = xpos, labels = rep(tabnames[[nontrace[2]]], times = dims[nontrace[1]]))
-    axis(1, at = 1:dims[nontrace[1]], labels = tabnames[[nontrace[1]]], xpd = NA, tick = FALSE, pos = -0.1*max(condout[deslev,,]))
-    legend(x = "top", horiz = TRUE, legend = tabnames[[1]][desDisp], col = temPal, inset = -0.05, cex = 0.7,
-           lty = 1, bg = "white", xpd = NA)
+    axis(1, at = 1:dims[nontrace[1]], labels = tabnames[[nontrace[1]]], xpd = NA, tick = FALSE, pos = -0.1*max(condout[,,]))
+    legend(x = "top", horiz = TRUE, legend = tabnames[[tracemar]][deslev], col = temPal, inset = -0.05, cex = 0.7,
+           fill = temPal, bg = "white", xpd = NA)
 }
 
 ## a function to re-level factor variables to make mosaic plots cleaner
@@ -333,6 +348,7 @@ par(mfrow = c(1,1))
 parcoordrace()
 parcoordracev2()
 ## but are these differences significant?
+
 ## the independence we want to test here is that of (Race, Disposition)|(Defendant Race)
 ## filter the data to remove small categories
 sun.chitest <- sun.raceknown
