@@ -204,7 +204,8 @@ parcoordrace <- function() {
 }
 
 ## another attempt at this parcoord function which uses tables instead of the lapply used above
-parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE) {
+parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE,
+                           testlines = FALSE, ...) {
     ## if no table is provided display all of the data
     if (is.null(tabl)) {
         ## remove the unknown jurors
@@ -212,9 +213,9 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
         temp.juror$WhiteBlack <- as.factor(as.character(temp.juror$WhiteBlack))
         temp.juror$DefWhiteBlack <- as.factor(as.character(temp.juror$DefWhiteBlack))
         ## clean the defendants up
-        temp.juror$DefWhiteBlack_clean <- as.factor(as.character(gsub(",Other|,U", "", temp.juror$DefWhiteBlack)))
+        temp.juror$DefWhiteBlack <- as.factor(as.character(gsub(",Other|,U", "", temp.juror$DefWhiteBlack)))
         ## make a table
-        outcometab <- table(temp.juror[,c("Disposition", "DefWhiteBlack_clean", "WhiteBlack")])
+        outcometab <- table(temp.juror[,c("Disposition", "DefWhiteBlack", "WhiteBlack")])
     } else { ## handle the case of a table being provided
         outcometab <- tabl
     }
@@ -228,6 +229,8 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
     temPal <- brewer.pal(length(deslev), "Set2")
     ## convert this to the conditional probability distribution of outcome given non trace margins
     condout <- apply(outcometab, nontrace, function(margin) margin/sum(margin))
+    ## also get the sums for testing
+    marsums <- apply(outcometab, nontrace, sum)
     ## extract the desired levels from the margin of interest
     evEnv <- environment()
     condoutinds <- condoutcall <- quote(condout[,,])
@@ -249,7 +252,7 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
         rep(seq(-0.2, 0.2, length.out = dims[nontrace[2]]), times = dims[nontrace[1]])
     ## plot the lines
     plot(NA, xlim = range(xpos), ylim = c(0, max(condout[,,])), xaxt = 'n', xlab = "",
-         ylab = "Conditional Probability of Disposition")
+         ylab = "Conditional Probability of Disposition", ...)
     ## calculate and plot the mean line
     meanline <- apply(condout, nontrace, mean)
     lines(xpos, meanline)
@@ -263,10 +266,28 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
         rect(xleft = adjx - (1/2)*wid, xright = adjx + (1/2)*wid, ybottom = meanline,
              ytop = yvals, col = temPal[ind])
     }))
-    axis(1, at = xpos, labels = rep(tabnames[[nontrace[2]]], times = dims[nontrace[1]]))
-    axis(1, at = 1:dims[nontrace[1]], labels = tabnames[[nontrace[1]]], xpd = NA, tick = FALSE, pos = -0.1*max(condout[,,]))
-    legend(x = "top", horiz = TRUE, legend = tabnames[[tracemar]][deslev], col = temPal, inset = -0.05, cex = 0.7,
+    axis(1, at = xpos, labels = rep("", length(xpos)))
+    axis(1, at = xpos, tick = FALSE, labels = rep(tabnames[[nontrace[2]]], times = dims[nontrace[1]]), cex.axis = 0.7,
+         pos = -0.02*max(condout))
+    axis(1, at = 1:dims[nontrace[1]], labels = tabnames[[nontrace[1]]], xpd = NA, tick = FALSE, pos = -0.08*max(condout[,,]))
+    axis(1, at = mean(xpos), xpd = NA, tick = FALSE, pos = -0.15*max(condout),
+         labels = paste0("Inner label: ", names(tabnames)[nontrace[1]], " | Outer label: ", names(tabnames)[nontrace[2]]))
+    legend(x = "top", horiz = TRUE, legend = tabnames[[tracemar]][deslev], col = temPal, inset = -0.04, cex = 0.7,
            fill = temPal, bg = "white", xpd = NA)
+    ## add testing lines if desired
+    if (testlines) {
+        linext <- c(1.5,-1.5)*wid*length(deslev)/2
+        invisible(sapply(1:length(meanline), function(pos) {
+            mn <- meanline[pos]
+            n <- marsums[pos]
+            err <- 2*sqrt((mn/(3*n))*(1-3*mn))
+            lines(x = xpos[pos] + linext, y = rep(mn + err, 2), col = adjustcolor("black", alpha.f = 0.5))
+            lines(x = xpos[pos] + linext, y = rep(mn - err, 2), col = adjustcolor("black", alpha.f = 0.5))
+            ##lines(, meanline - sqrt((meanline/(3*marsums))*(1-3*meanline)), lty = 2)
+            ##lines(xpos, meanline + sqrt((meanline/(3*marsums))*(1-3*meanline)), lty = 2)
+            }))
+    }
+    ##invisible(sapply((0:4)*0.05, function(val) lines(x = c(0,max(xpos)+1), y = rep(val,2), col = "white", lwd = 2)))
 }
 
 ## a function to re-level factor variables to make mosaic plots cleaner
@@ -346,7 +367,7 @@ par(mfrow = c(1,1))
 ## instead
 ## begin with an overall plot displaying the data at a high level
 parcoordrace()
-parcoordracev2()
+parcoordracev2(deslev = c(1,2,5))
 ## but are these differences significant?
 
 ## the independence we want to test here is that of (Race, Disposition)|(Defendant Race)
