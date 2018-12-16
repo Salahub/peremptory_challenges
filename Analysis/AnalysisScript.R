@@ -236,23 +236,13 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
     condoutinds <- condoutcall <- quote(condout[,,])
     condoutcall[[tracemar+2]] <- deslev
     condout <- eval(condoutcall, envir = evEnv)
-    ## plot these as barcharts to show distributional differences
-    ##par(mfrow = c(3,3))
-    ##invisible(sapply(1:dim(condout)[2],
-    ##       function(ii) sapply(1:dim(condout)[3],
-    ##                           function(jj) {
-    ##                               data <- condout[desDisp,ii,jj]
-    ##                               barplot(data, ylim = c(0,max(condout[desDisp,,])), xaxt = 'n', yaxt = 'n',
-    ##                                       xlab = paste0(tabnames$DefWhiteBlack_clean[ii], " Defendant"),
-    ##                                       ylab = paste0(tabnames$WhiteBlack[jj], " Venireperson"), col = temPal)
-    ##                           })))
     ## another way to plot this: parallel coordinates
     dims <- dim(condout)
-    xpos <- rep(1:dims[nontrace[1]], each = dims[nontrace[2]]) +
-        rep(seq(-0.2, 0.2, length.out = dims[nontrace[2]]), times = dims[nontrace[1]])
+    xpos <- rep(1:dims[nontrace[2]], each = dims[nontrace[1]]) +
+        rep(seq(-0.2, 0.2, length.out = dims[nontrace[1]]), times = dims[nontrace[2]])
     ## plot the lines
     plot(NA, xlim = range(xpos), ylim = c(0, max(condout[,,])), xaxt = 'n', xlab = "",
-         ylab = "Conditional Probability of Disposition", ...)
+         ylab = "Conditional Probability", ...)
     ## calculate and plot the mean line
     meanline <- apply(condout, nontrace, mean)
     lines(xpos, meanline)
@@ -267,9 +257,9 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
              ytop = yvals, col = temPal[ind])
     }))
     axis(1, at = xpos, labels = rep("", length(xpos)))
-    axis(1, at = xpos, tick = FALSE, labels = rep(tabnames[[nontrace[2]]], times = dims[nontrace[1]]), cex.axis = 0.7,
+    axis(1, at = xpos, tick = FALSE, labels = rep(tabnames[[nontrace[1]]], times = dims[nontrace[2]]), cex.axis = 0.7,
          pos = -0.02*max(condout))
-    axis(1, at = 1:dims[nontrace[1]], labels = tabnames[[nontrace[1]]], xpd = NA, tick = FALSE, pos = -0.08*max(condout[,,]))
+    axis(1, at = 1:dims[nontrace[2]], labels = tabnames[[nontrace[2]]], xpd = NA, tick = FALSE, pos = -0.08*max(condout[,,]))
     axis(1, at = mean(xpos), xpd = NA, tick = FALSE, pos = -0.15*max(condout),
          labels = paste0("Inner label: ", names(tabnames)[nontrace[1]], " | Outer label: ", names(tabnames)[nontrace[2]]))
     legend(x = "top", horiz = TRUE, legend = tabnames[[tracemar]][deslev], col = temPal, inset = -0.04, cex = 0.7,
@@ -409,8 +399,8 @@ mod.def1 <- glm(DefStruck ~ Race + DefRace + Gender + DefGender + CrimeType + De
                data = sun.jurmod, family = binomial)
 ## very poorly fit model, but the reason should be fairly clear, the crime data in particular has very specific and small
 ## classes, try building up the model instead, and using the simpler race variable
-mod.def2 <- glm(DefStruck ~ RaceSimp*DefRaceSimp, data = sun.jurmod, family = binomial)
-mod.def3 <- update(mod.def2, formula = DefStruck ~ RaceSimp + DefRaceSimp)
+mod.def2 <- glm(DefStruck ~ WhiteBlack*DefWhiteBlack, data = sun.jurmod, family = binomial)
+mod.def3 <- update(mod.def2, formula = DefStruck ~ WhiteBlack + DefWhiteBlack)
 
 ## idea: instead of multinomial regression, do poisson regression on the dispTab above, this allows comparisons
 sun.rdat <- data.frame(DefRace = rep(c("Black", "Other", "White"), times = 12),
