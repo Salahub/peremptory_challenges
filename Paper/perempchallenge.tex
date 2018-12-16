@@ -136,39 +136,70 @@ levels for the variables in the data set. It then identifies rows which have can
 
 \section{Analysis} \label{sec:analysis}
 
-First the defense behaviour (in hundreds):
+\subsection{Modelling} \label{subse:mods}
 
-\begin{table}[!h]
+In order to create a single model to test the statistical significance of the differences observed for strike rates by race,
+defendant race, and party doing the striking, a saturated poisson regression model was fit to the data. Letting $i$ denote the
+level of the venire member race, $j$ the defendant race, and $k$ the disposition, the numbers of observed venire members in each
+$ijk$ combination, $y_{ijk}$ were modelled as Poisson-distributed random variables with expectation $\lambda_{ijk}$. A saturated
+model was then fit to the data, that is a model described by the equation:
+
+$$\log{E[y_{ijk}]} = \textbf{x}_{ijk}\beta = \beta_o + \beta_R x_{i..} + \beta_{D} x_{.j.} + \beta_S x_{..k} + \beta_{R:D}
+x_{i..} x_{.j.} + \beta_{R:S} x_{i..} x_{..k} +\beta_{D:S} x_{.j.} x_{..k} + \beta_{R:D:S} x_{i..} x_{.j.} x_{..k}$$
+
+Where $x_{i..}$ indicates the race level of the $ijk$ cell, and $x_{.j.},x_{..k}$ are defined analogously for the defendant race
+and disposition. The interaction terms then serve to answer questions about the racial pattern of strikes which is utilized by
+each party given the defendant race. Most interesting to this investigation is the third order interaction term. This term
+indicates a significant difference in racial strike patterns given the party striking and the defendant race. In other words, this
+term accounts for different patterns for the different parties which are not independant of the defendant race.
+
+When this term is tested using a nested model without the third order interaction, the third order interaction is found to be
+significant. This suggests that not only do the patterns present in the different parties vary, but they vary differently for
+different defendant races. This dependence can be viewed using a novel graphic presented in Figure \ref{fig:raceraceparcoord}.
+
+\begin{figure}[!h]
   \centering
-\begin{tabular}{rr|r|r|r|r|r|r|r}
-  \cline{3-8}
-  & & \multicolumn{6}{ c| }{Juror Race} & \\ \cline{3-8}
-  & & \multicolumn{2}{ c| }{White} & \multicolumn{2}{ c| }{Black} & \multicolumn{2}{ c| }{Other} & \\ \cline{3-8}
-  & & Kept & Struck & Kept & Struck & Kept & Struck & Total \\ \cline{1-8}
-  \multicolumn{1}{|r|}{\multirow{3}{*}{Defendant Race}} & Black & 79 & 18 & 30 & 2 & 4 & 0 & 133 \\ \cline{2-8}
-  \multicolumn{1}{|r|}{} & White & 57 & 10 & 9 & 1  & 1 & 0 & 78\\ \cline{2-8}
-  \multicolumn{1}{|r|}{} & Other & 13 & 2 & 4 & 0 & 1 & 0 & 21 \\ \cline{1-8}
-  \multicolumn{2}{r}{Total} & \multicolumn{1}{r}{149} & \multicolumn{1}{r}{30} & \multicolumn{1}{r}{44} & \multicolumn{1}{r}{3} &
-    \multicolumn{1}{r}{6} & \multicolumn{1}{r}{1}
-\end{tabular}
-\end{table}
+  \includegraphics[width=0.7\linewidth]{Plots/CondDistRaces}
+  \caption{Parallel coordinate plot of racial strike tendencies}
+  \label{fig:raceraceparcoord}
+\end{figure}
 
-Now for the prosecution behaviour (in hundreds):
+The conditional probability of a particular disposition given the racial combination of venire person and defendant is displayed
+on the y-axis, that is the count of individuals for a particular race, defendant race, and disposition combination divided by the
+number of individuals with the racial combination across all dispositions. The x-axis then displays the combinations, grouped by
+the venire member race to show the dominant pattern in the data.
 
-\begin{table}[!h]
+The black line running across the plot is the mean, or expected, rejection probability that all parties would have if they acted
+identically. That is, the relative level of this line provides the relative strike rate on aggregate for a particular racial
+combination. The bars extending from this line at each point go from this line to the corresponding value of the party represented
+by the bar. Finally, the horizontal lines provide approximate confidence intervals for each combination\footnote{Generated
+  assuming a binomial distribution of struck (by any party) against kept, as when this data is modelled with a poisson
+  distribution, the distribution of sub-processes given the overall count will be binomially distributed}.
+
+The dominant pattern to these strikes is a tendency of the defense to preferentially reject white venire members and keep black
+venire members, and of the prosecution to do the opposite. It was already noted in the literature\cite{JurySunshineProj}, but the
+addition of defendant race allows us to make a stronger statement, as this pattern remains across defendant races. It also adds
+nuance, however, as the race of the defendant has a clear impact on the lengths of the bars for both the defense and
+prosecution. The prosecution seems to favour a jury which does not match the race of the defendant, while the defense seems to
+favour a jury which does.
+
+While this second tendency seems to have no justification beyond race, the dominant tendency may have other justification than
+simply skin colour. As was noted by ``Ideological Imbalance and Peremptory Challenge'', black individuals are more consistently
+aligned with the democratic party, and as a consequence a lawyer which suspects this political bias will impact the trial outcome
+would preferentially strike or keep black jurors in order to keep as many left wing individuals as possible. In this data, this
+political imbalance is incredibly prevalent, as can be seen in Figure \ref{fig:racepolitics} \textcolor{red}{Add the plot of this
+  effect here, elaborate on this pattern more based on the plot}.
+
+\begin{figure}[!h]
   \centering
-\begin{tabular}{rr|r|r|r|r|r|r|r}
-  \cline{3-8}
-  & & \multicolumn{6}{ c| }{Juror Race} & \\ \cline{3-8}
-  & & \multicolumn{2}{ c| }{White} & \multicolumn{2}{ c| }{Black} & \multicolumn{2}{ c| }{Other} & \\ \cline{3-8}
-  & & Kept & Struck & Kept & Struck & Kept & Struck & Total \\ \cline{1-8}
-  \multicolumn{1}{|r|}{\multirow{3}{*}{Defendant Race}} & Black & 90 & 7 & 26 & 6 & 4 & 1 & 133\\ \cline{2-8}
-  \multicolumn{1}{|r|}{} & White & 61 & 6 & 9 & 1 & 1 & 0 & 78 \\ \cline{2-8}
-  \multicolumn{1}{|r|}{} & Other & 14 & 1 & 4 & 1 & 1 & 0 & 21 \\ \cline{1-8}
-  \multicolumn{2}{r}{Total} & \multicolumn{1}{r}{165} & \multicolumn{1}{r}{14} & \multicolumn{1}{r}{39} & \multicolumn{1}{r}{8} &
-    \multicolumn{1}{r}{6} & \multicolumn{1}{r}{1}
-\end{tabular}
-\end{table}
+  \includegraphics[width=0.7\textwidth]{Plots/RaceGenderPolit}
+  \caption{Conditional probabilities of political affiliation by race and gender}
+  \label{fig:racepolitics}
+\end{figure}
+
+Perhaps more interestingly, the prosecution and judge seem to match in their tendency from the mean at every combination. This
+suggests that both challenges with cause and the prosecution tend to have the same effect on the jury composition, though the
+magnitudes can differ greatly for these two strikes.
 
 \section{Comparison to Previous Work} \label{sec:comparison}
 

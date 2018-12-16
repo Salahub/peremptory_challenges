@@ -3,6 +3,11 @@
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("caption" "font=footnotesize") ("subcaption" "font=footnotesize") ("graphicx" "pdftex") ("babel" "american")))
+   (add-to-list 'LaTeX-verbatim-environments-local "alltt")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (TeX-run-style-hooks
     "latex2e"
     "article"
@@ -46,10 +51,13 @@
     "subsec:phillydata"
     "subsec:datacleaning"
     "sec:analysis"
+    "subse:mods"
+    "fig:raceraceparcoord"
+    "fig:racepolitics"
     "sec:comparison"
     "sec:conclusion")
-   (LaTeX-add-environments
-    "definition")
-   (LaTeX-add-bibliographies))
+   (LaTeX-add-bibliographies)
+   (LaTeX-add-amsthm-newtheorems
+    "definition"))
  :latex)
 
