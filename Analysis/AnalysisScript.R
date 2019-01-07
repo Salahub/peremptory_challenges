@@ -240,6 +240,7 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
     dims <- dim(condout)
     xpos <- rep(1:dims[nontrace[2]], each = dims[nontrace[1]]) +
         rep(seq(-0.2, 0.2, length.out = dims[nontrace[1]]), times = dims[nontrace[2]])
+    ##xpos <- cumsum(marsums)/sum(marsums)
     ## plot the lines
     plot(NA, xlim = range(xpos), ylim = c(0, max(condout[,,])), xaxt = 'n', xlab = "",
          ylab = "Conditional Probability", ...)
@@ -252,15 +253,17 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
         tempind[[tracemar + 2]] <- ind
         yvals <- eval(tempind, envir = evEnv)
         adjx <- xpos + wid*(ind - (1/2)*(1 + length(deslev)))
-        if (addlines) lines(adjx, yvals, col = temPal[ind], lty = 2)
-        rect(xleft = adjx - (1/2)*wid, xright = adjx + (1/2)*wid, ybottom = meanline,
-             ytop = yvals, col = temPal[ind])
+        points(adjx, yvals, col = temPal[ind], pch = 19)
+        for (ii in 1:length(adjx)) lines(x = rep(adjx[ii],2), y = c(meanline[ii], yvals[ii]), lty = 2, col = temPal[ind])
+        ##if (addlines) lines(adjx, yvals, col = temPal[ind], lty = 2)
+        ##rect(xleft = adjx - (1/2)*wid, xright = adjx + (1/2)*wid, ybottom = meanline,
+        ##     ytop = yvals, col = temPal[ind])
     }))
     axis(1, at = xpos, labels = rep("", length(xpos)))
     axis(1, at = xpos, tick = FALSE, labels = rep(tabnames[[nontrace[1]]], times = dims[nontrace[2]]), cex.axis = 0.7,
          pos = -0.02*max(condout))
     axis(1, at = 1:dims[nontrace[2]], labels = tabnames[[nontrace[2]]], xpd = NA, tick = FALSE, pos = -0.08*max(condout[,,]))
-    axis(1, at = mean(xpos), xpd = NA, tick = FALSE, pos = -0.15*max(condout),
+    axis(1, at = mean(range(xpos)), xpd = NA, tick = FALSE, pos = -0.15*max(condout),
          labels = paste0("Inner label: ", names(tabnames)[nontrace[1]], " | Outer label: ", names(tabnames)[nontrace[2]]))
     legend(x = "top", horiz = TRUE, legend = tabnames[[tracemar]][deslev], col = temPal, inset = -0.04, cex = 0.7,
            fill = temPal, bg = "white", xpd = NA)
@@ -434,6 +437,13 @@ sun.pdat <- data.frame(Disp_ = rep(c("C_rem", "D_rem", "Kept", "S_rem"), times =
                        Count = c(dispTab.pol[,,,]))
 ## fit a model analogous to those fit above, now controlled for political choices in disposition
 mod.psat <- glm(Count ~ Def_*Disp_*Race_+ Pol_*Disp_, family = poisson, data = sun.pdat)
+
+## use radial axis plots to view the lawyers tendencies, especially those who act as both defense and prosecution lawyers
+## maybe remove the top lawyers and remodel
+## look at the most prolific lawyers for both sides
+## subset the data to only lawyers with one case to remove the lawyer dependency
+## adjust the width of the propparcoord plot to reflect the relative sizes
+## add confidence intervals to the ends of the bars/point
 
 ##  compare defense strikes, prosecution strikes, venire, and jurors
 with(sun.juror, propparcoord(Race, Disposition, levs = c("Kept","S_rem","D_rem"),
