@@ -205,7 +205,7 @@ parcoordrace <- function() {
 
 ## another attempt at this parcoord function which uses tables instead of the lapply used above
 parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE,
-                           testlines = FALSE, ...) {
+                           space = 0.025, testlines = FALSE, ...) {
     ## if no table is provided display all of the data
     if (is.null(tabl)) {
         ## remove the unknown jurors
@@ -238,31 +238,42 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
     condout <- eval(condoutcall, envir = evEnv)
     ## another way to plot this: parallel coordinates
     dims <- dim(condout)
-    xpos <- rep(1:dims[nontrace[2]], each = dims[nontrace[1]]) +
-        rep(seq(-0.2, 0.2, length.out = dims[nontrace[1]]), times = dims[nontrace[2]])
+    nseg <- prod(dims[nontrace])
+    ## add padding between segments to space everything nicely
+    tempx <- rep(c(marsums), times = c(rep(2, nseg-1),1))
+    tempx[2*(1:(nseg-1))] <- space*rep(c(rep(1,dims[nontrace[1]]-1),3), length.out = nseg-1)*sum(marsums)
+    xpos <- c(0, cumsum(tempx)/sum(tempx))
+    ##xpos <- rep(1:dims[nontrace[2]], each = dims[nontrace[1]]) +
+    ##    rep(seq(-0.2, 0.2, length.out = dims[nontrace[1]]), times = dims[nontrace[2]])
     ##xpos <- cumsum(marsums)/sum(marsums)
     ## plot the lines
     plot(NA, xlim = range(xpos), ylim = c(0, max(condout[,,])), xaxt = 'n', xlab = "",
          ylab = "Conditional Probability", ...)
-    ## calculate and plot the mean line
+    ## calculate and plot the mean values
     meanline <- apply(condout, nontrace, mean)
-    lines(xpos, meanline)
+    for(ii in 1:length(meanline)) lines(c(xpos[2*ii-1],xpos[2*ii]), rep(meanline[ii],2))
     ## add the lines for each value
     invisible(lapply(1:length(deslev), function(ind) {
         tempind <- condoutinds
         tempind[[tracemar + 2]] <- ind
         yvals <- eval(tempind, envir = evEnv)
-        adjx <- xpos + wid*(ind - (1/2)*(1 + length(deslev)))
+        ##adjx <- xpos + wid*(ind - (1/2)*(1 + length(deslev)))
+        adjx <- xpos[2*(1:nseg) - 1] + (ind - 1)*diff(xpos)[2*(1:nseg)-1]/2
         points(adjx, yvals, col = temPal[ind], pch = 19)
         for (ii in 1:length(adjx)) lines(x = rep(adjx[ii],2), y = c(meanline[ii], yvals[ii]), lty = 2, col = temPal[ind])
         ##if (addlines) lines(adjx, yvals, col = temPal[ind], lty = 2)
         ##rect(xleft = adjx - (1/2)*wid, xright = adjx + (1/2)*wid, ybottom = meanline,
         ##     ytop = yvals, col = temPal[ind])
     }))
-    axis(1, at = xpos, labels = rep("", length(xpos)))
-    axis(1, at = xpos, tick = FALSE, labels = rep(tabnames[[nontrace[1]]], times = dims[nontrace[2]]), cex.axis = 0.7,
+    ## now add the axis
+    ## first determine axis label positions
+    axpos <- sapply(1:nseg, function(ind) mean(xpos[c((2*ind-1),2*ind)]))
+    outrpos <- sapply(1:dims[nontrace[2]], function(ind) mean(range(xpos[(2*(ind-1)*dims[nontrace[1]] + 1):(2*ind*dims[nontrace[1]])])))
+    axis(1, at = axpos, labels = rep("", length(axpos)))
+    axis(1, at = axpos, tick = FALSE, labels = rep(tabnames[[nontrace[1]]], times = dims[nontrace[2]]), cex.axis = 0.7,
          pos = -0.02*max(condout))
-    axis(1, at = 1:dims[nontrace[2]], labels = tabnames[[nontrace[2]]], xpd = NA, tick = FALSE, pos = -0.08*max(condout[,,]))
+    axis(1, at = outrpos, labels = tabnames[[nontrace[2]]], xpd = NA,
+         tick = FALSE, pos = -0.08*max(condout[,,]))
     axis(1, at = mean(range(xpos)), xpd = NA, tick = FALSE, pos = -0.15*max(condout),
          labels = paste0("Inner label: ", names(tabnames)[nontrace[1]], " | Outer label: ", names(tabnames)[nontrace[2]]))
     legend(x = "top", horiz = TRUE, legend = tabnames[[tracemar]][deslev], col = temPal, inset = -0.04, cex = 0.7,
