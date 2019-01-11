@@ -280,13 +280,22 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
            fill = temPal, bg = "white", xpd = NA)
     ## add testing lines if desired
     if (testlines) {
-        linext <- c(1.5,-1.5)*wid*length(deslev)/2
-        invisible(sapply(1:length(meanline), function(pos) {
-            mn <- meanline[pos]
-            n <- marsums[pos]
-            err <- 2*sqrt((mn/(3*n))*(1-3*mn))
-            lines(x = xpos[pos] + linext, y = rep(mn + err, 2), col = adjustcolor("black", alpha.f = 0.5))
-            lines(x = xpos[pos] + linext, y = rep(mn - err, 2), col = adjustcolor("black", alpha.f = 0.5))
+        ## get x positions
+        errpos <- rep(xpos, times = rep(c(2,1), times = nseg))
+        errpos[3*(1:nseg) - 1] <- axpos
+        ## reformat y positions
+        erry <- c(condout)
+        ## define error bar extensions
+        ext <- c(-0.005, 0.005)
+        ## add bars at each position
+        invisible(sapply(1:length(erry), function(pos) {
+            p <- erry[pos]
+            n <- marsums[floor((pos-1)/dims[nontrace[1]]) + 1]
+            err <- 2*sqrt((p/n)*(1-p))
+            errcol <- temPal[(pos-1) %% dims[nontrace[1]] + 1]
+            lines(x = errpos[pos] + ext, y = rep(p + err, 2), col = adjustcolor(errcol, alpha.f = 0.5))
+            lines(x = errpos[pos] + ext, y = rep(p - err, 2), col = adjustcolor(errcol, alpha.f = 0.5))
+            lines(x = rep(errpos[pos], 2), y = c(p + err, p - err), col = adjustcolor(errcol, alpha.f = 0.5))
             ##lines(, meanline - sqrt((meanline/(3*marsums))*(1-3*meanline)), lty = 2)
             ##lines(xpos, meanline + sqrt((meanline/(3*marsums))*(1-3*meanline)), lty = 2)
             }))
