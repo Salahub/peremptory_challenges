@@ -1,7 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  10 JAN 2019 14:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  12 JAN 2019 12:47
 entering extended mode
-**\input perempchallenge.tex
-(perempchallenge.tex ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+**./perempchallenge.tex
+(perempchallenge.tex
+LaTeX2e <2017-04-15>
+Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
@@ -501,51 +504,43 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 104.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 118.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 106.
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 123.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 138.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Overfull \hbox (14.34116pt too wide) in paragraph at lines 125--128
+Overfull \hbox (14.34116pt too wide) in paragraph at lines 140--143
 []$[]$\OT1/ptm/m/n/10 : re-la-tional database pro-vided did not have all data i
 n one joined ta-ble $[]$: cre-ation of \OT1/pcr/m/n/10 CleaningMerge
  []
 
-<Plots/CondDistRaces.pdf, id=7, 505.89pt x 505.89pt>
+[2] <Plots/CondDistRaces.pdf, id=15, 505.89pt x 505.89pt>
 File: Plots/CondDistRaces.pdf Graphic file (type pdf)
 
 <use Plots/CondDistRaces.pdf>
-Package pdftex.def Info: Plots/CondDistRaces.pdf used on input line 163.
+Package pdftex.def Info: Plots/CondDistRaces.pdf used on input line 178.
 (pdftex.def)             Requested size: 328.82707pt x 328.8323pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[2] <Plots/RaceGenderPolit.pdf, id=16, 505.89pt x 505.89pt>
+ [3 <./Plots/CondDistRaces.pdf>]
+<Plots/RaceGenderPolit.pdf, id=26, 505.89pt x 505.89pt>
 File: Plots/RaceGenderPolit.pdf Graphic file (type pdf)
 
 <use Plots/RaceGenderPolit.pdf>
-Package pdftex.def Info: Plots/RaceGenderPolit.pdf used on input line 196.
+Package pdftex.def Info: Plots/RaceGenderPolit.pdf used on input line 211.
 (pdftex.def)             Requested size: 328.82707pt x 328.8323pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[3 <./Plots/CondDistRaces.pdf>]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 211.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 226.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 211.
- (perempchallenge.bbl [4 <./Plots/RaceGenderPolit.pdf>]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 226.
+ [4 <./Plots/RaceGenderPolit.pdf>] (perempchallenge.bbl
 Underfull \hbox (badness 6910) in paragraph at lines 37--42
 []\OT1/ptm/m/n/10 N. R. Hasan.  Elim-i-nat-ing peremp-tory chal-lenges makes tr
 i-als less fair.  The Star, April
@@ -558,20 +553,20 @@ eliminating-peremptory-challenges-make-
  []
 
 
-Underfull \hbox (badness 6493) in paragraph at lines 86--91
+Underfull \hbox (badness 6493) in paragraph at lines 92--97
 []\OT1/ptm/m/n/10 B. Zinchuk.  Both sides wrong about Stan-ley trial.  Prince G
 eorge Cit-i-zen, March 2018.
  []
 
 ) [5] (perempchallenge.aux) ) 
 Here is how much of TeX's memory you used:
- 6222 strings out of 493328
- 92329 string characters out of 3139124
+ 6223 strings out of 493328
+ 92342 string characters out of 3139124
  197233 words of memory out of 3000000
- 9596 multiletter control sequences out of 15000+200000
+ 9597 multiletter control sequences out of 15000+200000
  28623 words of font info for 66 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,8n,39p,344b,331s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,8n,39p,339b,331s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/
 8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Progra
@@ -581,7 +576,7 @@ fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/u
 tmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on perempchallenge.pdf (5 pages, 130256 bytes).
+Output written on perempchallenge.pdf (5 pages, 132288 bytes).
 PDF statistics:
  70 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

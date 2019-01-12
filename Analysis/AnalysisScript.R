@@ -261,7 +261,7 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
         adjx <- xpos[2*(1:nseg) - 1] + (ind - 1)*diff(xpos)[2*(1:nseg)-1]/2
         points(adjx, yvals, col = temPal[ind], pch = 19)
         for (ii in 1:length(adjx)) lines(x = rep(adjx[ii],2), y = c(meanline[ii], yvals[ii]), lty = 2, col = temPal[ind])
-        ##if (addlines) lines(adjx, yvals, col = temPal[ind], lty = 2)
+        if (addlines) lines(adjx, yvals, col = temPal[ind], lty = 3)
         ##rect(xleft = adjx - (1/2)*wid, xright = adjx + (1/2)*wid, ybottom = meanline,
         ##     ytop = yvals, col = temPal[ind])
     }))
@@ -276,8 +276,6 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
          tick = FALSE, pos = -0.08*max(condout[,,]))
     axis(1, at = mean(range(xpos)), xpd = NA, tick = FALSE, pos = -0.15*max(condout),
          labels = paste0("Inner label: ", names(tabnames)[nontrace[1]], " | Outer label: ", names(tabnames)[nontrace[2]]))
-    legend(x = "top", horiz = TRUE, legend = tabnames[[tracemar]][deslev], col = temPal, inset = -0.04, cex = 0.7,
-           fill = temPal, bg = "white", xpd = NA)
     ## add testing lines if desired
     if (testlines) {
         ## get x positions
@@ -300,6 +298,8 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
             ##lines(xpos, meanline + sqrt((meanline/(3*marsums))*(1-3*meanline)), lty = 2)
             }))
     }
+    legend(x = "top", horiz = TRUE, legend = tabnames[[tracemar]][deslev], col = temPal, inset = -0.04, cex = 0.7,
+           fill = temPal, bg = "white", xpd = NA)
     ##invisible(sapply((0:4)*0.05, function(val) lines(x = c(0,max(xpos)+1), y = rep(val,2), col = "white", lwd = 2)))
 }
 
