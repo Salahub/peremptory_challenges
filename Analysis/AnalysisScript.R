@@ -56,7 +56,7 @@ posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencodi
     ncats <- length(unique(cats))
     ## provide box colours if none are given
     if (is.null(boxcolours)) {
-        boxcols <- rainbow(ncats)
+        boxcols <- brewer.pal(ncats, "Set2")
         boxcolours <- boxcols
     } else boxcols <- boxcolours
     ## first identify the unique positions
@@ -120,7 +120,7 @@ propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includere
     factab <- table(fact)
     if (proportional) factab <- factab/len else if (is.null(ylim)) ylim <- c(0, max(factab))
     ## generate a palette if one is not given
-    if (is.null(colpal)) colpal <- rainbow(length(ctab))
+    if (is.null(colpal)) colpal <- brewer.pal(length(ctab), "Set2")
     colpal <- colpal[ordering]
     ## check for missing ylim value
     if (is.null(ylim)) yrng <- c(0,1) else yrng <- ylim
@@ -457,6 +457,11 @@ sun.pdat <- data.frame(Disp_ = rep(c("C_rem", "D_rem", "Kept", "S_rem"), times =
                        Count = c(dispTab.pol[,,,]))
 ## fit a model analogous to those fit above, now controlled for political choices in disposition
 mod.psat <- glm(Count ~ Def_*Disp_*Race_+ Pol_*Disp_, family = poisson, data = sun.pdat)
+## now remove the third order interaction in the model
+mod.psattest <- update(mod.psat, formula = Count ~ Def_*Disp_*Race_ + Pol_*Disp_ - Def_:Disp_:Race_)
+## test the models
+anova(mod.psat, mod.psattest)
+1 - pchisq(66.734, 12)
 
 ## use radial axis plots to view the lawyers tendencies, especially those who act as both defense and prosecution lawyers
 ## maybe remove the top lawyers and remodel
@@ -569,7 +574,6 @@ legend(x = "topleft", legend = levels(sun.trialsum$DefWhiteBlack), col = racePal
 ## first encode relative size of point by alpha blending
 with(sun.trialsum, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal, xlab = "Defense Strike Count",
                               ylab = "Prosecution Strike Count", boxwids = 0.8, alphamin = 0.05))
-legend(x = "topleft", legend = levels(sun.trialsum$DefWhiteBlack), col = racePal, pch = 15, title = "Defendant Race")
 ## next by area, another encoding option in this function
 with(sun.trialsum, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal, xlab = "Defense Strike Count",
                               ylab = "Prosecution Strike Count", alphaencoding = FALSE, areaencoding = TRUE))
