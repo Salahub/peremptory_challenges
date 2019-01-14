@@ -99,11 +99,85 @@ then provides the details and results of the different analyses performed on the
 compared to previous works in Section \ref{sec:comparison}. Finally, the results and findings are summarized in
 \ref{sec:conclusion}, and recommendations based on the observations obtained here are provided.
 
+\subsection{List of Terms} \label{subsec:terms}
+
+In order to facilitate clarity despite brevity, a list of terms used in this paper is presented here.
+
+\begin{description}
+\item[Prosecution/State] The legal representation which argues for conviction
+\item[Defence] The legal reperesentation which argues against conviction
+\item[Court] Reference to the judge, prosecution, and defence
+\item[Venire] The population sample from which a jury is selected
+\item[Jury] The final group of (usually) twelve chosen venire members which judge the guilt or innocence of the
+    accused/defendant
+\item[Accused/Defendant] The individual on trial for a crime
+\item[Voir dire] From old French ``to speak the truth'', this is the questioning process used by the court to assess the
+  suitability of a venire member to sit on the jury
+\item[Struck] In the context of a venire member being rejected from the jury, struck indicates removal by peremptory challenge or
+  challenge with cause
+\item[Litigants] The accusor and the accused
+\end{description}
+
 \section{Background} \label{sec:background}
 
 \subsection{History of Peremptory Challenge} \label{subsec:history}
 
+For brevity, the history presented here is rather limited. Indeed, many details have been omitted from the summary of the history
+here. Roughly, the presentation of the history of jury trials here follows the comprehensive and exhaustively referenced
+description provided by Hoffman in 1997 \cite{hoffman1997}, with additional context and opinion on certain details provided by von
+Moschzisker's 1921 paper \cite{vonmosch1921}, Forsyth and Morgan's 1994 book \cite{forsythhistory}, and Brown's 2000 paper
+\cite{brown2000}. Information about the history of the Canadian system was provided by Brown's paper \cite{brown2000} and a paper
+by Petersen in 1993 \cite{petersen1993}.
+
+\subsubsection{Pre-English History}
+
+Jury trials are truly ancient, indeed so ancient that they are prevalent not only in historical records, but occur in myth. Both
+Norse and Greek mythology feature groups of individuals assessing the guilt or collecting evidence about the actions of a peer
+\cite{hoffman1997}.
+
+Outside of the realm of myth, there is evidence of the use of juries in Ancient Egypt, Mycenae, Druid England, Greece, Rome,
+Viking Scandanavia, the Holy Roman Empire, and Saracen Jerusalem \cite{hoffman1997}. It should be noted that in none of these
+areas was the jury trial the primary form of conflict resolution practiced. Nonetheless, it is clear the jury trial has a broad
+and long history of use.
+
+Something similar to the modern peremptory challenge does not appear until Rome, however. The Roman \textit{Judices} were groups
+of senators selected to judge the guilt of the accused in a legal case. There is recorded evidence that of the 81 Senators would
+be selected to sit on one of these \textit{Judices}, the litigants were permitted to remove fifteen of these Senators each. This
+egalitarian reduction of the jury size seems analogous to the modern peremptory challenge system in placing the power in the hands
+of the litigants and in requiring no justification by either litigant.
+
 \subsubsection{In English Law}
+
+Peremptory challenge does not reach is modern form, with a jury size that is held constant, until it was established in the
+English legal system. It should be noted that despite some previous debate on the topic, the most modern historical evidence
+suggests that the basis of the English practice was not related to the system used in the selection of \textit{Judices} in
+Rome. The English system appears to be its own beast entirely.
+
+The currently accepted theory is that the jury system was introduced to England during the Norman conquest of 1066. Following
+the official adoption of juries in the Assize of Clarendon in 1166, and the outlaw of trials by ordeal (the most common method of
+trial at that time) in 1215, peremptory challenges began to appear in England in the late thirteenth century. The challenges were
+officially recognized in 1305 when Parliament outlawed their use by the Crown, only to replace them with an analogous system of
+so-called ``standing-aside''\footnote{For a detailed explanation of this system see \cite{hoffman1997}}.
+
+It should be noted here that although the challenges issued between the Assize of Clarendon and this 1305 act are called
+``peremptory,'' they may not serve the same purpose as the modern challenges. Indeed, as Hoffman argues \cite{hoffman1997}, the
+challenges at this point in history may have been challenges with cause. The lack of a need to discuss the justification for such
+a causal challenge can be attributed to two factors: the function of these early courts in small communities where the court would
+be familiar with the venire members, and the justification of prosecution challenges under the paradigm of royal infallibility.
+
+While the first of these, where both sides simply ``know'' why an individual is being challenged seems tenuous at best, the second
+justification for the Crown's use of challenges seems quite reasonable. If the king cannot be wrong in his judgement and he has
+some reason to feel that a venire member cannot serve on the jury, then it would be highly disrespectful to ask him to justify his
+action. The Crown prosecutors, as representatives of the king, would be similarly shielded from criticism. The growth of
+peremptory challenges from the Crown to the defence was then simply an act done out of a desire to limit the power of the monarch
+and improve the chances of any individual facing royal inquiry. 
+
+While the logic of the expansion of these challenges is lost to time, their legal limits are not. From a maximum of 35 challenges
+allowed at their peak, the allowed number of challenges has only decreased over the centuries. This culminated in the Cyprus spy
+case in the late 1970s, which led to a ``sustained campaign in Parliament and in the press alleging that defence counsel were
+systematically abusing it.''\cite{hoffman1997} Ultimately this campaign was settled by the Criminal Justice Act of 1988, in which
+the Parliament of the United Kingdom abolished the practice. It did not, however, abolish the use of ``standing-aside'' by the
+Crown, although the practice has been heavily curtailed with strict guidelines to its use \cite{attgenguide}.
 
 \subsubsection{In American Law}
 
@@ -158,6 +232,31 @@ political affiliation column should be one of ``D'', ``R'', ``I'', or ``U'', but
 levels for the variables in the data set. It then identifies rows which have candidate swaps and presents them for review
 
 \section{Analysis} \label{sec:analysis}
+
+With this data cleaned and processed, questions can now be posed and addressed through analysis. A few obvious questions come to
+mind, considering the previous work done on this subject. The first is whether the results found by previous analyses which did
+not use statistics are statistically significant. Additionally, we may wonder whether the most common arguments posed in favour of
+peremptory challenge are satisfied in this data.
+
+\subsection{Arguments for Peremptory Challenges} \label{subsec:leveling}
+
+The primary argument stated in favour of the continued use of peremptory challenges is that of the 'levelling' of the bias of the
+jury. \textcolor{red}{Cite Canadian news articles here} The argument, essentially states that peremptory challenges are necesary
+to remove those jurors which are somehow abnormally biased but which are not eligible for removal by cause, or have not been
+removed by cause out of error.
+
+While the argument of recourse for an incorrect judgement of a challenge with cause is certainly valid, it seems unnecessary in
+light of the appeals process which already exists. Regardless, a precise comment on the validity of this statement cannot be
+easily made. The second assertion, however, permits a precise and straightforward mathematical analysis.
+
+In the Jury Sunshine data, for example, the proportion of venire members rejected by peremptory challenge is roughly 0.43. In what
+sense can such a large proportion of the venire be judged as extreme?
+
+A secondary argument is that of the creation of a jury which is mutually acceptable by giving both sides the privilege of removing
+any jurors they do not want assessing their case. The multiple American supreme court cases which address peremptory challenges
+and the outcome of the Gerald Stanley murder trial demonstrate quite clearly that this noble goal is not executed in
+practice. Rather, the privilege is a point of weakness that allows the politicization cases by doing the precise opposite of what
+it purports to achieve. It creates juries which are unacceptable to one party and society at large.
 
 \subsection{Modelling} \label{subse:mods}
 

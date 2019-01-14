@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  13 JAN 2019 10:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  14 JAN 2019 15:26
 entering extended mode
 **./perempchallenge.tex
 (perempchallenge.tex
@@ -502,83 +502,90 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 104.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 102.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 106.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 107.
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 145.
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 219.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Overfull \hbox (14.34116pt too wide) in paragraph at lines 147--150
+Overfull \hbox (14.34116pt too wide) in paragraph at lines 221--224
 []$[]$\OT1/ptm/m/n/10 : re-la-tional database pro-vided did not have all data i
 n one joined ta-ble $[]$: cre-ation of \OT1/pcr/m/n/10 CleaningMerge
  []
 
-[2] <Plots/CondDistRaces.pdf, id=12, 505.89pt x 505.89pt>
+[3] <Plots/CondDistRaces.pdf, id=15, 505.89pt x 505.89pt>
 File: Plots/CondDistRaces.pdf Graphic file (type pdf)
 
 <use Plots/CondDistRaces.pdf>
-Package pdftex.def Info: Plots/CondDistRaces.pdf used on input line 185.
+Package pdftex.def Info: Plots/CondDistRaces.pdf used on input line 284.
 (pdftex.def)             Requested size: 328.82707pt x 328.8323pt.
- [3 <./Plots/CondDistRaces.pdf>]
-<Plots/RaceGenderPolit.pdf, id=26, 505.89pt x 505.89pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4] <Plots/RaceGenderPolit.pdf, id=23, 505.89pt x 505.89pt>
 File: Plots/RaceGenderPolit.pdf Graphic file (type pdf)
 
 <use Plots/RaceGenderPolit.pdf>
-Package pdftex.def Info: Plots/RaceGenderPolit.pdf used on input line 218.
+Package pdftex.def Info: Plots/RaceGenderPolit.pdf used on input line 317.
 (pdftex.def)             Requested size: 328.82707pt x 328.8323pt.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 233.
 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 332.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 233.
- [4 <./Plots/RaceGenderPolit.pdf>] (perempchallenge.bbl
-Underfull \hbox (badness 6910) in paragraph at lines 37--42
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 332.
+ [5 <./Plots/CondDistRaces.pdf>] (perempchallenge.bbl [6 <./Plots/RaceGenderPol
+it.pdf>]
+Underfull \hbox (badness 6910) in paragraph at lines 54--59
 []\OT1/ptm/m/n/10 N. R. Hasan.  Elim-i-nat-ing peremp-tory chal-lenges makes tr
 i-als less fair.  The Star, April
  []
 
 
-Underfull \hbox (badness 8056) in paragraph at lines 37--42
+Underfull \hbox (badness 8056) in paragraph at lines 54--59
 \OT1/ptm/m/n/10 2018.  https://www.thestar.com/opinion/contributors/2018/04/10/
 eliminating-peremptory-challenges-make-
  []
 
 
-Underfull \hbox (badness 6493) in paragraph at lines 92--97
+Underfull \hbox (badness 6493) in paragraph at lines 120--125
 []\OT1/ptm/m/n/10 B. Zinchuk.  Both sides wrong about Stan-ley trial.  Prince G
 eorge Cit-i-zen, March 2018.
  []
 
-[5]) [6] (perempchallenge.aux) ) 
+) [7] (perempchallenge.aux) ) 
 Here is how much of TeX's memory you used:
- 6223 strings out of 493328
- 92342 string characters out of 3139124
- 197233 words of memory out of 3000000
- 9597 multiletter control sequences out of 15000+200000
+ 6230 strings out of 493328
+ 92441 string characters out of 3139124
+ 198233 words of memory out of 3000000
+ 9604 multiletter control sequences out of 15000+200000
  28623 words of font info for 66 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,8n,39p,339b,331s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/ba
-se/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/time
-s/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/
-Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on perempchallenge.pdf (6 pages, 133001 bytes).
+ 42i,8n,39p,339b,316s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/
+8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/u
+tmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on perempchallenge.pdf (7 pages, 142071 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
+ 78 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

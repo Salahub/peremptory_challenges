@@ -1,3 +1,10 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: perempchallenge.aux
 The style file: abbrv.bst
 Database file #1: perempchallenge.bib
+I was expecting a `,' or a `}'---line 12 of file perempchallenge.bib
+ : 
+ : volume = 38,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty year in brown2000
+(There was 1 error message)
