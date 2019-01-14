@@ -382,6 +382,7 @@ par(mfrow = c(1,1))
 parcoordrace()
 parcoordracev2(deslev = c(1,2,5))
 ## but are these differences significant?
+parcoordracev2(deslev = c(1,2,5), testlines = TRUE)
 
 ## the independence we want to test here is that of (Race, Disposition)|(Defendant Race)
 ## filter the data to remove small categories
