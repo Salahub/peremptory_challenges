@@ -239,38 +239,47 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
     ## another way to plot this: parallel coordinates
     dims <- dim(condout)
     nseg <- prod(dims[nontrace])
+    ## make descriptive names for soe values to make coding easier
+    innern <- dims[nontrace[1]]
+    outern <- dims[nontrace[2]]
     ## add padding between segments to space everything nicely
+    ## first replicate the trace margin sums to create a vector of the correct size for the horizontal line generation
     tempx <- rep(c(marsums), times = c(rep(2, nseg-1),1))
-    tempx[2*(1:(nseg-1))] <- space*rep(c(rep(1,dims[nontrace[1]]-1),3), length.out = nseg-1)*sum(marsums)
-    xpos <- c(0, cumsum(tempx)/sum(tempx))
+    ## replace every even element with the desired space size, then the cumulative sum automatically spaces
+    tempx[2*(1:(nseg-1))] <- space*rep(c(rep(1,innern-1),3), length.out = nseg-1)*sum(marsums)
+    ## take the cumulative sum to get the positions
+    xpos_line <- c(0, cumsum(tempx)/sum(tempx))
     ##xpos <- rep(1:dims[nontrace[2]], each = dims[nontrace[1]]) +
     ##    rep(seq(-0.2, 0.2, length.out = dims[nontrace[1]]), times = dims[nontrace[2]])
     ##xpos <- cumsum(marsums)/sum(marsums)
     ## plot the lines
-    plot(NA, xlim = range(xpos), ylim = c(0, max(condout[,,])), xaxt = 'n', xlab = "",
+    plot(NA, xlim = range(xpos_line), ylim = c(0, max(condout[,,])), xaxt = 'n', xlab = "",
          ylab = "Conditional Probability", ...)
     ## calculate and plot the mean values
     meanline <- apply(condout, nontrace, mean)
-    for(ii in 1:length(meanline)) lines(c(xpos[2*ii-1],xpos[2*ii]), rep(meanline[ii],2))
-    ## add the lines for each value
-    invisible(lapply(1:length(deslev), function(ind) {
+    for(ii in 1:length(meanline)) lines(c(xpos_line[2*ii-1],xpos_line[2*ii]), rep(meanline[ii],2))
+    ## add the lines for each value, save the positions for later
+    xpos <- sort(unlist(lapply(1:length(deslev), function(ind) {
         tempind <- condoutinds
         tempind[[tracemar + 2]] <- ind
         yvals <- eval(tempind, envir = evEnv)
         ##adjx <- xpos + wid*(ind - (1/2)*(1 + length(deslev)))
-        adjx <- xpos[2*(1:nseg) - 1] + (ind - 1)*diff(xpos)[2*(1:nseg)-1]/2
+        adjx <- xpos_line[2*(1:nseg)-1] + (ind-1)*diff(xpos_line)[2*(1:nseg)-1]/(dims[tracemar] - 1)
         points(adjx, yvals, col = temPal[ind], pch = 19)
-        for (ii in 1:length(adjx)) lines(x = rep(adjx[ii],2), y = c(meanline[ii], yvals[ii]), lty = 2, col = temPal[ind])
+        ## for aesthetics exclude lines if confidence intervals are plotted
+        if (!testlines) for (ii in 1:length(adjx)) lines(x = rep(adjx[ii],2), y = c(meanline[ii], yvals[ii]),
+                                                         lty = 2, col = temPal[ind])
         if (addlines) lines(adjx, yvals, col = temPal[ind], lty = 3)
         ##rect(xleft = adjx - (1/2)*wid, xright = adjx + (1/2)*wid, ybottom = meanline,
         ##     ytop = yvals, col = temPal[ind])
-    }))
+        return(adjx)
+    })))
     ## now add the axis
     ## first determine axis label positions
-    axpos <- sapply(1:nseg, function(ind) mean(xpos[c((2*ind-1),2*ind)]))
-    outrpos <- sapply(1:dims[nontrace[2]], function(ind) mean(range(xpos[(2*(ind-1)*dims[nontrace[1]] + 1):(2*ind*dims[nontrace[1]])])))
+    axpos <- sapply(1:nseg, function(ind) mean(xpos_line[c((2*ind-1),2*ind)]))
+    outrpos <- sapply(1:outern, function(ind) mean(range(xpos_line[(2*(ind-1)*innern + 1):(2*ind*innern)])))
     axis(1, at = axpos, labels = rep("", length(axpos)))
-    axis(1, at = axpos, tick = FALSE, labels = rep(tabnames[[nontrace[1]]], times = dims[nontrace[2]]), cex.axis = 0.7,
+    axis(1, at = axpos, tick = FALSE, labels = rep(tabnames[[nontrace[1]]], times = outern), cex.axis = 0.7,
          pos = -0.02*max(condout))
     axis(1, at = outrpos, labels = tabnames[[nontrace[2]]], xpd = NA,
          tick = FALSE, pos = -0.08*max(condout[,,]))
@@ -279,8 +288,8 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
     ## add testing lines if desired
     if (testlines) {
         ## get x positions
-        errpos <- rep(xpos, times = rep(c(2,1), times = nseg))
-        errpos[3*(1:nseg) - 1] <- axpos
+        errpos <- xpos
+        ##errpos[3*(1:nseg) - 1] <- axpos
         ## reformat y positions
         erry <- c(condout)
         ## define error bar extensions
@@ -288,9 +297,9 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
         ## add bars at each position
         invisible(sapply(1:length(erry), function(pos) {
             p <- erry[pos]
-            n <- marsums[floor((pos-1)/dims[nontrace[1]]) + 1]
+            n <- marsums[floor((pos-1)/dims[tracemar]) + 1]
             err <- 2*sqrt((p/n)*(1-p))
-            errcol <- temPal[(pos-1) %% dims[nontrace[1]] + 1]
+            errcol <- temPal[(pos-1) %% dims[tracemar] + 1]
             lines(x = errpos[pos] + ext, y = rep(p + err, 2), col = adjustcolor(errcol, alpha.f = 0.5))
             lines(x = errpos[pos] + ext, y = rep(p - err, 2), col = adjustcolor(errcol, alpha.f = 0.5))
             lines(x = rep(errpos[pos], 2), y = c(p + err, p - err), col = adjustcolor(errcol, alpha.f = 0.5))
@@ -352,7 +361,7 @@ sun.raceknown <- MatRelevel(sun.raceknown)
 ## try plotting these
 mosaicplot(Race ~ PerempStruck, data = sun.raceknown, main = "Race vs. Removal", shade = TRUE, las = 2)
 mosaicplot(Race ~ Disposition, data = sun.raceknown, main = "Race by Trial Status", shade = TRUE, las = 2)
-mosaicplot(Race ~ DefStruck, data = sun.raceknown, main = "Race by Defense Removal", shade = TRUE, las = 2)
+mosaicplot(Race ~ DefStruck, data = sun.raceknown, main = "Race by Defence Removal", shade = TRUE, las = 2)
 mosaicplot(Race ~ ProStruck, data = sun.raceknown, main = "Race by Prosecution Removal", shade = TRUE, las = 2)
 mosaicplot(Race ~ CauseRemoved, data = sun.raceknown, main = "Race by Removal with Cause", shade = TRUE, las = 2)
 ## it seems that there are significantly different strike habits between the defense and prosecution, but that
@@ -464,35 +473,15 @@ mod.psattest <- update(mod.psat, formula = Count ~ Def_*Disp_*Race_ + Pol_*Disp_
 anova(mod.psat, mod.psattest)
 1 - pchisq(66.734, 12)
 
-## use radial axis plots to view the lawyers tendencies, especially those who act as both defense and prosecution lawyers
+## ideological imbalance, look at politics
+parcoordracev2(table(MatRelevel(sun.raceknown[sun.raceknown$PoliticalAffiliation != "U",
+                                              c("Disposition","PoliticalAffiliation","WhiteBlack")])),
+               deslev = c(1,2,5))
+
+## use radial axis plots to view the lawyers tendencies, especially those who act as both defence and prosecution lawyers
 ## maybe remove the top lawyers and remodel
 ## look at the most prolific lawyers for both sides
 ## subset the data to only lawyers with one case to remove the lawyer dependency
-## adjust the width of the propparcoord plot to reflect the relative sizes
-## add confidence intervals to the ends of the bars/point
-
-##  compare defense strikes, prosecution strikes, venire, and jurors
-with(sun.juror, propparcoord(Race, Disposition, levs = c("Kept","S_rem","D_rem"),
-                                 colpal = dispPal, ylim = c(0,0.7)))
-with(sun.juror, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
-                                 colpal = dispPal, ylim = c(0,0.7), ordering = c(3,1,2), includerel = FALSE,
-                                 legpos = "topright"))
-with(sun.juror, propparcoord(WhiteBlack, Disposition, levs = c("Kept","S_rem","D_rem"),
-                                 colpal = dispPal, proportional = FALSE))
-## now view the defense in detail
-with(sun.juror[sun.juror$Disposition == "D_rem",],
-     propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
-                  proportional = FALSE, ordering = c(1,3,2), main = "Defense Strikes by Defendant Race"))
-with(sun.juror[sun.juror$Disposition == "D_rem",],
-     propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
-                  ylim = c(0,0.8), brwid = 2, ordering = c(1,3,2), main = "Defense Strikes by Defendant Race"))
-## and the prosecution
-with(sun.juror[sun.juror$Disposition == "S_rem",],
-     propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
-                  proportional = FALSE, ordering = c(1,3,2)))
-with(sun.juror[sun.juror$Disposition == "S_rem",],
-     propparcoord(WhiteBlack, DefWhiteBlack, levs = c("Other","White","Black"), colpal = brewer.pal(3, "Set2"),
-                  ylim = c(0,0.7)))
 
 ## however, this suggests another question: is this strategy actually successful? That is, does there appear to
 ## be a relation between the number of peremptory challenges and the court case outcome?
