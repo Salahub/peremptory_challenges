@@ -52,45 +52,47 @@ dispPal <- brewer.pal(3, "Set2")
 posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencoding = TRUE, alphamin = 0.1,
                        areaencoding = FALSE, xlim = range(x) + boxwids*c(-1/1.05,1/1.05), inc.leg = TRUE,
                        ylim = range(y) + boxwids*c(-1/1.05,1/1.05), ...) {
-    ## get an important scale variable
+    ## extract the number of categories to be displayed in each small multiple
     ncats <- length(unique(cats))
-    ## provide box colours if none are given
+    ## automatically generate the category colours using color brewer
     if (is.null(boxcolours)) {
         boxcols <- brewer.pal(ncats, "Set2")
         boxcolours <- boxcols
     } else boxcols <- boxcolours
-    ## first identify the unique positions
+    ## first identify the unique coordinates for the small multiples
     unqPos <- unique(cbind(x,y))
-    ## iterate through these, create tables of the categories
+    ## iterate through these, create tables of the categories at each position
     cattabs <- t(apply(unqPos, 1, function(pos) {
         ## generate a count a table
         table(cats[x == pos[1] & y == pos[2]])
     }))
-    ## calculate the counts for each location for scaling
+    ## sum these counts to get the total at each position to scale the small multiples
     rowcounts <- rowSums(cattabs)
-    ## convert the count table to proportions
+    ## convert the count table to cumulative proportions at each position
     catprops <- t(apply(cbind(0,cattabs/rowcounts), 1, cumsum))
-    ## use the row counts to determine the colours and box widths
+    ## use these and the table of counts to generate the small multiples
+    ## first in the case that opacity encodes density
     if (alphaencoding) {
-        ## start by converting the box colours to rgb
+        ## in the opacity-density case, convert the box colours to rgb and replicate them as necessary
         boxcols <- col2rgb(rep(boxcols, each = nrow(catprops)), alpha = FALSE)/255
-        ## convert back to hex
+        ## convert back to hex, adding the alpha encoding to control opacity
         boxcols <- rgb(t(boxcols),
-                          alpha = rep(round((1-alphamin)*rowcounts/max(rowcounts) + alphamin, digits = 4), times = ncats))
+                       alpha = rep(round((1-alphamin)*rowcounts/max(rowcounts) + alphamin, digits = 4), times = ncats))
+      ## in the case size encodes density, simply replicate the colors for the number of positions
     } else boxcols <- rep(boxcols, each = nrow(catprops))
-    ## create an empty plot before determining the box widths to allow default x and y limits to work
+    ## create an empty plot to place the small multiples
     plot(x, y, col = NA, xlim = xlim, ylim = ylim, ...)
-    ## determine box widths
+    ## determine the width of the small multiple boxes
     if (areaencoding) boxwids <- boxwids*sqrt(rowcounts/max(rowcounts))
-    ## determine some rectangle parameters
+    ## define the bottom corner positions of the boxes
     bottomx <- unqPos[,1] - boxwids/2
     bottomy <- unqPos[,2] - boxwids/2
-    ## calculate rectangle corner positions
+    ## use the bottom corner positions to calculate box extents, with internal borders defined as well
     rectx <- bottomx + catprops*boxwids
     recty <- cbind(rep(bottomy, times = ncats), rep(bottomy + boxwids, times = ncats))
-    ## convert the x coordinates into a pair of vectors specifying all positions
+    ## convert the x coordinates into a list of vectors specifying all positions
     xvec <- lapply(1:(ncats+1), function(n) rectx[,n])
-    ## place the rectangles
+    ## place the rectangles by unlisting this structure correctly
     rect(xleft = unlist(xvec[1:ncats]), ybottom = recty[,1], xright = unlist(xvec[2:(ncats+1)]),
          ytop = recty[,2], col = boxcols, border = boxcols)
     ## include a legend if desired
@@ -98,13 +100,13 @@ posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencodi
                         xpd = NA, horiz = TRUE)
 }
 
-## create a function for proportional line plots
+## create a function for proportional parallel coordinate plots
 ## incorporate possibility to display in a non-proportional absolute way
 propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includerel = proportional, ylim = NULL,
                          colpal = NULL, ordering = NULL, legpos = "topleft", brptpos = 1, brwid = 4, ...) {
     ## create the x label
     xnm <- deparse(substitute(fact))
-    ## check if the factor is indeed a factor
+    ## perform a type check
     if (!is.factor(fact)) fact <- as.factor(fact)
     ## check if levs have been supplied
     if (is.null(levs)) levs <- unique(cats)
@@ -155,6 +157,7 @@ propparcoord <- function(fact, cats, levs = NULL, proportional = TRUE, includere
     axis(1, 1:lineLen, levels(fact)[ordering])
 }
 
+## DEPRECATED: a specific case of the above function which has been replaced by the following function
 ## make a specific line plot function
 parcoordrace <- function() {
     ## clean up the defwhiteblack variable
@@ -203,44 +206,53 @@ parcoordrace <- function() {
     text(x = xpos[1]+0.03, y = mixtab[[5]][1], labels = nicelevs[5], pos = 1, cex = 0.75, srt = 90, col = colpal[4])
 }
 
-## another attempt at this parcoord function which uses tables instead of the lapply used above
+## the better version of the above function, takes an arbitrary three-way contingency table and plots the different conditional
+## probabilities of the desired margins
 parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE,
                            space = 0.025, testlines = FALSE, ...) {
-    ## if no table is provided display all of the data
+    ## in the default case (no table provided), look at the key race relationships, as these motivated this study
     if (is.null(tabl)) {
-        ## remove the unknown jurors
+        ## for cleanliness, remove those jurors with unknown races
         temp.juror <- sun.juror[sun.juror$WhiteBlack != "U" & sun.juror$DefWhiteBlack != "U",]
         temp.juror$WhiteBlack <- as.factor(as.character(temp.juror$WhiteBlack))
         temp.juror$DefWhiteBlack <- as.factor(as.character(temp.juror$DefWhiteBlack))
-        ## clean the defendants up
+        ## perform the same operation for defendant race
         temp.juror$DefWhiteBlack <- as.factor(as.character(gsub(",Other|,U", "", temp.juror$DefWhiteBlack)))
-        ## make a table
+        ## make a table of disposition and both races
         outcometab <- table(temp.juror[,c("Disposition", "DefWhiteBlack", "WhiteBlack")])
-    } else { ## handle the case of a table being provided
+    } else { ## if a table is provided simply copy it to the internal "outcometab" argument
         outcometab <- tabl
     }
-    ## determine margin indices
+    ## determine the "non-trace" margins; these specify margins which are combined to define the cases to which the horizontal
+    ## line segments correspond
     nontrace <- (1:3)[1:3 != tracemar]
     ## get the dimension names
     tabnames <- dimnames(outcometab)
     ## handle a null desired level setting
     if (is.null(deslev)) deslev <- 1:length(tabnames[[tracemar]])
-    ## create a palette for the margins of interest
+    ## create a palette
     temPal <- brewer.pal(length(deslev), "Set2")
-    ## convert this to the conditional probability distribution of outcome given non trace margins
+    ## calculate the conditional probability distribution of outcome given non-trace margins using outcometab
     condout <- apply(outcometab, nontrace, function(margin) margin/sum(margin))
-    ## also get the sums for testing
+    ## and the sums
     marsums <- apply(outcometab, nontrace, sum)
-    ## extract the desired levels from the margin of interest
+    ## extract the desired levels from the margin of interest, write this flexibly to allow programmatic margin extraction later
+    ## first define the local environment as the calling environment
     evEnv <- environment()
+    ## create the language object
     condoutinds <- condoutcall <- quote(condout[,,])
+    ## place the levels of interest as the subset argument
     condoutcall[[tracemar+2]] <- deslev
+    ## evaluate this to subset the data
     condout <- eval(condoutcall, envir = evEnv)
-    ## another way to plot this: parallel coordinates
+    ## rename some useful values for ease of reference
+    ## the dimensionality of the data
     dims <- dim(condout)
+    ## the number of horizontal segments
     nseg <- prod(dims[nontrace])
-    ## make descriptive names for soe values to make coding easier
+    ## the number of 'inner' combination values
     innern <- dims[nontrace[1]]
+    ## the number of 'outer' combination values (inner and outer refer to axis label positions)
     outern <- dims[nontrace[2]]
     ## add padding between segments to space everything nicely
     ## first replicate the trace margin sums to create a vector of the correct size for the horizontal line generation
@@ -252,37 +264,45 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
     ##xpos <- rep(1:dims[nontrace[2]], each = dims[nontrace[1]]) +
     ##    rep(seq(-0.2, 0.2, length.out = dims[nontrace[1]]), times = dims[nontrace[2]])
     ##xpos <- cumsum(marsums)/sum(marsums)
-    ## plot the lines
+    ## create the empty plot region
     plot(NA, xlim = range(xpos_line), ylim = c(0, max(condout[,,])), xaxt = 'n', xlab = "",
          ylab = "Conditional Probability", ...)
-    ## calculate and plot the mean values
+    ## calculate and plot the horizontal lines at the mean values
     meanline <- apply(condout, nontrace, mean)
     for(ii in 1:length(meanline)) lines(c(xpos_line[2*ii-1],xpos_line[2*ii]), rep(meanline[ii],2))
-    ## add the lines for each value, save the positions for later
+    ## add the vertical lines for each cell, save the positions for later
     xpos <- sort(unlist(lapply(1:length(deslev), function(ind) {
+        ## first extract the relevant margin to give the y values
         tempind <- condoutinds
         tempind[[tracemar + 2]] <- ind
         yvals <- eval(tempind, envir = evEnv)
+        ## use the horizontal line positions and the index to place the vertical lines
         ##adjx <- xpos + wid*(ind - (1/2)*(1 + length(deslev)))
         adjx <- xpos_line[2*(1:nseg)-1] + (ind-1)*diff(xpos_line)[2*(1:nseg)-1]/(dims[tracemar] - 1)
+        ## add the corresponding end points
         points(adjx, yvals, col = temPal[ind], pch = 19)
         ## for aesthetics exclude lines if confidence intervals are plotted
         if (!testlines) for (ii in 1:length(adjx)) lines(x = rep(adjx[ii],2), y = c(meanline[ii], yvals[ii]),
                                                          lty = 2, col = temPal[ind])
+        ## if trace lines (parallel axis plot) are desired plot these
         if (addlines) lines(adjx, yvals, col = temPal[ind], lty = 3)
         ##rect(xleft = adjx - (1/2)*wid, xright = adjx + (1/2)*wid, ybottom = meanline,
         ##     ytop = yvals, col = temPal[ind])
         return(adjx)
     })))
-    ## now add the axis
+    ## now add the axes
     ## first determine axis label positions
     axpos <- sapply(1:nseg, function(ind) mean(xpos_line[c((2*ind-1),2*ind)]))
     outrpos <- sapply(1:outern, function(ind) mean(range(xpos_line[(2*(ind-1)*innern + 1):(2*ind*innern)])))
+    ## add the axis ticks for the inner labels
     axis(1, at = axpos, labels = rep("", length(axpos)))
+    ## add the labels to the inner axis
     axis(1, at = axpos, tick = FALSE, labels = rep(tabnames[[nontrace[1]]], times = outern), cex.axis = 0.7,
          pos = -0.02*max(condout))
+    ## add the labels for the outer axis
     axis(1, at = outrpos, labels = tabnames[[nontrace[2]]], xpd = NA,
          tick = FALSE, pos = -0.08*max(condout[,,]))
+    ## provide the axis title to give context
     axis(1, at = mean(range(xpos)), xpd = NA, tick = FALSE, pos = -0.15*max(condout),
          labels = paste0("Inner label: ", names(tabnames)[nontrace[1]], " | Outer label: ", names(tabnames)[nontrace[2]]))
     ## add testing lines if desired
@@ -296,10 +316,15 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
         ext <- c(-0.005, 0.005)
         ## add bars at each position
         invisible(sapply(1:length(erry), function(pos) {
+            ## rename the conditional probability for readability
             p <- erry[pos]
+            ## extract the relevant margin count
             n <- marsums[floor((pos-1)/dims[tracemar]) + 1]
+            ## calculate the binomial error size
             err <- 2*sqrt((p/n)*(1-p))
+            ## and the appropriate colour
             errcol <- temPal[(pos-1) %% dims[tracemar] + 1]
+            ## add vertical lines and horizontal end lines
             lines(x = errpos[pos] + ext, y = rep(p + err, 2), col = adjustcolor(errcol, alpha.f = 0.5))
             lines(x = errpos[pos] + ext, y = rep(p - err, 2), col = adjustcolor(errcol, alpha.f = 0.5))
             lines(x = rep(errpos[pos], 2), y = c(p + err, p - err), col = adjustcolor(errcol, alpha.f = 0.5))
@@ -307,12 +332,13 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
             ##lines(xpos, meanline + sqrt((meanline/(3*marsums))*(1-3*meanline)), lty = 2)
             }))
     }
+    ## add a legen to explain the colours
     legend(x = "top", horiz = TRUE, legend = tabnames[[tracemar]][deslev], col = temPal, inset = -0.04, cex = 0.7,
            fill = temPal, bg = "white", xpd = NA)
     ##invisible(sapply((0:4)*0.05, function(val) lines(x = c(0,max(xpos)+1), y = rep(val,2), col = "white", lwd = 2)))
 }
 
-## a function to re-level factor variables to make mosaic plots cleaner
+## a function to re-level factor variables to make mosaic plots cleaner (useful helper generally)
 MatRelevel <- function(data) {
     temp <- lapply(data, function(el) if (is.factor(el)) as.factor(levels(el)[as.numeric(el)]) else el)
     temp <- as.data.frame(temp)
