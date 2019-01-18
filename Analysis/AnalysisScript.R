@@ -491,16 +491,20 @@ back2backh <- function(data1, data2, cols = NULL, legnames = NULL, ...) {
     ## generate colours if none are provided
     if (is.null(cols)) cols <- c("steelblue","firebrick")
     ## create an empty plot area
-    plot(NA, xlim = c(-maxden, maxden), ylim = range(hist1$breaks), ...)
+    plot(NA, xlim = c(-maxden, maxden), ylim = range(hist1$breaks), xlab = "Density", xaxt = 'n', ...)
     ## add vertical separating line
     abline(v = 0)
+    ## add an axis
+    axispos <- round(seq(0, maxden, length.out = 3),2)
+    axis(side = 1, labels = c(axispos[3:2], axispos), at = c(-axispos[3:2], axispos))
     ## plot the histograms back-to-back
     rect(xleft = -hist1$density, ybottom = hist1$breaks[1:nbins],
          xright = rep(0, nbins), ytop = hist1$breaks[2:(nbins+1)], col = cols[1])
     rect(xleft = rep(0, nbins), ybottom = hist2$breaks[1:nbins],
          xright = hist2$density, ytop = hist2$breaks[2:(nbins+1)], col = cols[2])
     ## add a legend
-    legend(x = 0, y = 0.95*max(hist1$breaks), legend = legnames, fill = cols, horiz = TRUE, xpd = NA)
+    legend(x = 0, y = max(hist1$breaks), legend = legnames, fill = cols, horiz = TRUE, xpd = NA, xjust = 0.5, yjust = 0,
+           bg = "white")
 }
 
 ## a function to re-level factor variables to make mosaic plots cleaner (useful helper generally)
