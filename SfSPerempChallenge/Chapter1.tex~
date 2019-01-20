@@ -1,4 +1,4 @@
-
+\chapter{First Chapter} 
 
 \section{To include a picture}
 \begin{figure}[hbt!]%--- Picture 'H'ere, 'B'ottom or 'T'op; '!' Try to

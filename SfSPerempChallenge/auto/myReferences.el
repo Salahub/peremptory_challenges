@@ -2,6 +2,9 @@
  "myReferences"
  (lambda ()
    (LaTeX-add-bibitems
+    "batsonvkentucky"
+    "page2005"
+    "macnabproper"
     "swainvalabama"
     "davismagnacar"
     "vandykejurysel"

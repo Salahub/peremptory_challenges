@@ -3,7 +3,7 @@
  (lambda ()
    (LaTeX-add-labels
     "c:background"
-    "sec:history"
-    "sec:modprac"))
+    "sec:modprac"
+    "sec:history"))
  :latex)
 

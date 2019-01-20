@@ -345,7 +345,7 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
 ## the better version of the above function, takes an arbitrary three-way contingency table and plots the different conditional
 ## probabilities of the desired margins
 testplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE,
-                           space = 0.025, testlines = FALSE, ...) {
+                           space = 0.025, testlines = FALSE, expected = NULL, ...) {
     ## in the default case (no table provided), look at the key race relationships, as these motivated this study
     if (is.null(tabl)) {
         ## for cleanliness, remove those jurors with unknown races
@@ -385,55 +385,47 @@ testplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addli
     ## the dimensionality of the data
     dims <- dim(condout)
     ## the number of horizontal segments
-    nseg <- prod(dims[nontrace])
+    nseg <- prod(dims)
     ## the number of 'inner' combination values
     innern <- dims[nontrace[1]]
     ## the number of 'outer' combination values (inner and outer refer to axis label positions)
     outern <- dims[nontrace[2]]
+    ## the trace dimension as well
+    tracen <- dims[tracemar]
     ## add padding between segments to space everything nicely
     ## first replicate the trace margin sums to create a vector of the correct size for the horizontal line generation
-    tempx <- rep(c(marsums)/dims[tracemar], times = c(rep(dims[tracemar] + 1, nseg-1),1))
+    tempx <- rep(c(marsums)/tracen, times = c(rep(tracen + 1, outern*innern-1),tracen))
     ## replace certain elements with the  desired space size, then the cumulative sum automatically spaces
-    tempx[(dims[tracemar]+1)*(1:(nseg-1))] <- space*rep(c(rep(1,innern-1),3),length.out = nseg-1)*sum(marsums)
+    tempx[(tracen+1)*(1:(innern*outern - 1))] <- space*rep(c(rep(1,innern-1),3),length.out = innern*outern-1)*sum(marsums)
     ## take the cumulative sum to get the positions
     xpos_line <- c(0, cumsum(tempx)/sum(tempx))
-    ##xpos <- rep(1:dims[nontrace[2]], each = dims[nontrace[1]]) +
-    ##    rep(seq(-0.2, 0.2, length.out = dims[nontrace[1]]), times = dims[nontrace[2]])
-    ##xpos <- cumsum(marsums)/sum(marsums)
+    ## get the middle positions using the filter function
+    xpos <- c(filter(xpos_line, filter = c(1/2,1/2)))
+    ## remove midsections of padding spaces
+    xpos <- xpos[-(tracen + 1)*(1:(innern*outern - 1))]
+    xpos <- xpos[-length(xpos)]
+    ## use the xpos_line to get widths of sections
+    xposwids <- diff(xpos_line)[-(tracen + 1)*(1:(innern*outern-1))]
+    ## if the expected values are missing, take the original expectation: a uniform distribution conditioned on both
+    ## races
+    if (is.null(expected)) expected <- rep(apply(condout, nontrace, mean), each = tracen)
     ## create the empty plot region
     plot(NA, xlim = range(xpos_line), ylim = c(0, max(condout[,,])), xaxt = 'n', xlab = "",
          ylab = "Conditional Probability", ...)
-    ## calculate and plot the horizontal lines at the mean values
-    ## the old way: calculating the mean of the conditional distributions
-    meanline <- apply(condout, nontrace, mean)
-    ## this way does not correspond to the hypothesis being tested: that there is no preference for race displayed by
-    ## either side, rather under this hypothesis, the expected rate of each combination is given by the product of the
-    ## overall rate for each side and the proportion of the venire of
-    for(ii in 1:length(meanline)) lines(c(xpos_line[2*ii-1],xpos_line[2*ii]), rep(meanline[ii],2))
-    ## add the vertical lines for each cell, save the positions for later
-    xpos <- sort(unlist(lapply(1:length(deslev), function(ind) {
-        ## first extract the relevant margin to give the y values
-        tempind <- condoutinds
-        tempind[[tracemar + 2]] <- ind
-        yvals <- eval(tempind, envir = evEnv)
-        ## use the horizontal line positions and the index to place the vertical lines
-        ##adjx <- xpos + wid*(ind - (1/2)*(1 + length(deslev)))
-        adjx <- xpos_line[2*(1:nseg)-1] + (ind-1)*diff(xpos_line)[2*(1:nseg)-1]/(dims[tracemar] - 1)
-        ## add the corresponding end points
-        points(adjx, yvals, col = temPal[ind], pch = 19)
+    ## plot each line and its corresponding expectation
+    invisible(lapply(1:length(xpos), function(ind) {
+        ## plot the horizontal line using the relevant values
+        lines(x = xpos[ind] + xposwids[ind]*c(-1/2,1/2), y = rep(expected[ind],2))
+        ## add the point
+        points(x = xpos[ind], y = condout[ind], col = temPal[((ind - 1) %% tracen) + 1], pch = 19)
         ## for aesthetics exclude lines if confidence intervals are plotted
-        if (!testlines) for (ii in 1:length(adjx)) lines(x = rep(adjx[ii],2), y = c(meanline[ii], yvals[ii]),
-                                                         lty = 2, col = temPal[ind])
-        ## if trace lines (parallel axis plot) are desired plot these
-        if (addlines) lines(adjx, yvals, col = temPal[ind], lty = 3)
-        ##rect(xleft = adjx - (1/2)*wid, xright = adjx + (1/2)*wid, ybottom = meanline,
-        ##     ytop = yvals, col = temPal[ind])
-        return(adjx)
-    })))
+        if (!testlines) lines(x = rep(xpos[ind], 2), y = c(expected[ind], condout[ind]),
+                              col = temPal[((ind-1) %% tracen) + 1], lty = 2)
+    }))
     ## now add the axes
     ## first determine axis label positions
-    axpos <- sapply(1:nseg, function(ind) mean(xpos_line[c((2*ind-1),2*ind)]))
-    outrpos <- sapply(1:outern, function(ind) mean(range(xpos_line[(2*(ind-1)*innern + 1):(2*ind*innern)])))
+    axpos <- sapply(1:(innern*outern), function(n) mean(xpos[(tracen*(n-1) + 1):(tracen*n)]))
+    outrpos <- sapply(1:outern, function(n) mean(xpos[(tracen*innern*(n-1) + 1):(tracen*innern*n)]))
     ## add the axis ticks for the inner labels
     axis(1, at = axpos, labels = rep("", length(axpos)))
     ## add the labels to the inner axis
@@ -443,7 +435,7 @@ testplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addli
     axis(1, at = outrpos, labels = tabnames[[nontrace[2]]], xpd = NA,
          tick = FALSE, pos = -0.08*max(condout[,,]))
     ## provide the axis title to give context
-    axis(1, at = mean(range(xpos)), xpd = NA, tick = FALSE, pos = -0.15*max(condout),
+    axis(1, at = mean(range(xpos_line)), xpd = NA, tick = FALSE, pos = -0.15*max(condout),
          labels = paste0("Inner label: ", names(tabnames)[nontrace[1]], " | Outer label: ", names(tabnames)[nontrace[2]]))
     ## add testing lines if desired
     if (testlines) {
@@ -468,14 +460,11 @@ testplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addli
             lines(x = errpos[pos] + ext, y = rep(p + err, 2), col = adjustcolor(errcol, alpha.f = 0.5))
             lines(x = errpos[pos] + ext, y = rep(p - err, 2), col = adjustcolor(errcol, alpha.f = 0.5))
             lines(x = rep(errpos[pos], 2), y = c(p + err, p - err), col = adjustcolor(errcol, alpha.f = 0.5))
-            ##lines(, meanline - sqrt((meanline/(3*marsums))*(1-3*meanline)), lty = 2)
-            ##lines(xpos, meanline + sqrt((meanline/(3*marsums))*(1-3*meanline)), lty = 2)
             }))
     }
     ## add a legen to explain the colours
     legend(x = "top", horiz = TRUE, legend = tabnames[[tracemar]][deslev], col = temPal, inset = -0.04, cex = 0.7,
            fill = temPal, bg = "white", xpd = NA)
-    ##invisible(sapply((0:4)*0.05, function(val) lines(x = c(0,max(xpos)+1), y = rep(val,2), col = "white", lwd = 2)))
 }
 
 ## back to back histogram plot

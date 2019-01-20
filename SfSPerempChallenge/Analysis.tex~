@@ -1,0 +1,49 @@
+\chapter{Analysis} \label{c:analysis}
+
+With this data cleaned and processed, questions can now be posed and addressed through analysis. A few obvious questions come to
+mind, considering the previous work done on this subject. The first is whether the results found by previous analyses which did
+not use statistics are statistically significant. Additionally, we may wonder whether the most common arguments posed in favour of
+peremptory challenge are satisfied in this data.
+
+\section{Arguments for Peremptory Challenges} \label{sec:leveling}
+
+The primary argument stated in favour of the continued use of peremptory challenges is that of the 'levelling' of the bias of the
+jury. \textcolor{red}{Cite Canadian news articles here} The argument, essentially states that peremptory challenges are necesary
+to remove those jurors which are somehow abnormally biased but which are not eligible for removal by cause, or have not been
+removed by cause out of error.
+
+While the argument of recourse for an incorrect judgement of a challenge with cause is certainly valid, it seems unnecessary in
+light of the appeals process which already exists. Regardless, a precise comment on the validity of this statement cannot be
+easily made. The second assertion, however, permits a precise and straightforward mathematical analysis.
+
+In the Jury Sunshine data, for example, the proportion of venire members rejected by peremptory challenge is roughly 0.43. In what
+sense can such a large proportion of the venire be judged as extreme?
+
+A secondary argument is that of the creation of a jury which is mutually acceptable by giving both sides the privilege of removing
+any jurors they do not want assessing their case. The multiple American supreme court cases which address peremptory challenges
+and the outcome of the Gerald Stanley murder trial demonstrate quite clearly that this noble goal is not executed in
+practice. Rather, the privilege is a point of weakness that allows the politicization cases by doing the precise opposite of what
+it purports to achieve. It creates juries which are unacceptable to one party and society at large.
+
+\section{Modelling} \label{sec:mods}
+
+In order to create a single model to test the statistical significance of the differences observed for strike rates by race,
+defendant race, and party doing the striking, a saturated poisson regression model was fit to the data. Letting $i$ denote the
+level of the venire member race, $j$ the defendant race, and $k$ the disposition, the numbers of observed venire members in each
+$ijk$ combination, $y_{ijk}$ were modelled as Poisson-distributed random variables with expectation $\lambda_{ijk}$. A saturated
+model was then fit to the data, that is a model described by the equation:
+
+\begin{multline}
+  \log{E[y_{ijk}]} = \textbf{x}_{ijk}\beta = \beta_o + \beta_R x_{i..}  + \beta_{D} x_{.j.} + \beta_S x_{..k} +\beta_{R:D}x_{i..}
+  x_{.j.} + \beta_{R:S} x_{i..} x_{..k} +\beta_{D:S} x_{.j.}x_{..k} \\+ \beta_{R:D:S} x_{i..} x_{.j.} x_{..k}
+\end{multline}
+
+Where $x_{i..}$ indicates the race level of the $ijk$ cell, and $x_{.j.},x_{..k}$ are defined analogously for the defendant race
+and disposition. The interaction terms then serve to answer questions about the racial pattern of strikes which is utilized by
+each party given the defendant race. Most interesting to this investigation is the third order interaction term. This term
+indicates a significant difference in racial strike patterns given the party striking and the defendant race. In other words, this
+term accounts for different patterns for the different parties which are not independant of the defendant race.
+
+When this term is tested using a nested model without the third order interaction, the third order interaction is found to be
+significant. This suggests that not only do the patterns present in the different parties vary, but they vary differently for
+different defendant races. This dependence can be viewed using a novel graphic presented in Figure \ref{fig:raceraceparcoord}.

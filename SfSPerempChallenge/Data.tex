@@ -1,0 +1,29 @@
+\chapter{Data} \label{c:data}
+
+\section{Jury Sunshine Project} \label{sec:jspdata}
+
+\section{North Carolina Data} \label{sec:norcardata}
+
+\section{Philadelphia Data} \label{sec:phillydata}
+
+\section{Data Cleaning} \label{sec:datacleaning}
+
+\subsection{Sunshine Data}
+
+The data collected in North Carolina proved invaluable to this project \cite{JurySunshineProj}.
+
+\underline{Problem}: some columns of the data contained only NA values
+\underline{Solution}: \texttt{lapply} to remove these uninformative columns
+
+\underline{Problem}: relational database provided did not have all data in one joined table
+\underline{Solution}: creation of \texttt{CleaningMerge} function: a wrapper for \texttt{merge} which provides information about the
+mismatches which may be present in the two merged tables
+
+\underline{Problem}: inconsistently coded levels, e.g. inconsistent case or ``?'' instead of ``U'' for unknowns
+\underline{Solution}: forcing levels to be uppercase and the replacement of obvious mis-specified levels
+
+\underline{Problem}: some columns seem to have swapped values, e.g. the gender column should be one of ``M'', ``F'', or ``U'' and the
+political affiliation column should be one of ``D'', ``R'', ``I'', or ``U'', but some individuals have the gender recorded as
+``R'' and political affiliation as ``M''
+\underline{Solution}: the creation of the \texttt{IdentifySwap} function, which has two arguments: a data set and the acceptable or correct
+levels for the variables in the data set. It then identifies rows which have candidate swaps and presents them for review
