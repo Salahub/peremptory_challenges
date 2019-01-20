@@ -1,0 +1,36 @@
+(TeX-add-style-hook
+ "myReferences"
+ (lambda ()
+   (LaTeX-add-bibitems
+    "swainvalabama"
+    "davismagnacar"
+    "vandykejurysel"
+    "hansvidjudging"
+    "attgenguide"
+    "brown2000"
+    "petersen1993"
+    "vonmosch1921"
+    "forsythhistory"
+    "hoffman1997"
+    "VisualDisplayQuant"
+    "JurySunshineProj"
+    "StubbornLegacy"
+    "PerempChalMurder"
+    "SaskatchewanCrime"
+    "StanleyWitnessAccounts"
+    "billc75"
+    "GeraldStanleyVerdict"
+    "c75legisinfo"
+    "fiverejected"
+    "fraughthistory"
+    "peremparegood"
+    "goodfirststep"
+    "bothwrong"
+    "Reference"
+    "StaWW91"
+    "Buhl93"
+    "HamF85"
+    "HamF91"
+    "HamFRRS86"))
+ :bibtex)
+

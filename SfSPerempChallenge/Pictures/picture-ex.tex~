@@ -1,0 +1,47 @@
+%%%--- Example of usage of the lisings package
+%%%--- Sarah Gerster, 30 Aug 2011
+\documentclass[11pt,a4paper]{article}
+\def\@language{english}
+\RequirePackage{ae}
+%  + sfs-hyper -> hyperref 
+\usepackage{texab}
+%\usepackage[utf8]{inputenc}
+%%--- Settings for the listings
+\usepackage{color} %% to allow cloring in code listings
+\definecolor{Mygrey}{gray}{0.75}
+\usepackage{listings}% Fuer R-code, C-code, ....  and settings for these:
+\lstloadlanguages{R}
+\lstset{%% Hilfe unter http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+  language=R,
+  basicstyle=\scriptsize\ttfamily,
+  commentstyle=\ttfamily\color{Mygrey},
+  numbers=left,
+  numberstyle=\ttfamily\color{Mygrey}\footnotesize,
+  stepnumber=1,
+  numbersep=5pt,
+  backgroundcolor=\color{white},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  frame=single,
+  tabsize=2,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  keywordstyle={},
+  morekeywords={},
+  xleftmargin=4ex, 
+  literate={<-}{{$\leftarrow$}}1 {~}{{$\sim$}}1}
+\lstset{escapeinside={(*}{*)}} % for (*\ref{ }*) inside lstlistings (Scode) 
+%%--------------------------------------------------------end of settings---
+
+\begin{document}
+
+\section{Displaying \Rp code with the \emph{listings} package}
+To display \Rp code nicely, use the \texttt{listings} package. It allows
+you to number the lines, color the comments differently than the code, and
+so on:
+
+\lstinputlisting{MasterThesisSfS/Pictures/picture.R}
+
+\end{document}
