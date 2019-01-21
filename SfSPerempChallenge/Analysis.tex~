@@ -47,3 +47,64 @@ term accounts for different patterns for the different parties which are not ind
 When this term is tested using a nested model without the third order interaction, the third order interaction is found to be
 significant. This suggests that not only do the patterns present in the different parties vary, but they vary differently for
 different defendant races. This dependence can be viewed using a novel graphic presented in Figure \ref{fig:raceraceparcoord}.
+
+\begin{figure}[!h]
+  \centering
+  \epsfCfile{0.7}{CondDistRaces}
+  \caption[Strike Tendency by Racial Combination {Sunshine}]{Parallel coordinate plot of racial strike tendencies}
+  \label{fig:raceraceparcoord}
+\end{figure}
+
+The conditional probability of a particular disposition given the racial combination of venire person and defendant is displayed
+on the y-axis, that is the count of individuals for a particular race, defendant race, and disposition combination divided by the
+number of individuals with the racial combination across all dispositions. The x-axis then displays the combinations, grouped by
+the venire member race to show the dominant pattern in the data.
+
+The black line running across the plot is the mean, or expected, rejection probability that all parties would have if they acted
+identically. That is, the relative level of this line provides the relative strike rate on aggregate for a particular racial
+combination. The bars extending from this line at each point go from this line to the corresponding value of the party represented
+by the bar. Finally, the horizontal lines provide approximate confidence intervals for each combination\footnote{Generated
+  assuming a binomial distribution of struck (by any party) against kept, as when this data is modelled with a poisson
+  distribution, the distribution of sub-processes given the overall count will be binomially distributed}.
+
+The dominant pattern to these strikes is a tendency of the defense to preferentially reject white venire members and keep black
+venire members, and of the prosecution to do the opposite. It was already noted in the literature\cite{JurySunshineProj}, but the
+addition of defendant race allows us to make a stronger statement, as this pattern remains across defendant races. It also adds
+nuance, however, as the race of the defendant has a clear impact on the lengths of the bars for both the defense and
+prosecution. The prosecution seems to favour a jury which does not match the race of the defendant, while the defense seems to
+favour a jury which does.
+
+While this second tendency seems to have no justification beyond race, the dominant tendency may have other justification than
+simply skin colour. As was noted by ``Ideological Imbalance and Peremptory Challenge'', black individuals are more consistently
+aligned with the democratic party, and as a consequence a lawyer which suspects this political bias will impact the trial outcome
+would preferentially strike or keep black jurors in order to keep as many left wing individuals as possible. In this data, this
+political imbalance is incredibly prevalent, as can be seen in Figure \ref{fig:racepolitics} \textcolor{red}{Add the plot of this
+  effect here, elaborate on this pattern more based on the plot}.
+
+\begin{figure}[h!]
+  \epsfCfile{0.7}{RaceGenderPolit}
+  \caption[Political Affiliation by Race and Gender (Sunshine)]
+  {Conditional probabilities of political affiliation by race and gender} 
+  \label{fig:racepolitics}
+\end{figure}
+
+Perhaps more interestingly, the prosecution and judge seem to match in their tendency from the mean at every combination. This
+suggests that both challenges with cause and the prosecution tend to have the same effect on the jury composition, though the
+magnitudes can differ greatly for these two strikes. An immediate explanation to this is offered by \cite{hansvidjudging}, who
+outline, on pages 69-70, the skill and tact required to effectively propose challenges with cause. In order to determine an
+individual's bias, it is frequently the case that a direct question will fail to garner an honest reponse due to social pressures.
+As a consequence, the questions asked of venire members must be carefully presented.
+
+Using this as a motivation, an obvious possible explanation for the challenges with cause is that the prosecution is simply more
+experienced on average than the defence. To determine the veracity of this claim, the year licensed for each lawyer was
+subtracted from the outcome date of each trial. The resulting distribution of years of experience was then plotted in back-to-back
+histograms as shown in Figure \ref{fig:lawyerexp}.
+
+\begin{figure}[h!]
+  \epsfCfile{.7}{LawyerExp}
+  %%         --- .85 stands for 85% of text width
+  \caption[Lawyer Experience (Sunshine)]
+  {Distributions of lawyer experience for prosecutors and defence attorneys}
+  \label{fig:lawyerexp}
+\end{figure}
+

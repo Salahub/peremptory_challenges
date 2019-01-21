@@ -2,6 +2,18 @@
  "myReferences"
  (lambda ()
    (LaTeX-add-bibitems
+    "morehead1994"
+    "burgess1992"
+    "oakes2016"
+    "iacobuccireport"
+    "rvsherratt"
+    "woolley2018"
+    "saskjuryact"
+    "ontariojuryroll"
+    "voirety"
+    "venireety"
+    "ford2010"
+    "brown1978"
     "batsonvkentucky"
     "page2005"
     "macnabproper"

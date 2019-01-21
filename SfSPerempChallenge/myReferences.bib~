@@ -1,3 +1,217 @@
+@misc{batsonvkentucky,
+author = {{Supreme Court of the United States}},
+title = {{Batson v. Kentucky}},
+year = 1986,
+volume = 476,
+journal = {U.S.},
+number = 79,
+note = {Accessed: https://www.law.cornell.edu/supremecourt/text/476/79}}
+
+@article{page2005,
+title = {Batson's Blind Spot: Unconscious Stereotyping and the Peremptory Challenge},
+author = {Antony Page},
+journal = {Boston University Law Review},
+year = 2005,
+volume = 85,
+pages = 155}
+
+@misc{macnabproper,
+title = {Stanley acquittal should not lead to scrapping peremptory challenges, say criminal lawyers},
+author = {Adrian Macnab},
+howpublished = {{Canadian Lawyer}},
+month = {February},
+year = 2018,
+note = {https://www.canadianlawyermag.com/legalfeeds/author/aidan-macnab/stanley-acquittal-should-not-lead-to-scrapping-peremptory-challenges-say-criminal-lawyers-15332/}}
+
+@misc{swainvalabama,
+author = {{Supreme Court of the United States}},
+title = {{Swain v. Alabama}},
+year = 1965,
+volume = 308,
+journal = {U.S.},
+number = 202,
+note = {Accessed: https://supreme.justia.com/cases/federal/us/380/202/}}
+
+@book{davismagnacar,
+title = {Magna Carta},
+author = {G.R.C. Davis},
+year = 1963,
+publisher = {London: British Museum},
+pages = {23--33}}
+
+@book{vandykejurysel,
+author = {Van Dyke, Jon M.},
+title = {Jury Selection Procedures: Our Uncertain Commitment to Representative Panels},
+publisher = {Ballinger Publishing},
+year = 1977,
+edition = 1}
+
+@book{hansvidjudging,
+author = {Valerie P. Hans and Neil Vidmar},
+title = {Judging the Jury},
+publisher = {Plenum Press},
+year = 1986,
+edition = 1}
+
+@misc{attgenguide,
+author = {{Attorney General's Office of the United Kingdom}},
+title = {Jury Vetting Right of Stand-By Guidelines},
+note = {https://www.gov.uk/guidance/jury-vetting-right-of-stand-by-guidelines--2},
+month = {November},
+year = 2012}
+
+@article{brown2000,
+author = {R. Blake Brown},
+title = {Challenges for Cause, Stand-Asides, and Peremptory Challenges in the Nineteenth Century},
+journal = {Osgoode Hall Law Journal},
+year = 2000,
+volume = 38,
+number = 3,
+pages = {453--494}}
+
+@article{petersen1993,
+author = {Cynthia Petersen},
+title = {Insitutionalized Racism: The Need for Reform of the Criminal Jury Selection Process},
+journal = {McGill Law Journal},
+volume = 38,
+number = 1,
+year = 1993}
+
+@article{vonmosch1921,
+author = {Robert von Moschzisker},
+title = {The Historic Origin of Trial by Jury},
+journal = {University of Pennsylvania Law Review},
+volume = 70,
+number = 1,
+year = 1921}
+
+@book{forsythhistory,
+author = {William Forsyth},
+title = {History of Trial by Jury},
+publisher = {Lawbook Exchange},
+edition = 2,
+year = 1994}
+
+@article{hoffman1997,
+author = {Morris B. Hoffman},
+title = {{Peremptory Challenges Should Be Abolished: A Trial Judge's Perspective}},
+journal = {The University of Chicago Law Review},
+volume = 64,
+year = 1997,
+number = 3,
+pages = 809}
+
+@book{VisualDisplayQuant,
+author = {Edward R. Tufte},
+title = {The Visual Display of Quantitative Information},
+publisher = {Graphics Press},
+edition = 2,
+year = 2001}
+
+@article{JurySunshineProj,
+author = {Ronald F. Wright and Kami Chavis and Gregory S. Parks},
+title = {{The Jury Sunshine Project: Jury Selection Data as a Political Issue}},
+journal = {University of Illinois Law Review},
+year = 2018,
+number = 4,
+volume = 2018,
+pages = 1407,
+month = {October}}
+
+@article{StubbornLegacy,
+author = {Catherine M. Grosso and Barbara O'Brien},
+title = {{A Stubborn Legacy: The Overwhelming Importance of Race in Jury Selection in 173 Post-Batson North Carolina Capital Trials}},
+journal = {Iowa Law Review},
+year = 2012,
+volume = 97,
+pages = 1531}
+
+@article{PerempChalMurder,
+author = {David C. Baldus and George Woodworth and David Zuckerman and Neil Alan Weiner},
+title = {{The Use of Peremptory Challenges in Capital Murder Trials: A Legal and Empirical Analysis}},
+journal = {University of Pennsylvania Journal of Consitutional Law},
+volume = 3,
+number = 1,
+year = 2001} 
+
+@misc{SaskatchewanCrime,
+author = {{Statistics Canada}},
+title = {{Table 35-10-0061-01: Crime severity index and weighted clearance rates, police services in Saskatchewan}},
+month = {November},
+year = 2018}
+
+@misc{StanleyWitnessAccounts,
+author = {Guy Quenneville},
+title = {{What happened on Gerald Stanley's farm the day Colten Boushie was shot, as told by witnesses}},
+howpublished = {{CBC News}},
+month = {February},
+year = 2018,
+note = {https://www.cbc.ca/news/canada/saskatoon/what-happened-stanley-farm-boushie-shot-witnesses-colten-gerald-1.4520214}}
+
+@misc{billc75,
+author = {{42nd Parliament of Canada}},
+title = {{Bill C-75: An Act to Amend the Criminal Code, Youth Criminal Justice Act and other Acts and to make consequential amendments to other Acts}},
+month = {March},
+year = 2018,
+note = {http://www.justice.gc.ca/eng/csj-sjc/pl/charter-charte/c75.html}}
+
+@misc{GeraldStanleyVerdict,
+author = {Guy Quenneville and Jason Warick},
+title = {{Shouts of 'murderer' in courtroom after Gerald Stanley acquitted in Colten Boushie shooting}},
+howpublished = {CBC News},
+month = {February},
+year = 2018,
+note = {https://www.cbc.ca/news/canada/saskatoon/gerald-stanley-colten-boushie-verdict-1.4526313}}
+
+@misc{c75legisinfo,
+author = {{42nd Parliament of Canada}},
+title = {{Bill C75}},
+howpublished = {LEGISinfo},
+month = {November},
+year = 2018,
+note = {http://www.parl.ca/LegisInfo}}
+
+@misc{fiverejected,
+author = {Kathleen Harris},
+title = {{Liberals review jury selection process after Boushie case uproar}},
+howpublished = {{CBC News}},
+month = {February},
+year = 2018,
+note = {https://www.cbc.ca/news/politics/jury-selection-diversity-indigenous-1.4531792}}
+
+@misc{fraughthistory,
+author = {Cameron MacLean},
+title = {{Gerald Stanley acquittal renews calls for justice reform 27 years after Manitoba inquiry}},
+howpublished = {{CBC News}},
+month = {February},
+year = 2018,
+note = {https://www.cbc.ca/news/canada/manitoba/aboriginal-justice-inquiry-colten-boushie-gerald-stanley-jury-1.4532394}}
+
+@misc{peremparegood,
+author = {Nader R. Hasan},
+title = {Eliminating peremptory challenges makes trials less fair},
+howpublished = {{The Star}},
+month = {April},
+year = 2018,
+note = {https://www.thestar.com/opinion/contributors/2018/04/10/eliminating-peremptory-challenges-make-trials-less-fair.html}}
+
+@misc{goodfirststep,
+author = {Kent Roach},
+title = {Ending peremptory challenges in jury selection is a good first step},
+howpublished = {{The Ottawa Citizen}},
+month = {April},
+year = 2018,
+note = {https://ottawacitizen.com/opinion/columnists/roach-ending-peremptory-challenges-in-jury-selection-is-a-good-first-step}}
+
+@misc{bothwrong,
+author = {Brian Zinchuk},
+title = {{Both sides wrong about Stanley trial}},
+howpublished = {{Prince George Citizen}},
+month = {March},
+year = 2018,
+note = {https://www.princegeorgecitizen.com/opinion/editorial/both-sides-wrong-about-stanley-trial-1.23199321}}
+
+
 @ARTICLE{Reference,
    author = "First Author and Second Author",
    title = "Title of the article",

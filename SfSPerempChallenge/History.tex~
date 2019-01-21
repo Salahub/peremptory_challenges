@@ -1,1 +1,124 @@
-\chapter{Peremptory Challenges} 
+\chapter{Peremptory Challenges} \label{c:background}
+
+As the focus of this text is the legal practice of peremptory challenges, and these are a specific practice which may not be known
+in detail to the reader, a brief exploration of their history, motivation, and current use is presented here. It is not meant to
+be exhaustive, but rather to provide context and references for an interested and motivated reader to learn more. Indeed, many
+details have been omitted from the summary of the history here. Roughly, the presentation of the history of jury trials follows
+the comprehensive and exhaustively referenced description provided by \cite{hoffman1997}, with additional context and opinion on
+certain details provided by \cite{vonmosch1921}, \cite{forsythhistory}, and \cite{brown2000}. Information regarding the history of
+the Canadian system was provided by \cite{brown2000} and \cite{petersen1993}.
+
+Before reviewing the history, it is best to give some context. The central and unchanging function of a jury in a jury trial
+system is to judge the innocence or guilt of an accused in light of evidence. As discussed in \cite{vonmosch1921} and
+\cite{forsythhistory}, the expectation of how this act is perform has varied throughout history. In the distant past,
+\cite{vonmosch1921} and \cite{hoffman1997} report that the central function of the jury was to collect evidence, and so they
+assumed the role commonly performed by modern police detectives, and so the selection of the most ``trustworthy'' individuals of
+some reknown was paramount. This is contrasted with the modern jury, which performs no collection of the evidence, but instead
+merely judges the guilt of the accused, and is meant to be composed of a panel of peers or ``equals'' sampled at random from the
+population, an idea markedly different from, but motivated by, the Magna Carta (see \cite{davismagnacar} and \cite{hoffman1997}).
+
+Peremptory challenges are a departure from this random selection. They are a privileged removal of a venire member - to be
+replaced by a new randomly selected venire member -  by either the prosecution or defence without providing a justification to the
+court. The modern motivation for this was best described by Justice Byron R. White in \cite{swainvalabama}:
+
+\begin{quote}
+\centering
+The function of the challenge is not only to eliminate extremes of partiality on both sides, but to assure the parties that the
+jurors before whom they try the case will decide on the basis of the evidence placed before them, and not otherwise. In this way,
+the peremptory satisfies the rule that, ``to perform its high function in the best way, justice must satisfy the appearance of
+justice.''
+\end{quote}
+
+This suggests two modern justifications for the peremptory challenge. The first is that of removing venire members with
+``extreme'' bias, and the second is the creation of a jury which is composed of jurors mutually acceptable to both the defense and
+the prosecution. Those who defended the practice of peremptory challenges in Canada after the Gerald Stanley trial, including
+\cite{peremparegood} and \cite{macnabproper}, seem to use this defence or some variant of it to argue in favour of keeping the
+practice.
+
+\section{Modern Practice} \label{sec:modprac}
+
+This broad overview, however, leaves a significant amount of detail unexplained. One might legitimately wonder how the venire is
+randomly chosen, what limits are placed on the use of peremptory challenges, and what the actual process looks like in a courtroom
+setting. Of course, these details are where there are significant differences between the implementation of the practice in court
+systems around the English-speaking world.
+
+\subsection{In American Law}
+
+The practice of peremptory challenges in the United States of America is a heavily restricted. As discussed by \cite{page2005},
+the \cite{batsonvkentucky} decided in 1986 to 
+
+\subsection{In Canadian Law}
+
+\subsection{The Gerald Stanley Trial}
+
+Whatever justification for the modern and historical practice of peremptory challenges a proponent espouses, it should be clear
+from the fallout of the Gerald Stanley trial that peremptory challenges have failed in this case. Rather than guaranteeing the
+creation of a mutually acceptable jury, their use inspired an atagonistic response to the verdict of the case. In the eyes of
+many, justice was not done, and peremptory challenges are the specific reason cited.
+
+While
+
+Every time a prospective juror is peremptorily challenged we are telling that prospective juror that the foundation of this system
+is not evidence, but rather rumor, innuendo, and prejudice. - Morris B. Hoffman \cite{hoffman1997}
+
+\section{History} \label{sec:history}
+
+\subsection{Pre-English History}
+
+Although precise timelines are hard to establish, there is evidence that jury trials have occurred in some form or another since
+antiquity. The concept, that of judgement by a group of peers, is so ancient that it is prevalent not only in historical records,
+but in myth. As \cite{hoffman1997} indicates, both Norse and Greek mythology feature groups of individuals assessing the guilt or
+collecting evidence about the actions of a peer.
+
+Outside of the realm of myth, \cite{hoffman1997} reports on evidence of the use of juries in Ancient Egypt, Mycenae, Druid
+England, Greece, Rome, Viking Scandanavia, the Holy Roman Empire, and Saracen Jerusalem. It should be noted that in none of these
+areas was the jury trial the primary form of conflict resolution practiced. Nonetheless, it is clear the jury trial has a broad
+and long history of use.
+
+Something similar to the modern peremptory challenge does not appear until Rome, however. The Roman \textit{Judices} were groups
+of senators selected to judge the guilt of the accused in a legal case. \cite{hoffman1997} presents evidence of the selection of
+81 Senators to sit on one of these \textit{Judices}, after which the litigants were permitted to remove fifteen of these Senators
+each. This egalitarian reduction of the jury size seems analogous to the modern peremptory challenge system in placing the power
+of removal with the litigant and suggesting no justification is necessary for their removal.
+
+\subsection{In English Law (1066--1988)}
+
+Peremptory challenge did not reach is modern form, as outlined above, until it was established in the English legal system. It
+should be noted that despite some previous debate on the topic, the most modern historical evidence suggests that the basis of the
+English practice was not related to the system used in the selection of \textit{Judices} in Rome. The English system appears to be
+its own beast entirely.
+
+The dominant historical interpretation is presented by \cite{vonmosch1921} and \cite{hoffman1997}: that the jury system was
+introduced to England during the Norman conquest of 1066 by William the Conqueror. The practice, however, was not made official
+until the Assize of Clarendon in 1166 by Henry II, and it was not until the outlaw of trials by ordeal (the most common method of
+trial at that time) in 1215, that peremptory challenges began to appear in England in the late thirteenth century. The challenges
+were officially recognized in 1305 when Parliament outlawed their use by the Crown, only to replace them with an analogous system
+of so-called ``standing-aside''\footnote{For a detailed explanation of this system see \cite{hoffman1997} and \cite{brown2000}}. 
+
+It should be noted here that although the challenges issued between the Assize of Clarendon and this 1305 act are called
+``peremptory,'' they may not have served the same purpose, nor the same justification, as the modern challenges. Indeed, as
+\cite{hoffman1997} argues convincingly, these challenges may have been closer to modern challenges with cause. Two plausible
+explanations are provided: smaller communities in which the venire members would be familiar to all members of the court, and the
+paradigm of royal infallibility which was present at the time.
+
+While the first of these, where both sides simply ``know'' why an individual is being challenged is difficult to verify, the
+second justification for the Crown's use of challenges seems quite reasonable. If the king cannot be wrong in his judgement and he
+has some reason to feel that a venire member cannot serve on the jury, then it would be highly disrespectful to ask him to justify
+his action. The Crown prosecutors, as representatives of the king, would be similarly shielded from criticism.
+
+Additionally, this is supported by the abolition of their royal use in 1305, the language of which suggests that peremptory
+challenges were originally the privilege of the Crown, with none being granted to the defence. As royal infallibilty grew out of
+favour, peremptory challenges seem to have been granted to the defence as an act done out of a desire to limit the power and
+special privileges of the monarch.
+
+Whatever the logic of the expansion of these challenges, their legal limits are recorded more precisely. From a maximum of 35
+challenges allowed at their peak in the fourteenth century, the allowed number of challenges has only decreased. This culminated
+in the Cyprus spy case in the late 1970s, which led to a ``sustained campaign in Parliament and in the press alleging that defence
+counsel were systematically abusing it'' (see \cite{hoffman1997}). Ultimately this campaign was settled by the Criminal Justice Act of
+1988, in which the Parliament of the United Kingdom abolished the practice. It did not, however, abolish the use of
+``standing-aside'' by the Crown, although the practice has been heavily curtailed with strict guidelines to its use, which are
+limited to national security trials as outlined by \cite{attgenguide}.
+
+\subsection{In American Law (ca. 1700--1986)}
+
+\subsection{In Canadian Law (1867--1988)}
