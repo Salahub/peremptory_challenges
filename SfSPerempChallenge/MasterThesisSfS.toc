@@ -10,31 +10,32 @@
 \contentsline {subsection}{\numberline {2.5.1}Pre-English History}{7}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}In English Law (1066--1988)}{7}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}In American Law (ca. 1700--1986)}{8}{subsection.2.5.3}
-\contentsline {subsection}{\numberline {2.5.4}In Canadian Law (1867--1988)}{8}{subsection.2.5.4}
-\contentsline {chapter}{\numberline {3}Data}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}Jury Sunshine Project}{9}{section.3.1}
-\contentsline {section}{\numberline {3.2}North Carolina Data}{9}{section.3.2}
-\contentsline {section}{\numberline {3.3}Philadelphia Data}{9}{section.3.3}
-\contentsline {section}{\numberline {3.4}Data Cleaning}{9}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Sunshine Data}{9}{subsection.3.4.1}
-\contentsline {chapter}{\numberline {4}Analysis}{11}{chapter.4}
-\contentsline {section}{\numberline {4.1}Arguments for Peremptory Challenges}{11}{section.4.1}
-\contentsline {section}{\numberline {4.2}Modelling}{12}{section.4.2}
-\contentsline {section}{\numberline {4.3}To include a picture}{16}{section.4.3}
-\contentsline {section}{\numberline {4.4}To make a proof}{16}{section.4.4}
-\contentsline {section}{\numberline {4.5}To include \textsf {R}$\tmspace +\thickmuskip {.2777em}$code}{16}{section.4.5}
-\contentsline {section}{\numberline {4.6}Other information}{17}{section.4.6}
-\contentsline {chapter}{\numberline {5}Summary}{19}{chapter.5}
-\contentsline {section}{\numberline {5.1}Future Work}{19}{section.5.1}
+\contentsline {subsection}{\numberline {2.5.4}In Canadian Law (ca 1800--2018)}{10}{subsection.2.5.4}
+\contentsline {section}{\numberline {2.6}Summary}{10}{section.2.6}
+\contentsline {chapter}{\numberline {3}Data}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Jury Sunshine Project}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}North Carolina Data}{13}{section.3.2}
+\contentsline {section}{\numberline {3.3}Philadelphia Data}{13}{section.3.3}
+\contentsline {section}{\numberline {3.4}Data Cleaning}{13}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Sunshine Data}{13}{subsection.3.4.1}
+\contentsline {chapter}{\numberline {4}Analysis}{15}{chapter.4}
+\contentsline {section}{\numberline {4.1}Arguments for Peremptory Challenges}{15}{section.4.1}
+\contentsline {section}{\numberline {4.2}Modelling}{16}{section.4.2}
+\contentsline {section}{\numberline {4.3}To include a picture}{20}{section.4.3}
+\contentsline {section}{\numberline {4.4}To make a proof}{20}{section.4.4}
+\contentsline {section}{\numberline {4.5}To include \textsf {R}$\tmspace +\thickmuskip {.2777em}$code}{20}{section.4.5}
+\contentsline {section}{\numberline {4.6}Other information}{21}{section.4.6}
+\contentsline {chapter}{\numberline {5}Summary}{23}{chapter.5}
+\contentsline {section}{\numberline {5.1}Future Work}{23}{section.5.1}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Bibliography}}{21}{section*.8}
+\contentsline {chapter}{\numberline {}{Bibliography}}{25}{section*.8}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {A}Complementary information}{25}{appendix.A}
-\contentsline {section}{\numberline {A.1}Including \textsf {R}$\tmspace +\thickmuskip {.2777em}$code with verbatim}{25}{section.A.1}
-\contentsline {section}{\numberline {A.2}Data Processing Code}{26}{section.A.2}
-\contentsline {section}{\numberline {A.3}Using Sweave to include \textsf {R}$\tmspace +\thickmuskip {.2777em}$code (and more) in your report}{39}{section.A.3}
-\contentsline {chapter}{\numberline {B}Yet another appendix....}{41}{appendix.B}
-\contentsline {section}{\numberline {B.1}Description}{41}{section.B.1}
-\contentsline {section}{\numberline {B.2}Tables}{41}{section.B.2}
+\contentsline {chapter}{\numberline {A}Complementary information}{29}{appendix.A}
+\contentsline {section}{\numberline {A.1}Including \textsf {R}$\tmspace +\thickmuskip {.2777em}$code with verbatim}{29}{section.A.1}
+\contentsline {section}{\numberline {A.2}Data Processing Code}{30}{section.A.2}
+\contentsline {section}{\numberline {A.3}Using Sweave to include \textsf {R}$\tmspace +\thickmuskip {.2777em}$code (and more) in your report}{43}{section.A.3}
+\contentsline {chapter}{\numberline {B}Yet another appendix....}{45}{appendix.B}
+\contentsline {section}{\numberline {B.1}Description}{45}{section.B.1}
+\contentsline {section}{\numberline {B.2}Tables}{45}{section.B.2}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Epilogue}}{43}{section*.10}
+\contentsline {chapter}{\numberline {}{Epilogue}}{47}{section*.10}

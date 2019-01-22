@@ -1,25 +1,141 @@
 \chapter{Peremptory Challenges} \label{c:background}
 
-As the focus of this text is the legal practice of peremptory challenges, and these are a specific practice which may not be known
-in detail to the reader, a brief exploration of their history, motivation, and current use is presented here. It is not meant to
-be exhaustive, but rather to provide context and references for an interested and motivated reader to learn more. Indeed, many
-details have been omitted from the summary of the history here. Roughly, the presentation of the history of jury trials follows
-the comprehensive and exhaustively referenced description provided by \cite{hoffman1997}, with additional context and opinion on
-certain details provided by \cite{vonmosch1921}, \cite{forsythhistory}, and \cite{brown2000}. Information regarding the history of
-the Canadian system was provided by \cite{brown2000} and \cite{petersen1993}.
+Although the focus of this text is the legal practice of peremptory challenges, these are a specific practice which may not be
+known in detail to the reader, a brief exploration of their history, motivation, and current use is presented here. It is not
+meant to be exhaustive, but rather to provide context and references for an interested and motivated reader to learn more. Indeed,
+many details have been omitted from the summary of the history in particular.
 
-Before reviewing the history, it is best to give some context. The central and unchanging function of a jury in a jury trial
-system is to judge the innocence or guilt of an accused in light of evidence. As discussed in \cite{vonmosch1921} and
-\cite{forsythhistory}, the expectation of how this act is perform has varied throughout history. In the distant past,
-\cite{vonmosch1921} and \cite{hoffman1997} report that the central function of the jury was to collect evidence, and so they
-assumed the role commonly performed by modern police detectives, and so the selection of the most ``trustworthy'' individuals of
-some reknown was paramount. This is contrasted with the modern jury, which performs no collection of the evidence, but instead
-merely judges the guilt of the accused, and is meant to be composed of a panel of peers or ``equals'' sampled at random from the
-population, an idea markedly different from, but motivated by, the Magna Carta (see \cite{davismagnacar} and \cite{hoffman1997}).
+\section{Jury Selection Procedures} \label{sec:jurysel}
 
-Peremptory challenges are a departure from this random selection. They are a privileged removal of a venire member - to be
-replaced by a new randomly selected venire member -  by either the prosecution or defence without providing a justification to the
-court. The modern motivation for this was best described by Justice Byron R. White in \cite{swainvalabama}:
+Before reviewing the history, it is best to give some context and an explanation for readers unfamiliar with the jury system and
+general courtroom procedures. The general steps shared by jury trials are outlined below. More detail and a discussion of the
+diversity of jury selection procedures can be found in \cite{ford2010}, \cite{hansvidjudging}, and \cite{vandykejurysel}.
+
+\begin{enumerate}
+  \item Eligible individuals are selected at random from the population (using a list known as the \textit{jury roll}) of the
+    region surrounding the location of the crime, the sampled individuals are called the \textit{venire}
+  \item The venire is presented to the court, either as a group or sequentially (borrowing the names of \cite{ford2010}: the
+    ``struck-jury'' system and the ``sequential-selection'' system, respectively)
+  \item The presented venire member(s) are questioned in a process called \textit{voir dire}, which can result in three possible
+    outcomes for each venire member:
+    \begin{enumerate}
+      \item The venire member is removed with cause, the cause provided by either the prosecutor or defence lawyer and admitted by
+        the judge
+      \item The venire member is removed by a peremptory challenge by the prosecutor or defence lawyer, where no reason need be
+        provided to the court
+      \item The venire member is accepted into the jury, and so becomes a juror
+    \end{enumerate}
+  \item Steps i-iii are repeated until the desired number of jurors has been found
+\end{enumerate}
+
+The details of each of these steps varies by region. Jury rolls can be collected from many different sources. In the United
+States, they are typically selected using lists of registered voters (see \cite{vandykejurysel} chapter two), but in Canada the
+practice varies province by province. Ontario uses a combination of municipal voter lists and First Nations band lists (see
+\cite{ontariojuryroll}), while in Saskatchewan - the province of the Gerald Stanley trial - the jury roll is created from the
+data in the central government health insurance agency in accordance with \cite{saskjuryact}.
+
+While two presentation methods are observed in step ii, \cite{ford2010} and \cite{vandykejurysel} both note that the predominant
+method in the United States and Canada is the sequential-selection system. This is perhaps due to the relative efficiency of the
+method, as it is clear that in the sequential system voir dire need not be performed on the entire venire, only a subset. Contrast
+this with the struck-jury system, where the entire venire must be reviewed in every trial.
+
+Finally, the scope of voir dire is radically different in the United States and much of the British
+Commonwealth. \cite{vandykejurysel} notes that Canada and the United Kingdom do not allow questions in areas of ``non-specific''
+bias, or bias which is not directly related to the case before the court. That is to say, while it would be perfectly valid to ask
+a venire member for a murder case about their work history in the United States, such a question would only be allowed in Canada
+or the United Kingdom if occupation was specifically related to the murder case. \cite{hansvidjudging} suggest that this
+difference is due to a difference in philosophy. To borrow a quote from page 63 of \cite{hansvidjudging}:
+
+\begin{quote}
+  \centering
+  In Canada, for example, the courts have said that we must start with an initial presumption that ``a juror will perform his
+  duties in accordance with his oath''
+\end{quote}
+
+This opinion places a greater responsibility on the jurors themselves to overcome their biases and accept arguments in spite of
+them. The American opinion that certain prejudice cannot be overcome by jurors stands in stark contrast.
+
+\section{The Role of the Jury} \label{sec:rolejur}
+
+The central function of a jury in a jury trial system is to judge the innocence or guilt of an accused in light of evidence. This
+has varied drastically in form throughout history. Consider that in the distant past, \cite{vonmosch1921} and \cite{hoffman1997}
+report that the central function of the jury was to collect evidence, essentially assuming the role commonly performed today by
+police detectives. Such a role justified the practice of selecting the most ``trustworthy'' individuals of some reknown.
+
+This is contrasted by the modern jury, which performs no collection of evidence, and is meant to be composed of a panel of peers
+or ``equals'' of the accused sampled at random from the population, an idea which did not develop until 19th century Britain (see
+page 28 of \cite{hansvidjudging}) and was not applied using random sampling until some time later (see \cite{hoffman1997} and page
+29 of \cite{hansvidjudging}). The modern jury is meant to apply the law, as told to them by the judge, to the case at
+hand. Evidence for guilt is then presented to the jury by the prosecutor, while evidence meant to exonerate is presented by the
+defence.
+
+The jury listens to the evidence, considers the law as presented by the judge, and must (typically) reach a unanimous
+decision of guilt or acquittal. Such a decision cannot be overturned by the judge of the court, and the judge must then determine
+sentencing based on the decision of the jury and the letter of the law. It should be clear that the jury therefore has tremendous
+power in the legal system. The philosophical and ethical justification for such power is well explained by \cite{woolley2018}, and
+best summarized by a quote from \cite{rvsherratt}:
+
+\begin{quote}
+  \centering
+  The jury, through its collective decision making, is an excellent fact finder; due to its representative character, it acts as
+  the conscience of the community; the jury can act as the final bulwark against oppressive laws or their enforcement; it provides
+  a means whereby the public increases its knowledge of the criminal justice system and it increases, through the involvement of
+  the public, societal trust in the system as a whole.
+\end{quote}
+
+While such enthusiastic support for juries has not been expressed by all countries which practice them, the justification is
+entirely consistent with the histories and discussions presented by \cite{hoffman1997}, \cite{vonmosch1921}, \cite{hansvidjudging},
+\cite{vandykejurysel}, and others.
+
+\section{Modern Peremptory Challenge Controversy} \label{sec:modper}
+
+If the general utility and importance of the jury is clear, the same cannot be said for peremptory challenges. The privileged
+privileged removal of a venire member - to be replaced by a new randomly selected venire member -  by either the prosecution or
+defence without justification has seen allegations of abuse.
+
+In the United States, repeated allegations of racial discrimination have led to significant changes in their allowed use, through
+cases such as \cite{swainvalabama} and \cite{batsonvkentucky}. The first of these cases, \textit{Swain v. Alabama},
+established in 1965 that the systematic removal of venire members of a particular race could be unconstitutional discrimination
+under the Fourteenth Amendment, but argued that a \textit{``prima facie''} (or ``based on first impression'') argument of
+discrimination was not adequate to prove this. This placed a significant burden on the side taking issue with a challenge to
+demonstrate discrimination in the use of peremptory challenges.
+
+However, this ruling was overturned only 21 years later in the 1986 case \textit{Batson v. Kentucky}, which allowed the
+party ojecting to a challenge to use a \textit{prima facie} argument which must be countered by a race-neutral reason that
+satisfies the judge. If no such reason can be supplied, the challenge would not be allowed. This created a new challenge to use
+against peremptory challenge to keep a venire member: the so-called ``Batson Challenge''. While the effectiveness of this system
+of additional challenges is questionable both practically and in abstract (see \cite{page2005} and \cite{morehead1994}, and a
+particularly strong response in \cite{hoffman1997}), it has only been extended to allow Batson challenges for gender and other
+characteristics of venire members.
+
+In Canada, there have also been racial controversies. A report by a government inquiry in the province of Manitoba in 1991 (see 
+\cite{goodfirststep}) was already reporting on possible racial bias against First Nations venire members. More damning still was
+the \cite{iacobuccireport} Report on First Nations representation in juries proposed an explicit restriction to the practice when
+it recommended:
+
+\begin{quote}
+  \centering
+  ...an amendment to the Criminal Code that would prevent the use of peremptory challenges to discriminate against First Nations
+  people serving on juries.
+\end{quote}
+
+Despite these recommendations and allegations, there had not been a significant political effort to reform the peremptory
+challenge system until the Gerald Stanley trial culminated in the tabling of Bill C75 \cite{c75legisinfo}. As it currently stands,
+the bill has not been approved by the Government of Canada, but seems likely to become law in the near future, which would abolish
+the peremptory challenge in Canada.
+
+In doing so Canada would join the United Kingdom. Significant controversy around the use peremptory challenges there already led
+to the abolition of the practice by parliament in the Criminal Justice Act of 1988. The specific controversy was the result of the
+Cyprus spy case in the late 1970s, which led to a ``sustained campaign in Parliament and in the press alleging that defence
+counsel were systematically abusing it'' (see \cite{hoffman1997})\footnote{It should be noted that this did not abolish the use of
+  ``standing-aside'' by the Crown, although the practice has been heavily curtailed to only national security trials with strict
+  guidelines to its use, which are outlined by \cite{attgenguide}.}.
+
+\section{The Role of the Peremptory Challenge} \label{sec:roleper}
+
+Despite these legal changes, recommendations, and a great deal of articles providing analysis against the practice (see, for
+example, \cite{hoffman1997}), the topic remains controversial. The modern motivation and justification for the practice in spite
+of all of the controversy is perhaps best described by Justice Byron R. White in \cite{swainvalabama}:
 
 \begin{quote}
 \centering
@@ -29,39 +145,28 @@ the peremptory satisfies the rule that, ``to perform its high function in the be
 justice.''
 \end{quote}
 
-This suggests two modern justifications for the peremptory challenge. The first is that of removing venire members with
+Such a justification harks back to the now famous words of Lord Chief Justice Hewart in \textit{R v. Sussex Justices} in 1924:
+``Justice should not only be done, but should manifestly and undoubtedly be seen to be done'' (as reported in
+\cite{oakes2016}). While these words originally only referred to the pecuniary interest of court staff involved in the case, they
+have since come to express the idealized expectation that both the defence and prosecution find the judge and jury acceptable, as
+explored by \cite{oakes2016}\footnote{Such grand generalizations and myth-making can also be seen in the common belief that the
+  right to a trial by jury was originally established in the Magna Carta, an idea which is not supported by the relevant
+  historical evidence (see \cite{hoffman1997} and \cite{vandykejurysel} for a detailed discussion and more accurate history).}.
+
+This defence suggests two modern justifications for the peremptory challenge. The first is that of removing venire members with
 ``extreme'' bias, and the second is the creation of a jury which is composed of jurors mutually acceptable to both the defense and
 the prosecution. Those who defended the practice of peremptory challenges in Canada after the Gerald Stanley trial, including
 \cite{peremparegood} and \cite{macnabproper}, seem to use this defence or some variant of it to argue in favour of keeping the
-practice.
-
-\section{Modern Practice} \label{sec:modprac}
-
-This broad overview, however, leaves a significant amount of detail unexplained. One might legitimately wonder how the venire is
-randomly chosen, what limits are placed on the use of peremptory challenges, and what the actual process looks like in a courtroom
-setting. Of course, these details are where there are significant differences between the implementation of the practice in court
-systems around the English-speaking world.
-
-\subsection{In American Law}
-
-The practice of peremptory challenges in the United States of America is a heavily restricted. As discussed by \cite{page2005},
-the \cite{batsonvkentucky} decided in 1986 to 
-
-\subsection{In Canadian Law}
-
-\subsection{The Gerald Stanley Trial}
-
-Whatever justification for the modern and historical practice of peremptory challenges a proponent espouses, it should be clear
-from the fallout of the Gerald Stanley trial that peremptory challenges have failed in this case. Rather than guaranteeing the
-creation of a mutually acceptable jury, their use inspired an atagonistic response to the verdict of the case. In the eyes of
-many, justice was not done, and peremptory challenges are the specific reason cited.
-
-While
-
-Every time a prospective juror is peremptorily challenged we are telling that prospective juror that the foundation of this system
-is not evidence, but rather rumor, innuendo, and prejudice. - Morris B. Hoffman \cite{hoffman1997}
+practice. However philosophically appealing these two claims are, in light of all of the controversy surrounding the peremptory
+challenge, perhaps a critical and empirical examination of these assertions is warranted.
 
 \section{History} \label{sec:history}
+
+Such an analysis might appropriately begin with a historical explanation of the peremptory challenge. Roughly, the presentation of
+the history of jury trials here follows the comprehensive and exhaustively referenced description provided by \cite{hoffman1997},
+with additional context and information certain details provided by \cite{vonmosch1921}, \cite{forsythhistory}, \cite{brown1978},
+and \cite{brown2000}. Information regarding the history of the Canadian system was provided by \cite{brown2000} and
+\cite{petersen1993}.
 
 \subsection{Pre-English History}
 
@@ -97,28 +202,39 @@ of so-called ``standing-aside''\footnote{For a detailed explanation of this syst
 
 It should be noted here that although the challenges issued between the Assize of Clarendon and this 1305 act are called
 ``peremptory,'' they may not have served the same purpose, nor the same justification, as the modern challenges. Indeed, as
-\cite{hoffman1997} argues convincingly, these challenges may have been closer to modern challenges with cause. Two plausible
-explanations are provided: smaller communities in which the venire members would be familiar to all members of the court, and the
-paradigm of royal infallibility which was present at the time.
+\cite{hoffman1997} argues convincingly, these challenges may have been closer to modern challenges with cause. The argument hinges
+on the paradigm of royal infallibility and absolutism which was present in the late medieval period when the peremptory challenge
+first appeared (see \cite{burgess1992}).
 
-While the first of these, where both sides simply ``know'' why an individual is being challenged is difficult to verify, the
-second justification for the Crown's use of challenges seems quite reasonable. If the king cannot be wrong in his judgement and he
-has some reason to feel that a venire member cannot serve on the jury, then it would be highly disrespectful to ask him to justify
-his action. The Crown prosecutors, as representatives of the king, would be similarly shielded from criticism.
+Under royal absolutism and infallibility the argument for peremptory challenges is quite simple. If the king cannot be wrong in
+his judgement and he has some reason to feel that a venire member cannot serve on the jury, then he need not say why he thinks
+that is so, as his judgement is correct in any case. Indeed, asking for an explanation would be disrespectful and providing one
+undignified. The Crown prosecutors, as representatives of the king, would be similarly shielded from criticism.
 
 Additionally, this is supported by the abolition of their royal use in 1305, the language of which suggests that peremptory
-challenges were originally the privilege of the Crown, with none being granted to the defence. As royal infallibilty grew out of
-favour, peremptory challenges seem to have been granted to the defence as an act done out of a desire to limit the power and
-special privileges of the monarch.
+challenges were originally the privilege of the Crown (see \cite{hoffman1997} and \cite{vandykejurysel}), with none being granted
+to the defence. As royal infallibilty grew out of favour, peremptory challenges seem to have been granted to the defence, rather
+than being removed entirely.
 
-Whatever the logic of the expansion of these challenges, their legal limits are recorded more precisely. From a maximum of 35
-challenges allowed at their peak in the fourteenth century, the allowed number of challenges has only decreased. This culminated
-in the Cyprus spy case in the late 1970s, which led to a ``sustained campaign in Parliament and in the press alleging that defence
-counsel were systematically abusing it'' (see \cite{hoffman1997}). Ultimately this campaign was settled by the Criminal Justice Act of
-1988, in which the Parliament of the United Kingdom abolished the practice. It did not, however, abolish the use of
-``standing-aside'' by the Crown, although the practice has been heavily curtailed with strict guidelines to its use, which are
-limited to national security trials as outlined by \cite{attgenguide}.
+Whatever the logic of the expansion of these challenges to the defence, their legal limits are recorded more precisely. From a
+maximum of 35 challenges allowed at their peak in the fourteenth century, the number of challenges allowed only decreased over
+time until their abolition in 1988 (discussed in \ref{sec:roleper}).
 
 \subsection{In American Law (ca. 1700--1986)}
+
+\cite{vonmosch1921}, \cite{hoffman1997}, and \cite{vandykejurysel} all agree that the early English settlers that came to North
+America accepted the jury system with peremptory challenges as common law well before the establishment of the United States of
+America. It is somewhat interesting then, that the United States constitution makes no mention of the practice. The Sixth and
+Seventh Amendments make mention of many things, including the right to public defense and an impartial jury from the district of
+the crime, but makes no mention of a right to the exercise of peremptory challenges (\cite{usconsitution}).
+
+As \cite{hansvidjudging} report on page 37, an original draft of the Sixth Amendment expressly included challenges, but the debate
+around their inclusion resulted in the removal of the requirement. They continue to say that at the time, even some proponents of
+the challenge considered the reference unnecessary, as the practice was implied by the text which remained, referring to a trial
+by an ``impartial'' jury. However, as \textit{Batson v. Kentucky} and \textit{Swain v. Alabama} have both shown
+(\cite{batsonvkentucky} and \cite{swainvalabama}), the modern interpretation of that particular phrase may preclude the use of
+peremptory challenges altogether.
+
+Regardless, 
 
 \subsection{In Canadian Law (1867--1988)}

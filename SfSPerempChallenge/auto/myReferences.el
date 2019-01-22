@@ -2,6 +2,9 @@
  "myReferences"
  (lambda ()
    (LaTeX-add-bibitems
+    "sheppard2018"
+    "canadaconst"
+    "usconstitution"
     "morehead1994"
     "burgess1992"
     "oakes2016"
