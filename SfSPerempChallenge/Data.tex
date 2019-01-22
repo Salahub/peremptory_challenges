@@ -26,9 +26,7 @@ techniques dictated by the scope of collection desired and the procedures of the
 
 \section{Jury Sunshine Project} \label{sec:jspdata}
 
-\subsection{Methodology}
-
-The Jury Sunshine Project (\cite{JurySunshineProject}), so named as it was carried out in order to shed light on the jury
+The Jury Sunshine Project (\cite{JurySunshineProj}), so named as it was carried out in order to shed light on the jury
 selection process, is the most extensive data set which was provided to the author. It endeavoured to collect jury data for all
 felony trial cases in North Carolina in the year 2011, which ultimately resulted in a data set that detailed the simple
 demographic characteristics and trial information of 29,624 individuals summoned for jury duty in 1,306 trials. Note that not all
@@ -40,7 +38,7 @@ downloading publicly available case data from the North Carolina Administrative 
   the Jury Sunshine Paper to the specific source (http://www.nccourts.org/Citizens/SRPlanning/Statistics/CAReports\_fy16-17.asp)
   does not appear to be working as of January 2019, however the NCAOC seems to provide an API functionality at
   https://data.nccourts.gov/api/v1/console/datasets/1.0/search/} and determining the case numbers and counties of cases which went
-to trial. \citeauthor{JurySunshineProject} state that this likely missed some cases which went to trial, but that they were
+to trial. \citeauthor{JurySunshineProj} state that this likely missed some cases which went to trial, but that they were
 confident that a ``strong majority'' of trials was collected, which did not systematically differ from those excluded.
 
 This list was then used to perform a pilot study to refine recording practices before undertaking a more general survey where
@@ -52,16 +50,58 @@ judge appointment records, these collectors were able to determine demographic (
 affiliation data for the venire members, lawyers, defendants, and judges. This data set was stored stored in a relational database
 provided to the author by Dr. Ronald Wright.
 
-\subsection{Flattening the Data}
+The analysis of the data provided in \cite{JurySunshineProj} was limited to aggregate summaries of the trends at the venire
+member level. That is to say, they examined the strike trends for both the defence and the prosecution, conditioning on some
+additional variables. There was also spatial analysis performed, were different urban counties were directly compared. These
+analyses were not statistical in nature, and were displayed using contingency tables.
 
-For greater analytical expediency, the relational database was first flattened. The relational database was read into Microsoft
-Excel and the \texttt{readxl} package (\cite{readxl}) was used to read the excel file into the programming language \Rp. A wrapper
-for the \texttt{merge} function was developed which provided simple a simple output detailing failed matches in an outer join in
-order to ensure that the flattening of the data into a matrix did not miss important data due to partial incompleteness. The code
-for this wrapper can be seen in \ref{app:proccode}.
+\section{Stubborn Legacy Data} \label{sec:norcardata}
 
-This wrapper was mostly unnecessary, it revealed only a small number of irregularities in the data, which are detailed in
-\ref{app:irregs}:
+\cite{StubbornLegacy} also provided data to the author, albeit a more limited set. This study, also based in North Carolina,
+focused on the trials of inmates on death row as of July 1, 2010, yielding a total of 173 cases. In each proceeding, the study
+examined only those venire members not excluded for cause, and critically the analysis of the study focused only on prosecutorial
+peremptory challenges. Besides collecting demographic data as in the Jury Sunshine Case, this study also collected attitudinal
+data for the venire members.
+
+Staff attorneys from the Michigan State University College of Law were responsible for the data collection in this study. The work
+was performed similarly to the Jury Sunshine Data, using case files to collect information about the court proceedings such as the
+peremptory challenges used, presiding judge, prosecutor, and defence lawyer. Detailed verdict and charge information was not
+collected, as the preselection criteria of death row inmates made the verdict clear, and the death penalty can only be applied for
+certain crimes.
+
+To collect demographic and attitudinal data, the juror questionnaire sheets were consulted\footnote{As \cite{StubbornLegacy}
+  observe, self-identified race may be the most accurate source of racial group identification}. These sheets are typically used
+as a component of voir dire, in order to make the process more efficient and determine venire members categorically ineligible for
+jury duty. As a result, they inquire about opinions on the death penalty, for example, as well as demographic questions. As not
+all jury questionnaires were available, additional information was collected from jury roll lists to determine the races of the
+final jury members. It should be noted that this collection was done blind and to high standards of proof, and a reliability study
+carried out in \cite{StubbornLegacy} indicated that under this system the race coding was 97.9\% accurate when the standards were
+met. Those for whom the standards were not met were marked as ``Unknown.''
+
+The analysis performed in this paper was more statistical than in the Jury Sunshine Data. Contingency tables generated using the
+data were tested using Chi-squared independence tests, and a simple logistic regression model was created to predict prosecutorial
+strikes. One minor criticism which could be made of their methodology is the lack of a consistent level to their tests. It seems
+that rather than class these tests as significant or not, these tests were simply performed to report the p-values they
+returned. Additionally, there are possible multiple testing issues as the study seems to indicate multiple tests were performed on
+each table, with the specific test used to generate the reported p-values not clearly indicated.
+
+\section{Philadelphia Data} \label{sec:phillydata}
+
+\cite{PerempChalMurder} presents the most comprehensively analyzed data of the three data sets.
+
+\section{Data Cleaning} \label{sec:datacleaning}
+
+\subsection{Sunshine Data}
+
+\subsubsection{Flattening the Data}
+
+For greater expediency of analysis, the relational database of the Jury Sunshine Data was first flattened. The relational database
+was read into Microsoft Excel and the \texttt{readxl} package (\cite{readxl}) was used to read the excel file into the programming
+language \Rp. A wrapper for the \texttt{merge} function was developed which provided simple a simple output detailing failed
+matches in an outer join in order to ensure that the flattening of the data into a matrix did not miss important data due to
+partial incompleteness. The code for this wrapper can be seen in \ref{app:proccode}.
+
+This wrapper revealed only a small number of irregularities in the data, which are detailed in \ref{app:irregs}:
 
 \begin{enumerate}
 \item Twenty-nine charges missing trial information such as the presiding judge (all of trials with IDs of the form 710-0XX)
@@ -74,17 +114,9 @@ complete otherwise. The prosecutors and charges which could not be joined were e
 have easily been included by collectors by accident. Due to the small relative size of these inconsistencies relative to the size
 of the data set, they did not cause concern.
 
-Other irregularities which are not related to the process of flattening the data are addressed in the Sunshine Data section of
-\ref{sec:datacleaning}.
+\subsubsection{Preprocessing}
 
-
-\section{North Carolina Data} \label{sec:norcardata}
-
-\section{Philadelphia Data} \label{sec:phillydata}
-
-\section{Data Cleaning} \label{sec:datacleaning}
-
-\subsection{Sunshine Data}
+Of course there were other irregularities in the data than the obvious ones that arose in the flattening process.
 
 The data collected in North Carolina proved invaluable to this project \cite{JurySunshineProj}.
 
