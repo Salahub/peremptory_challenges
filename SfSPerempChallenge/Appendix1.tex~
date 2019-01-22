@@ -32,12 +32,12 @@ I want... and
              where I want. 
 \end{verbatim}
 
-\section{Including \Rp code with the \emph{listings} package}\label{App:listings}
+\section{Data Processing Code}\label{App:proccode}
 However, it is much nicer to use the \emph{listings} package to include \Rp
 code in your report. It allows you to number the lines, color the comments
 differently than the code, and so on.
 
-\lstinputlisting{Pictures/picture.R}
+\lstinputlisting{Pictures/DataProcess.R}
 
 
 \section{Using Sweave to include \Rp code (and more) in your report}

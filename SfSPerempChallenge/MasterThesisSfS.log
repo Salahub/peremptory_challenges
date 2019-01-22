@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  22 JAN 2019 13:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  22 JAN 2019 15:29
 entering extended mode
 **./MasterThesisSfS.tex
 (MasterThesisSfS.tex
@@ -270,6 +270,25 @@ s
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\parskip.sty"
 Package: parskip 2001/04/09 non-zero parskip adjustments
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
+Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen108
+\extrarowheight=\dimen109
+\NC@list=\toks21
+\extratabsurround=\skip57
+\backup@length=\skip58
+)
+\TX@col@width=\dimen110
+\TX@old@table=\dimen111
+\TX@old@col=\dimen112
+\TX@target=\dimen113
+\TX@delta=\dimen114
+\TX@cols=\count100
+\TX@ftn=\toks22
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pdfpages\pdfpages.sty"
 Package: pdfpages 2017/10/31 v0.5l Insert pages of external PDF documents (AM)
 
@@ -278,16 +297,16 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count100
-\calc@Bcount=\count101
-\calc@Adimen=\dimen108
-\calc@Bdimen=\dimen109
-\calc@Askip=\skip57
-\calc@Bskip=\skip58
+\calc@Acount=\count101
+\calc@Bcount=\count102
+\calc@Adimen=\dimen115
+\calc@Bdimen=\dimen116
+\calc@Askip=\skip59
+\calc@Bskip=\skip60
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count102
-\calc@Cskip=\skip59
+\calc@Ccount=\count103
+\calc@Cskip=\skip61
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
 Package: eso-pic 2018/04/12 v2.0h eso-pic (RN)
@@ -306,19 +325,19 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 )
-\Gin@req@height=\dimen110
-\Gin@req@width=\dimen111
+\Gin@req@height=\dimen117
+\Gin@req@width=\dimen118
 )
-\AM@pagewidth=\dimen112
-\AM@pageheight=\dimen113
+\AM@pagewidth=\dimen119
+\AM@pageheight=\dimen120
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.def"
 File: pppdftex.def 2017/10/31 v0.5l Pdfpages driver for pdfTeX (AM)
 )
 \AM@pagebox=\box28
-\AM@global@opts=\toks21
-\AM@toc@title=\toks22
-\c@AM@survey=\count103
+\AM@global@opts=\toks23
+\AM@toc@title=\toks24
+\c@AM@survey=\count104
 \AM@templatesizebox=\box29
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
@@ -326,10 +345,10 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks23
-\ex@=\dimen114
+\@emptytoks=\toks25
+\ex@=\dimen121
 )
-\pmbraise@=\dimen115
+\pmbraise@=\dimen122
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
@@ -343,10 +362,10 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip60
-\bibsep=\skip61
+\bibhang=\skip62
+\bibsep=\skip63
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count104
+\c@NAT@ctr=\count105
 ) (texab.sty
 Sem.f.Statistik LaTeX Abkuerzungen $Id: texab.sty,v 1.75 2011/02/11 10:18:52 sf
 s Exp $
@@ -363,86 +382,86 @@ LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
-\big@size=\dimen116
+\big@size=\dimen123
 )
-\Lvneed=\skip62
-\LLongpage=\skip63
-\Lenlarge=\skip64
-\Litemskip=\skip65
-\Litemwidth=\skip66
-\Lparskip=\skip67
-\centering@tex=\skip68
-\c@lisNr=\count105
+\Lvneed=\skip64
+\LLongpage=\skip65
+\Lenlarge=\skip66
+\Litemskip=\skip67
+\Litemwidth=\skip68
+\Lparskip=\skip69
+\centering@tex=\skip70
+\c@lisNr=\count106
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
 Package: amsmath 2016/11/05 v2.16a AMS math features
-\@mathmargin=\skip69
+\@mathmargin=\skip71
 
 For additional information on amsmath, use the `?' option.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
 Package: amstext 2000/06/29 v2.01 AMS text
 )
-\inf@bad=\count106
+\inf@bad=\count107
 LaTeX Info: Redefining \frac on input line 213.
 LaTeX Info: Redefining \binom on input line 216.
-\uproot@=\count107
-\leftroot@=\count108
+\uproot@=\count108
+\leftroot@=\count109
 LaTeX Info: Redefining \overline on input line 375.
-\classnum@=\count109
-\DOTSCASE@=\count110
+\classnum@=\count110
+\DOTSCASE@=\count111
 LaTeX Info: Redefining \ldots on input line 472.
 LaTeX Info: Redefining \dots on input line 475.
 LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box30
 \strutbox@=\box31
-\big@size=\dimen117
+\big@size=\dimen124
 LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
-\macc@depth=\count111
-\c@MaxMatrixCols=\count112
+\macc@depth=\count112
+\c@MaxMatrixCols=\count113
 \dotsspace@=\muskip11
-\c@parentequation=\count113
-\dspbrk@lvl=\count114
-\tag@help=\toks24
-\row@=\count115
-\column@=\count116
-\maxfields@=\count117
-\andhelp@=\toks25
-\eqnshift@=\dimen118
-\alignsep@=\dimen119
-\tagshift@=\dimen120
-\tagwidth@=\dimen121
-\totwidth@=\dimen122
-\lineht@=\dimen123
-\@envbody=\toks26
-\multlinegap=\skip70
-\multlinetaggap=\skip71
-\mathdisplay@stack=\toks27
+\c@parentequation=\count114
+\dspbrk@lvl=\count115
+\tag@help=\toks26
+\row@=\count116
+\column@=\count117
+\maxfields@=\count118
+\andhelp@=\toks27
+\eqnshift@=\dimen125
+\alignsep@=\dimen126
+\tagshift@=\dimen127
+\tagwidth@=\dimen128
+\totwidth@=\dimen129
+\lineht@=\dimen130
+\@envbody=\toks28
+\multlinegap=\skip72
+\multlinetaggap=\skip73
+\mathdisplay@stack=\toks29
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\enumerate.sty"
 Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
-\@enLab=\toks28
+\@enLab=\toks30
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.sty"
-\lst@mode=\count118
+\lst@mode=\count119
 \lst@gtempboxa=\box32
-\lst@token=\toks29
-\lst@length=\count119
-\lst@currlwidth=\dimen124
-\lst@column=\count120
-\lst@pos=\count121
-\lst@lostspace=\dimen125
-\lst@width=\dimen126
-\lst@newlines=\count122
-\lst@lineno=\count123
-\lst@maxwidth=\dimen127
+\lst@token=\toks31
+\lst@length=\count120
+\lst@currlwidth=\dimen131
+\lst@column=\count121
+\lst@pos=\count122
+\lst@lostspace=\dimen132
+\lst@width=\dimen133
+\lst@newlines=\count123
+\lst@lineno=\count124
+\lst@maxwidth=\dimen134
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count124
-\lst@skipnumbers=\count125
+\c@lstnumber=\count125
+\lst@skipnumbers=\count126
 \lst@framebox=\box33
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.cfg"
@@ -459,41 +478,41 @@ File: lstlang2.sty 2015/06/04 1.6 listings language file
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang3.sty"
 File: lstlang3.sty 2015/06/04 1.6 listings language file
 )
-\c@definition=\count126
+\c@definition=\count127
 
 (MasterThesisSfS.aux (Preface.aux) (Abstract.aux) (Notation.aux)
 (Introduction.aux) (History.aux) (Data.aux) (Analysis.aux) (Chapter1.aux)
 (Summary.aux) (Appendix1.aux) (Appendix2.aux) (Epilogue.aux))
 \openout1 = `MasterThesisSfS.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count127
-\scratchdimen=\dimen128
+\scratchcounter=\count128
+\scratchdimen=\dimen135
 \scratchbox=\box34
-\nofMPsegments=\count128
-\nofMParguments=\count129
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count130
-\MPscratchDim=\dimen129
-\MPnumerator=\count131
-\makeMPintoPDFobject=\count132
-\everyMPtoPDFconversion=\toks31
+\nofMPsegments=\count129
+\nofMParguments=\count130
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count131
+\MPscratchDim=\dimen136
+\MPnumerator=\count132
+\makeMPintoPDFobject=\count133
+\everyMPtoPDFconversion=\toks33
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -508,7 +527,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box35
-Package hyperref Info: Link coloring ON on input line 102.
+Package hyperref Info: Link coloring ON on input line 103.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -516,11 +535,11 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count133
+\c@section@level=\count134
 )
-LaTeX Info: Redefining \ref on input line 102.
-LaTeX Info: Redefining \pageref on input line 102.
-LaTeX Info: Redefining \nameref on input line 102.
+LaTeX Info: Redefining \ref on input line 103.
+LaTeX Info: Redefining \pageref on input line 103.
+LaTeX Info: Redefining \nameref on input line 103.
 
 (MasterThesisSfS.out) (MasterThesisSfS.out)
 \@outlinefile=\write3
@@ -535,17 +554,17 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-\c@lstlisting=\count134
+\c@lstlisting=\count135
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--121
+Underfull \hbox (badness 10000) in paragraph at lines 122--122
 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 121.
+LaTeX Font Info:    Try loading font information for U+msa on input line 122.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 121.
+LaTeX Font Info:    Try loading font information for U+msb on input line 122.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -576,29 +595,30 @@ Overfull \vbox (7.17722pt too high) has occurred while \output is active []
 
 
 
-]) [5] (MasterThesisSfS.toc)
+]) [5] (MasterThesisSfS.toc [6
+
+])
 \tf@toc=\write4
 \openout4 = `MasterThesisSfS.toc'.
 
- [6
-
-] (MasterThesisSfS.lof)
+ [7] (MasterThesisSfS.lof)
 \tf@lof=\write5
 \openout5 = `MasterThesisSfS.lof'.
 
 
-[7] (MasterThesisSfS.lot)
+[8] (MasterThesisSfS.lot)
 \tf@lot=\write6
 \openout6 = `MasterThesisSfS.lot'.
 
- [8]
+ [9] [10
+
+]
 \openout2 = `Notation.aux'.
 
- (Notation.tex) [9
+ (Notation.tex) [11
 
 
-
-] [10
+] [12
 
 
 ]
@@ -630,11 +650,7 @@ Chapter 2.
 ] [4]
 LaTeX Font Info:    External font `cmex7' loaded for size
 (Font)              <5> on input line 79.
- [5] [6] [7] [8]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9])
-[10] [11]
+ [5] [6] [7] [8] [9]) [10] [11]
 \openout2 = `Data.aux'.
 
  (Data.tex [12
@@ -643,14 +659,37 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 Chapter 3.
-LaTeX Font Info:    Try loading font information for T1+aett on input line 16.
+
+Package natbib Warning: Citation `JurySunshineProject' on page 13 undefined on 
+input line 22.
+
+
+Package natbib Warning: Citation `JurySunshineProject' on page 13 undefined on 
+input line 31.
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[][][]\T1/aer/m/n/9 The link pro-vided in the Jury Sun-shine Pa-per to the spe-
+cific source
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+\T1/aer/m/n/9 (http://www.nccourts.org/Citizens/SRPlanning/Statistics/CAReports
+_fy16-17.asp) does not ap-pear
+ []
+
+
+Package natbib Warning: Citation `JurySunshineProject' on page 14 undefined on 
+input line 43.
+
+LaTeX Font Info:    Try loading font information for T1+aett on input line 58.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)) [13]
+) [14]) [15]
 \openout2 = `Analysis.aux'.
 
- (Analysis.tex
-[14
+ (Analysis.tex [16
 
 
 
@@ -659,8 +698,8 @@ Chapter 4.
 
 Underfull \vbox (badness 2894) has occurred while \output is active []
 
- [15]
-<Pictures/CondDistRaces.pdf, id=612, 505.89pt x 505.89pt>
+ [17]
+<Pictures/CondDistRaces.pdf, id=663, 505.89pt x 505.89pt>
 File: Pictures/CondDistRaces.pdf Graphic file (type pdf)
 
 <use Pictures/CondDistRaces.pdf>
@@ -670,7 +709,7 @@ Package pdftex.def Info: Pictures/CondDistRaces.pdf used on input line 53.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[16] <Pictures/RaceGenderPolit.pdf, id=625, 505.89pt x 505.89pt>
+[18] <Pictures/RaceGenderPolit.pdf, id=676, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderPolit.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderPolit.pdf>
@@ -680,21 +719,21 @@ Package pdftex.def Info: Pictures/RaceGenderPolit.pdf used on input line 85.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Pictures/LawyerExp.pdf, id=629, 505.89pt x 505.89pt>
+<Pictures/LawyerExp.pdf, id=680, 505.89pt x 505.89pt>
 File: Pictures/LawyerExp.pdf Graphic file (type pdf)
 
 <use Pictures/LawyerExp.pdf>
 Package pdftex.def Info: Pictures/LawyerExp.pdf used on input line 104.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
- [17 <./Pictures/CondDistRaces.pdf>]
+ [19 <./Pictures/CondDistRaces.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [18 <./Pictures/RaceGenderPolit.pdf>] [19 <./Pictures/LawyerExp.pdf>]
+) [20 <./Pictures/RaceGenderPolit.pdf>] [21 <./Pictures/LawyerExp.pdf>]
 \openout2 = `Chapter1.aux'.
 
 
-(Chapter1.tex <Pictures/geys-2kern.pdf, id=660, 557.08125pt x 293.095pt>
+(Chapter1.tex <Pictures/geys-2kern.pdf, id=712, 557.08125pt x 293.095pt>
 File: Pictures/geys-2kern.pdf Graphic file (type pdf)
 
 <use Pictures/geys-2kern.pdf>
@@ -720,19 +759,19 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 35.
 
-[20
+[22
 
 
- <./Pictures/geys-2kern.pdf>]) [21]
+ <./Pictures/geys-2kern.pdf>]) [23]
 \openout2 = `Summary.aux'.
 
- (Summary.tex [22
+ (Summary.tex [24
 
 
 
 ]
 Chapter 5.
-) [23] [24
+) [25] [26
 
 
 ] (MasterThesisSfS.bbl
@@ -747,7 +786,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 84--88
 sed:
  []
 
-[25
+[27
 
 ]
 Underfull \hbox (badness 1248) in paragraph at lines 115--120
@@ -887,7 +926,7 @@ Underfull \hbox (badness 5475) in paragraph at lines 199--205
 y-colten-boushie-
  []
 
-[26]
+[28]
 Underfull \hbox (badness 2894) in paragraph at lines 240--245
 []\T1/aer/m/n/10.95 Supreme Court of Canada (1991).  R. v. sher-ratt.  Supreme 
 Court Judge-
@@ -905,10 +944,10 @@ Underfull \hbox (badness 1609) in paragraph at lines 254--257
 tucky.  Ac-cessed:
  []
 
-) [27]
+) [29]
 \openout2 = `Appendix1.aux'.
 
- (Appendix1.tex [28
+ (Appendix1.tex [30
 
 
 ]
@@ -927,22 +966,16 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 9.
 
 
-LaTeX Warning: Reference `App:listings' on page 29 undefined on input line 10.
+LaTeX Warning: Reference `App:listings' on page 31 undefined on input line 10.
 
 
 Underfull \vbox (badness 5345) has occurred while \output is active []
 
- [29]
+ [31]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 40.
 
-(Pictures/DataProcess.R [30]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [31]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [32]
+(Pictures/DataProcess.R [32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [33]
@@ -967,6 +1000,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [40]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [41]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [42]
 Overfull \hbox (10.07137pt too wide) in paragraph at lines 646--647
 [][][][][][][] 
  []
@@ -979,112 +1018,148 @@ Overfull \hbox (15.16899pt too wide) in paragraph at lines 660--661
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [41]
+ [43]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [42])
+ [44])
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+[]|\T1/aer/m/n/10.95 08CRS50940, 08CRS52888, 09CRS000305,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+\T1/aer/m/n/10.95 09CRS1106, 09CRS50752, 10CR52031,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+\T1/aer/m/n/10.95 10CRS051975, 10CRS1215, 10CRS397,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+\T1/aer/m/n/10.95 10CRS51388, 10CRS51610, 10CRS52410,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+\T1/aer/m/n/10.95 11CRS051642, 11CRS051795, 11CRS1577,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+\T1/aer/m/n/10.95 11CRS1745, 11CRS1783, 11CRS51204,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+\T1/aer/m/n/10.95 11CRS51895, 11CRS52470, 08CRS54836,
+ []
+
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 43.
+(hyperref)                removing `math shift' on input line 61.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \kern 3.04074pt
-(hyperref)                removed on input line 43.
+(hyperref)                removed on input line 61.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 43.
+(hyperref)                removing `math shift' on input line 61.
 
-) [43]
+) [45]
 \openout2 = `Appendix2.aux'.
 
- (Appendix2.tex [44
+ (Appendix2.tex [46
 
 
 
 ]
 Appendix B.
-) [45] [46
+) [47] [48
 
 
 ]
 \openout2 = `Epilogue.aux'.
 
- (Epilogue.tex) [47
+ (Epilogue.tex) [49
 
 
-] [48
+] [50
 
 
 ]
-<confirmation-originality-scan.pdf, id=1588, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=1640, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf>
 Package pdftex.def Info: confirmation-originality-scan.pdf used on input line 2
-26.
+27.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf>
 Package pdftex.def Info: confirmation-originality-scan.pdf used on input line 2
-26.
+27.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 
-<confirmation-originality-scan.pdf, id=1591, page=1, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=1643, page=1, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 226.
-(pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
-File: confirmation-originality-scan.pdf Graphic file (type pdf)
-
-<use confirmation-originality-scan.pdf, page 1>
-Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 226.
+ line 227.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 226.
+ line 227.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 226.
+ line 227.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 226.
+ line 227.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
- [49 <./confirmation-originality-scan.pdf, page is rotated 270 degrees>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 227.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 227.
- (MasterThesisSfS.aux (Preface.aux)
-(Abstract.aux) (Notation.aux) (Introduction.aux) (History.aux) (Data.aux)
-(Analysis.aux) (Chapter1.aux) (Summary.aux) (Appendix1.aux) (Appendix2.aux)
-(Epilogue.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 227.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 227.
+File: confirmation-originality-scan.pdf Graphic file (type pdf)
+
+<use confirmation-originality-scan.pdf, page 1>
+Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
+ line 227.
+(pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
+ [51 <./confirmation-originality-scan.pdf, page is rotated 270 degrees>]
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 228.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 228.
+(MasterThesisSfS.aux (Preface.aux) (Abstract.aux) (Notation.aux)
+(Introduction.aux) (History.aux) (Data.aux) (Analysis.aux) (Chapter1.aux)
+(Summary.aux) (Appendix1.aux) (Appendix2.aux) (Epilogue.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 228.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 228.
 Package rerunfilecheck Info: File `MasterThesisSfS.out' has not changed.
-(rerunfilecheck)             Checksum: 7D5B2C9D93FE45AA74E5BEEB41A326FC;2416.
+(rerunfilecheck)             Checksum: CD495793F871A2532ECF050EE0DD11A6;2633.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 227.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 228.
  ) 
 Here is how much of TeX's memory you used:
- 12289 strings out of 493328
- 169495 string characters out of 3139124
- 633040 words of memory out of 3000000
- 14490 multiletter control sequences out of 15000+200000
+ 12399 strings out of 493328
+ 170796 string characters out of 3139124
+ 634785 words of memory out of 3000000
+ 14582 multiletter control sequences out of 15000+200000
  64847 words of font info for 136 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,20n,47p,295b,2394s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1106,9 +1181,9 @@ c/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
 t8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/latxfont/linew1
 0.pfb>
-Output written on MasterThesisSfS.pdf (59 pages, 1116064 bytes).
+Output written on MasterThesisSfS.pdf (63 pages, 1132686 bytes).
 PDF statistics:
- 1854 PDF objects out of 2073 (max. 8388607)
- 955 named destinations out of 1000 (max. 500000)
- 337 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1908 PDF objects out of 2073 (max. 8388607)
+ 968 named destinations out of 1000 (max. 500000)
+ 361 words of extra memory for PDF output out of 10000 (max. 10000000)
 

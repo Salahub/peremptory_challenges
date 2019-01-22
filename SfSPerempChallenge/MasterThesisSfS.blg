@@ -13,9 +13,11 @@ A level-1 auxiliary file: Appendix1.aux
 A level-1 auxiliary file: Appendix2.aux
 A level-1 auxiliary file: Epilogue.aux
 Database file #1: myReferences.bib
+Warning--I didn't find a database entry for "JurySunshineProject"
 Warning--page numbers missing in PerempChalMurder
 Warning--page numbers missing in petersen1993
 Warning--page numbers missing in vonmosch1921
+Warning--empty organization in readxl
 Warning--no number and no volume in woolley2018
 Warning--page numbers missing in woolley2018
-(There were 5 warnings)
+(There were 7 warnings)

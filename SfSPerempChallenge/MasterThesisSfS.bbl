@@ -267,6 +267,12 @@ von Moschzisker, R. (1921).
 \newblock The historic origin of trial by jury.
 \newblock {\em University of Pennsylvania Law Review\/}~{\em 70\/}(1).
 
+\bibitem[\protect\citeauthoryear{Wickham and Bryan}{Wickham and
+  Bryan}{2018}]{readxl}
+Wickham, H. and J.~Bryan (2018).
+\newblock {\em readxl: Read Excel Files}.
+\newblock R package version 1.1.0.
+
 \bibitem[\protect\citeauthoryear{Woolley}{Woolley}{2018}]{woolley2018}
 Woolley, A. (2018).
 \newblock {An Ethical Jury? Reflections on the Acquittal of Gerald Stanley for

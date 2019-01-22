@@ -1,6 +1,82 @@
 \chapter{Data} \label{c:data}
 
+Without data, performing an analysis that incorporated more than the history and legal argumentation presented in Chapter
+\ref{c:background} is impossible. This proved problematic. While the motivation of this text was a Canadian case, no comprehensive
+Canadian data sets which exmained jury selection in Canada could be found. The increased prominence of the jury selection process
+in the United States garnered a more fruitful search.
+
+The author is heavily indebted to \citeauthor{JurySunshineProj}; \citeauthor{StubbornLegacy}; and
+\citeauthor{PerempChalMurder}. These authors shared their data freely with the author, providing him with a wealth of data to
+analyse empirically. As a consequence of the multiple separate data sets, however, care must be taken to describe each of the data
+sets separately in order to capture adequately the different methodologies and sources they represent. Critically, it should be
+noted that each of these papers represents effort on the part of the authors. As \cite{JurySunshineProj} notes:
+
+\begin{quote}
+  \centering
+   limited public access to court data reinforces the single-case focus of the legal doctrines related to jury selection. Poor
+   access to records is the single largest reason why jury selection cannot break out of the litigato's framework to become a
+   normal topic for political debate
+\end{quote}
+
+Currently, the collection of jury data is difficult, as many courtrooms have not digitized past records and concerns over privacy
+limit the release of those records, which are stored as paper documents in the case file (see \cite{JurySunshineProject}). This
+limits the ability of an individual to ask for summaries across numerous trials or to view the jury selection process on a scale
+beyond the basis of one case. Thus, to gather aggregate data the authors of these papers necessarily used different collection
+techniques dictated by the scope of collection desired and the procedures of the court systems from which data was collected.
+
 \section{Jury Sunshine Project} \label{sec:jspdata}
+
+\subsection{Methodology}
+
+The Jury Sunshine Project (\cite{JurySunshineProject}), so named as it was carried out in order to shed light on the jury
+selection process, is the most extensive data set which was provided to the author. It endeavoured to collect jury data for all
+felony trial cases in North Carolina in the year 2011, which ultimately resulted in a data set that detailed the simple
+demographic characteristics and trial information of 29,624 individuals summoned for jury duty in 1,306 trials. Note that not all
+entries were complete.
+
+Due to the scope of the project, there are a number of problems which had to be solved by the authors. The first of these was
+simply identifying which court cases went to trial in 2011, in order to direct resources effectively. This was accomplished by
+downloading publicly available case data from the North Carolina Administrative Office of the Courts (NCAOC)\footnote{The link provided in
+  the Jury Sunshine Paper to the specific source (http://www.nccourts.org/Citizens/SRPlanning/Statistics/CAReports\_fy16-17.asp)
+  does not appear to be working as of January 2019, however the NCAOC seems to provide an API functionality at
+  https://data.nccourts.gov/api/v1/console/datasets/1.0/search/} and determining the case numbers and counties of cases which went
+to trial. \citeauthor{JurySunshineProject} state that this likely missed some cases which went to trial, but that they were
+confident that a ``strong majority'' of trials was collected, which did not systematically differ from those excluded.
+
+This list was then used to perform a pilot study to refine recording practices before undertaking a more general survey where
+``law students, law librarians, and undergraduate students'' (called \textit{collectors} for convenience) visited court clerk
+offices to collect the relevant case data, including the presiding judge, prosecutor, defence lawyer, defendant, venire members,
+charges, verdict, and sentence. The case files also included data about whether a venire member was removed by cause or
+peremptorily, and the party which challenged in the peremptory case. Using public voter databases, bar admission records, and
+judge appointment records, these collectors were able to determine demographic (race, gender, and date of birth) and political
+affiliation data for the venire members, lawyers, defendants, and judges. This data set was stored stored in a relational database
+provided to the author by Dr. Ronald Wright.
+
+\subsection{Flattening the Data}
+
+For greater analytical expediency, the relational database was first flattened. The relational database was read into Microsoft
+Excel and the \texttt{readxl} package (\cite{readxl}) was used to read the excel file into the programming language \Rp. A wrapper
+for the \texttt{merge} function was developed which provided simple a simple output detailing failed matches in an outer join in
+order to ensure that the flattening of the data into a matrix did not miss important data due to partial incompleteness. The code
+for this wrapper can be seen in \ref{app:proccode}.
+
+This wrapper was mostly unnecessary, it revealed only a small number of irregularities in the data, which are detailed in
+\ref{app:irregs}:
+
+\begin{enumerate}
+\item Twenty-nine charges missing trial information such as the presiding judge (all of trials with IDs of the form 710-0XX)
+\item Twenty-six prosecutors not associated with any trials and missing demographic data
+\item One trial missing charge information
+\end{enumerate}
+
+Ultimately, the jurors for trial ID 710-01, the trial missing a charge from above, were included in the data as their records were
+complete otherwise. The prosecutors and charges which could not be joined were excluded from any future analysis, as they could
+have easily been included by collectors by accident. Due to the small relative size of these inconsistencies relative to the size
+of the data set, they did not cause concern.
+
+Other irregularities which are not related to the process of flattening the data are addressed in the Sunshine Data section of
+\ref{sec:datacleaning}.
+
 
 \section{North Carolina Data} \label{sec:norcardata}
 

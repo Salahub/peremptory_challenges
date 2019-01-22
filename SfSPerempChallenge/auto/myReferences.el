@@ -2,6 +2,7 @@
  "myReferences"
  (lambda ()
    (LaTeX-add-bibitems
+    "readxl"
     "sheppard2018"
     "canadaconst"
     "usconstitution"

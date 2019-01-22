@@ -3,6 +3,7 @@
  (lambda ()
    (LaTeX-add-labels
     "app:complement"
-    "App:proccode"))
+    "app:proccode"
+    "app:irregs"))
  :latex)
 
