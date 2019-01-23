@@ -631,7 +631,7 @@ FullSunshine$DefAttyName[FullSunshine$DefAttyName == "U U"] <- "U"
 FullSunshine$ProsName <- paste(FullSunshine$ProsecutorFirstName, FullSunshine$ProsecutorLastName)
 FullSunshine$ProsName[FullSunshine$ProsName == "U U"] <- "U"
 
-## Checkpoint 1: the clean data has been processed, none of the swaps, synthesis, or expansion has taken place
+## Checkpoint 1: the clean data has been processed, none of the swaps, synthesis, or expansion have taken place
 ## save this
 if (!("FullSunshine.csv" %in% list.files())) write.csv(FullSunshine, "FullSunshine.csv", row.names = FALSE)
 ## load if the desire is to start at checkpoint 1
@@ -680,8 +680,8 @@ sun.swap$Outcome <- as.factor(levels(sun.swap$Outcome)[as.numeric(sun.swap$Outco
 
 ## lets make the levels more clear for some of the data (race, politics, disposition)
 ## start with the disposition
-levels(sun.swap$Disposition) <- c("C_rem", "D_rem", "Foreman", "Kept", "U_rem",
-                                      "S_rem", "Unknown")
+levels(sun.swap$Disposition) <- c("Cause", "Defence", "Foreman", "Kept", "U_rem",
+                                      "Prosecution", "Unknown")
 ## next the political affiliation
 sun.swap <- lapply(sun.swap, function(el) {
     if (is.factor(el) & identical(levels(el), LevPol)) {

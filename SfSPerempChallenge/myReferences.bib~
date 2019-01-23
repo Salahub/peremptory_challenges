@@ -1,7 +1,29 @@
-@misc{usconsitution,
-author = {{Government of the United States}},
+@manual{readxl,
+title = {readxl: Read Excel Files},
+author = {Hadley Wickham and Jennifer Bryan},
+year = {2018},
+note = {R package version 1.1.0},
+url = {https://CRAN.R-project.org/package=readxl}
+}
+
+@misc{sheppard2018,
+author = {Robert Sheppard},
+title = {Patriation of the Constitution},
+year = 2018,
+howpublished = {The Canadian Encyclopedia: Historica Canada},
+note = {Accessed: https://www.thecanadianencyclopedia.ca/en/article/patriation-of-the-constitution}}
+
+@misc{canadaconst,
+author = {{Constitution of Canada}},
+title = {{Constitution of Canada}},
+year = 1982,
+note = {Accessed: https://laws-lois.justice.gc.ca/eng/Const/index.html}}
+
+@misc{usconstitution,
+author = {{Constitution of the United States}},
 title = {{Constitution of the United States}},
-year = 1788}
+year = 1788,
+note = {Accessed: https://www.senate.gov/civics/constitution\_item/constitution.htm}}
 
 @article{morehead1994,
 author = {Jere W. Morehead},
@@ -367,17 +389,3 @@ note = {https://www.princegeorgecitizen.com/opinion/editorial/both-sides-wrong-a
   year =	 1986,
   pages =	 "422--431"
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

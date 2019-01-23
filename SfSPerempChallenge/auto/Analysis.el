@@ -3,7 +3,7 @@
  (lambda ()
    (LaTeX-add-labels
     "c:analysis"
-    "sec:leveling"
+    "sec:casesum"
     "sec:mods"
     "fig:raceraceparcoord"
     "fig:racepolitics"

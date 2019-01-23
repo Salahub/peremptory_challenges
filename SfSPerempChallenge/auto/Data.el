@@ -5,7 +5,6 @@
     "c:data"
     "sec:jspdata"
     "sec:norcardata"
-    "sec:phillydata"
-    "sec:datacleaning"))
+    "sec:phillydata"))
  :latex)
 

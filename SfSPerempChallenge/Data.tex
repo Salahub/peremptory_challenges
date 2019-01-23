@@ -26,6 +26,8 @@ techniques dictated by the scope of collection desired and the procedures of the
 
 \section{Jury Sunshine Project} \label{sec:jspdata}
 
+\subsection{Methodology}
+
 The Jury Sunshine Project (\cite{JurySunshineProj}), so named as it was carried out in order to shed light on the jury
 selection process, is the most extensive data set which was provided to the author. It endeavoured to collect jury data for all
 felony trial cases in North Carolina in the year 2011, which ultimately resulted in a data set that detailed the simple
@@ -53,9 +55,114 @@ provided to the author by Dr. Ronald Wright.
 The analysis of the data provided in \cite{JurySunshineProj} was limited to aggregate summaries of the trends at the venire
 member level. That is to say, they examined the strike trends for both the defence and the prosecution, conditioning on some
 additional variables. There was also spatial analysis performed, were different urban counties were directly compared. These
-analyses were not statistical in nature, and were displayed using contingency tables.
+analyses were not statistical in nature, and were displayed using contingency tables. Regardless the stark differences between
+prosecution and defence with regards to race were a key finding when the aggregate data was analyzed.
+
+\subsection{Cleaning}
+
+\subsubsection{Flattening the Data}
+
+For greater expediency of analysis, the relational database of the Jury Sunshine Data was first flattened. The relational database
+was read into Microsoft Excel and the \texttt{readxl} package (\cite{readxl}) was used to read the excel file into the programming
+language \Rp. A wrapper for the \texttt{merge} function was developed which provided simple a simple output detailing failed
+matches in an outer join in order to ensure that the flattening of the data into a matrix did not miss important data due to
+partial incompleteness. The code for this wrapper can be seen in \ref{app:proccode}.
+
+This wrapper revealed only a small number of irregularities in the data, which are detailed in \ref{app:irregs}:
+
+\begin{enumerate}
+\item Twenty-nine charges missing trial information such as the presiding judge (all of trials with IDs of the form 710-0XX)
+\item Twenty-six prosecutors not associated with any trials and missing demographic data
+\item One trial missing charge information
+\end{enumerate}
+
+Ultimately, the jurors for trial ID 710-01, the trial missing a charge from above, were included in the data as their records were
+complete otherwise. The prosecutors and charges which could not be joined were excluded from any future analysis, as they could
+have easily been included by collectors by accident. Due to the small relative size of these inconsistencies relative to the size
+of the data set, they did not cause concern.
+
+\subsubsection{Uninformative Columns}
+
+Of course there were other irregularities in the data than the obvious ones that arose in the flattening process. There were a
+handful of likely sources for these errors. The first of these is the anonymization of the data for public use. The private data
+includes a wealth of privileged data such as juror name and address, and these were removed in the data given to the
+author.
+
+As a consequence of this anonymization as well as the inclusion of rarely used columns such as those for additional notes, some
+columns of the data contained only NA values. Most baffling of these was the \texttt{BirthDate} variable in the \texttt{Jurors}
+table, as there was no clear reason for this data to be missing. Thankfully, none of the missing columns were relevant to the
+joins performed in flattening, and they would have been only secondary in data analysis. As a consequence, these uninformative
+columns were simply removed from the data.
+
+\subsubsection{Coding Inconsistencies}
+
+Related to this problem was the issue of inconsistently coded variable levels. An example of these inconsistencies would be levels
+recorded as both lower and upper case letters, or the presence of ``?'' instead of ``U'' for unknown values. It is very likely
+this inconsistency was a direct result of the data collection method which used many data collectors working independently in
+different places at different times. Thankfully, \citeauthor{JurySunshineProj} provided the codebook used by data collectors,
+which served as the authoritative reference for the admissible factor levels of demographic variables. Solving this problem was as
+simple as setting all demographic variable levels to be uppercase and replacing obviously mis-specified levels.
+
+One specific inconsistency which should be noted is that of the outcome, which had a handful of entries recorded as ``HC'', an
+inadmissible level not defined by the codebook. It is quite possible that this level represented a typo, as the ``H'' and ``G''
+keys are adjacent on the American QWERTY keyboard layout, and ``GC'' was the code for 'guilty as charged', but out of a desire to
+be conservative with the data the occurrence of this outcome was replaced with U instead. Additionally, the inadmissible level
+``G'' was replaced by GC.
+
+\subsubsection{Swaps}
+
+A more difficult problem of level misspecification was the presence of what appeared to be columns with swapped values, frequently
+occurring with the gender column (the admissible levels of which are ``M'', ``F'', and ``U'') and the political affiliation column
+(the admissible levels of which are ``D'', ``R'', ``I'', or ``U''). The aformentioned ``swaps'' appeared as records in which, for
+example, the gender was recorded as ``R'' and political affiliation as ``M''. More complicated swaps of three columns also
+occurred. To address this problem, the \texttt{IdentifySwap} function was written (see line 108 in \ref{app:proccode}).
+
+The \texttt{IdentifySwap} function accepts two arguments: a data frame with named columns and a named list of vectors of the
+acceptable levels for some of the column names. It then performs vectorized checks of the specified column names and presents any
+rows which may have swaps or errors interactively to the user, along with a suggested reorder to ``un-swap'' the row. The user can
+press enter to accept the suggested reordering, enter some other reordering, or enter 0 to indicate that the row was not a true
+swap, but simply an error. The un-swapped entries are then returned to the data, and the rows with errors have the erroneous
+values replaced by ``U'', the universal code for ``Unknown'' within all data variables\footnote{One notable exception to this
+  insertion of ``Unknown'' was the case of the judge Arnold O Jones II, whose gender was not recorded in the data, but who was
+  identifiable as a man using a quick Google search of his unique name}.
+
+The source of these swaps is also most likely the data collection method. The codebook provided specifically notes that the data
+collection was meant to record the race (R), gender (G), and political affiliation (P) data in the form RGP, but it is not
+inconceivable that it would occasionally have been recorded or entered in some other ordering in the tedium of data entry. In any
+case, this problem affected only 431 records of the nearly 30,000, suggesting that the recorded error rate was not unacceptably
+large.
+
+\subsubsection{Charge Classification}
+
+Perhaps the least regular data in this data set was that of the charge text. Due to the lack of any codebook guidance about the
+standard way of recording a charge in a trial, identical charges were recorded in numerous ways. The first method used to combat
+this was removing non-alphnumeric characters, extra spaces, and converting all charges to lower case. This still left a
+considerable variation, however. Consider the charge of breaking and entering, for example, 
+
+\subsubsection{Variable Level Renaming}
+
+The final step of the data cleaning process was to convert the uninformative codes used to indicate variable values to more
+intuitive and clear names (for example to convert ``I'' in the political affiliation variable to ``Ind'', a clearer indication of
+independent). Certain variables which were already clear, such as gender (codes ``M'', ``F'', ``U''), were not renamed due to the
+clarity of the one letter representations.
+
+\subsection{Variable Synthesis}
+
+In order to expand the possible analysis and visualization potential, a number of variables were synthesized from the Jury
+Sunshine data set. They are detailed below.
+
+\begin{description}
+  \item[Race Match] A logical variable which is true for a venire member if they are the same race as the defendant, and false
+    otherwise. This variable was motivated in particular by the Gerald Stanley trial, in which the implicit contention of those
+    who have taken issue with peremptory challenge is that the First Nations venire members were removed by the defence as their
+    race did not match that of Stanley in the racially charged trial.
+  \item[Guilty] A logical indicator indicating whether the trial outcome was guilty or not.
+  \item
+\end{description}
 
 \section{Stubborn Legacy Data} \label{sec:norcardata}
+
+\subsection{Methodology}
 
 \cite{StubbornLegacy} also provided data to the author, albeit a more limited set. This study, also based in North Carolina,
 focused on the trials of inmates on death row as of July 1, 2010, yielding a total of 173 cases. In each proceeding, the study
@@ -85,53 +192,23 @@ that rather than class these tests as significant or not, these tests were simpl
 returned. Additionally, there are possible multiple testing issues as the study seems to indicate multiple tests were performed on
 each table, with the specific test used to generate the reported p-values not clearly indicated.
 
+\subsection{Cleaning}
+
 \section{Philadelphia Data} \label{sec:phillydata}
 
-\cite{PerempChalMurder} presents the most comprehensively analyzed data of the three data sets.
+\subsection{Methodology}
 
-\section{Data Cleaning} \label{sec:datacleaning}
+\cite{PerempChalMurder} presents a similar data set collected using similar means. Court files such as the juror questionnaire,
+voter registration, and census data were all used to complete juror demographic information for 317 venires consisting of 14,532
+venire members in Philadelphia capital murder cases between 1981 and 1997\footnote{This study took into account the sampling error
+  by reweighting venires based on the  year of the trial and the defendant race, as court records showed that the sample coverage
+  varied over these factors}. It should be noted that this data included only those jurors kept or peremptorily struck, venire
+members struck for cause were not included in the data. The procedure used to determine race using the census and voter registration polls was quite
+complicated, but was rigorously performed using accepted census methods to a standard of 98\% reliability\footnote{Additionally,
+  imputation was only performed in a small minority of cases}.
 
-\subsection{Sunshine Data}
+In their incredibly thorough analysis of the data, there were findings consistent with both the Jury Sunshine and Stubborn Legacy
+data. The defence and prosecution seem to follow mirrored patterns of racial preference in the use of peremptory challenges, even
+when controlling for other possible confouding effects.
 
-\subsubsection{Flattening the Data}
-
-For greater expediency of analysis, the relational database of the Jury Sunshine Data was first flattened. The relational database
-was read into Microsoft Excel and the \texttt{readxl} package (\cite{readxl}) was used to read the excel file into the programming
-language \Rp. A wrapper for the \texttt{merge} function was developed which provided simple a simple output detailing failed
-matches in an outer join in order to ensure that the flattening of the data into a matrix did not miss important data due to
-partial incompleteness. The code for this wrapper can be seen in \ref{app:proccode}.
-
-This wrapper revealed only a small number of irregularities in the data, which are detailed in \ref{app:irregs}:
-
-\begin{enumerate}
-\item Twenty-nine charges missing trial information such as the presiding judge (all of trials with IDs of the form 710-0XX)
-\item Twenty-six prosecutors not associated with any trials and missing demographic data
-\item One trial missing charge information
-\end{enumerate}
-
-Ultimately, the jurors for trial ID 710-01, the trial missing a charge from above, were included in the data as their records were
-complete otherwise. The prosecutors and charges which could not be joined were excluded from any future analysis, as they could
-have easily been included by collectors by accident. Due to the small relative size of these inconsistencies relative to the size
-of the data set, they did not cause concern.
-
-\subsubsection{Preprocessing}
-
-Of course there were other irregularities in the data than the obvious ones that arose in the flattening process.
-
-The data collected in North Carolina proved invaluable to this project \cite{JurySunshineProj}.
-
-\underline{Problem}: some columns of the data contained only NA values
-\underline{Solution}: \texttt{lapply} to remove these uninformative columns
-
-\underline{Problem}: relational database provided did not have all data in one joined table
-\underline{Solution}: creation of \texttt{CleaningMerge} function: a wrapper for \texttt{merge} which provides information about the
-mismatches which may be present in the two merged tables
-
-\underline{Problem}: inconsistently coded levels, e.g. inconsistent case or ``?'' instead of ``U'' for unknowns
-\underline{Solution}: forcing levels to be uppercase and the replacement of obvious mis-specified levels
-
-\underline{Problem}: some columns seem to have swapped values, e.g. the gender column should be one of ``M'', ``F'', or ``U'' and the
-political affiliation column should be one of ``D'', ``R'', ``I'', or ``U'', but some individuals have the gender recorded as
-``R'' and political affiliation as ``M''
-\underline{Solution}: the creation of the \texttt{IdentifySwap} function, which has two arguments: a data set and the acceptable or correct
-levels for the variables in the data set. It then identifies rows which have candidate swaps and presents them for review
+\subsection{Cleaning}
