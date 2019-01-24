@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  24 JAN 2019 22:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  24 JAN 2019 23:05
 entering extended mode
 **./MasterThesisSfS.tex
 (MasterThesisSfS.tex
@@ -962,12 +962,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [40]
-Overfull \hbox (10.07137pt too wide) in paragraph at lines 646--647
+Overfull \hbox (10.07137pt too wide) in paragraph at lines 647--648
 [][][][][][][] 
  []
 
 
-Overfull \hbox (15.16899pt too wide) in paragraph at lines 660--661
+Overfull \hbox (15.16899pt too wide) in paragraph at lines 661--662
 [][][][][][][] 
  []
 
@@ -977,7 +977,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [41]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [42])
+ [42]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [43])
 Underfull \hbox (badness 10000) in paragraph at lines 58--58
 []|\T1/aer/m/n/10.95 08CRS50940, 08CRS52888, 09CRS000305,
  []
@@ -1012,7 +1015,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 58--58
 \T1/aer/m/n/10.95 11CRS51895, 11CRS52470, 08CRS54836,
  []
 
-<Pictures/ChargeDiagram.pdf, id=1601, 1011.78pt x 722.7pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<Pictures/ChargeDiagram.pdf, id=1662, 1011.78pt x 722.7pt>
 File: Pictures/ChargeDiagram.pdf Graphic file (type pdf)
 
 <use Pictures/ChargeDiagram.pdf>
@@ -1035,27 +1041,24 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 72.
 
+) [44] [45]
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [43]
-
-LaTeX Warning: Text page 44 contains only floats.
+LaTeX Warning: Text page 46 contains only floats.
 
 
 Overfull \vbox (3.79997pt too high) has occurred while \output is active []
 
 
-[44 <./Pictures/ChargeDiagram.pdf>]) [45]
+[46 <./Pictures/ChargeDiagram.pdf>]
 \openout2 = `Appendix2.aux'.
 
- (Appendix2.tex [46
-
-
-
-]
+ (Appendix2.tex
 Appendix B.
-) [47] [48
+) [47
+
+
+
+] [48
 
 
 ]
@@ -1068,7 +1071,7 @@ Appendix B.
 
 
 ]
-<confirmation-originality-scan.pdf, id=1663, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=1736, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf>
@@ -1082,7 +1085,7 @@ Package pdftex.def Info: confirmation-originality-scan.pdf used on input line 2
 26.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 
-<confirmation-originality-scan.pdf, id=1666, page=1, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=1739, page=1, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
@@ -1133,10 +1136,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 227.
  ) 
 Here is how much of TeX's memory you used:
- 12401 strings out of 493328
- 170911 string characters out of 3139124
- 634785 words of memory out of 3000000
- 14581 multiletter control sequences out of 15000+200000
+ 12497 strings out of 493328
+ 172311 string characters out of 3139124
+ 647785 words of memory out of 3000000
+ 14604 multiletter control sequences out of 15000+200000
  64847 words of font info for 136 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,20n,47p,295b,2394s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1157,9 +1160,9 @@ e1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmtt8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/latxfon
 t/linew10.pfb>
-Output written on MasterThesisSfS.pdf (63 pages, 1134337 bytes).
+Output written on MasterThesisSfS.pdf (63 pages, 1152816 bytes).
 PDF statistics:
- 1930 PDF objects out of 2073 (max. 8388607)
- 978 named destinations out of 1000 (max. 500000)
+ 2018 PDF objects out of 2073 (max. 8388607)
+ 1051 named destinations out of 1200 (max. 500000)
  361 words of extra memory for PDF output out of 10000 (max. 10000000)
 

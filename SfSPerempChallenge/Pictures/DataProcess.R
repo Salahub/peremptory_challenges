@@ -10,6 +10,7 @@
 library(readxl)
 library(tm)
 library(stringr)
+library(grid)
 
 
 ## CONSTANTS ###########################
@@ -781,3 +782,75 @@ sun.trialsum$KLdiv <- kldiv(sun.trialsum[,grepl("Jury", names(sun.trialsum))],
 ## save this
 saveRDS(sun.trialsum, "TrialAggregated.Rds")
 saveRDS(sun.jursum, "AllJuries.Rds")
+
+
+## CHARGE CLASSIFICATION IMAGES ########
+## presented here is the code to generate the appendix charge classification images
+
+## extract relevant charges from the clean sunshine data, avoiding duplicates
+## regularize the charges
+chargFact.clean <- as.factor(CleanSunshine$Charges$ChargeTxt)
+regCharg.clean <- StringReg(levels(chargFact.clean))[as.numeric(chargFact.clean)]
+## classify these into a charge tree and aggregate this at the coarsest level
+tree.clean <- stringTree(regCharg.clean, chargeTree)
+
+## define padding
+crimepad <- 0.01
+areatop <- 0.94
+hght <- ((0.94 - 0.035) - 5*crimepad)/5
+wid <- ((0.975 - 0.025) - 7*crimepad)/6
+
+## add overall box
+grid.newpage()
+grid.rect(width = 0.95, height = 0.95)
+grid.text(label = "Charges", x = 0.025 + crimepad/2, y = 0.975 - crimepad/2, just = c("left","top"))
+grid.text(label = "(198)", x = 0.975 - crimepad/2, y = 0.975 - crimepad/2, just = c("right","top"))
+
+## inner crime boxes
+xpos <- crimepad + 0.025 + wid/2 + (0:5)*(crimepad + wid)
+ypos <- crimepad + 0.025 + hght/2 + (0:4)*(crimepad + hght)
+coords <- cbind(rep(xpos, each = 5), rev(ypos))[1:length(tree.clean)-1,]
+grid.rect(x = coords[,1], y = coords[,2], width = wid, height = hght)
+grid.text(label = names(tree.clean)[1:(length(tree.clean)-1)], x = coords[,1] - (wid - crimepad)/2,
+          y = coords[,2] + (hght-crimepad)/2, just = c("left","top"))
+
+## add unclassified and top level counts
+unclass <- sapply(tree.clean, function(el) if (is.list(el)) length(el$other) else 0)
+grid.text(label = paste0("(", unclass, ")"), x = coords[,1] + (wid - crimepad)/2, y = coords[,2] + (hght-crimepad)/2,
+          just = c("right", "top"))
+toplev <- sapply(tree.clean, function(el) if (is.list(el)) "" else length(el))
+grid.text(label = toplev, x = coords[,1], y = coords[,2])
+
+## add sublist counts
+for (ii in 1:length(tree.clean)) {
+    if (is.list(tree.clean[[ii]])) {
+        currlist <- tree.clean[[ii]]
+        len <- length(currlist) - 1
+        boty <- coords[ii,2] - hght/2
+        newwid <- wid - 2*crimepad
+        newhght <- (hght - 0.035 - len*crimepad)/len
+        newy <- crimepad + newhght/2 + (0:(len-1))*(newhght + crimepad) + boty
+        if (names(tree.clean)[ii] == "assa") {
+            grid.rect(x = coords[ii,1], y = newy, width = newwid, height = newhght)
+            grid.text(label = names(currlist), x = coords[ii,1] - (newwid-crimepad)/2, y = newy,
+                      just = "left", gp = gpar(fontsize = 8))
+            grid.text(sapply(currlist, length), x = coords[ii,1], y = newy, gp = gpar(fontsize = 8))
+        } else if (names(tree.clean)[ii] == "murder") {
+            grid.rect(x = coords[ii,1], y = newy, width = newwid, height = newhght)
+            grid.text(label = names(currlist), x = coords[ii,1] - (newwid-crimepad)/2, y = newy + (newhght-crimepad)/2,
+                      just = c("left","top"), gp = gpar(fontsize = 8))
+            grid.text(paste0("(", sapply(currlist[1:len], function(el) length(el$other)), ")"), x = coords[ii,1] + (newwid-crimepad)/2,
+                      y = newy + (newhght-crimepad)/2, just = c("right","top"), gp = gpar(fontsize = 8))
+            grid.rect(x = coords[ii,1], y = newy - 0.01, width = newwid - 2*crimepad, height = (newhght - 0.02)/2)
+            grid.text(rep("att",2), x = coords[ii,1] - (newwid-2*crimepad-crimepad)/2, y = newy-0.01,
+                      just = "left", gp = gpar(fontsize = 8))
+            grid.text(sapply(currlist[1:len], function(el) length(el$att)), x = coords[ii,1],
+                      y = newy - 0.01, gp = gpar(fontsize = 8))
+        } else {
+            grid.rect(x = coords[ii,1], y = newy, width = newwid, height = newhght)
+            grid.text(label = names(currlist), x = coords[ii,1] - (newwid-crimepad)/2, y = newy + (newhght-crimepad)/2,
+                      just = c("left","top"), gp = gpar(fontsize = 8))
+            grid.text(sapply(currlist, length), x = coords[ii,1], y = newy, gp = gpar(fontsize = 10))
+        }
+    }
+}

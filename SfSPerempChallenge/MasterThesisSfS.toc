@@ -40,9 +40,9 @@
 \contentsline {chapter}{\numberline {A}Complementary information}{29}{appendix.A}
 \contentsline {section}{\numberline {A.1}Including \textsf {R}$\tmspace +\thickmuskip {.2777em}$code with verbatim}{29}{section.A.1}
 \contentsline {section}{\numberline {A.2}Data Processing Code}{30}{section.A.2}
-\contentsline {section}{\numberline {A.3}Jury Sunshine Irregularities}{43}{section.A.3}
-\contentsline {section}{\numberline {A.4}Jury Sunshine Charge Classification}{45}{section.A.4}
-\contentsline {section}{\numberline {A.5}Using Sweave to include \textsf {R}$\tmspace +\thickmuskip {.2777em}$code (and more) in your report}{45}{section.A.5}
+\contentsline {section}{\numberline {A.3}Jury Sunshine Irregularities}{44}{section.A.3}
+\contentsline {section}{\numberline {A.4}Jury Sunshine Charge Classification}{44}{section.A.4}
+\contentsline {section}{\numberline {A.5}Using Sweave to include \textsf {R}$\tmspace +\thickmuskip {.2777em}$code (and more) in your report}{44}{section.A.5}
 \contentsline {chapter}{\numberline {B}Yet another appendix....}{47}{appendix.B}
 \contentsline {section}{\numberline {B.1}Description}{47}{section.B.1}
 \contentsline {section}{\numberline {B.2}Tables}{47}{section.B.2}
