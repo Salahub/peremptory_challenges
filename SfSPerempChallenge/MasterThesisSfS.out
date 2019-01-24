@@ -32,8 +32,9 @@
 \BOOKMARK [1][-]{section.A.1}{Including Rcode with verbatim}{appendix.A}% 32
 \BOOKMARK [1][-]{section.A.2}{Data Processing Code}{appendix.A}% 33
 \BOOKMARK [1][-]{section.A.3}{Jury Sunshine Irregularities}{appendix.A}% 34
-\BOOKMARK [1][-]{section.A.4}{Using Sweave to include Rcode \(and more\) in your report}{appendix.A}% 35
-\BOOKMARK [0][-]{appendix.B}{Yet another appendix....}{}% 36
-\BOOKMARK [1][-]{section.B.1}{Description}{appendix.B}% 37
-\BOOKMARK [1][-]{section.B.2}{Tables}{appendix.B}% 38
-\BOOKMARK [0][-]{section*.16}{Epilogue}{}% 39
+\BOOKMARK [1][-]{section.A.4}{Jury Sunshine Charge Classification}{appendix.A}% 35
+\BOOKMARK [1][-]{section.A.5}{Using Sweave to include Rcode \(and more\) in your report}{appendix.A}% 36
+\BOOKMARK [0][-]{appendix.B}{Yet another appendix....}{}% 37
+\BOOKMARK [1][-]{section.B.1}{Description}{appendix.B}% 38
+\BOOKMARK [1][-]{section.B.2}{Tables}{appendix.B}% 39
+\BOOKMARK [0][-]{section*.16}{Epilogue}{}% 40

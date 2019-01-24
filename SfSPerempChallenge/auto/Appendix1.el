@@ -4,6 +4,8 @@
    (LaTeX-add-labels
     "app:complement"
     "app:proccode"
-    "app:irregs"))
+    "app:irregs"
+    "add:charge"
+    "fig:chargetree"))
  :latex)
 
