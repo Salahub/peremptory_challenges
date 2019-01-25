@@ -22,13 +22,6 @@
 \newblock
   https://www.gov.uk/guidance/jury-vetting-right-of-stand-by-guidelines--2.
 
-\bibitem[\protect\citeauthoryear{Author and Author}{Author and
-  Author}{tion}]{Reference}
-Author, F. and S.~Author (year of publication).
-\newblock Title of the article.
-\newblock {\em Journal where the article has been published\/}~{\em volume of
-  the journal\/}(issue number), firstpage--lastpage.
-
 \bibitem[\protect\citeauthoryear{Baldus, Woodworth, Zuckerman, and
   Weiner}{Baldus et~al.}{2001}]{PerempChalMurder}
 Baldus, D.~C., G.~Woodworth, D.~Zuckerman, and N.~A. Weiner (2001).
@@ -92,11 +85,6 @@ Grosso, C.~M. and B.~O'Brien (2012).
 \newblock {A Stubborn Legacy: The Overwhelming Importance of Race in Jury
   Selection in 173 Post-Batson North Carolina Capital Trials}.
 \newblock {\em Iowa Law Review\/}~{\em 97}, 1531.
-
-\bibitem[\protect\citeauthoryear{Hampel}{Hampel}{1985}]{HamF85}
-Hampel, F.~R. (1985).
-\newblock The breakdown points of the mean combined with some rejection rules.
-\newblock {\em Technometrics\/}~{\em 27\/}(2), 95--107.
 
 \bibitem[\protect\citeauthoryear{Hans and Vidmar}{Hans and
   Vidmar}{1986}]{hansvidjudging}
@@ -180,6 +168,15 @@ Morehead, J.~W. (1994).
   selection.
 \newblock {\em DePaul Law Review\/}~{\em 43}, 625.
 
+\bibitem[\protect\citeauthoryear{{North Carolina Sentencing and Policy Advisory
+  Commission}}{{North Carolina Sentencing and Policy Advisory
+  Commission}}{2017}]{offenseclass}
+{North Carolina Sentencing and Policy Advisory Commission} (2017).
+\newblock {\em Classification of a Sample of Offenses}.
+\newblock North Carolina Judicial Branch.
+\newblock Accessed:
+  https://www.nccourts.gov/assets/documents/publications/Sample-list-2017.pdf?MAZluXuS0FWod4nFt7zXecJ8Ifu0qEZx.
+
 \bibitem[\protect\citeauthoryear{Page}{Page}{2005}]{page2005}
 Page, A. (2005).
 \newblock Batson's blind spot: Unconscious stereotyping and the peremptory
@@ -228,12 +225,6 @@ Sheppard, R. (2018).
 \newblock The Canadian Encyclopedia: Historica Canada.
 \newblock Accessed:
   https://www.thecanadianencyclopedia.ca/en/article/patriation-of-the-constitution.
-
-\bibitem[\protect\citeauthoryear{Stahel and Weisberg}{Stahel and
-  Weisberg}{1991}]{StaWW91}
-Stahel, W. and S.~Weisberg (1991).
-\newblock {\em Directions in Robust Statistics and Diagnostics, 2 vol.}
-\newblock N.~Y.: Springer-Verlag.
 
 \bibitem[\protect\citeauthoryear{{Statistics Canada}}{{Statistics
   Canada}}{2018}]{SaskatchewanCrime}

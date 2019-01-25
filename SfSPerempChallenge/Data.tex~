@@ -137,7 +137,9 @@ large.
 Perhaps the least regular data in this data set was that of the charge text. Due to the lack of any codebook guidance about the
 standard way of recording a charge in a trial, identical charges were recorded in numerous ways. The first method used to combat
 this was removing non-alphnumeric characters, extra spaces, and converting all charges to lower case. This still left a
-considerable variation, however. Consider the charge of breaking and entering, for example, 
+considerable variation, however. Consider the charge of breaking and entering, for example,
+
+This tree is visualized in \ref{app:charge} in \ref{fig:chargetree}
 
 \subsubsection{Variable Level Renaming}
 

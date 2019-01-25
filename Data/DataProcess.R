@@ -854,3 +854,22 @@ for (ii in 1:length(tree.clean)) {
         }
     }
 }
+
+## a small example tree
+firstx <- 0.33
+secondx <- 0.75
+firsty <- c(0.25,0.75)
+secondy <- c(0.125,0.375,0.625,0.875)
+wd <- 0.3
+hg <- 0.1
+grid.newpage()
+grid.rect(x = firstx, y = firsty, width = wd, height = hg)
+grid.rect(x = secondx, y = secondy, width = wd, height = hg)
+grid.lines(x = c(0,firstx-wd/2), y = c(0.5,firsty[1]))
+grid.lines(x = c(0,firstx-wd/2), y = c(0.5,firsty[2]))
+grid.lines(x = c(firstx+wd/2,secondx-wd/2), y = c(firsty[2],secondy[3]))
+grid.lines(x = c(firstx+wd/2,secondx-wd/2), y = c(firsty[2],secondy[4]))
+grid.lines(x = c(firstx+wd/2,secondx-wd/2), y = c(firsty[1],secondy[1]))
+grid.lines(x = c(firstx+wd/2,secondx-wd/2), y = c(firsty[1],secondy[2]))
+grid.text(label = c("sex(?=.*offense)", "sex(?=.offend)"), x = firstx, y = firsty)
+grid.text(label = c("first|1","second|2","regis","addr"), x = secondx, y = rev(secondy))

@@ -2,6 +2,7 @@
  "myReferences"
  (lambda ()
    (LaTeX-add-bibitems
+    "offenseclass"
     "kullback1951"
     "readxl"
     "sheppard2018"
