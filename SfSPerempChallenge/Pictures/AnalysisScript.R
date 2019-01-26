@@ -29,8 +29,6 @@ NorthCarFile <- paste0(ThesisDir,
 PhillyFile <- paste0(ThesisDir,
                      "/Voir Dire Data & Codebook/capital_venires.csv")
 
-picOut <- "c:/Users/Chris/Documents/ETH Zurich/Thesis/SfSPerempChallenge/Pictures/"
-
 ## next the factor level codes as given in the codebook and regularized here
 ## regularization: - political affiliation "N" replaced with "I" for all entries
 LevRace <- sort(c("Asian","Black","Hisp","NatAm","Other","U","White"))
@@ -211,7 +209,7 @@ parcoordrace <- function() {
 ## the better version of the above function, takes an arbitrary three-way contingency table and plots the different conditional
 ## probabilities of the desired margins
 parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE,
-                           space = 0.025, testlines = FALSE, legendlevs = NULL, xtext = NULL, ...) {
+                           space = 0.025, testlines = FALSE, ...) {
     ## in the default case (no table provided), look at the key race relationships, as these motivated this study
     if (is.null(tabl)) {
         ## for cleanliness, remove those jurors with unknown races
@@ -309,10 +307,8 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
     axis(1, at = outrpos, labels = tabnames[[nontrace[2]]], xpd = NA,
          tick = FALSE, pos = -0.08*max(condout[,,]))
     ## provide the axis title to give context
-    if (is.null(xtext)) xtext <- paste0("Inner label: ", names(tabnames)[nontrace[1]],
-                                        " | Outer label: ", names(tabnames)[nontrace[2]])
     axis(1, at = mean(range(xpos)), xpd = NA, tick = FALSE, pos = -0.15*max(condout),
-         labels = xtext)
+         labels = paste0("Inner label: ", names(tabnames)[nontrace[1]], " | Outer label: ", names(tabnames)[nontrace[2]]))
     ## add testing lines if desired
     if (testlines) {
         ## get x positions
@@ -340,9 +336,8 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
             ##lines(xpos, meanline + sqrt((meanline/(3*marsums))*(1-3*meanline)), lty = 2)
             }))
     }
-    ## add a legend to explain the colours
-    if (is.null(legendlevs)) legendlevs <- tabnames[[tracemar]][deslev]
-    legend(x = "top", horiz = TRUE, legend = legendlevs, col = temPal, inset = -0.04, cex = 0.7,
+    ## add a legen to explain the colours
+    legend(x = "top", horiz = TRUE, legend = tabnames[[tracemar]][deslev], col = temPal, inset = -0.04, cex = 0.7,
            fill = temPal, bg = "white", xpd = NA)
     ##invisible(sapply((0:4)*0.05, function(val) lines(x = c(0,max(xpos)+1), y = rep(val,2), col = "white", lwd = 2)))
 }
@@ -578,9 +573,7 @@ par(mfrow = c(1,1))
 ## instead
 ## begin with an overall plot displaying the data at a high level
 parcoordrace()
-parcoordracev2(deslev = c(1,2,5), legendlevs = c("Cause","Defence","Prosecution"),
-               main = "Conditional Probability of Removal by Race and Race of Defendant",
-               xlab = "Inner label: defendant race | outer label: venire member race")
+parcoordracev2(deslev = c(1,2,5))
 ## but are these differences significant?
 parcoordracev2(deslev = c(1,2,5), testlines = TRUE)
 

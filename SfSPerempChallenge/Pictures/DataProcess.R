@@ -871,5 +871,7 @@ grid.lines(x = c(firstx+wd/2,secondx-wd/2), y = c(firsty[2],secondy[3]))
 grid.lines(x = c(firstx+wd/2,secondx-wd/2), y = c(firsty[2],secondy[4]))
 grid.lines(x = c(firstx+wd/2,secondx-wd/2), y = c(firsty[1],secondy[1]))
 grid.lines(x = c(firstx+wd/2,secondx-wd/2), y = c(firsty[1],secondy[2]))
-grid.text(label = c("sex(?=.*offense)", "sex(?=.offend)"), x = firstx, y = firsty)
-grid.text(label = c("first|1","second|2","regis","addr"), x = secondx, y = rev(secondy))
+grid.text(label = c("sex(?=.*offend)", "sex(?=.offense)"), x = firstx, y = firsty,
+          gp = gpar(fontsize = 16))
+grid.text(label = c("first|1","second|2","regis","addr"), x = secondx, y = rev(secondy),
+          gp = gpar(fontsize = 16))

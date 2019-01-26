@@ -3,6 +3,13 @@
  (lambda ()
    (LaTeX-add-labels
     "c:analysis"
+    "sec:extremes"
+    "tab:rejbounds"
+    "sec:effvis"
+    "fig:mosaicdefrace"
+    "fig:firstparcoord"
+    "fig:raceparcoord"
+    "subsec:mobile"
     "sec:casesum"
     "sec:mods"
     "fig:raceraceparcoord"

@@ -5,7 +5,8 @@
     "app:complement"
     "app:proccode"
     "app:irregs"
-    "add:charge"
-    "fig:chargetree"))
+    "app:charge"
+    "fig:chargetree"
+    "app:analysis"))
  :latex)
 

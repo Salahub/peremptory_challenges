@@ -30,21 +30,25 @@
 \contentsline {subsection}{\numberline {3.3.1}Methodology}{19}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Cleaning}{19}{subsection.3.3.2}
 \contentsline {chapter}{\numberline {4}Analysis}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Case Level Summary}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}Modelling}{21}{section.4.2}
-\contentsline {chapter}{\numberline {5}Summary}{25}{chapter.5}
-\contentsline {section}{\numberline {5.1}Future Work}{25}{section.5.1}
+\contentsline {section}{\numberline {4.1}Extremes of Partiality}{21}{section.4.1}
+\contentsline {section}{\numberline {4.2}Developing an Effective Visualization of Conditional Probability}{22}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}The Mobile Plot}{24}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}Case Level Summary}{25}{section.4.3}
+\contentsline {section}{\numberline {4.4}Modelling}{26}{section.4.4}
+\contentsline {chapter}{\numberline {5}Summary}{31}{chapter.5}
+\contentsline {section}{\numberline {5.1}Future Work}{31}{section.5.1}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Bibliography}}{27}{section*.14}
+\contentsline {chapter}{\numberline {}{Bibliography}}{33}{section*.14}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {A}Complementary information}{31}{appendix.A}
-\contentsline {section}{\numberline {A.1}Including \textsf {R}$\tmspace +\thickmuskip {.2777em}$code with verbatim}{31}{section.A.1}
-\contentsline {section}{\numberline {A.2}Data Processing Code}{32}{section.A.2}
-\contentsline {section}{\numberline {A.3}Jury Sunshine Irregularities}{47}{section.A.3}
-\contentsline {section}{\numberline {A.4}Jury Sunshine Charge Classification}{47}{section.A.4}
-\contentsline {section}{\numberline {A.5}Using Sweave to include \textsf {R}$\tmspace +\thickmuskip {.2777em}$code (and more) in your report}{47}{section.A.5}
-\contentsline {chapter}{\numberline {B}Yet another appendix....}{49}{appendix.B}
-\contentsline {section}{\numberline {B.1}Description}{49}{section.B.1}
-\contentsline {section}{\numberline {B.2}Tables}{49}{section.B.2}
+\contentsline {chapter}{\numberline {A}Complementary information}{37}{appendix.A}
+\contentsline {section}{\numberline {A.1}Including \textsf {R}$\tmspace +\thickmuskip {.2777em}$code with verbatim}{37}{section.A.1}
+\contentsline {section}{\numberline {A.2}Data Processing Code}{38}{section.A.2}
+\contentsline {section}{\numberline {A.3}Jury Sunshine Irregularities}{53}{section.A.3}
+\contentsline {section}{\numberline {A.4}Jury Sunshine Charge Classification}{53}{section.A.4}
+\contentsline {section}{\numberline {A.5}Analysis Code}{53}{section.A.5}
+\contentsline {section}{\numberline {A.6}Using Sweave to include \textsf {R}$\tmspace +\thickmuskip {.2777em}$code (and more) in your report}{71}{section.A.6}
+\contentsline {chapter}{\numberline {B}Yet another appendix....}{73}{appendix.B}
+\contentsline {section}{\numberline {B.1}Description}{73}{section.B.1}
+\contentsline {section}{\numberline {B.2}Tables}{73}{section.B.2}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Epilogue}}{51}{section*.16}
+\contentsline {chapter}{\numberline {}{Epilogue}}{75}{section*.16}

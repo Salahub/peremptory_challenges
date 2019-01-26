@@ -1,9 +1,141 @@
 \chapter{Analysis} \label{c:analysis}
 
 With this data cleaned and processed, questions can now be posed and addressed through analysis. A few obvious questions come to
-mind, considering the previous work done on this subject. The first is whether the results found by previous analyses which did
-not use statistics are statistically significant. Additionally, we may wonder whether the most common arguments posed in favour of
-peremptory challenge are satisfied in this data.
+mind, considering the previous work done on this subject and the modern controversy surrounding it. First, there is the obvious
+question of not only the possible racial imbalance of peremptory challenge use, but how this imbalance changes with the race of
+the defendant. In the Gerald Stanley trial, for example, the critical aspect of the trial was not the use of peremptory challenges
+in abstract, but how their use interacted with the race of Stanley.
+
+Aside from these investigations, we may wonder whether the most common arguments posed in favour of peremptory challenge are
+satisfied in this data. As discussed in \ref{sec:roleper}, there are two primary arguments. The first is the argument that the
+pereptory challenge is necessary to remove the ``extremes of partiality'' present in the venire for both sides, that is to remove
+the most extremely biased jurors. This goal is complemented by the ability of the judge to remove jurors with cause, which is also
+designed to remove those jurors with extreme bias. The second argument is the creation of a jury which is mutually acceptable to
+both parties in the trial.
+
+\section{Extremes of Partiality} \label{sec:extremes}
+
+While creating a quantitative judgement on the acceptability of a jury is somewhat difficult, measuring the extremality or
+abnormality of observations is a critical function of statistics. With this in mind, a very simple calculation was performed. The
+central claim of the advocates of the use of peremptory challenge is that it is only used to remove extreme cases of bias. If that
+is so, then the proportion of venire members removed by peremptory challenge should reflect this concept.
+
+Of course, this cannot be rigorously tested, as there is no way of knowing the true distribution of bias among jurors. That does
+not mean nothing can be said, however. As \cite{nisbett1985} notes, there is a tendency of people to guess that a distribution is
+normal when asked to guess the distribution of social attitudes\footnote{This problem is not helped by the notoriety of the normal
+  distribution, as it is commonly the distribution used when performing tests (likely due to the utility of the Central Limit
+  Theorem) and generating visualizations of a general distribution}. Additionally, mathematical constraints such as the Chebyshev
+inequality (see \cite{chebyshev}) provide an upper limit to the dispersion of any distribution.
+
+This study suggests that it would not be unreasonable to view the overall causal and peremptory challenge rates as the tails of a
+normal distribution, and the Chebyshev limit gives an estimate of the extremality of rejections given a maximally dispersed
+distribution of opinions. Table \ref{tab:rejbounds} provides a summary of the rejection rates of the different data sets and the
+implied standard distance from the centre that these imply for symmetric rejection.
+
+\begin{table}
+  \centering
+  \label{tab:rejbounds}
+  \caption[Implied Rejection Boundaries]{The implied statistical extremity bound for symmetric rejection in the datasets given
+    different distributional assumptions}
+  \begin{tabular}{|c|c|c|c|} \hline
+    Data & Rejection Rate & Normal & Chebyshev Limit \\ \hline
+    Sunshine & 0.434 & 0.781 & 1.517 \\
+    Stubborn & & & \\
+    Philadelphia & & & \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Obviously, it is not possible to comment with authority on the presence of partiality in the population. Indeed, given the large
+divide that appears to be present politically in the United States and the rest of the Western world today, it may be easier to
+argue for a maximally spread distribution than a centralized one. Regardless of this difficulty, it is difficult to justify that
+43\% of a dataset is ``extreme'' statistically. In the normal case, this suggests that the rejection boundary is less than one
+standard deviation from the mean, i.e. that the typically sampled point will be too extreme. The Chebyshev limit is not much
+better, suggesting that the rejection boundary is at most 1.5 standard deviations from the mean in either direction.
+
+This low rejection boundary given any distribution suggests that the peremptory challenge is not simply being used to remove
+``extremes of partiality.'' Rather, it seems that the argument used to support and justify the practice cannot be reconciled well
+with the data, suggesting systemic over-use relative to its supported use. This leads naturally to the question of how exactly
+this legal instrument is over-used, and why.
+
+\section{Developing an Effective Visualization of Conditional Probability} \label{sec:effvis}
+
+One deficiency of the results of the previous investigations was a failure to generate compelling and effective visualizations of
+the trends of peremptory challenges for different racial groups. While such visualizations are not necessarily critical to
+analysis, they can often be incredibly useful to not only communicate data, but to motivate further investigations and models in a
+way which is clearer and more intuitive than a simple table of values.
+
+The first attempt at such a visualization was the mosaic plot (as discussed by \cite{friendly1994}) using the \texttt{mosaicplot}
+function in the \texttt{graphics} package in \Rp (\cite{Rcite}). Figure \ref{fig:mosaicdefrace} displays this first approach with
+disposition related to the simplified races of both the defendant and the venire member.
+
+\begin{figure}[!h]
+  \centering
+  \epsfCfile{0.7}{Pictures/FirstMosaic}
+  \caption[Mosaic Plot of Defendant and Venire Member Race]{A mosaic plot of the simplified defendant and venire member race and
+    their relation to the disposition of the venire member.}
+  \label{fig:mosaicdefrace}
+\end{figure}
+
+This visualization suffers from a number of limitations, some of which are obvious, and others of which are best explained by
+the hierarchy of accuracy of visual perception provided in \cite{cleveland1987}. The obvious limitations are the lack of ability
+to perceive the differences for the smallest groups, which are compressed enough that their error is nearly
+imperceptible. Additionally, the ordering of the axes is incredibly important in how the different areas appear visually, and
+comparing the different areas is unclear if any specific comparisons are to be made.
+
+This may be somewhat unsurprising. \cite{cleveland1987}, in their ranking of visual displays by accuracy of perception place area
+low in the hierarchy, below angles, lengths, and positions along common scales. In \textit{The Visual Display of Quantitative
+  Information}, \citeauthor{VisualDisplayQuant} gives two more sources of possible criticism of the mosaic plot as displayed in
+Figure \ref{fig:mosaicdefrace}: the concept of data-ink and the dimensionality of visualization.
+
+Of the mosaic plot, one may ask how much of the ``ink'', or structure, on the page is necessary to communicate the information
+present. If one has a desire to ``above all else show the data'' as Tufte does, then these large shaded rectangles, which are
+likely not perceived accurately according to \citeauthor{cleveland1987}, seem unnecessary compared to a simpler
+visualization. This is the concept of ``data-ink,'' to reduce the complexity of the structures and chart used to display the
+data.
+
+Hand-in-hand with this concept for this plot is \citeauthor{VisualDisplayQuant}'s rule that the dimensionality of the
+visualization should not be larger than the data. In the case of the mosaic plot this is not strictly violated, as the marginal
+lengths used to create the areas reflect a measurement of the data. Nonetheless, the areas of each rectangle correspond to a
+simple count in a contingency table, and perhaps an area is not the best way to represent such a singular value.
+
+\begin{figure}[!h]
+  \centering
+  \epsfCfile{0.7}{FirstParCoord}
+  \caption[First Parallel Coordinate Attempt]{The first attempt at a parallel coordinate plot attempted. Note that the cramped
+    display and unclear definition of the axis make interpretation even less intuitive than the mosaic plot, suggesting that this
+    first attempt was a decided failure.}
+  \label{fig:firstparcoord}
+\end{figure}
+
+Motivated by these concepts, parallel coordinates (as in \cite{wegman1990}) were used to visualize the data next, as can be seen
+in Figure \ref{fig:firstparcoord}. This attempted visualization is arguably more difficult to interpret than the mosaic plot. It
+is cluttered by the parallel coordinate lines, the bars emanating from each point obscure the fact that the end point of the bar
+is the only feature of interest, and the meaning of the black reference line is entirely unclear without extensive
+explanation. Finally, by viewing the distribution of each disposition, the wrong conditional density is being examined,
+$P(Race,Race Defendant|Disposition)$. Multiple edits and re-conceptualizations of the concept eventually resulted in Figure
+\ref{fig:raceparcoord}, which will be called the ``mobile plot'' due to its passing resemblance to the mobiles hung above babies'
+cribs.
+
+An explanation of the features and encoding used in the mobile plot is presented in \ref{subsec:mobile}.
+
+\begin{figure}[!h]
+  \centering
+  \epsfCfile{0.7}{RaceParCoord}
+  \caption[The ``Mobile Plot'']{The ``mobile plot'' to display conditional distributions. Note that this plot is less cluttered
+    than either the mosaic plot or the first parallel coordinate plot, despite displaying more information. It is also more
+    efficient with data-ink, avoids displaying data with higher dimensions that the data itself, and uses redundant encoding of
+    information in visual cues which are high in the hierarchy presented by \cite{cleveland1987}.}
+  \label{fig:raceparcoord}
+\end{figure}
+
+\subsection{The Mobile Plot} \label{subsec:mobile}
+
+The primary data encoding method of the mobile plot is length. All lengths are anchored to the black horizontal lines, the
+vertical positions of which represent the expected values for the attached vertical lines, and the widths of which represent the
+relative proportion of the data represented by the marked combinaton on the horizontal axis. The vertical axis gives the condition
+probability of a particular outcome, that is to say the distribution of outcomes given the combination indicated on the horizontal
+axis.
 
 \section{Case Level Summary} \label{sec:casesum}
 

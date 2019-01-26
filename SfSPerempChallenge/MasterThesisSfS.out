@@ -23,18 +23,22 @@
 \BOOKMARK [2][-]{subsection.3.3.1}{Methodology}{section.3.3}% 23
 \BOOKMARK [2][-]{subsection.3.3.2}{Cleaning}{section.3.3}% 24
 \BOOKMARK [0][-]{chapter.4}{Analysis}{}% 25
-\BOOKMARK [1][-]{section.4.1}{Case Level Summary}{chapter.4}% 26
-\BOOKMARK [1][-]{section.4.2}{Modelling}{chapter.4}% 27
-\BOOKMARK [0][-]{chapter.5}{Summary}{}% 28
-\BOOKMARK [1][-]{section.5.1}{Future Work}{chapter.5}% 29
-\BOOKMARK [0][-]{section*.14}{Bibliography}{}% 30
-\BOOKMARK [0][-]{appendix.A}{Complementary information}{}% 31
-\BOOKMARK [1][-]{section.A.1}{Including Rcode with verbatim}{appendix.A}% 32
-\BOOKMARK [1][-]{section.A.2}{Data Processing Code}{appendix.A}% 33
-\BOOKMARK [1][-]{section.A.3}{Jury Sunshine Irregularities}{appendix.A}% 34
-\BOOKMARK [1][-]{section.A.4}{Jury Sunshine Charge Classification}{appendix.A}% 35
-\BOOKMARK [1][-]{section.A.5}{Using Sweave to include Rcode \(and more\) in your report}{appendix.A}% 36
-\BOOKMARK [0][-]{appendix.B}{Yet another appendix....}{}% 37
-\BOOKMARK [1][-]{section.B.1}{Description}{appendix.B}% 38
-\BOOKMARK [1][-]{section.B.2}{Tables}{appendix.B}% 39
-\BOOKMARK [0][-]{section*.16}{Epilogue}{}% 40
+\BOOKMARK [1][-]{section.4.1}{Extremes of Partiality}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.2}{Developing an Effective Visualization of Conditional Probability}{chapter.4}% 27
+\BOOKMARK [2][-]{subsection.4.2.1}{The Mobile Plot}{section.4.2}% 28
+\BOOKMARK [1][-]{section.4.3}{Case Level Summary}{chapter.4}% 29
+\BOOKMARK [1][-]{section.4.4}{Modelling}{chapter.4}% 30
+\BOOKMARK [0][-]{chapter.5}{Summary}{}% 31
+\BOOKMARK [1][-]{section.5.1}{Future Work}{chapter.5}% 32
+\BOOKMARK [0][-]{section*.14}{Bibliography}{}% 33
+\BOOKMARK [0][-]{appendix.A}{Complementary information}{}% 34
+\BOOKMARK [1][-]{section.A.1}{Including Rcode with verbatim}{appendix.A}% 35
+\BOOKMARK [1][-]{section.A.2}{Data Processing Code}{appendix.A}% 36
+\BOOKMARK [1][-]{section.A.3}{Jury Sunshine Irregularities}{appendix.A}% 37
+\BOOKMARK [1][-]{section.A.4}{Jury Sunshine Charge Classification}{appendix.A}% 38
+\BOOKMARK [1][-]{section.A.5}{Analysis Code}{appendix.A}% 39
+\BOOKMARK [1][-]{section.A.6}{Using Sweave to include Rcode \(and more\) in your report}{appendix.A}% 40
+\BOOKMARK [0][-]{appendix.B}{Yet another appendix....}{}% 41
+\BOOKMARK [1][-]{section.B.1}{Description}{appendix.B}% 42
+\BOOKMARK [1][-]{section.B.2}{Tables}{appendix.B}% 43
+\BOOKMARK [0][-]{section*.16}{Epilogue}{}% 44

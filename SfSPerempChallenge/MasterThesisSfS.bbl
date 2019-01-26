@@ -48,6 +48,14 @@ Burgess, G. (1992).
 \newblock The divine right of kings reconsidered.
 \newblock {\em The English Historical Review\/}~{\em 107\/}(425), 837--861.
 
+\bibitem[\protect\citeauthoryear{Cleveland and McGill}{Cleveland and
+  McGill}{1987}]{cleveland1987}
+Cleveland, W.~S. and R.~McGill (1987).
+\newblock Graphical perception: The visual decoding of quantitative information
+  on graphical displays of data.
+\newblock {\em Journal of the Royal Statistical Society. Series A
+  (General)\/}~{\em 150\/}(3), 192--229.
+
 \bibitem[\protect\citeauthoryear{{Constitution of Canada}}{{Constitution of
   Canada}}{1982}]{canadaconst}
 {Constitution of Canada} (1982).
@@ -71,6 +79,12 @@ Ford, R. (2010).
 Forsyth, W. (1994).
 \newblock {\em History of Trial by Jury\/} (2 ed.).
 \newblock Lawbook Exchange.
+
+\bibitem[\protect\citeauthoryear{Friendly}{Friendly}{1994}]{friendly1994}
+Friendly, M. (1994).
+\newblock Mosaic plots for multiway contingency tables.
+\newblock {\em Journal of the American Statistical Association\/}~{\em 89},
+  190--200.
 
 \bibitem[\protect\citeauthoryear{{Government of Saskatchewan}}{{Government of
   Saskatchewan}}{1998}]{saskjuryact}
@@ -168,6 +182,13 @@ Morehead, J.~W. (1994).
   selection.
 \newblock {\em DePaul Law Review\/}~{\em 43}, 625.
 
+\bibitem[\protect\citeauthoryear{Nisbett and Kunda}{Nisbett and
+  Kunda}{1985}]{nisbett1985}
+Nisbett, R.~E. and Z.~Kunda (1985).
+\newblock Perception of social distributions.
+\newblock {\em Journal of Personality and Social Psychology\/}~{\em 48\/}(2),
+  297--311.
+
 \bibitem[\protect\citeauthoryear{{North Carolina Sentencing and Policy Advisory
   Commission}}{{North Carolina Sentencing and Policy Advisory
   Commission}}{2017}]{offenseclass}
@@ -205,6 +226,11 @@ Quenneville, G. and J.~Warick (2018, February).
 \newblock CBC News.
 \newblock
   https://www.cbc.ca/news/canada/saskatoon/gerald-stanley-colten-boushie-verdict-1.4526313.
+
+\bibitem[\protect\citeauthoryear{{R Core Team}}{{R Core Team}}{2018}]{Rcite}
+{R Core Team} (2018).
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock Vienna, Austria: R Foundation for Statistical Computing.
 
 \bibitem[\protect\citeauthoryear{Richardson~Oakes and Davies}{Richardson~Oakes
   and Davies}{2016}]{oakes2016}
@@ -252,6 +278,11 @@ Sheppard, R. (2018).
 \newblock {Batson v. Kentucky}.
 \newblock Accessed: https://www.law.cornell.edu/supremecourt/text/476/79.
 
+\bibitem[\protect\citeauthoryear{Tufte}{Tufte}{2001}]{VisualDisplayQuant}
+Tufte, E.~R. (2001).
+\newblock {\em The Visual Display of Quantitative Information\/} (2 ed.).
+\newblock Graphics Press.
+
 \bibitem[\protect\citeauthoryear{Van~Dyke}{Van~Dyke}{1977}]{vandykejurysel}
 Van~Dyke, J.~M. (1977).
 \newblock {\em Jury Selection Procedures: Our Uncertain Commitment to
@@ -263,6 +294,18 @@ Van~Dyke, J.~M. (1977).
 von Moschzisker, R. (1921).
 \newblock The historic origin of trial by jury.
 \newblock {\em University of Pennsylvania Law Review\/}~{\em 70\/}(1).
+
+\bibitem[\protect\citeauthoryear{Wegman}{Wegman}{1990}]{wegman1990}
+Wegman, E.~J. (1990).
+\newblock Hyperdimensional analysis using parallel coordinates.
+\newblock {\em Journal of the American Statistical Association\/}~{\em
+  85\/}(411), 664--675.
+
+\bibitem[\protect\citeauthoryear{Weisstein}{Weisstein}{2018}]{chebyshev}
+Weisstein, E.~W. (2018).
+\newblock Chebyshev inequality.
+\newblock MathWorld - A Wolfram Web Resource.
+\newblock Accessed: http://mathworld.wolfram.com/ChebyshevInequality.html.
 
 \bibitem[\protect\citeauthoryear{Wickham and Bryan}{Wickham and
   Bryan}{2018}]{readxl}
