@@ -43,6 +43,10 @@ whitePal <- c("steelblue","firebrick")
 crimePal <- brewer.pal(7, "Set1")
 dispPal <- brewer.pal(3, "Set2")
 
+## variable group constants
+sun.masttabvar <- c("Disposition","DefWhiteBlack", "WhiteBlack", "Gender", "PoliticalAffiliation",
+                                       "DefGender")
+
 
 ## FUNCTIONS ###########################
 
@@ -211,7 +215,7 @@ parcoordrace <- function() {
 ## the better version of the above function, takes an arbitrary three-way contingency table and plots the different conditional
 ## probabilities of the desired margins
 parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE,
-                           space = 0.025, testlines = FALSE, legendlevs = NULL, xtext = NULL, ...) {
+                           space = 0.025, testlines = FALSE, legendlevs = NULL, xtext = NULL, ymax = 0, ...) {
     ## in the default case (no table provided), look at the key race relationships, as these motivated this study
     if (is.null(tabl)) {
         ## for cleanliness, remove those jurors with unknown races
@@ -267,7 +271,8 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
     ##    rep(seq(-0.2, 0.2, length.out = dims[nontrace[1]]), times = dims[nontrace[2]])
     ##xpos <- cumsum(marsums)/sum(marsums)
     ## create the empty plot region
-    plot(NA, xlim = range(xpos_line), ylim = c(0, max(condout[,,])), xaxt = 'n', xlab = "",
+    yscl <- if (ymax == 0) max(condout) else ymax
+    plot(NA, xlim = range(xpos_line), ylim = c(0, yscl), xaxt = 'n', xlab = "",
          ylab = "Conditional Probability", ...)
     ## calculate and plot the horizontal lines at the mean values
     ## the old way: calculating the mean of the conditional distributions
@@ -304,14 +309,14 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
     axis(1, at = axpos, labels = rep("", length(axpos)))
     ## add the labels to the inner axis
     axis(1, at = axpos, tick = FALSE, labels = rep(tabnames[[nontrace[1]]], times = outern), cex.axis = 0.7,
-         pos = -0.02*max(condout))
+         pos = -0.02*yscl)
     ## add the labels for the outer axis
     axis(1, at = outrpos, labels = tabnames[[nontrace[2]]], xpd = NA,
-         tick = FALSE, pos = -0.08*max(condout[,,]))
+         tick = FALSE, pos = -0.08*yscl)
     ## provide the axis title to give context
     if (is.null(xtext)) xtext <- paste0("Inner label: ", names(tabnames)[nontrace[1]],
                                         " | Outer label: ", names(tabnames)[nontrace[2]])
-    axis(1, at = mean(range(xpos)), xpd = NA, tick = FALSE, pos = -0.15*max(condout),
+    axis(1, at = mean(range(xpos)), xpd = NA, tick = FALSE, pos = -0.15*yscl,
          labels = xtext)
     ## add testing lines if desired
     if (testlines) {
@@ -485,7 +490,7 @@ back2backh <- function(data1, data2, cols = NULL, legnames = NULL, ...) {
     ## generate colours if none are provided
     if (is.null(cols)) cols <- c("steelblue","firebrick")
     ## create an empty plot area
-    plot(NA, xlim = c(-maxden, maxden), ylim = range(hist1$breaks), xlab = "Density", xaxt = 'n', ...)
+    plot(NA, xlim = c(-maxden, maxden), ylim = range(hist1$breaks), xlab = "Relative Frequency", xaxt = 'n', ...)
     ## add vertical separating line
     abline(v = 0)
     ## add an axis
@@ -580,9 +585,60 @@ par(mfrow = c(1,1))
 parcoordrace()
 parcoordracev2(deslev = c(1,2,5), legendlevs = c("Cause","Defence","Prosecution"),
                main = "Conditional Probability of Removal by Race and Race of Defendant",
-               xlab = "Inner label: defendant race | outer label: venire member race")
+               xtext = "Inner label: defendant race | outer label: venire member race")
 ## but are these differences significant?
 parcoordracev2(deslev = c(1,2,5), testlines = TRUE)
+
+## let's look at other effects by creating a master table which can be summarized in numerous ways
+sun.singdef <- MatRelevel(sun.raceknown[!grepl(",", sun.raceknown$DefGender),])
+sun.mastab <- table(sun.singdef[,sun.masttabvar])
+## break this apart by race and look at the interaction between political affiliation and defendant race
+sun.racelist <- lapply(dimnames(sun.mastab)[["WhiteBlack"]],
+                       function(race) apply(sun.mastab[,,race,,,], c("Disposition","DefWhiteBlack",
+                                                                     "PoliticalAffiliation"), sum))
+names(sun.racelist) <- dimnames(sun.mastab)[["WhiteBlack"]]
+## turn these into conditional probability tables and plot them on the same scale as the original plot
+invisible(lapply(names(sun.racelist), function(nm) {
+    tab <- sun.racelist[[nm]]
+    tab <- tab[,,c("Dem","Rep","Ind")]
+    dev.new()
+    parcoordracev2(tab, tracemar = 1, deslev = c(1,2,5), main = paste(nm, "Venire Members"), ymax = 0.2)
+}))
+
+## maybe we just have a weird coincidence, what about gender?
+parcoordracev2(apply(sun.mastab, c("Disposition","Gender","DefGender"), sum)[,c(1,2),c(1,2)], deslev = c(1,2,5))
+## gender and race?
+parcoordracev2(apply(sun.mastab, c("Disposition","Gender","WhiteBlack"), sum)[,c(1,2),], deslev = c(1,2,5))
+## race and politics?
+parcoordracev2(apply(sun.mastab, c("Disposition","PoliticalAffiliation","WhiteBlack"), sum)[,c("Dem", "Rep", "Ind"),],
+               deslev = c(1,2,5))
+
+## noticed pattern: the prosecution and judge seem to match, hans and vidmar suggest this could be due to experience (pg 71)
+## get lengths
+def.lens <- sapply(sun.trialsum$DefAttyName, length)
+def.lensyr <- sapply(sun.trialsum$DCYrLicensed, length)
+pros.lens <- sapply(sun.trialsum$ProsName, length)
+pros.lensyr <- sapply(sun.trialsum$PYrLicensed, length)
+## get experiences and plot them
+def.exp <- rep(as.numeric(format(sun.trialsum$DateOutcome, "%Y")), times = def.lensyr) - unlist(sun.trialsum$DCYrLicensed)
+pros.exp <- rep(as.numeric(format(sun.trialsum$DateOutcome, "%Y")), times = pros.lensyr) - unlist(sun.trialsum$PYrLicensed)
+back2backh(def.exp[def.exp < 100 & def.exp > 0 & !is.na(def.exp)],
+           pros.exp[pros.exp < 100 & pros.exp > 0 & !is.na(pros.exp)], legnames = c("Defence", "Prosecution"),
+           ylab = "Experience")
+## seems unlikely, the prosecution is less experienced if anything
+## or perhaps the prosecution has more contact with the same judges than the defence?
+pros.judge <- table(data.frame(Judge = rep(sun.trialsum$JName, times = sapply(sun.trialsum$ProsName, length)),
+                               Pros = unlist(sun.trialsum$ProsName)))
+def.judge <- table(data.frame(Judge = rep(sun.trialsum$JName, times = sapply(sun.trialsum$DefAttyName, length)),
+                              Def = unlist(sun.trialsum$DefAttyName)))
+
+## models:
+##   - try fitting separate logistic regressions Ho model: disp ~ def*pol Ha model: disp ~ def*pol*race
+##   - causal modelling: establishing a clear graph of relationships makes the assumptions used to justify adjustments very clear
+##   - look into logistic regression modelling again, the statistical rigour of the current tests is not a guarantee that they are
+##     good or valid, perhaps the less rigorous
+##   - try doing a gender v. def gender fit and plots (negative control or more interesting results)
+## do some more thought on models generally, motivate choices more, and be more specific about assumptions
 
 ## the independence we want to test here is that of (Race, Disposition)|(Defendant Race)
 ## filter the data to remove small categories
@@ -883,7 +939,7 @@ LawyerTends <- LawyerTends[LawyerOrder]
 plot(NA, xlim = c(1,length(LawyerTends)), ylim = c(0, max(unlist(LawyerTends), na.rm = TRUE)))
 invisible(lapply(1:length(LawyerTends), function(ind) {
     vals <- LawyerTends[[ind]]
-    points(rep(ind, length(vals$Defense)), vals$Defense, col = adjustcolor("steelblue", alpha.f = 0.1), pch = 20)
+    points(rep(ind, length(vals$Defense)), vals$Defense, col = adjustcolor("steelblue", alpha.f = 0.p1), pch = 20)
     points(rep(ind, length(vals$Prosecution)), vals$Prosecution, col = adjustcolor("red", alpha.f = 0.1), pch = 20)
 }))
 lines(1:length(LawyerTends), sapply(LawyerTends, function(el) mean(unlist(el), na.rm = TRUE)))
