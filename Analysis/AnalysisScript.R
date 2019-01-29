@@ -582,7 +582,8 @@ par(mfrow = c(1,1))
 ## these mosaic plots can be confusing, and seemed ineffective upon first presentation, try parallel axis plots
 ## instead
 ## begin with an overall plot displaying the data at a high level
-parcoordrace()
+mosaicplot(PerempStruck ~ WhiteBlack, data = sun.raceknown)
+## break it down by race and defendant race, as they were the motivation of this investigation
 parcoordracev2(deslev = c(1,2,5), legendlevs = c("Cause","Defence","Prosecution"),
                main = "Conditional Probability of Removal by Race and Race of Defendant",
                xtext = "Inner label: defendant race | outer label: venire member race")
