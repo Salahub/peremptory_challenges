@@ -65,15 +65,18 @@ police detectives. Such a role justified the practice of selecting the most ``tr
 This is contrasted by the modern jury, which performs no collection of evidence, and is meant to be composed of a panel of peers
 or ``equals'' of the accused sampled at random from the population, an idea which did not develop until 19th century Britain (see
 page 28 of \cite{hansvidjudging}) and was not applied using random sampling until some time later (see \cite{hoffman1997} and page
-29 of \cite{hansvidjudging}). The modern jury is meant to apply the law, as told to them by the judge, to the case at
+29 of \cite{hansvidjudging}). The modern jury is meant to apply the law, as told to them by the judge\footnotemark, to the case at
 hand. Evidence for guilt is then presented to the jury by the prosecutor, while evidence meant to exonerate is presented by the
 defence.
 
 The jury listens to the evidence, considers the law as presented by the judge, and must (typically) reach a unanimous
 decision of guilt or acquittal. Such a decision cannot be overturned by the judge of the court, and the judge must then determine
-sentencing based on the decision of the jury and the letter of the law. It should be clear that the jury therefore has tremendous
-power in the legal system. The philosophical and ethical justification for such power is well explained by \cite{woolley2018}, and
-best summarized by a quote from \cite{rvsherratt}:
+sentencing based on the decision of the jury and the letter of the law\footnotemark[\value{footnote}]. It should be clear that the
+jury therefore has tremendous power in the legal system. The philosophical and ethical justification for such power is well
+explained by \cite{woolley2018}, and best summarized by a quote from \cite{rvsherratt}:
+
+\footnotetext{\cite{hansvidjudging} note that this system actually varies throughout the US, though the jury and judge powers
+  described here are consistent across Canada.}
 
 \begin{quote}
   \centering
@@ -163,10 +166,18 @@ challenge, perhaps a critical and empirical examination of these assertions is w
 \section{History} \label{sec:history}
 
 Such an analysis might appropriately begin with a historical explanation of the peremptory challenge. Roughly, the presentation of
-the history of jury trials here follows the comprehensive and exhaustively referenced description provided by \cite{hoffman1997},
-with additional context and information certain details provided by \cite{vonmosch1921}, \cite{forsythhistory}, \cite{brown1978},
-and \cite{brown2000}. Information regarding the history of the Canadian system was provided by \cite{brown2000} and
-\cite{petersen1993}.
+the history of jury trials here follows the comprehensive and exhaustively referenced description provided by
+\cite{hoffman1997}. Two of the references \citeauthor{hoffman1997} uses extensively, \cite{hansvidjudging} and
+\cite{vandykejurysel}, provided useful context while specific details provided by \cite{vonmosch1921}, \cite{forsythhistory},
+\cite{brown1978}, and \cite{brown2000} helped to create a clearer picture of particular periods of jury history. Information
+regarding the history of the Canadian system was provided by \cite{brown2000} and \cite{petersen1993}. For an excellent
+exploration of the nineteenth century, a formative time for the development of challenge law, see \cite{brown2000}.
+
+It must be noted that certain important trials in the development of the peremptory challenge system have been excluded from the
+summary provided here. This was done deliberately, as the history presented here is only meant to present the practice of
+peremptory challenges throughout history in broad terms. All of the sources listed above are much more thorough, by merit of their
+singular focus on the analysis of the practice from a legal and historical perspective, while this work devotes more to empirical
+and statistical analysis.
 
 \subsection{Pre-English History}
 
@@ -216,25 +227,89 @@ challenges were originally the privilege of the Crown (see \cite{hoffman1997} an
 to the defence. As royal infallibilty grew out of favour, peremptory challenges seem to have been granted to the defence, rather
 than being removed entirely.
 
-Whatever the logic of the expansion of these challenges to the defence, their legal limits are recorded more precisely. From a
-maximum of 35 challenges allowed at their peak in the fourteenth century, the number of challenges allowed only decreased over
-time until their abolition in 1988 (discussed in \ref{sec:roleper}).
+Whatever the logic of the expansion of these challenges to the defence, their legal limits are recorded more
+precisely\footnote{see \cite{brown2000} for a detailed examination of the case law developing around challenges in the nineteenth
+  century}. From a maximum of 35 challenges allowed at their peak in the fourteenth century, the number of challenges allowed only
+decreased over time until their abolition in 1988 (discussed in \ref{sec:roleper}).
 
 \subsection{In American Law (ca. 1700--1986)}
 
-\cite{vonmosch1921}, \cite{hoffman1997}, and \cite{vandykejurysel} all agree that the early English settlers that came to North
+\cite{vonmosch1921}, \cite{hoffman1997}, and \cite{vandykejurysel} all agree that the early English colonists that came to North
 America accepted the jury system with peremptory challenges as common law well before the establishment of the United States of
-America. It is somewhat interesting then, that the United States constitution makes no mention of the practice. The Sixth and
-Seventh Amendments make mention of many things, including the right to public defense and an impartial jury from the district of
-the crime, but makes no mention of a right to the exercise of peremptory challenges (\cite{usconsitution}).
+America. \cite{hansvidjudging} note, however, that the difficulty of ocean travel and the overall indifference of appointed Crown
+representatives in the colonies led to an increased importance of the jury trial and the role of challenges to these early
+colonists as a way to exercise some degree of community control in the face of laws drafted in a distant country and implemented
+by unsympathetic authorities\footnote{For more detail on this development among the early colonists, it is instructive to read
+  about the Zenger trial of 1734 (described form pages 33-35 of \cite{hansvidjudging}). Not only does this trial say a great deal
+  about the attitudes of the colonists at the time, but it also presents the idea of a jury assessing guilt and ``wrongness''
+  using their own conscience rather than just settling fact, the precept of the modern jury trial in Canada (see
+  \cite{woolley2018}) is based on this very idea}.
 
-As \cite{hansvidjudging} report on page 37, an original draft of the Sixth Amendment expressly included challenges, but the debate
-around their inclusion resulted in the removal of the requirement. They continue to say that at the time, even some proponents of
-the challenge considered the reference unnecessary, as the practice was implied by the text which remained, referring to a trial
-by an ``impartial'' jury. However, as \textit{Batson v. Kentucky} and \textit{Swain v. Alabama} have both shown
-(\cite{batsonvkentucky} and \cite{swainvalabama}), the modern interpretation of that particular phrase may preclude the use of
-peremptory challenges altogether.
+It is somewhat interesting then, that the United States constitution makes no mention of the practice of peremptory
+challenges. The Sixth and Seventh Amendments specify a great deal of the jury system, including the right to public defense and an
+impartial jury drawn from the district of the crime, but make no mention of a right to the exercise of peremptory challenges, or
+any challenges whatsoever (see \cite{usconstitution}).
 
-Regardless, 
+As \cite{hansvidjudging} report on page 37, an original draft of the Sixth Amendment expressly included challenges for cause, but
+the debate around their inclusion resulted in the removal of their mention. They continue to say that at the time, even some
+proponents of the challenge considered the reference unnecessary, as the practice was implied by the text which remained,
+referring to a trial by an ``impartial'' jury. Another result of these debates was the adoption of the extensive voir dire process
+which allows questions of general bias (page 37-38 of \cite{hansvidjudging}, though \cite{brown2000} notes that 1807 Burr trial
+was also highly significant in the development of general voire dire in the United States).
 
-\subsection{In Canadian Law (1867--1988)}
+Critically, there appears to have been no discussion around the inclusion of peremptory challenges (see \cite{hansvidjudging} and
+\cite{hoffman1997}). Despite the clear importance of the jury trial to the drafters of these amendments, it would seem the
+peremptory challenge was not considered to have anywhere near the same significance as judgement by an impartial jury of local
+peers\footnote{Indeed, as \textit{Batson v. Kentucky} and \textit{Swain v. Alabama} have both shown (\cite{batsonvkentucky} and
+  \cite{swainvalabama}), the modern interpretation of ``impartial'' may preclude the use of peremptory challenges
+  altogether}.
+
+Regardless of this, as \cite{brown2000} notes, the importance and use of challenges increased in the United States in the
+nineteenth century following American independence due to a desire to prevent the tyranny of the state. This desire also led to
+the adoption of a limited number peremptory challenges for the prosecution, rather than the possibly unlimited stand-asides that
+were allowed under British law to prosecutors (see \cite{vandykejurysel}, page 150).
+
+While the specific numbers of peremptory challenges allowed to both sides and the required motivation of challenges for cause have
+varied over time (see \cite{hoffman1997} and \cite{brown2000}), they have remained a feature of the American legal system, and
+numerous Supreme court cases (detailed by \cite{hoffman1997}) have merely served to make the use of challenges more specific and
+codified. It was not until \textit{Batson v. Kentucky} in 1986 that this system of challenges was drastically changed with the
+introduction of Batson challenges which would nullify peremptory ones.
+
+\subsection{In Canadian Law (ca 1800--2018)}
+
+Canadian law, inspired by a close relationship to both the British Crown and the United States, seems to have adopted elements of
+both legal systems in its development of peremptory challenges in the nineteenth century. As discussed by \cite{brown2000}, Canada
+adopted the American practice of replacing prosecutorial stand-asides in favour of the more egalitarian granting of limited
+peremptory challenges to both sides. Despite this, the Canadian voir dire process remains limited and much more similar to the
+British one, as does the system of challenges for cause (see page 48 of \cite{hansvidjudging}).
+
+One perfect demonstration of this departure is the Canadian constitution. As in the United States, the Canadian consitution fails
+to mention challenges. The British North America Act of 1867 (see \cite{canadaconst}), which established Canada's independence from
+England, makes no mention of legal rights of the accused, indicating a deference to legal precedent as in England. It is not until
+the Charter of Rights and Freedoms in 1982\footnote{This was the year of patriation of the Canadian constitution. As
+  independence was granted by the Britsh Parliament, the British North America Act outlining Canada's laws was a British law and
+  changing it was the prerogative of the British Parliament rather than the Canadian one. It was not until the Consitution Act of
+  1982 that the Canadian constitution became a Canadian law. For a more detailed history see \cite{sheppard2018}} that such rights
+were guaranteed in a founding document. Notably, its language is considerably more vague than the United States Sixth and Seventh
+Amendments, guaranteeing only ``the benefit of trial by jury'' (see \cite{canadaconst}).
+
+This ``eclectic'' incorporation of both American and English case law, to borrow the term used by \cite{brown2000}, led to a
+system somewhere between the English and American systems, but decidedly closer in operation to the English system. It should be
+noted, however, that as Canada grew more populous in the twentieth century and developed a greater legal precedent and more
+experienced judges of its own, this reliance upon its former colonial master and its more powerful southern neighbour seems to
+have diminished in importance. Viewing Supreme court rulings from recent decades reveals a great deal of reference to Canadian
+legal precedent rather than to the precedent of the other two countries.
+
+\section{Summary}
+
+The peremptory challenge has existed in some form since at least the fourteenth century. After its inception in England, it spread
+with English conquest and colonization, with new colonies and local governments accepting the practice based primarily on the
+adoption of English legal precedent. Despite its abandonment by the English in 1988, it has remained highly prominent in the
+United States, accompanied by a voir dire process far more thorough and invasive than that performed in the English or Canadian
+jury selection process.
+
+Though the practice has historical longevity, it is not guaranteed by the constitutions of Canada or the United States, and has
+been a practice of considerable legal debate and significant change throughout its history. In England this culminated in the
+Cyprus sky trial, in the United States in \textit{Batson v. Kentucky} and \textit{Swain v. Alabama}, and in Canada in
+\textit{R. v. Stanley}: the Gerald Stanley  murder trial. As a consequence, the broad agreement of the importance and propriety of
+a jury has conferred little consensus on the place peremptory challenges in the selection of juries.

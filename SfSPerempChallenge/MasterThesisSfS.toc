@@ -5,13 +5,13 @@
 \contentsline {section}{\numberline {2.1}Jury Selection Procedures}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}The Role of the Jury}{4}{section.2.2}
 \contentsline {section}{\numberline {2.3}Modern Peremptory Challenge Controversy}{5}{section.2.3}
-\contentsline {section}{\numberline {2.4}The Role of the Peremptory Challenge}{6}{section.2.4}
+\contentsline {section}{\numberline {2.4}The Role of the Peremptory Challenge}{7}{section.2.4}
 \contentsline {section}{\numberline {2.5}History}{7}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Pre-English History}{7}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.1}Pre-English History}{8}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}In English Law (1066--1988)}{8}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}In American Law (ca. 1700--1986)}{9}{subsection.2.5.3}
 \contentsline {subsection}{\numberline {2.5.4}In Canadian Law (ca 1800--2018)}{10}{subsection.2.5.4}
-\contentsline {section}{\numberline {2.6}Summary}{10}{section.2.6}
+\contentsline {section}{\numberline {2.6}Summary}{11}{section.2.6}
 \contentsline {chapter}{\numberline {3}Data}{13}{chapter.3}
 \contentsline {section}{\numberline {3.1}Jury Sunshine Project}{13}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Methodology}{13}{subsection.3.1.1}
@@ -31,10 +31,11 @@
 \contentsline {subsection}{\numberline {3.3.2}Cleaning}{19}{subsection.3.3.2}
 \contentsline {chapter}{\numberline {4}Analysis}{21}{chapter.4}
 \contentsline {section}{\numberline {4.1}Extremes of Partiality}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}Developing an Effective Visualization of Conditional Probability}{22}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}The Mobile Plot}{24}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Case Level Summary}{25}{section.4.3}
-\contentsline {section}{\numberline {4.4}Modelling}{26}{section.4.4}
+\contentsline {section}{\numberline {4.2}The Impact of Race}{22}{section.4.2}
+\contentsline {section}{\numberline {4.3}Developing an Effective Visualization of Conditional Probability}{23}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}The Mobile Plot}{24}{subsection.4.3.1}
+\contentsline {section}{\numberline {4.4}Case Level Summary}{25}{section.4.4}
+\contentsline {section}{\numberline {4.5}Modelling}{26}{section.4.5}
 \contentsline {chapter}{\numberline {5}Summary}{31}{chapter.5}
 \contentsline {section}{\numberline {5.1}Future Work}{31}{section.5.1}
 \vspace {.5\baselineskip }

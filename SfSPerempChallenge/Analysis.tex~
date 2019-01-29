@@ -131,11 +131,14 @@ An explanation of the features and encoding used in the mobile plot is presented
 
 \subsection{The Mobile Plot} \label{subsec:mobile}
 
-The primary data encoding method of the mobile plot is length. All lengths are anchored to the black horizontal lines, the
-vertical positions of which represent the expected values for the attached vertical lines, and the widths of which represent the
-relative proportion of the data represented by the marked combinaton on the horizontal axis. The vertical axis gives the condition
-probability of a particular outcome, that is to say the distribution of outcomes given the combination indicated on the horizontal
-axis.
+The mobile plot consists of multiple grouped vertical lines anchored at one end to horizontal black lines, and at the other to
+points. Information is encoded using length, colour, and position relative to a common scale. The vertical axis is meant to show
+the value of a continuous variable, while the horizontal axis shows the value of a, possibly grouped, categorical variable. It can
+be used to display the relationship between three categorical variables and a continuous variable in a meaningful two-dimensional
+plot.
+
+To show the grouping of categories on the horizontal axis, position is used. Those categorical levels which are grouped by some
+separate categorical variable are placed closer to each other than those which are not in the same group. Each categorical level
 
 \section{Case Level Summary} \label{sec:casesum}
 

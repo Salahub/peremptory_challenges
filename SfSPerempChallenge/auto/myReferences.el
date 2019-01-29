@@ -2,6 +2,8 @@
  "myReferences"
  (lambda ()
    (LaTeX-add-bibitems
+    "perempchallaw"
+    "jebvalabama"
     "wegman1990"
     "cleveland1987"
     "friendly1994"

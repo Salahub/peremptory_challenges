@@ -86,6 +86,12 @@ Friendly, M. (1994).
 \newblock {\em Journal of the American Statistical Association\/}~{\em 89},
   190--200.
 
+\bibitem[\protect\citeauthoryear{{Government of Canada}}{{Government of
+  Canada}}{1985}]{perempchallaw}
+{Government of Canada} (1985).
+\newblock Criminal code section 634.
+\newblock https://laws-lois.justice.gc.ca/eng/acts/C-46/section-634.html.
+
 \bibitem[\protect\citeauthoryear{{Government of Saskatchewan}}{{Government of
   Saskatchewan}}{1998}]{saskjuryact}
 {Government of Saskatchewan} (1998).
@@ -277,6 +283,12 @@ Sheppard, R. (2018).
 {Supreme Court of the United States} (1986).
 \newblock {Batson v. Kentucky}.
 \newblock Accessed: https://www.law.cornell.edu/supremecourt/text/476/79.
+
+\bibitem[\protect\citeauthoryear{{Supreme Court of the United States}}{{Supreme
+  Court of the United States}}{1993}]{jebvalabama}
+{Supreme Court of the United States} (1993).
+\newblock {J.E.B. v. Alabama}.
+\newblock Accessed: https://supreme.justia.com/cases/federal/us/511/127/.
 
 \bibitem[\protect\citeauthoryear{Tufte}{Tufte}{2001}]{VisualDisplayQuant}
 Tufte, E.~R. (2001).
