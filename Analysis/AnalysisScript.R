@@ -13,8 +13,7 @@ library(eikosograms)
 library(RColorBrewer)
 library(stringr)
 library(tm)
-library(lme4)
-library(lmerTest)
+library(MultinomialCI)
 
 ## CONSTANTS ###########################
 
@@ -215,7 +214,8 @@ parcoordrace <- function() {
 ## the better version of the above function, takes an arbitrary three-way contingency table and plots the different conditional
 ## probabilities of the desired margins
 parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE,
-                           space = 0.025, testlines = FALSE, legendlevs = NULL, xtext = NULL, ymax = 0, ...) {
+                           space = 0.025, testlines = FALSE, legendlevs = NULL, xtext = NULL, ymax = 0,
+                           alpha = 0.05, ...) {
     ## in the default case (no table provided), look at the key race relationships, as these motivated this study
     if (is.null(tabl)) {
         ## for cleanliness, remove those jurors with unknown races
@@ -291,10 +291,12 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
         ##adjx <- xpos + wid*(ind - (1/2)*(1 + length(deslev)))
         adjx <- xpos_line[2*(1:nseg)-1] + (ind-1)*diff(xpos_line)[2*(1:nseg)-1]/(dims[tracemar] - 1)
         ## add the corresponding end points
-        points(adjx, yvals, col = temPal[ind], pch = 19)
-        ## for aesthetics exclude lines if confidence intervals are plotted
-        if (!testlines) for (ii in 1:length(adjx)) lines(x = rep(adjx[ii],2), y = c(meanline[ii], yvals[ii]),
-                                                         lty = 2, col = temPal[ind])
+        points(adjx, yvals, col = temPal[ind], pch = 20)
+        ## for aesthetics reduce line alpha if confidence intervals are plotted
+        if (testlines) lnal <- 0.3 else lnal <- 1
+        ## plot the lines
+        for (ii in 1:length(adjx)) lines(x = rep(adjx[ii],2), y = c(meanline[ii], yvals[ii]),
+                                                         lty = 2, col = adjustcolor(temPal[ind], alpha.f = lnal))
         ## if trace lines (parallel axis plot) are desired plot these
         if (addlines) lines(adjx, yvals, col = temPal[ind], lty = 3)
         ##rect(xleft = adjx - (1/2)*wid, xright = adjx + (1/2)*wid, ybottom = meanline,
@@ -323,27 +325,22 @@ parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02,
         ## get x positions
         errpos <- xpos
         ##errpos[3*(1:nseg) - 1] <- axpos
-        ## reformat y positions
-        erry <- c(condout)
         ## define error bar extensions
         ext <- c(-0.005, 0.005)
-        ## add bars at each position
-        invisible(sapply(1:length(erry), function(pos) {
-            ## rename the conditional probability for readability
-            p <- erry[pos]
-            ## extract the relevant margin count
-            n <- marsums[floor((pos-1)/dims[tracemar]) + 1]
-            ## calculate the binomial error size
-            err <- 2*sqrt((p/n)*(1-p))
-            ## and the appropriate colour
+        ## iterate through the non-trace margins, apply the multinomialCI function and plot
+        cis <- apply(outcometab, nontrace,
+                     function(tab) t(multinomialCI(c(tab[deslev], sum(tab[-deslev])), alpha = alpha)[1:length(deslev),]))
+        ## reformat this into the correct arrangment dimensionality
+        dim(cis) <- c(2, length(cis)/2)
+        ## now iterate through and plot
+        invisible(sapply(1:length(xpos), function(pos) {
+            ## get the appropriate colour
             errcol <- temPal[(pos-1) %% dims[tracemar] + 1]
-            ## add vertical lines and horizontal end lines
-            lines(x = errpos[pos] + ext, y = rep(p + err, 2), col = adjustcolor(errcol, alpha.f = 0.5))
-            lines(x = errpos[pos] + ext, y = rep(p - err, 2), col = adjustcolor(errcol, alpha.f = 0.5))
-            lines(x = rep(errpos[pos], 2), y = c(p + err, p - err), col = adjustcolor(errcol, alpha.f = 0.5))
-            ##lines(, meanline - sqrt((meanline/(3*marsums))*(1-3*meanline)), lty = 2)
-            ##lines(xpos, meanline + sqrt((meanline/(3*marsums))*(1-3*meanline)), lty = 2)
-            }))
+            ## add the lines
+            lines(x = errpos[pos] + ext, y = rep(cis[1,pos], 2), col = adjustcolor(errcol, alpha.f = 0.5))
+            lines(x = errpos[pos] + ext, y = rep(cis[2,pos], 2), col = adjustcolor(errcol, alpha.f = 0.5))
+            lines(x = rep(errpos[pos], 2), y = cis[,pos], col = adjustcolor(errcol, alpha.f = 0.5))
+        }))
     }
     ## add a legend to explain the colours
     if (is.null(legendlevs)) legendlevs <- tabnames[[tracemar]][deslev]
@@ -588,7 +585,9 @@ parcoordracev2(deslev = c(1,2,5), legendlevs = c("Cause","Defence","Prosecution"
                main = "Conditional Probability of Removal by Race and Race of Defendant",
                xtext = "Inner label: defendant race | outer label: venire member race")
 ## but are these differences significant?
-parcoordracev2(deslev = c(1,2,5), testlines = TRUE)
+parcoordracev2(deslev = c(1,2,5), testlines = TRUE, legendlevs = c("Cause","Defence","Prosecution"),
+               main = "Conditional Probability of Removal by Race and Race of Defendant",
+               xtext = "Inner label: defendant race | outer label: venire member race")
 
 ## let's look at other effects by creating a master table which can be summarized in numerous ways
 sun.singdef <- MatRelevel(sun.raceknown[!grepl(",", sun.raceknown$DefGender),])
