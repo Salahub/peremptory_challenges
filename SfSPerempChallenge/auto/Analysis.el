@@ -7,14 +7,11 @@
     "tab:rejbounds"
     "sec:impactrace"
     "tab:margrace"
-    "sec:effvis"
-    "fig:mosaicdefrace"
-    "fig:firstparcoord"
-    "fig:raceparcoord"
-    "subsec:mobile"
+    "fig:racedefmob"
+    "eq:vishyp"
+    "fig:racedefci"
     "sec:casesum"
     "sec:mods"
-    "fig:raceraceparcoord"
     "fig:racepolitics"
     "fig:lawyerexp"))
  :latex)

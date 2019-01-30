@@ -58,6 +58,30 @@ This low rejection boundary given any distribution suggests that the peremptory 
 with the data, suggesting systemic over-use relative to its supported use. This leads naturally to the question of how exactly
 this legal instrument is over-used, and why.
 
+\section{The Impact of Race} \label{sec:impactrace}
+
+The racially-motivated controversy surrounding peremptory provide one possible route to investigate the pattern of peremptory
+strike over-use. To begin, a simple marginal investigation was performed to explore the impact of the simplified race on the
+peremptory strike probability. The result of this investigation is displayed in Table \ref{tab:margrace}. Of particular interest
+is whether any race is far more likely to be struck by peremptory challenge than the others, as this might suggest that race is
+the target of the over-use of strikes.
+
+\begin{table}
+  \label{tab:margrace}
+  \centering
+  \caption[Strike Rate by Race]{The conditional probability of a venire member being struck peremptorily by the simplified venire
+    member race across data sets}
+  \begin{tabular}{|c|c|c|c|} \hline
+    Venire Member Race & Sunshine & Stubborn & Philadelphia \\ \hline
+    Black & 0.23 & & \\ 
+    Other & 0.24 & & \\ 
+    White & 0.25 & & \\ \hline
+  \end{tabular}
+\end{table}
+
+The differences in these probabilities are significant at $\alpha = 0.05$ by merit of the size of the Sunshine data set, but an
+effect size of 2\% is hardly relevant if one considers that the size of each empanelled jury is only 12, 
+
 \section{Developing an Effective Visualization of Conditional Probability} \label{sec:effvis}
 
 One deficiency of the results of the previous investigations was a failure to generate compelling and effective visualizations of
