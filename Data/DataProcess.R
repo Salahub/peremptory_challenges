@@ -342,7 +342,10 @@ CrimeClassify <- function(tree, regChar) {
 ## flexible function and add operations as desired
 SynCols <- function(data) {
     ## too busy, synthesize some variables to clearly indicate the results of defense and prosecution selection
-    data$VisibleMinor <- data$Race != "White"
+    data$VisMin <- data$Race != "White"
+    data$VisMin[data$Race == "U"] <- NA
+    data$DefVisMin <- data$DefRace != "White"
+    data$DefVisMin[data$DefRace == "U"] <- NA
     data$PerempStruck <- grepl("S_rem|D_rem", data$Disposition)
     data$DefStruck <- data$Disposition == "D_rem"
     data$ProStruck <- data$Disposition == "S_rem"
