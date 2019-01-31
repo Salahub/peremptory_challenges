@@ -34,9 +34,8 @@ implied standard distance from the centre that these imply for symmetric rejecti
 
 \begin{table}
   \centering
-  \label{tab:rejbounds}
   \caption[Implied Rejection Boundaries]{The implied statistical extremity bound for symmetric rejection in the datasets given
-    different distributional assumptions}
+    different distributional assumptions} \label{tab:rejbounds}
   \begin{tabular}{|c|c|c|c|} \hline
     Data & Rejection Rate & Normal & Chebyshev Limit \\ \hline
     Sunshine & 0.434 & 0.781 & 1.517 \\
@@ -67,12 +66,11 @@ is whether any race is far more likely to be struck by peremptory challenge than
 the target of the over-use of strikes.
 
 \begin{table}
-  \label{tab:margrace}
   \centering
   \caption[Strike Rate by Race]{The conditional probability of a venire member being struck peremptorily by the simplified venire
     member race across data sets. Note these values are smaller than the values presented in the extremity analysis as only the
     individuals which were identifiably removed by peremptory challenge are counted in this table. Regardless, the comparisons
-    remain similar if the unattributed removals are included.}
+    remain similar if the unattributed removals are included.} \label{tab:margrace}
   \begin{tabular}{|c|c|c|c|} \hline
     Data & Black & Other & White \\ \hline
     Sunshine & 0.23 & 0.24 & 0.25 \\ 
@@ -182,44 +180,97 @@ Justice Byron R. White in the majority opinion in \cite{swainvalabama}
   partial, but whether one from a different group is less likely to be.
 \end{quote}
 
-\section{Prosecution and Judge Homogeneity} \label{sec:causepro}
-
-As noted in \ref{sec:impactrace}, the prosecution and judge seem to match in their strike tendencies for every combination. This
-suggests that both challenges with cause and the prosecution tend to have the same effect on the jury composition, though the
-magnitudes can differ greatly for these two strikes. An immediate explanation to this is offered by \cite{hansvidjudging}, who
-outline, on pages 69-70, the skill and tact required to effectively propose challenges with cause. In order to determine an
-individual's bias, it is frequently the case that a direct question will fail to garner an honest reponse due to social pressures.
-As a consequence, the questions asked of venire members must be carefully presented.
-
-Using this as a motivation, an obvious possible explanation for the challenges with cause is that the prosecution is simply more
-experienced on average than the defence. To determine the veracity of this claim, the licensing year of each lawyer was subtracted
-from the outcome date of each trial. The resulting distribution of years of experience was then plotted in back-to-back histograms
-as shown in Figure \ref{fig:lawyerexp}.
+This quote leads directly to the heart of the problem. Without detailed transcripts indicating how the venire members were
+questioned, it cannot be known if the aggregate pattern of removal is the result of racially based strikes, or whether the lawyers
+determined valid reasons for a peremptory challenge during the voir dire process. For example, if defence attorneys reasonably
+assumed that trust in and deference to authority and law enforcement would make a venire member predisposed to reject arguments
+provided about possible mishandling of evidence without proper consideration, this would be reasonable grounds for peremptory
+challenges of individuals with that opinion. If such opinions are distributed heterogeneously by race, the aggregate pattern may
+appear to reflect racially-based decision making by the defence attorneys. 
 
 \begin{figure}[h!]
-  \epsfCfile{.7}{LawyerExp}
-  %%         --- .85 stands for 85% of text width
-  \caption[Lawyer Experience (Sunshine)]
-  {Distributions of lawyer experience for prosecutors and defence attorneys}
-  \label{fig:lawyerexp}
+  \centering
+  \epsfCfile{0.7}{RaceGenderPolit}
+  \caption[Political Affiliation by Race and Gender (Sunshine)]
+  {Conditional probabilities of political affiliation by race and gender. Note how the black venire members are far more
+    homogeneous than the white venire members for both genders.} 
+  \label{fig:racepolit}
 \end{figure}
 
-Clearly, this hypothesis is not supported by the data. It seems the typical defence lawyer is more experienced than the typical
-prosecutor, not less. Indeed, the prosecutors seem to be much more likely to be inexperienced than the defence lawyers.
-  
-\section{Case Level Summary} \label{sec:casesum}
+\cite{revesz2016} provides, inadvertently, data which might support the above reasoning in defence of peremptory challenges in the
+United States. He notes that the distribution of political affiliation in the United States is not consistent across races, with
+black voters far more likely to vote for the Democratic Party and far less likely to vote for the Republican Party. If political
+affiliation is used as a surrogate for ideology and point of view, this suggests that the observed pattern could be the result of
+defence lawyers removing conservative venire members and prosecution lawyers attempting to remove liberal ones. As the Sunshine
+data has political affiliation, these aggregate results can be examined for the data used to generate Figure
+\ref{fig:racedefmob}. Figure \ref{fig:racepolit} displays the conditional probability of political affiliation across races and
+genders.
 
-While \cite{JurySunshineProj} reported a great deal of aggregate statistics about the venire members themselves, one piece of
-investigation which was lacking was an analysis which aggregated and viewed the trends for the cases, rather than simply for
-individual venire members. As we cannot know why a potential venire member is struck individually, and viewing their aggregate
-statistics tells us nothing about how different strikes relate to each other, it is possible we are viewing some effect which is
-not a result of persistent bias across trials, but is rather the result of some other effect.
+What is immediately apparent viewing this plot and the data in \cite{revesz2016} is how closely the two data sets agree. This
+``ideological imbalance'', as \citeauthor{revesz2016} aptly calls it, is a clear confounding factor and a possible source of a
+legitimate cause for an initially suspect overall trend. As such, it was investigated using the mobile plot.
 
-By aggregating the venire members by trial and viewing the demographic trends in strikes and behaviour at this level, we gain a
-more detailed insight into the impact of challenges at a more relevant scale. Additionally, such aggregation allows for the
-synthesis of certain measures, such as a disitributional difference via the Kullback-Leibler divergence (\cite{kullback1951}),
-which would otherwise not be well defined. This particular perspective of the data has also not been explored by any other studies
-known to the author.
+To control for the defendant race as well, which already appears to be important, the venire members were split into the
+simplified racial groups black, white, and other. Then mobile plots of the conditional strike probabilities for the different
+venire races given the defendant race and political affiliation were generated. Figures \ref{fig:blackdefpol},
+\ref{fig:otherdefpol}, and \ref{fig:whitedefpol} display these mobile plots.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.40\textwidth}
+    \epsfCfile{1}{PolBlack}
+    \caption{Black Venire Members}
+    \label{fig:blackdefpol}
+  \end{subfigure}
+  ~
+  \begin{subfigure}{0.40\textwidth}
+    \epsfCfile{1}{PolOther}
+    \caption{Other Venire Members}
+    \label{fig:otherdefpol}
+  \end{subfigure}
+  ~
+  \begin{subfigure}{0.40\textwidth}
+    \epsfCfile{1}{PolWhite}
+    \caption{White Venire Members}
+    \label{fig:whitedefpol}
+  \end{subfigure}
+  \caption[Strikes by Political Affiliation, Race, and Defendant Race (Sunshine)]
+  {Conditional probability of venire member strike by defendant race and political affiliation, split by race. Note how the
+    pattern of conditional probabilities is the same across political affiliations for the same defendant race within a particular
+    venire member race, and this pattern is the aggregate pattern seen in Figure \ref{fig:racedefmob}} \label{fig:racedefpol}
+\end{figure}
+
+This sequence of three plots immediately suggests that a political argument is insufficient for this data. For each venire member
+race and defendant race, the political affiliation of the venire member does not radically change the pattern of strikes for any
+party in the court. Rather, the court tendencies for each political affiliation, venire member race, and defendant race seems to
+follow the pattern seen in \ref{fig:racedefmob} for all political affiliations with the exception of some very small subgroups of
+black venire members\footnote{The subgroups, black republican venire members for white or other race defendants, have sizes 1 and
+  10, respectively. The study examines a total of 29636 venire members.}. It should be noted that many of the other, less
+noticeable subgroups represented by this particular set of plots will be too small to provide statistically significantly results,
+the consistency of the pattern of strikes across political affiliations provides rather stark evidence against a possible claim of
+political affiliation being the reason for the strikes in the data.
+
+Another factor which may have an impact is that of gender. While \textit{J.E.B. v. Alabama} (\cite{jebvalabama}) has also ruled
+peremptory challenges for this reason alone unconstitutional, it is noted extensively in \cite{hansvidjudging} and in
+\cite{vandykejurysel} that gender was a very relevant factor in deciding juries for much of the twentieth century, and so perhaps
+it is a relevant factor. Additionally, there is a relationship between gender and race in the data, as noted in
+\cite{JurySunshineProj} black males are highly under-represented relative to black females. Luckily, the relationship between
+race, gender, and peremptory challenges can be visualized quite neatly without the need to split the plots as was done in Figure
+\ref{fig:racedefpol}. Figure \ref{fig:racegenpol} displays the mobile plot for race, gender, and strike source.
+
+\begin{figure}[h!]
+  \centering
+  \epsfCfile{0.7}{RaceGenderStrike}
+  \caption[Strike Source by Race and Gender (Sunshine)]
+  {Conditional probabilities of strike source by race and gender. Note that the pattern is nearly identical for the genders within
+    each racial group.} \label{fig:racegenpol}
+\end{figure}
+
+At this point the message from these additional mobile plots should be clear. The dominant determinant of the strike probability
+for a venire member is their race. The race of the defendant does impact this somewhat, but plots across gender, and political
+affiliation in numerous combinations suggest that race is the dominant factor in determining the probability a venire member will be
+struck by the prosecution, defense, or removed by cause. This hypothesis, suggested heavily by these plots, is examined more
+rigorously through the construction and testing of specific models in \ref{sec:mods}.
 
 \section{Modelling} \label{sec:mods}
 
@@ -247,12 +298,43 @@ would preferentially strike or keep black jurors in order to keep as many left w
 political imbalance is incredibly prevalent, as can be seen in Figure \ref{fig:racepolitics} \textcolor{red}{Add the plot of this
   effect here, elaborate on this pattern more based on the plot}.
 
+\section{Prosecution and Judge Homogeneity} \label{sec:causepro}
+
+As noted in \ref{sec:impactrace}, the prosecution and judge seem to match in their strike tendencies for every combination. This
+suggests that both challenges with cause and the prosecution tend to have the same effect on the jury composition, though the
+magnitudes can differ greatly for these two strikes. An immediate explanation to this is offered by \cite{hansvidjudging}, who
+outline, on pages 69-70, the skill and tact required to effectively propose challenges with cause. In order to determine an
+individual's bias, it is frequently the case that a direct question will fail to garner an honest reponse due to social pressures.
+As a consequence, the questions asked of venire members must be carefully presented.
+
+Using this as a motivation, an obvious possible explanation for the challenges with cause is that the prosecution is simply more
+experienced on average than the defence. To determine the veracity of this claim, the licensing year of each lawyer was subtracted
+from the outcome date of each trial. The resulting distribution of years of experience was then plotted in back-to-back histograms
+as shown in Figure \ref{fig:lawyerexp}.
+
 \begin{figure}[h!]
-  \epsfCfile{0.7}{RaceGenderPolit}
-  \caption[Political Affiliation by Race and Gender (Sunshine)]
-  {Conditional probabilities of political affiliation by race and gender} 
-  \label{fig:racepolitics}
+  \epsfCfile{.7}{LawyerExp}
+  \caption[Lawyer Experience (Sunshine)]
+  {Distributions of lawyer experience for prosecutors and defence attorneys}
+  \label{fig:lawyerexp}
 \end{figure}
+
+Clearly, this hypothesis is not supported by the data. It seems the typical defence lawyer is more experienced than the typical
+prosecutor, not less. Indeed, the prosecutors seem to be much more likely to be inexperienced than the defence lawyers.
+  
+\section{Case Level Summary} \label{sec:casesum}
+
+While \cite{JurySunshineProj} reported a great deal of aggregate statistics about the venire members themselves, one piece of
+investigation which was lacking was an analysis which aggregated and viewed the trends for the cases, rather than simply for
+individual venire members. As we cannot know why a potential venire member is struck individually, and viewing their aggregate
+statistics tells us nothing about how different strikes relate to each other, it is possible we are viewing some effect which is
+not a result of persistent bias across trials, but is rather the result of some other effect.
+
+By aggregating the venire members by trial and viewing the demographic trends in strikes and behaviour at this level, we gain a
+more detailed insight into the impact of challenges at a more relevant scale. Additionally, such aggregation allows for the
+synthesis of certain measures, such as a disitributional difference via the Kullback-Leibler divergence (\cite{kullback1951}),
+which would otherwise not be well defined. This particular perspective of the data has also not been explored by any other studies
+known to the author.
 
 \section{Useful Quoted Bits}
 

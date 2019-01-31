@@ -11,10 +11,15 @@
     "eq:vishyp"
     "fig:racedefci"
     "sec:otherfact"
+    "fig:racepolit"
+    "fig:blackdefpol"
+    "fig:otherdefpol"
+    "fig:whitedefpol"
+    "fig:racedefpol"
+    "fig:racegenpol"
+    "sec:mods"
     "sec:causepro"
     "fig:lawyerexp"
-    "sec:casesum"
-    "sec:mods"
-    "fig:racepolitics"))
+    "sec:casesum"))
  :latex)
 

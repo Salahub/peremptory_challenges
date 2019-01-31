@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  31 JAN 2019 11:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  31 JAN 2019 15:22
 entering extended mode
 **./MasterThesisSfS.tex
 (MasterThesisSfS.tex
@@ -289,6 +289,29 @@ Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \TX@cols=\count100
 \TX@ftn=\toks22
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty"
+Package: subcaption 2018/05/01 v1.1-162 Sub-captions (AR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty"
+Package: caption 2018/05/01 v3.3-147 Customizing captions (AR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+Package: caption3 2018/05/27 v1.8a caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+\captionmargin=\dimen115
+\captionmargin@=\dimen116
+\captionwidth=\dimen117
+\caption@tempdima=\dimen118
+\caption@indent=\dimen119
+\caption@parindent=\dimen120
+\caption@hangindent=\dimen121
+)
+\c@ContinuedFloat=\count101
+Package caption Info: hyperref package is loaded.
+)
+\c@subfigure=\count102
+\c@subtable=\count103
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pdfpages\pdfpages.sty"
 Package: pdfpages 2017/10/31 v0.5l Insert pages of external PDF documents (AM)
 
@@ -297,15 +320,15 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count101
-\calc@Bcount=\count102
-\calc@Adimen=\dimen115
-\calc@Bdimen=\dimen116
+\calc@Acount=\count104
+\calc@Bcount=\count105
+\calc@Adimen=\dimen122
+\calc@Bdimen=\dimen123
 \calc@Askip=\skip59
 \calc@Bskip=\skip60
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count103
+\calc@Ccount=\count106
 \calc@Cskip=\skip61
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
@@ -325,11 +348,11 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 )
-\Gin@req@height=\dimen117
-\Gin@req@width=\dimen118
+\Gin@req@height=\dimen124
+\Gin@req@width=\dimen125
 )
-\AM@pagewidth=\dimen119
-\AM@pageheight=\dimen120
+\AM@pagewidth=\dimen126
+\AM@pageheight=\dimen127
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.def"
 File: pppdftex.def 2017/10/31 v0.5l Pdfpages driver for pdfTeX (AM)
@@ -337,7 +360,7 @@ File: pppdftex.def 2017/10/31 v0.5l Pdfpages driver for pdfTeX (AM)
 \AM@pagebox=\box28
 \AM@global@opts=\toks23
 \AM@toc@title=\toks24
-\c@AM@survey=\count104
+\c@AM@survey=\count107
 \AM@templatesizebox=\box29
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
@@ -346,9 +369,9 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks25
-\ex@=\dimen121
+\ex@=\dimen128
 )
-\pmbraise@=\dimen122
+\pmbraise@=\dimen129
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
@@ -365,7 +388,7 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip62
 \bibsep=\skip63
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count105
+\c@NAT@ctr=\count108
 ) (texab.sty
 Sem.f.Statistik LaTeX Abkuerzungen $Id: texab.sty,v 1.75 2011/02/11 10:18:52 sf
 s Exp $
@@ -382,7 +405,7 @@ LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
-\big@size=\dimen123
+\big@size=\dimen130
 )
 \Lvneed=\skip64
 \LLongpage=\skip65
@@ -391,7 +414,7 @@ LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 \Litemwidth=\skip68
 \Lparskip=\skip69
 \centering@tex=\skip70
-\c@lisNr=\count106
+\c@lisNr=\count109
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
 Package: amsmath 2016/11/05 v2.16a AMS math features
@@ -401,38 +424,38 @@ For additional information on amsmath, use the `?' option.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
 Package: amstext 2000/06/29 v2.01 AMS text
 )
-\inf@bad=\count107
+\inf@bad=\count110
 LaTeX Info: Redefining \frac on input line 213.
 LaTeX Info: Redefining \binom on input line 216.
-\uproot@=\count108
-\leftroot@=\count109
+\uproot@=\count111
+\leftroot@=\count112
 LaTeX Info: Redefining \overline on input line 375.
-\classnum@=\count110
-\DOTSCASE@=\count111
+\classnum@=\count113
+\DOTSCASE@=\count114
 LaTeX Info: Redefining \ldots on input line 472.
 LaTeX Info: Redefining \dots on input line 475.
 LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box30
 \strutbox@=\box31
-\big@size=\dimen124
+\big@size=\dimen131
 LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
-\macc@depth=\count112
-\c@MaxMatrixCols=\count113
+\macc@depth=\count115
+\c@MaxMatrixCols=\count116
 \dotsspace@=\muskip11
-\c@parentequation=\count114
-\dspbrk@lvl=\count115
+\c@parentequation=\count117
+\dspbrk@lvl=\count118
 \tag@help=\toks26
-\row@=\count116
-\column@=\count117
-\maxfields@=\count118
+\row@=\count119
+\column@=\count120
+\maxfields@=\count121
 \andhelp@=\toks27
-\eqnshift@=\dimen125
-\alignsep@=\dimen126
-\tagshift@=\dimen127
-\tagwidth@=\dimen128
-\totwidth@=\dimen129
-\lineht@=\dimen130
+\eqnshift@=\dimen132
+\alignsep@=\dimen133
+\tagshift@=\dimen134
+\tagwidth@=\dimen135
+\totwidth@=\dimen136
+\lineht@=\dimen137
 \@envbody=\toks28
 \multlinegap=\skip72
 \multlinetaggap=\skip73
@@ -445,23 +468,23 @@ Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
 \@enLab=\toks30
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.sty"
-\lst@mode=\count119
+\lst@mode=\count122
 \lst@gtempboxa=\box32
 \lst@token=\toks31
-\lst@length=\count120
-\lst@currlwidth=\dimen131
-\lst@column=\count121
-\lst@pos=\count122
-\lst@lostspace=\dimen132
-\lst@width=\dimen133
-\lst@newlines=\count123
-\lst@lineno=\count124
-\lst@maxwidth=\dimen134
+\lst@length=\count123
+\lst@currlwidth=\dimen138
+\lst@column=\count124
+\lst@pos=\count125
+\lst@lostspace=\dimen139
+\lst@width=\dimen140
+\lst@newlines=\count126
+\lst@lineno=\count127
+\lst@maxwidth=\dimen141
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count125
-\lst@skipnumbers=\count126
+\c@lstnumber=\count128
+\lst@skipnumbers=\count129
 \lst@framebox=\box33
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.cfg"
@@ -478,40 +501,40 @@ File: lstlang2.sty 2015/06/04 1.6 listings language file
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang3.sty"
 File: lstlang3.sty 2015/06/04 1.6 listings language file
 )
-\c@definition=\count127
+\c@definition=\count130
 
 (MasterThesisSfS.aux (Preface.aux) (Abstract.aux) (Notation.aux)
 (Introduction.aux) (History.aux) (Data.aux) (Analysis.aux) (Summary.aux)
 (DevelopingMobile.aux) (Appendix1.aux) (Appendix2.aux) (Epilogue.aux))
 \openout1 = `MasterThesisSfS.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count128
-\scratchdimen=\dimen135
+\scratchcounter=\count131
+\scratchdimen=\dimen142
 \scratchbox=\box34
-\nofMPsegments=\count129
-\nofMParguments=\count130
+\nofMPsegments=\count132
+\nofMParguments=\count133
 \everyMPshowfont=\toks32
-\MPscratchCnt=\count131
-\MPscratchDim=\dimen136
-\MPnumerator=\count132
-\makeMPintoPDFobject=\count133
+\MPscratchCnt=\count134
+\MPscratchDim=\dimen143
+\MPnumerator=\count135
+\makeMPintoPDFobject=\count136
 \everyMPtoPDFconversion=\toks33
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -527,7 +550,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box35
-Package hyperref Info: Link coloring ON on input line 103.
+Package hyperref Info: Link coloring ON on input line 104.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -535,16 +558,19 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count134
+\c@section@level=\count137
 )
-LaTeX Info: Redefining \ref on input line 103.
-LaTeX Info: Redefining \pageref on input line 103.
-LaTeX Info: Redefining \nameref on input line 103.
+LaTeX Info: Redefining \ref on input line 104.
+LaTeX Info: Redefining \pageref on input line 104.
+LaTeX Info: Redefining \nameref on input line 104.
 
 (MasterThesisSfS.out) (MasterThesisSfS.out)
 \@outlinefile=\write3
 \openout3 = `MasterThesisSfS.out'.
 
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
@@ -554,17 +580,17 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-\c@lstlisting=\count135
+\c@lstlisting=\count138
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--122
+Underfull \hbox (badness 10000) in paragraph at lines 123--123
 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 122.
+LaTeX Font Info:    Try loading font information for U+msa on input line 123.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 122.
+LaTeX Font Info:    Try loading font information for U+msb on input line 123.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -676,7 +702,7 @@ LaTeX Font Info:    Try loading font information for T1+aett on input line 66.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [14] [15] [16]
-<Pictures/SimpleSubTree.pdf, id=752, 505.89pt x 505.89pt>
+<Pictures/SimpleSubTree.pdf, id=756, 505.89pt x 505.89pt>
 File: Pictures/SimpleSubTree.pdf Graphic file (type pdf)
 
 <use Pictures/SimpleSubTree.pdf>
@@ -692,56 +718,99 @@ Package pdftex.def Info: Pictures/SimpleSubTree.pdf used on input line 155.
 
 ]
 Chapter 4.
-[21] <Pictures/RaceParCoord.pdf, id=810, 505.89pt x 505.89pt>
+[21] [22] <Pictures/RaceParCoord.pdf, id=820, 505.89pt x 505.89pt>
 File: Pictures/RaceParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/RaceParCoord.pdf>
-Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 93.
+Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 91.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
- [22]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Underfull \vbox (badness 4713) has occurred while \output is active []
 
  [23 <./Pictures/RaceParCoord.pdf>] [24]
-<Pictures/RaceDefCI.pdf, id=851, 505.89pt x 505.89pt>
+<Pictures/RaceDefCI.pdf, id=855, 505.89pt x 505.89pt>
 File: Pictures/RaceDefCI.pdf Graphic file (type pdf)
 
 <use Pictures/RaceDefCI.pdf>
-Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 159.
+Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 157.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25 <./Pictures/RaceDefCI.pdf>] <Pictures/LawyerExp.pdf, id=875, 505.89pt x 50
-5.89pt>
-File: Pictures/LawyerExp.pdf Graphic file (type pdf)
-
-<use Pictures/LawyerExp.pdf>
-Package pdftex.def Info: Pictures/LawyerExp.pdf used on input line 189.
-(pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
-
-Underfull \vbox (badness 1859) has occurred while \output is active []
-
- [26 <./Pictures/LawyerExp.pdf>]
-<Pictures/RaceGenderPolit.pdf, id=891, 505.89pt x 505.89pt>
+ [25 <./Pictures/RaceDefCI.pdf>]
+<Pictures/RaceGenderPolit.pdf, id=877, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderPolit.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderPolit.pdf>
-Package pdftex.def Info: Pictures/RaceGenderPolit.pdf used on input line 240.
+Package pdftex.def Info: Pictures/RaceGenderPolit.pdf used on input line 193.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[27]) [28 <./Pictures/RaceGenderPolit.pdf>]
+<Pictures/PolBlack.pdf, id=888, 505.89pt x 505.89pt>
+File: Pictures/PolBlack.pdf Graphic file (type pdf)
+
+<use Pictures/PolBlack.pdf>
+Package pdftex.def Info: Pictures/PolBlack.pdf used on input line 221.
+(pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
+
+<Pictures/PolOther.pdf, id=889, 505.89pt x 505.89pt>
+File: Pictures/PolOther.pdf Graphic file (type pdf)
+
+<use Pictures/PolOther.pdf>
+Package pdftex.def Info: Pictures/PolOther.pdf used on input line 227.
+(pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
+
+<Pictures/PolWhite.pdf, id=890, 505.89pt x 505.89pt>
+File: Pictures/PolWhite.pdf Graphic file (type pdf)
+
+<use Pictures/PolWhite.pdf>
+Package pdftex.def Info: Pictures/PolWhite.pdf used on input line 233.
+(pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[26] <Pictures/RaceGenderStrike.pdf, id=910, 505.89pt x 505.89pt>
+File: Pictures/RaceGenderStrike.pdf Graphic file (type pdf)
+
+<use Pictures/RaceGenderStrike.pdf>
+Package pdftex.def Info: Pictures/RaceGenderStrike.pdf used on input line 263.
+(pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[27 <./Pictures/RaceGenderPolit.pdf>] [28 <./Pictures/PolBlack.pdf> <./Pictures
+/PolOther.pdf> <./Pictures/PolWhite.pdf>]
+
+LaTeX Warning: Reference `fig:racepolitics' on page 29 undefined on input line 
+298.
+
+
+Underfull \vbox (badness 1389) has occurred while \output is active []
+
+ [29 <./Pictures/RaceGenderStrike.pdf>]
+<Pictures/LawyerExp.pdf, id=965, 505.89pt x 505.89pt>
+File: Pictures/LawyerExp.pdf Graphic file (type pdf)
+
+<use Pictures/LawyerExp.pdf>
+Package pdftex.def Info: Pictures/LawyerExp.pdf used on input line 316.
+(pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30 <./Pictures/LawyerExp.pdf>]) [31]
 \openout2 = `Summary.aux'.
 
- (Summary.tex
+ (Summary.tex [32
+
+
+
+]
 Chapter 5.
-) [29
-
-
-
-] [30
+) [33] [34
 
 
 ] (MasterThesisSfS.bbl
@@ -762,7 +831,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 97--101
 sed:
  []
 
-[31
+[35
 
 ]
 Underfull \hbox (badness 1248) in paragraph at lines 123--128
@@ -884,7 +953,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 201--206
 s/Sample-list-
  []
 
-[32]
+[36]
 Underfull \hbox (badness 2426) in paragraph at lines 220--226
 []\T1/aer/m/n/10.95 Quenneville, G. (2018, Febru-ary).  What hap-pened on Ger-a
 ld Stan-ley's farm
@@ -921,35 +990,35 @@ y-colten-boushie-
  []
 
 
-Underfull \hbox (badness 2894) in paragraph at lines 277--282
+Underfull \hbox (badness 2894) in paragraph at lines 282--287
 []\T1/aer/m/n/10.95 Supreme Court of Canada (1991).  R. v. sher-ratt.  Supreme 
 Court Judge-
  []
 
 
-Underfull \hbox (badness 2181) in paragraph at lines 285--288
+Underfull \hbox (badness 2181) in paragraph at lines 290--293
 []\T1/aer/m/n/10.95 Supreme Court of the United States (1965).  Swain v. Al-aba
 ma.  Ac-cessed:
  []
 
 
-Underfull \hbox (badness 1609) in paragraph at lines 291--294
+Underfull \hbox (badness 1609) in paragraph at lines 296--299
 []\T1/aer/m/n/10.95 Supreme Court of the United States (1986).  Bat-son v. Ken-
 tucky.  Ac-cessed:
  []
 
 
-Underfull \hbox (badness 2035) in paragraph at lines 297--300
+Underfull \hbox (badness 2035) in paragraph at lines 302--305
 []\T1/aer/m/n/10.95 Supreme Court of the United States (1993).  J.E.B. v. Al-ab
 ama.  Ac-cessed:
  []
 
-[33]) [34]
+[37]) [38]
 \openout2 = `DevelopingMobile.aux'.
 
  (DevelopingMobile.tex
 Appendix A.
-<Pictures/FirstMosaic.pdf, id=945, 505.89pt x 505.89pt>
+<Pictures/FirstMosaic.pdf, id=1027, 505.89pt x 505.89pt>
 File: Pictures/FirstMosaic.pdf Graphic file (type pdf)
 
 <use Pictures/FirstMosaic.pdf>
@@ -959,10 +1028,10 @@ Package pdftex.def Info: Pictures/FirstMosaic.pdf used on input line 14.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[35
+[39
 
 
-] <Pictures/FirstParCoord.pdf, id=958, 505.89pt x 505.89pt>
+] <Pictures/FirstParCoord.pdf, id=1040, 505.89pt x 505.89pt>
 File: Pictures/FirstParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/FirstParCoord.pdf>
@@ -973,13 +1042,13 @@ Package pdftex.def Info: Pictures/FirstParCoord.pdf used on input line 44.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-LaTeX Warning: Reference `fig:raceparcoord' on page 36 undefined on input line 
+LaTeX Warning: Reference `fig:raceparcoord' on page 40 undefined on input line 
 57.
 
 
-Underfull \vbox (badness 1253) has occurred while \output is active []
+Underfull \vbox (badness 1924) has occurred while \output is active []
 
- [36 <./Pictures/FirstMosaic.pdf>] [37 <./Pictures/FirstParCoord.pdf>]) [38]
+ [40 <./Pictures/FirstMosaic.pdf>] [41 <./Pictures/FirstParCoord.pdf>]) [42]
 \openout2 = `Appendix1.aux'.
 
  (Appendix1.tex
@@ -1000,12 +1069,12 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 9.
 
 
-LaTeX Warning: Reference `App:listings' on page 39 undefined on input line 10.
+LaTeX Warning: Reference `App:listings' on page 43 undefined on input line 10.
 
 
 Underfull \vbox (badness 5345) has occurred while \output is active []
 
- [39
+ [43
 
 
 
@@ -1013,19 +1082,7 @@ Underfull \vbox (badness 5345) has occurred while \output is active []
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 40.
 
-(Pictures/DataProcess.R [40]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [41]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [42]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [43]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [44]
+(Pictures/DataProcess.R [44]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [45]
@@ -1044,6 +1101,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [50]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [51]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [52]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [53]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [54]
 Overfull \hbox (10.07137pt too wide) in paragraph at lines 647--648
 [][][][][][][] 
  []
@@ -1056,16 +1125,16 @@ Overfull \hbox (15.16899pt too wide) in paragraph at lines 661--662
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [51]
+ [55]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [52]
+ [56]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [53]
+ [57]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [54])
+ [58])
 Underfull \hbox (badness 10000) in paragraph at lines 58--58
 []|\T1/aer/m/n/10.95 08CRS50940, 08CRS52888, 09CRS000305,
  []
@@ -1100,7 +1169,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 58--58
 \T1/aer/m/n/10.95 11CRS51895, 11CRS52470, 08CRS54836,
  []
 
-<Pictures/ChargeDiagram.pdf, id=1934, 1011.78pt x 722.7pt>
+<Pictures/ChargeDiagram.pdf, id=2016, 1011.78pt x 722.7pt>
 File: Pictures/ChargeDiagram.pdf Graphic file (type pdf)
 
 <use Pictures/ChargeDiagram.pdf>
@@ -1110,27 +1179,15 @@ Package pdftex.def Info: Pictures/ChargeDiagram.pdf used on input line 65.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-(Pictures/AnalysisScript.R [55]
+(Pictures/AnalysisScript.R [59]
 
-LaTeX Warning: Text page 56 contains only floats.
-
-
-Overfull \vbox (3.79997pt too high) has occurred while \output is active []
+LaTeX Warning: Text page 60 contains only floats.
 
 
-[56 <./Pictures/ChargeDiagram.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \vbox (6.6765pt too high) has occurred while \output is active []
 
- [57]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [58]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [59]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [60]
+[60 <./Pictures/ChargeDiagram.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [61]
@@ -1164,6 +1221,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [71]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [72]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [73]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [74]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [75]
 Overfull \hbox (66.14525pt too wide) in paragraph at lines 861--862
 [][][][][][][] 
  []
@@ -1241,7 +1310,7 @@ Overfull \hbox (45.36424pt too wide) in paragraph at lines 861--862
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [72]
+ [76]
 Overfull \hbox (45.75475pt too wide) in paragraph at lines 863--864
 [][][][][][][] 
  []
@@ -1335,98 +1404,98 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 76.
 
-) [73]
+) [77]
 \openout2 = `Appendix2.aux'.
 
- (Appendix2.tex [74
+ (Appendix2.tex [78
 
 
 
 ]
 Appendix C.
-) [75] [76
+) [79] [80
 
 
 ]
 \openout2 = `Epilogue.aux'.
 
- (Epilogue.tex) [77
+ (Epilogue.tex) [81
 
 
-] [78
+] [82
 
 
 ]
-<confirmation-originality-scan.pdf, id=2927, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=3009, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf>
 Package pdftex.def Info: confirmation-originality-scan.pdf used on input line 2
-27.
+28.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf>
 Package pdftex.def Info: confirmation-originality-scan.pdf used on input line 2
-27.
+28.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 
-<confirmation-originality-scan.pdf, id=2930, page=1, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=3012, page=1, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 227.
-(pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
-File: confirmation-originality-scan.pdf Graphic file (type pdf)
-
-<use confirmation-originality-scan.pdf, page 1>
-Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 227.
+ line 228.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 227.
+ line 228.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 227.
+ line 228.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 227.
+ line 228.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
- [79 <./confirmation-originality-scan.pdf, page is rotated 270 degrees>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 228.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 228.
+File: confirmation-originality-scan.pdf Graphic file (type pdf)
+
+<use confirmation-originality-scan.pdf, page 1>
+Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
+ line 228.
+(pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
+ [83 <./confirmation-originality-scan.pdf, page is rotated 270 degrees>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 229.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 229.
  (MasterThesisSfS.aux (Preface.aux)
 (Abstract.aux) (Notation.aux) (Introduction.aux) (History.aux) (Data.aux)
 (Analysis.aux) (Summary.aux) (DevelopingMobile.aux) (Appendix1.aux)
 (Appendix2.aux) (Epilogue.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 228.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 228.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 229.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 229.
 Package rerunfilecheck Info: File `MasterThesisSfS.out' has not changed.
-(rerunfilecheck)             Checksum: C093D0930F125088B6C815104DD0A293;3215.
+(rerunfilecheck)             Checksum: B893540B1E2D1D74FE208CF23EBE2D92;3215.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 228.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 229.
  ) 
 Here is how much of TeX's memory you used:
- 13745 strings out of 493328
- 191119 string characters out of 3139124
- 728785 words of memory out of 3000000
- 14877 multiletter control sequences out of 15000+200000
- 64847 words of font info for 136 fonts, out of 3000000 for 9000
+ 14893 strings out of 493328
+ 212230 string characters out of 3139124
+ 750253 words of memory out of 3000000
+ 16002 multiletter control sequences out of 15000+200000
+ 66996 words of font info for 139 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,20n,47p,295b,2394s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,20n,47p,338b,2394s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Program Files/MiK
@@ -1445,9 +1514,9 @@ c/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
 t8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/latxfont/linew1
 0.pfb>
-Output written on MasterThesisSfS.pdf (91 pages, 1548897 bytes).
+Output written on MasterThesisSfS.pdf (95 pages, 1586193 bytes).
 PDF statistics:
- 3407 PDF objects out of 3580 (max. 8388607)
- 2011 named destinations out of 2073 (max. 500000)
- 445 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3490 PDF objects out of 3580 (max. 8388607)
+ 2019 named destinations out of 2073 (max. 500000)
+ 465 words of extra memory for PDF output out of 10000 (max. 10000000)
 
