@@ -586,7 +586,15 @@ mobileplot(deslev = c(1,2,5), legendlevs = c("Cause","Defence","Prosecution"),
 ## but are these differences significant?
 mobileplot(deslev = c(1,2,5), testlines = TRUE, legendlevs = c("Cause","Defence","Prosecution"),
                main = "Conditional Probability of Removal by Race and Race of Defendant",
-               xtext = "Inner Label: Defendant Race | Outer Label: Venire Member Race")
+           xtext = "Inner Label: Defendant Race | Outer Label: Venire Member Race")
+
+## what about race and political affiliation
+mobileplot(table(MatRelevel(sun.juror[sun.juror$WhiteBlack != "U" & sun.juror$PoliticalAffiliation != "U" &
+                                      sun.juror$Gender != "U",
+                                      c("PoliticalAffiliation","Gender","WhiteBlack")])),
+           deslev = c(1,2,4), main = "Venire Member Political Affiliation by Race and Gender",
+           legendlevs = c("Democrat","Independent","Republican"),
+           xtext = "Inner Label: Gender | Outer Label: Race")
 
 ## let's look at other effects by creating a master table which can be summarized in numerous ways
 sun.singdef <- MatRelevel(sun.raceknown[!grepl(",", sun.raceknown$DefGender),])
@@ -600,8 +608,11 @@ names(sun.racelist) <- dimnames(sun.mastab)[["WhiteBlack"]]
 invisible(lapply(names(sun.racelist), function(nm) {
     tab <- sun.racelist[[nm]]
     tab <- tab[,,c("Dem","Rep","Ind")]
-    dev.new()
-    parcoordracev2(tab, tracemar = 1, deslev = c(1,2,5), main = paste(nm, "Venire Members"), ymax = 0.2)
+    pdf(paste0(picOut, "Pol", nm, ".pdf"))
+    mobileplot(tab, tracemar = 1, deslev = c(1,2,5), main = paste(nm, "Venire Members"), ymax = 0.2,
+               xtext = "Inner Label: Defendant Race | Outer Label: Venire Member Poitical Affiliation",
+               legendlevs = c("Cause", "Defence", "Prosecution"))
+    dev.off()
 }))
 
 ## maybe we just have a weird coincidence, what about gender?
