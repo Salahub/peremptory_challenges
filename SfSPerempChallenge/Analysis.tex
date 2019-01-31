@@ -251,12 +251,21 @@ the consistency of the pattern of strikes across political affiliations provides
 political affiliation being the reason for the strikes in the data.
 
 Another factor which may have an impact is that of gender. While \textit{J.E.B. v. Alabama} (\cite{jebvalabama}) has also ruled
-peremptory challenges for this reason alone unconstitutional, it is noted extensively in \cite{hansvidjudging} and in
-\cite{vandykejurysel} that gender was a very relevant factor in deciding juries for much of the twentieth century, and so perhaps
-it is a relevant factor. Additionally, there is a relationship between gender and race in the data, as noted in
-\cite{JurySunshineProj} black males are highly under-represented relative to black females. Luckily, the relationship between
-race, gender, and peremptory challenges can be visualized quite neatly without the need to split the plots as was done in Figure
-\ref{fig:racedefpol}. Figure \ref{fig:racegenpol} displays the mobile plot for race, gender, and strike source.
+peremptory challenges for this reason alone unconstitutional, it is noted in \cite{vandykejurysel} on page 152-153 that
+prosecutor's guidelines have, in the past, recommended using peremptory challenges to remove female venire members\footnote{The
+  guidelines for sex written by Jon Sparling, an assistant district attorney in Dallas, read specifically: \begin{enumerate}
+  \item I don't like women jurors because I don't trust them.
+  \item They do, however, make the best jurors in cases involving crimes against children.
+  \item It is possible that their ``women's intuition''[sic] can help you if you can't win your case with the facts.
+  \item Young women too often sympathize with the Defendant; old women wearing too much make-up are usually unstable, and
+    therefore are bad State's jurors.
+  \end{enumerate}
+  If data on make-up use and jury outcome is ever collected perhaps Mr. Sparling's bold claim can be tested, but until then it is
+  better treated as prejudice.}, and so perhaps it is a relevant factor. Additionally, there is a relationship between gender and
+race in the data, as noted in \cite{JurySunshineProj} black males are highly under-represented relative to black females. Luckily,
+the relationship between race, gender, and peremptory challenges can be visualized quite neatly without the need to split the
+plots as was done in Figure \ref{fig:racedefpol}. Figure \ref{fig:racegenpol} displays the mobile plot for race, gender, and
+strike source.
 
 \begin{figure}[h!]
   \centering
@@ -266,11 +275,25 @@ race, gender, and peremptory challenges can be visualized quite neatly without t
     each racial group.} \label{fig:racegenpol}
 \end{figure}
 
-At this point the message from these additional mobile plots should be clear. The dominant determinant of the strike probability
-for a venire member is their race. The race of the defendant does impact this somewhat, but plots across gender, and political
-affiliation in numerous combinations suggest that race is the dominant factor in determining the probability a venire member will be
-struck by the prosecution, defense, or removed by cause. This hypothesis, suggested heavily by these plots, is examined more
-rigorously through the construction and testing of specific models in \ref{sec:mods}.
+The same pattern is seen here for the most part, that of a dearth of defence strikes against visible minorities and a surplus
+against white venire members, with a mirrored tendency for both the prosecution and challenges with cause. One may ask the
+question if such a switch is just a quirk of the data, and if conditioning on gender alone, for example, would create a similar
+pattern of switching tendencies of the court. Figure \ref{fig:gengen} shows this plot.
+
+\begin{figure}[h!]
+  \centering
+  \epsfCfile{0.7}{GenderGenderStrike}
+  \caption[Strike Source by Race and Gender (Sunshine)]
+  {Conditional probabilities of strike source by venire member gender and defendant gender. The characteristic swap of the
+    oppositional preferences cannot be seen here.} \label{fig:gengen}
+\end{figure}
+
+The characteristic switch is not present. At this point the message from these additional mobile plots should be clear. The
+dominant determinant of the strike probability for a venire member is their race. The race of the defendant does impact this
+somewhat, but plots across gender and political affiliation for both venire members and defendants in numerous combinations
+suggest that race is the dominant factor in determining the probability a venire member will be struck by the prosecution,
+defense, or removed by cause. This hypothesis, suggested heavily by these plots, is examined more rigorously through the
+construction and testing of specific models in \ref{sec:mods}.
 
 \section{Modelling} \label{sec:mods}
 

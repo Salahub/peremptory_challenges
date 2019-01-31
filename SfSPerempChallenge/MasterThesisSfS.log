@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  31 JAN 2019 15:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  31 JAN 2019 23:29
 entering extended mode
 **./MasterThesisSfS.tex
 (MasterThesisSfS.tex
@@ -702,7 +702,7 @@ LaTeX Font Info:    Try loading font information for T1+aett on input line 66.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [14] [15] [16]
-<Pictures/SimpleSubTree.pdf, id=756, 505.89pt x 505.89pt>
+<Pictures/SimpleSubTree.pdf, id=758, 505.89pt x 505.89pt>
 File: Pictures/SimpleSubTree.pdf Graphic file (type pdf)
 
 <use Pictures/SimpleSubTree.pdf>
@@ -718,7 +718,7 @@ Package pdftex.def Info: Pictures/SimpleSubTree.pdf used on input line 155.
 
 ]
 Chapter 4.
-[21] [22] <Pictures/RaceParCoord.pdf, id=820, 505.89pt x 505.89pt>
+[21] [22] <Pictures/RaceParCoord.pdf, id=822, 505.89pt x 505.89pt>
 File: Pictures/RaceParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/RaceParCoord.pdf>
@@ -728,7 +728,7 @@ Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 91.
 Underfull \vbox (badness 4713) has occurred while \output is active []
 
  [23 <./Pictures/RaceParCoord.pdf>] [24]
-<Pictures/RaceDefCI.pdf, id=855, 505.89pt x 505.89pt>
+<Pictures/RaceDefCI.pdf, id=857, 505.89pt x 505.89pt>
 File: Pictures/RaceDefCI.pdf Graphic file (type pdf)
 
 <use Pictures/RaceDefCI.pdf>
@@ -738,7 +738,7 @@ Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 157.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [25 <./Pictures/RaceDefCI.pdf>]
-<Pictures/RaceGenderPolit.pdf, id=877, 505.89pt x 505.89pt>
+<Pictures/RaceGenderPolit.pdf, id=879, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderPolit.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderPolit.pdf>
@@ -748,21 +748,21 @@ Package pdftex.def Info: Pictures/RaceGenderPolit.pdf used on input line 193.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Pictures/PolBlack.pdf, id=888, 505.89pt x 505.89pt>
+<Pictures/PolBlack.pdf, id=890, 505.89pt x 505.89pt>
 File: Pictures/PolBlack.pdf Graphic file (type pdf)
 
 <use Pictures/PolBlack.pdf>
 Package pdftex.def Info: Pictures/PolBlack.pdf used on input line 221.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/PolOther.pdf, id=889, 505.89pt x 505.89pt>
+<Pictures/PolOther.pdf, id=891, 505.89pt x 505.89pt>
 File: Pictures/PolOther.pdf Graphic file (type pdf)
 
 <use Pictures/PolOther.pdf>
 Package pdftex.def Info: Pictures/PolOther.pdf used on input line 227.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/PolWhite.pdf, id=890, 505.89pt x 505.89pt>
+<Pictures/PolWhite.pdf, id=892, 505.89pt x 505.89pt>
 File: Pictures/PolWhite.pdf Graphic file (type pdf)
 
 <use Pictures/PolWhite.pdf>
@@ -772,45 +772,51 @@ Package pdftex.def Info: Pictures/PolWhite.pdf used on input line 233.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[26] <Pictures/RaceGenderStrike.pdf, id=910, 505.89pt x 505.89pt>
+[26] [27 <./Pictures/RaceGenderPolit.pdf>]
+<Pictures/RaceGenderStrike.pdf, id=928, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderStrike.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderStrike.pdf>
-Package pdftex.def Info: Pictures/RaceGenderStrike.pdf used on input line 263.
+Package pdftex.def Info: Pictures/RaceGenderStrike.pdf used on input line 272.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[27 <./Pictures/RaceGenderPolit.pdf>] [28 <./Pictures/PolBlack.pdf> <./Pictures
-/PolOther.pdf> <./Pictures/PolWhite.pdf>]
+<Pictures/GenderGenderStrike.pdf, id=930, 505.89pt x 505.89pt>
+File: Pictures/GenderGenderStrike.pdf Graphic file (type pdf)
 
-LaTeX Warning: Reference `fig:racepolitics' on page 29 undefined on input line 
-298.
+<use Pictures/GenderGenderStrike.pdf>
+Package pdftex.def Info: Pictures/GenderGenderStrike.pdf used on input line 285
+.
+(pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 
-Underfull \vbox (badness 1389) has occurred while \output is active []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
- [29 <./Pictures/RaceGenderStrike.pdf>]
-<Pictures/LawyerExp.pdf, id=965, 505.89pt x 505.89pt>
+[28 <./Pictures/PolBlack.pdf> <./Pictures/PolOther.pdf> <./Pictures/PolWhite.pd
+f>] [29 <./Pictures/RaceGenderStrike.pdf>]
+
+LaTeX Warning: Reference `fig:racepolitics' on page 30 undefined on input line 
+321.
+
+[30 <./Pictures/GenderGenderStrike.pdf>]
+<Pictures/LawyerExp.pdf, id=986, 505.89pt x 505.89pt>
 File: Pictures/LawyerExp.pdf Graphic file (type pdf)
 
 <use Pictures/LawyerExp.pdf>
-Package pdftex.def Info: Pictures/LawyerExp.pdf used on input line 316.
+Package pdftex.def Info: Pictures/LawyerExp.pdf used on input line 339.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [30 <./Pictures/LawyerExp.pdf>]) [31]
+ [31 <./Pictures/LawyerExp.pdf>]) [32]
 \openout2 = `Summary.aux'.
 
- (Summary.tex [32
-
-
-
-]
+ (Summary.tex
 Chapter 5.
-) [33] [34
+) [33
+
+
+
+] [34
 
 
 ] (MasterThesisSfS.bbl
@@ -1018,7 +1024,7 @@ ama.  Ac-cessed:
 
  (DevelopingMobile.tex
 Appendix A.
-<Pictures/FirstMosaic.pdf, id=1027, 505.89pt x 505.89pt>
+<Pictures/FirstMosaic.pdf, id=1046, 505.89pt x 505.89pt>
 File: Pictures/FirstMosaic.pdf Graphic file (type pdf)
 
 <use Pictures/FirstMosaic.pdf>
@@ -1031,7 +1037,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [39
 
 
-] <Pictures/FirstParCoord.pdf, id=1040, 505.89pt x 505.89pt>
+] <Pictures/FirstParCoord.pdf, id=1059, 505.89pt x 505.89pt>
 File: Pictures/FirstParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/FirstParCoord.pdf>
@@ -1169,7 +1175,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 58--58
 \T1/aer/m/n/10.95 11CRS51895, 11CRS52470, 08CRS54836,
  []
 
-<Pictures/ChargeDiagram.pdf, id=2016, 1011.78pt x 722.7pt>
+<Pictures/ChargeDiagram.pdf, id=2035, 1011.78pt x 722.7pt>
 File: Pictures/ChargeDiagram.pdf Graphic file (type pdf)
 
 <use Pictures/ChargeDiagram.pdf>
@@ -1426,7 +1432,7 @@ Appendix C.
 
 
 ]
-<confirmation-originality-scan.pdf, id=3009, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=3028, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf>
@@ -1440,7 +1446,7 @@ Package pdftex.def Info: confirmation-originality-scan.pdf used on input line 2
 28.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 
-<confirmation-originality-scan.pdf, id=3012, page=1, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=3031, page=1, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
@@ -1481,7 +1487,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 229.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 229.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 229.
 Package rerunfilecheck Info: File `MasterThesisSfS.out' has not changed.
-(rerunfilecheck)             Checksum: B893540B1E2D1D74FE208CF23EBE2D92;3215.
+(rerunfilecheck)             Checksum: C39FA20E21A65924694D25F85CF3E5C6;3215.
 
 
 LaTeX Warning: There were undefined references.
@@ -1489,10 +1495,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 229.
  ) 
 Here is how much of TeX's memory you used:
- 14893 strings out of 493328
- 212230 string characters out of 3139124
+ 14905 strings out of 493328
+ 212464 string characters out of 3139124
  750253 words of memory out of 3000000
- 16002 multiletter control sequences out of 15000+200000
+ 16007 multiletter control sequences out of 15000+200000
  66996 words of font info for 139 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,20n,47p,338b,2394s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1514,9 +1520,9 @@ c/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
 t8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/latxfont/linew1
 0.pfb>
-Output written on MasterThesisSfS.pdf (95 pages, 1586193 bytes).
+Output written on MasterThesisSfS.pdf (95 pages, 1594983 bytes).
 PDF statistics:
- 3490 PDF objects out of 3580 (max. 8388607)
- 2019 named destinations out of 2073 (max. 500000)
- 465 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3510 PDF objects out of 3580 (max. 8388607)
+ 2025 named destinations out of 2073 (max. 500000)
+ 470 words of extra memory for PDF output out of 10000 (max. 10000000)
 

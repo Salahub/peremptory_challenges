@@ -17,6 +17,7 @@
     "fig:whitedefpol"
     "fig:racedefpol"
     "fig:racegenpol"
+    "fig:gengen"
     "sec:mods"
     "sec:causepro"
     "fig:lawyerexp"
