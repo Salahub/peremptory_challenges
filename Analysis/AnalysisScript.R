@@ -9,7 +9,6 @@
 ## PACKAGES ############################
 library(readxl)
 library(MASS)
-library(eikosograms)
 library(RColorBrewer)
 library(stringr)
 library(tm)
@@ -213,7 +212,7 @@ parcoordrace <- function() {
 
 ## the better version of the above function, takes an arbitrary three-way contingency table and plots the different conditional
 ## probabilities of the desired margins
-parcoordracev2 <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE,
+mobileplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE,
                            space = 0.025, testlines = FALSE, legendlevs = NULL, xtext = NULL, ymax = 0,
                            alpha = 0.05, ...) {
     ## in the default case (no table provided), look at the key race relationships, as these motivated this study
@@ -581,13 +580,13 @@ par(mfrow = c(1,1))
 ## begin with an overall plot displaying the data at a high level
 mosaicplot(PerempStruck ~ WhiteBlack, data = sun.raceknown)
 ## break it down by race and defendant race, as they were the motivation of this investigation
-parcoordracev2(deslev = c(1,2,5), legendlevs = c("Cause","Defence","Prosecution"),
+mobileplot(deslev = c(1,2,5), legendlevs = c("Cause","Defence","Prosecution"),
                main = "Conditional Probability of Removal by Race and Race of Defendant",
-               xtext = "Inner label: defendant race | outer label: venire member race")
+               xtext = "Inner Label: Defendant Race | Outer Label: Venire Member Race")
 ## but are these differences significant?
-parcoordracev2(deslev = c(1,2,5), testlines = TRUE, legendlevs = c("Cause","Defence","Prosecution"),
+mobileplot(deslev = c(1,2,5), testlines = TRUE, legendlevs = c("Cause","Defence","Prosecution"),
                main = "Conditional Probability of Removal by Race and Race of Defendant",
-               xtext = "Inner label: defendant race | outer label: venire member race")
+               xtext = "Inner Label: Defendant Race | Outer Label: Venire Member Race")
 
 ## let's look at other effects by creating a master table which can be summarized in numerous ways
 sun.singdef <- MatRelevel(sun.raceknown[!grepl(",", sun.raceknown$DefGender),])
