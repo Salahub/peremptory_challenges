@@ -70,7 +70,9 @@ the target of the over-use of strikes.
   \label{tab:margrace}
   \centering
   \caption[Strike Rate by Race]{The conditional probability of a venire member being struck peremptorily by the simplified venire
-    member race across data sets}
+    member race across data sets. Note these values are smaller than the values presented in the extremity analysis as only the
+    individuals which were identifiably removed by peremptory challenge are counted in this table. Regardless, the comparisons
+    remain similar if the unattributed removals are included.}
   \begin{tabular}{|c|c|c|c|} \hline
     Data & Black & Other & White \\ \hline
     Sunshine & 0.23 & 0.24 & 0.25 \\ 
@@ -101,7 +103,7 @@ relationship is displayed in Figure \ref{fig:racedefmob}.
 A detailed description of this plot and its development which includes a discussion of the principles of graphics and perception
 which were used to devise its form is presented in \ref{app:devmob}\footnote{Here it suffices to mention that much of its design
   was motivated by the philosophy of \cite{VisualDisplayQuant} and the results of \cite{cleveland1987} on the accuracy of visual
-  perception}. Instead, the most interesting patterns visible in the plot with bee discussed here.
+  perception.}. Instead, the most interesting patterns visible in the plot with bee discussed here.
 
 First, a small explanation of the plot. The plot displays the relationship between three categorical variables: venire member
 race, defendant race, and disposition (whether a venire member is struck and by whom). The vertical axis corresponds to the
@@ -125,12 +127,32 @@ combinations. Such a hypothesis allows for certain racial combinations to experi
 constrains the strike rate to be the same for all parties, which would imply that all parties in the court pursue an identical
 strike strategy across all venire member and defendant race combinations.
 
-Clearly, Figure \ref{fig:racedefmob} casts some doubt on this hypothesis. Determining with greater precision the particular
-departures from the expected pattern cannot be accomplished with that figure alone, however. Some incorporation of the variation
-one expects from each observed value is required. This is accomplished by the addition of approximate 95\%  multinomial confidence
-intervals using the \texttt{MultinomialCI} package in \Rp, which implements multinomial confidence intervals following the method
-presented in \cite{sison1995}. These confidence intervals for the conditional probabilities can be seen in Figure
-\ref{fig:racedefci}.
+Clearly, Figure \ref{fig:racedefmob} casts some doubt on this hypothesis. While the horizontal black lines tell a very similar
+story to Table \ref{tab:margrace}, with little variation between them, a number of other striking patterns are visible. The first,
+and most obvious of these, is the main effect of venire member race. While the aggregate removal rates do not seem to depend on
+the race of the venire member, it is clear that the defence and prosecution pursue radically different strategies. The defence
+seems biased towards a jury with more venire members from visible minorities; all orange points are below the horizontal lines for
+the black and other venire members, indicating these groups are less likely to be struck by the defence than expected, while the
+points are above the lines for the white venire members, indicating a higher than expected probability of defense removal for
+white venire members. The prosecution seems to mirror this tendency, striking the white venire members at a lower rate than
+expected and the visible minorities, especially black venire members, more often than expected.
+
+The addition of defendant races shows another interesting trend. It would seem that the aforementioned tendencies of the
+prosecution and defense are strongest for black defendants, which have the strongest departure of the conditional probabilities
+from the expectation. The defense and prosecution seem to have slightly more similar habits when the defendant is white, despite
+their opposite tendencies in all cases. Finally, it would seem that the removals with cause have tendencies similar to the
+prosecution, as the points representing the conditional probability of a venire member being removed with cause are always on the
+same side of the expected line, an event which would occur with probability $2^{-9} \approx 0.002$ under the hypothesis of
+independent uniform strike rates. Further exploration of the agreement of these two strike tendencies is explored in
+\ref{sec:causepro}.
+
+While Figure \ref{fig:racedefmob} is quite suggestive, the widths of certain horizontal black lines, in particular those for
+venire members with a race other than white or black, suggest that perhaps some of the more extreme tendencies are simply a result
+of the well-known higher variation of samples with small sizes. In order to see the true nature of the noted departures some
+incorporation of the variation one expects from each observed value is required. This is accomplished by the addition of
+approximate 95\%  multinomial confidence intervals using the \texttt{MultinomialCI} package in \Rp, which implements simultaneous
+confidence intervals for multinomial proportions following the method presented in \cite{sison1995}. These confidence intervals
+can be seen in Figure \ref{fig:racedefci}.
 
 \begin{figure}[!h]
   \centering
@@ -140,6 +162,66 @@ presented in \cite{sison1995}. These confidence intervals for the conditional pr
     insignificant when these confidence intervals are applied.}
   \label{fig:racedefci}
 \end{figure}
+
+As suspected, some of the results for the smaller sample sizes do not seem to be significant. The results for the larger groups,
+in particular for white venire members or black defendants, are significant, however. It should be noted that these simultaneous
+confidence intervals do not constitute a proper statistical test of the impact of race, they are rather a way of visually
+providing a viewer some sense of the expected variability in the data over repeated sampling. More rigorous testing is performed
+alongside the model building in \ref{sec:mods}.
+
+\section{Other Factors} \label{sec:otherfact}
+
+Of course, it would be unfair to immediately assume that the cause of the racial patterns observed above is race itself. There
+may be a plethora of attitudes associated with race that could serve as legitimate cause for a peremptory challenge. As noted by 
+Justice Byron R. White in the majority opinion in \cite{swainvalabama}
+
+\begin{quote}
+  [The peremptory challenge] is no less frequently exercised on grounds normally thought irrelevant to legal proceedings or
+  official action, namely, the race, religion, nationality, occupation or affiliations of people summoned for jury duty. For the
+  question a prosecutor or defense counsel must decide is not whether a juror of a particular race or nationality is in fact
+  partial, but whether one from a different group is less likely to be.
+\end{quote}
+
+This quote leads directly to the heart of the problem. Without detailed transcripts indicating how the venire members were
+questioned, it cannot be known if the aggregate pattern of removal is the result of racially based strikes, or whether the lawyers
+determined valid reasons for a peremptory challenge during the voir dire process. For example, if defence attorneys reasonably
+assumed that trust in and deference to authority and law enforcement would make a venire member predisposed to reject evidence
+provided about possible mishandling of evidence or proceedings without proper consideration, this would be reasonable grounds for
+peremptory challenges of individuals with that opinion. If such opinions are distributed heterogeneously by race, the aggregate
+pattern may appear to reflect racially-based decision making by the defence attorneys.
+
+\cite{revesz2016} provides, inadvertently, data which might support the above reasoning in defence of peremptory challenges in the
+United States. He notes that the distribution of political affiliation in the United States is not consistent across races, with
+black voters far more likely to vote for the Democratic Party and far less likely to vote for the Republican Party. As the
+Sunshine data has political affiliation, these aggregate results can be examined for the data used to generate Figure
+\ref{fig:racedefmob}. Figure \ref{fig:racepolit} displays the tendency in this data across races and genders.
+
+
+
+\section{Prosecution and Judge Homogeneity} \label{sec:causepro}
+
+As noted in \ref{sec:impactrace}, the prosecution and judge seem to match in their strike tendencies for every combination. This
+suggests that both challenges with cause and the prosecution tend to have the same effect on the jury composition, though the
+magnitudes can differ greatly for these two strikes. An immediate explanation to this is offered by \cite{hansvidjudging}, who
+outline, on pages 69-70, the skill and tact required to effectively propose challenges with cause. In order to determine an
+individual's bias, it is frequently the case that a direct question will fail to garner an honest reponse due to social pressures.
+As a consequence, the questions asked of venire members must be carefully presented.
+
+Using this as a motivation, an obvious possible explanation for the challenges with cause is that the prosecution is simply more
+experienced on average than the defence. To determine the veracity of this claim, the licensing year of each lawyer was subtracted
+from the outcome date of each trial. The resulting distribution of years of experience was then plotted in back-to-back histograms
+as shown in Figure \ref{fig:lawyerexp}.
+
+\begin{figure}[h!]
+  \epsfCfile{.7}{LawyerExp}
+  %%         --- .85 stands for 85% of text width
+  \caption[Lawyer Experience (Sunshine)]
+  {Distributions of lawyer experience for prosecutors and defence attorneys}
+  \label{fig:lawyerexp}
+\end{figure}
+
+Clearly, this hypothesis is not supported by the data. It seems the typical defence lawyer is more experienced than the typical
+prosecutor, not less. Indeed, the prosecutors seem to be much more likely to be inexperienced than the defence lawyers.
   
 \section{Case Level Summary} \label{sec:casesum}
 
@@ -187,29 +269,6 @@ political imbalance is incredibly prevalent, as can be seen in Figure \ref{fig:r
   {Conditional probabilities of political affiliation by race and gender} 
   \label{fig:racepolitics}
 \end{figure}
-
-Perhaps more interestingly, the prosecution and judge seem to match in their tendency from the mean at every combination. This
-suggests that both challenges with cause and the prosecution tend to have the same effect on the jury composition, though the
-magnitudes can differ greatly for these two strikes. An immediate explanation to this is offered by \cite{hansvidjudging}, who
-outline, on pages 69-70, the skill and tact required to effectively propose challenges with cause. In order to determine an
-individual's bias, it is frequently the case that a direct question will fail to garner an honest reponse due to social pressures.
-As a consequence, the questions asked of venire members must be carefully presented.
-
-Using this as a motivation, an obvious possible explanation for the challenges with cause is that the prosecution is simply more
-experienced on average than the defence. To determine the veracity of this claim, the year licensed for each lawyer was
-subtracted from the outcome date of each trial. The resulting distribution of years of experience was then plotted in back-to-back
-histograms as shown in Figure \ref{fig:lawyerexp}.
-
-\begin{figure}[h!]
-  \epsfCfile{.7}{LawyerExp}
-  %%         --- .85 stands for 85% of text width
-  \caption[Lawyer Experience (Sunshine)]
-  {Distributions of lawyer experience for prosecutors and defence attorneys}
-  \label{fig:lawyerexp}
-\end{figure}
-
-Clearly, this hypothesis is false. It seems the typical defence lawyer is more experienced than the typical prosecutor, not
-less. Indeed, the prosecutors seem to be much more likely to be inexperienced than the defence lawyers.
 
 \section{Useful Quoted Bits}
 

@@ -10,9 +10,11 @@
     "fig:racedefmob"
     "eq:vishyp"
     "fig:racedefci"
+    "sec:otherfact"
+    "sec:causepro"
+    "fig:lawyerexp"
     "sec:casesum"
     "sec:mods"
-    "fig:racepolitics"
-    "fig:lawyerexp"))
+    "fig:racepolitics"))
  :latex)
 
