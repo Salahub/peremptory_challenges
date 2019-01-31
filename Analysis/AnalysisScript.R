@@ -616,11 +616,17 @@ invisible(lapply(names(sun.racelist), function(nm) {
 }))
 
 ## maybe we just have a weird coincidence, what about gender?
-parcoordracev2(apply(sun.mastab, c("Disposition","Gender","DefGender"), sum)[,c(1,2),c(1,2)], deslev = c(1,2,5))
+mobileplot(apply(sun.mastab, c("Disposition","Gender","DefGender"), sum)[,c(1,2),c(1,2)], deslev = c(1,2,5),
+                      main = "Strike Source by Venire Member Gender and Defendant Gender",
+           legendlevs = c("Cause","Defence","Prosecution"),
+           xtext = "Inner Level: Gender | Outer Level: Defendant Gender"))
 ## gender and race?
-parcoordracev2(apply(sun.mastab, c("Disposition","Gender","WhiteBlack"), sum)[,c(1,2),], deslev = c(1,2,5))
+mobileplot(apply(sun.mastab, c("Disposition","Gender","WhiteBlack"), sum)[,c(1,2),], deslev = c(1,2,5),
+           main = "Strike Source by Venire Member Race and Gender",
+           legendlevs = c("Cause","Defence","Prosecution"),
+           xtext = "Inner Level: Gender | Outer Level: Race")
 ## race and politics?
-parcoordracev2(apply(sun.mastab, c("Disposition","PoliticalAffiliation","WhiteBlack"), sum)[,c("Dem", "Rep", "Ind"),],
+mobileplot(apply(sun.mastab, c("Disposition","PoliticalAffiliation","WhiteBlack"), sum)[,c("Dem", "Rep", "Ind"),],
                deslev = c(1,2,5))
 
 ## noticed pattern: the prosecution and judge seem to match, hans and vidmar suggest this could be due to experience (pg 71)
