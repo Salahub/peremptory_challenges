@@ -741,6 +741,7 @@ sun.swap <- SynCols(sun.swap)
 
 ## now organize this on the juror scale
 sun.juror <- UniqueAgg(sun.swap, by = "JurorNumber", collapse = ",")
+sun.juror$VisMin <- as.logical(sun.juror$VisMin)
 
 ## Checkpoint 2: the swapped data has been processed and summarized to be on the scale of individual jurors
 ## save the swapped data
