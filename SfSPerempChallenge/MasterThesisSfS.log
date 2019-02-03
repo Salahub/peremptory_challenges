@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  31 JAN 2019 23:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  3 FEB 2019 21:35
 entering extended mode
 **./MasterThesisSfS.tex
 (MasterThesisSfS.tex
@@ -675,7 +675,7 @@ Underfull \vbox (badness 5064) has occurred while \output is active []
 
  [4]
 LaTeX Font Info:    External font `cmex7' loaded for size
-(Font)              <5> on input line 93.
+(Font)              <5> on input line 92.
 
 [5] [6] [7] [8] [9] [10]) [11]
 \openout2 = `Data.aux'.
@@ -687,18 +687,18 @@ LaTeX Font Info:    External font `cmex7' loaded for size
 ]
 Chapter 3.
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 42--42
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
 [][][]\T1/aer/m/n/9 The link pro-vided in the Jury Sun-shine Pa-per to the spe-
 cific source
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--42
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
 \T1/aer/m/n/9 (http://www.nccourts.org/Citizens/SRPlanning/Statistics/CAReports
 _fy16-17.asp) does not ap-pear
  []
 
-LaTeX Font Info:    Try loading font information for T1+aett on input line 66.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 65.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [14] [15] [16]
@@ -706,88 +706,85 @@ File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 File: Pictures/SimpleSubTree.pdf Graphic file (type pdf)
 
 <use Pictures/SimpleSubTree.pdf>
-Package pdftex.def Info: Pictures/SimpleSubTree.pdf used on input line 155.
+Package pdftex.def Info: Pictures/SimpleSubTree.pdf used on input line 154.
 (pdftex.def)             Requested size: 256.0774pt x 256.07838pt.
  [17 <./Pictures/SimpleSubTree.pdf>] [18])
-[19]
+[19] [20]
 \openout2 = `Analysis.aux'.
 
- (Analysis.tex [20
-
-
-
-]
+ (Analysis.tex
 Chapter 4.
-[21] [22] <Pictures/RaceParCoord.pdf, id=822, 505.89pt x 505.89pt>
+[21
+
+
+
+] [22] <Pictures/RaceParCoord.pdf, id=824, 505.89pt x 505.89pt>
 File: Pictures/RaceParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/RaceParCoord.pdf>
-Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 91.
+Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 92.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
-
-Underfull \vbox (badness 4713) has occurred while \output is active []
-
  [23 <./Pictures/RaceParCoord.pdf>] [24]
-<Pictures/RaceDefCI.pdf, id=857, 505.89pt x 505.89pt>
+<Pictures/RaceDefCI.pdf, id=859, 505.89pt x 505.89pt>
 File: Pictures/RaceDefCI.pdf Graphic file (type pdf)
 
 <use Pictures/RaceDefCI.pdf>
-Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 157.
+Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 158.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [25 <./Pictures/RaceDefCI.pdf>]
-<Pictures/RaceGenderPolit.pdf, id=879, 505.89pt x 505.89pt>
+<Pictures/RaceGenderPolit.pdf, id=881, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderPolit.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderPolit.pdf>
-Package pdftex.def Info: Pictures/RaceGenderPolit.pdf used on input line 193.
+Package pdftex.def Info: Pictures/RaceGenderPolit.pdf used on input line 194.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Pictures/PolBlack.pdf, id=890, 505.89pt x 505.89pt>
+<Pictures/PolBlack.pdf, id=892, 505.89pt x 505.89pt>
 File: Pictures/PolBlack.pdf Graphic file (type pdf)
 
 <use Pictures/PolBlack.pdf>
-Package pdftex.def Info: Pictures/PolBlack.pdf used on input line 221.
+Package pdftex.def Info: Pictures/PolBlack.pdf used on input line 222.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/PolOther.pdf, id=891, 505.89pt x 505.89pt>
+<Pictures/PolOther.pdf, id=893, 505.89pt x 505.89pt>
 File: Pictures/PolOther.pdf Graphic file (type pdf)
 
 <use Pictures/PolOther.pdf>
-Package pdftex.def Info: Pictures/PolOther.pdf used on input line 227.
+Package pdftex.def Info: Pictures/PolOther.pdf used on input line 228.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/PolWhite.pdf, id=892, 505.89pt x 505.89pt>
+<Pictures/PolWhite.pdf, id=894, 505.89pt x 505.89pt>
 File: Pictures/PolWhite.pdf Graphic file (type pdf)
 
 <use Pictures/PolWhite.pdf>
-Package pdftex.def Info: Pictures/PolWhite.pdf used on input line 233.
+Package pdftex.def Info: Pictures/PolWhite.pdf used on input line 234.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [26] [27 <./Pictures/RaceGenderPolit.pdf>]
-<Pictures/RaceGenderStrike.pdf, id=928, 505.89pt x 505.89pt>
+<Pictures/RaceGenderStrike.pdf, id=930, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderStrike.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderStrike.pdf>
-Package pdftex.def Info: Pictures/RaceGenderStrike.pdf used on input line 272.
+Package pdftex.def Info: Pictures/RaceGenderStrike.pdf used on input line 273.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Pictures/GenderGenderStrike.pdf, id=930, 505.89pt x 505.89pt>
+<Pictures/GenderGenderStrike.pdf, id=932, 505.89pt x 505.89pt>
 File: Pictures/GenderGenderStrike.pdf Graphic file (type pdf)
 
 <use Pictures/GenderGenderStrike.pdf>
-Package pdftex.def Info: Pictures/GenderGenderStrike.pdf used on input line 285
+Package pdftex.def Info: Pictures/GenderGenderStrike.pdf used on input line 286
 .
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
@@ -798,14 +795,14 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 f>] [29 <./Pictures/RaceGenderStrike.pdf>]
 
 LaTeX Warning: Reference `fig:racepolitics' on page 30 undefined on input line 
-321.
+322.
 
 [30 <./Pictures/GenderGenderStrike.pdf>]
-<Pictures/LawyerExp.pdf, id=986, 505.89pt x 505.89pt>
+<Pictures/LawyerExp.pdf, id=988, 505.89pt x 505.89pt>
 File: Pictures/LawyerExp.pdf Graphic file (type pdf)
 
 <use Pictures/LawyerExp.pdf>
-Package pdftex.def Info: Pictures/LawyerExp.pdf used on input line 339.
+Package pdftex.def Info: Pictures/LawyerExp.pdf used on input line 340.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
  [31 <./Pictures/LawyerExp.pdf>]) [32]
 \openout2 = `Summary.aux'.
@@ -1024,7 +1021,7 @@ ama.  Ac-cessed:
 
  (DevelopingMobile.tex
 Appendix A.
-<Pictures/FirstMosaic.pdf, id=1046, 505.89pt x 505.89pt>
+<Pictures/FirstMosaic.pdf, id=1048, 505.89pt x 505.89pt>
 File: Pictures/FirstMosaic.pdf Graphic file (type pdf)
 
 <use Pictures/FirstMosaic.pdf>
@@ -1037,7 +1034,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [39
 
 
-] <Pictures/FirstParCoord.pdf, id=1059, 505.89pt x 505.89pt>
+] <Pictures/FirstParCoord.pdf, id=1061, 505.89pt x 505.89pt>
 File: Pictures/FirstParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/FirstParCoord.pdf>
@@ -1175,7 +1172,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 58--58
 \T1/aer/m/n/10.95 11CRS51895, 11CRS52470, 08CRS54836,
  []
 
-<Pictures/ChargeDiagram.pdf, id=2035, 1011.78pt x 722.7pt>
+<Pictures/ChargeDiagram.pdf, id=2037, 1011.78pt x 722.7pt>
 File: Pictures/ChargeDiagram.pdf Graphic file (type pdf)
 
 <use Pictures/ChargeDiagram.pdf>
@@ -1432,7 +1429,7 @@ Appendix C.
 
 
 ]
-<confirmation-originality-scan.pdf, id=3028, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=3030, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf>
@@ -1446,7 +1443,7 @@ Package pdftex.def Info: confirmation-originality-scan.pdf used on input line 2
 28.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 
-<confirmation-originality-scan.pdf, id=3031, page=1, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=3033, page=1, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
@@ -1520,9 +1517,9 @@ c/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
 t8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/latxfont/linew1
 0.pfb>
-Output written on MasterThesisSfS.pdf (95 pages, 1594983 bytes).
+Output written on MasterThesisSfS.pdf (95 pages, 1596408 bytes).
 PDF statistics:
- 3510 PDF objects out of 3580 (max. 8388607)
+ 3512 PDF objects out of 3580 (max. 8388607)
  2025 named destinations out of 2073 (max. 500000)
  470 words of extra memory for PDF output out of 10000 (max. 10000000)
 

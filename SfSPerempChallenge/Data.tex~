@@ -19,7 +19,7 @@ noted that each of these papers represents effort on the part of the authors. As
 \end{quote}
 
 Currently, the collection of jury data is difficult, as many courtrooms have not digitized past records and concerns over privacy
-limit the release of those records, which are stored as paper documents in the case file (see \cite{JurySunshineProject}). This
+limit the release of those records, which are stored as paper documents in the case file (see \cite{JurySunshineProj}). This
 limits the ability of an individual to ask for summaries across numerous trials or to view the jury selection process on a scale
 beyond the basis of one case. Thus, to gather aggregate data the authors of these papers necessarily used different collection
 techniques dictated by the scope of collection desired and the procedures of the court systems from which data was collected.
@@ -137,9 +137,37 @@ large.
 Perhaps the least regular data in this data set was that of the charge text. Due to the lack of any codebook guidance about the
 standard way of recording a charge in a trial, identical charges were recorded in numerous ways. The first method used to combat
 this was removing non-alphnumeric characters, extra spaces, and converting all charges to lower case. This still left a
-considerable variation, however. Consider the charge of breaking and entering, for example,
+considerable variation, however. Consider the charge of breaking and entering, for example, even with this simple preprocessing
+performed the entries varied significantly (e.g. ``break or enter'', ``breaking andor entering'', ``breaking and or entering'',
+etc.).
 
-This tree is visualized in \ref{app:charge} in \ref{fig:chargetree}
+As a consequence, the processing was more involved. First the most common versions of the charge text for the charges were all
+regularized to be identical (see \texttt{StringReg} in \ref{app:proccode}. Next, a regular expression classification tree was
+developed, which would also account for specific features of a charge. When identifying murder, for example, it seemed important
+to ensure attempted murder was separated from murder itself, and separating first and second degree was also desired. This tree
+would, when presented with a charge, apply the regular expressions at each node to the charge. If the charge matched the
+expression at a node, the regular expressions of that node's children were applied to the charge until it was classified to some
+leaf node, each of which had a standardized value which replaced the charge. A small example of this structure is displayed in
+Figure \ref{fig:exampletree}, and the full tree is visualized in \ref{app:complement} in Figure \ref{fig:chargetree}.
+
+\begin{figure}[!h]
+  \centering
+  \epsfCfile{0.6}{SimpleSubTree}
+  \caption[Simple Charge Tree Example]{A example of a simple charge classification tree to separate the sexual offenses from
+    charges leveled against previously known sex offenders. A charge would be classified from most general on the left to most
+    specific on the right.}
+  \label{fig:exampletree}
+\end{figure}
+
+By performing regularization using this charge tree, regularized charges were guaranteed. The cost of this regularization was the
+inability to classify all crimes, however. Of the 1407 charges present in the data, the tree provides regularization for
+1209. With additional time and inspection of the failed matches, the tree could conceivably be axpanded to regularize all
+charges. As this was not the primary investigation of the report, however, such effort was not expended.
+
+Instead, a number of helpful aggregation and extraction functions were developed to allow for the charges to be further
+simplified, as seen in \ref{app:proccode}. In this report, they were aggregated by intuitive classes: sex-based offenses, thefts,
+murders, drug charges, violent offenses not otherwise classified, and driving charges. However, other classes, such as the North
+Carolina felony classes themselves (as provided by \cite{offenseclass}), may provide a more informative classification rationale.
 
 \subsubsection{Variable Level Renaming}
 
@@ -158,8 +186,13 @@ Sunshine data set. They are detailed below.
     otherwise. This variable was motivated in particular by the Gerald Stanley trial, in which the implicit contention of those
     who have taken issue with peremptory challenge is that the First Nations venire members were removed by the defence as their
     race did not match that of Stanley in the racially charged trial.
-  \item[Guilty] A logical indicator indicating whether the trial outcome was guilty or not.
-  \item
+  \item[Guilty] Logical indicator indicating whether the trial outcome was guilty or not
+  \item[Visible Minority] Logical indicator of non-white venire member race
+  \item[Race of Striking Party] Factor variable which gives the race of the prosecution if the venire member was struck by the
+    prosecution, the race of the defence if the venire member was struck by the defence
+  \item[Simplified Race] Due to the scarcity of the other minority races, this variable simplified the race provided to white,
+    black, or other for the venire member
+  \item[Simplified Defendant Race] The same as the simplified race for the defendant races
 \end{description}
 
 \section{Stubborn Legacy Data} \label{sec:norcardata}

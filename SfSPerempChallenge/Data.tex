@@ -12,7 +12,6 @@ sets separately in order to capture adequately the different methodologies and s
 noted that each of these papers represents effort on the part of the authors. As \cite{JurySunshineProj} notes:
 
 \begin{quote}
-  \centering
    limited public access to court data reinforces the single-case focus of the legal doctrines related to jury selection. Poor
    access to records is the single largest reason why jury selection cannot break out of the litigato's framework to become a
    normal topic for political debate
@@ -247,3 +246,10 @@ data. The defence and prosecution seem to follow mirrored patterns of racial pre
 when controlling for other possible confouding effects.
 
 \subsection{Cleaning}
+
+One interesting quirk of the Philadelphia data set was missing values. While the codebook describing the data explicitly stated a
+number of variables should be recorded as binary values. In the provided data files, however, these variables were missing for a
+majority of the observations. In the case of the ``FINLJURY'' variable for example, an indicator of whether the jury member was
+included in the final jury, there were 4626 records with a value of 1, 3 with a value of 0, and 12890 missing values. These
+missing values were assumed to be zero, as using this assumption created a data set which was consistent with that reported in
+\cite{PerempChalMurder}.
