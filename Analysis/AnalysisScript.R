@@ -548,35 +548,6 @@ sun.raceknown <- sun.juror[sun.juror$Race != "U" & sun.juror$DefRace != "U",]
 sun.raceknown$DefWhiteBlack <- gsub(",U", "", sun.raceknown$DefWhiteBlack)
 sun.raceknown <- MatRelevel(sun.raceknown)
 
-## try plotting these
-mosaicplot(Race ~ PerempStruck, data = sun.raceknown, main = "Race vs. Removal", shade = TRUE, las = 2)
-mosaicplot(Race ~ Disposition, data = sun.raceknown, main = "Race by Trial Status", shade = TRUE, las = 2)
-mosaicplot(Race ~ DefStruck, data = sun.raceknown, main = "Race by Defence Removal", shade = TRUE, las = 2)
-mosaicplot(Race ~ ProStruck, data = sun.raceknown, main = "Race by Prosecution Removal", shade = TRUE, las = 2)
-mosaicplot(Race ~ CauseRemoved, data = sun.raceknown, main = "Race by Removal with Cause", shade = TRUE, las = 2)
-## it seems that there are significantly different strike habits between the defense and prosecution, but that
-## generally the system does not strike at different rates on average
-## recall the paper "Ideological Imbalance and the Peremptory Challenge"
-par(mfrow = c(1,2))
-mosaicplot(Race ~ PoliticalAffiliation, data = sun.raceknown[sun.raceknown$Gender == "M",],
-           main = "Affiliation and Race (Men)", shade = TRUE, las = 2)
-mosaicplot(Race ~ PoliticalAffiliation, data = sun.raceknown[sun.raceknown$Gender == "F",],
-           main = "Affiliation and Race (Women)", shade = TRUE, las = 2)
-mosaicplot(Race ~ DefStruck, data = sun.raceknown[sun.raceknown$Gender == "M",],
-           main = "Defense Removals and Race (Men)", shade = TRUE, las = 2)
-mosaicplot(Race ~ DefStruck, data = sun.raceknown[sun.raceknown$Gender == "F",],
-           main = "Defense Removals and Race (Women)", shade = TRUE, las = 2)
-mosaicplot(Race ~ ProStruck, data = sun.raceknown[sun.raceknown$Gender == "M",],
-           main = "Prosecution Removals and Race (Men)", shade = TRUE, las = 2)
-mosaicplot(Race ~ ProStruck, data = sun.raceknown[sun.raceknown$Gender == "F",],
-           main = "Prosecution Removals and Race (Women)", shade = TRUE, las = 2)
-par(mfrow = c(1,1))
-## maybe the same forces are at play here, compare to simulation?
-## alternatively, the strong relationship between race and political affiliation provides motivation for even an
-## unbiased lawyer to preferentially strike one race or the other
-
-## these mosaic plots can be confusing, and seemed ineffective upon first presentation, try parallel axis plots
-## instead
 ## begin with an overall plot displaying the data at a high level
 mosaicplot(PerempStruck ~ WhiteBlack, data = sun.raceknown)
 ## break it down by race and defendant race, as they were the motivation of this investigation
@@ -619,7 +590,7 @@ invisible(lapply(names(sun.racelist), function(nm) {
 mobileplot(apply(sun.mastab, c("Disposition","Gender","DefGender"), sum)[,c(1,2),c(1,2)], deslev = c(1,2,5),
                       main = "Strike Source by Venire Member Gender and Defendant Gender",
            legendlevs = c("Cause","Defence","Prosecution"),
-           xtext = "Inner Level: Gender | Outer Level: Defendant Gender"))
+           xtext = "Inner Level: Gender | Outer Level: Defendant Gender")
 ## gender and race?
 mobileplot(apply(sun.mastab, c("Disposition","Gender","WhiteBlack"), sum)[,c(1,2),], deslev = c(1,2,5),
            main = "Strike Source by Venire Member Race and Gender",
