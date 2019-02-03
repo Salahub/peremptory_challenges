@@ -549,6 +549,8 @@ names(SunshineData) <- SunshineSheets
 NorthCarData <- read.csv(NorthCarFile)
 PhillyData <- read.csv(PhillyFile)
 
+
+## THE SUNSHINE DATA ###################
 ## clean non-informative columns
 CleanSunshine <- lapply(SunshineData, function(dat) dat[, !apply(dat,2,function(col) all(is.na(col)))])
 
@@ -788,9 +790,25 @@ saveRDS(sun.trialsum, "TrialAggregated.Rds")
 saveRDS(sun.jursum, "AllJuries.Rds")
 
 
+## THE PHILADELPHIA DATA ###############
+## the philadelphia data is already quite clean, simply synthesize some analogous variables to the jury sunshine data
+## first remove the occupation, age, question, education data (not relevant, the sunshine data does not have these variables
+## and these second data sets serve as a control and generalization test)
+PhillyData <- PhillyData[,!grepl("OCC|EDU|AGE|CHR", names(PhillyData))]
+
+## remove the persistent NAs, replace them with suitable values
+PhillyNA <- as.data.frame(lapply(PhillyData, function(el) if (is.character(el)) {
+                                                              el[is.na(el)] <- ""
+                                                              el
+                                                          } else if (is.factor(el)) {
+                                                              el
+                                                          } else {
+                                                              el[is.na(el)] <- 0
+                                                              el
+                                                          }))
+
 ## CHARGE CLASSIFICATION IMAGES ########
 ## presented here is the code to generate the appendix charge classification images
-
 ## extract relevant charges from the clean sunshine data, avoiding duplicates
 ## regularize the charges
 chargFact.clean <- as.factor(CleanSunshine$Charges$ChargeTxt)
