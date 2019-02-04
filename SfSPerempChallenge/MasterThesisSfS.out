@@ -36,13 +36,12 @@
 \BOOKMARK [0][-]{appendix.A}{Developing an Effective Visualization of Conditional Probability}{}% 36
 \BOOKMARK [1][-]{section.A.1}{The Mobile Plot}{appendix.A}% 37
 \BOOKMARK [0][-]{appendix.B}{Complementary information}{}% 38
-\BOOKMARK [1][-]{section.B.1}{Including Rcode with verbatim}{appendix.B}% 39
-\BOOKMARK [1][-]{section.B.2}{Data Processing Code}{appendix.B}% 40
-\BOOKMARK [1][-]{section.B.3}{Jury Sunshine Irregularities}{appendix.B}% 41
-\BOOKMARK [1][-]{section.B.4}{Jury Sunshine Charge Classification}{appendix.B}% 42
-\BOOKMARK [1][-]{section.B.5}{Analysis Code}{appendix.B}% 43
-\BOOKMARK [1][-]{section.B.6}{Using Sweave to include Rcode \(and more\) in your report}{appendix.B}% 44
-\BOOKMARK [0][-]{appendix.C}{Yet another appendix....}{}% 45
-\BOOKMARK [1][-]{section.C.1}{Description}{appendix.C}% 46
-\BOOKMARK [1][-]{section.C.2}{Tables}{appendix.C}% 47
-\BOOKMARK [0][-]{section*.31}{Epilogue}{}% 48
+\BOOKMARK [1][-]{section.B.1}{Jury Sunshine Irregularities}{appendix.B}% 39
+\BOOKMARK [1][-]{section.B.2}{Jury Sunshine Charge Classification}{appendix.B}% 40
+\BOOKMARK [1][-]{section.B.3}{Using Sweave to include Rcode \(and more\) in your report}{appendix.B}% 41
+\BOOKMARK [0][-]{appendix.C}{Mathematical Results}{}% 42
+\BOOKMARK [1][-]{section.C.1}{Conditional Distribution of a Poisson Expectation Given Marginal Counts}{appendix.C}% 43
+\BOOKMARK [0][-]{appendix.D}{Code}{}% 44
+\BOOKMARK [1][-]{section.D.1}{Data Processing Code}{appendix.D}% 45
+\BOOKMARK [1][-]{section.D.2}{Analysis Code}{appendix.D}% 46
+\BOOKMARK [0][-]{section*.30}{Epilogue}{}% 47

@@ -146,6 +146,12 @@ Kullback, S. and R.~Leibler (1951).
 \newblock On information and sufficiency.
 \newblock {\em The Annals of Mathematical Statistics\/}~{\em 22\/}(1), 79--86.
 
+\bibitem[\protect\citeauthoryear{Lang}{Lang}{1996}]{lang1996}
+Lang, J.~B. (1996).
+\newblock On the comparison of multinomial and poisson log-linear models.
+\newblock {\em Journal of the Royal Statistical Society, Series B
+  (Methodological)\/}~{\em 58\/}(1), 253--266.
+
 \bibitem[\protect\citeauthoryear{MacLean}{MacLean}{2018}]{fraughthistory}
 MacLean, C. (2018, February).
 \newblock {Gerald Stanley acquittal renews calls for justice reform 27 years
@@ -313,6 +319,13 @@ Van~Dyke, J.~M. (1977).
 \newblock {\em Jury Selection Procedures: Our Uncertain Commitment to
   Representative Panels\/} (1 ed.).
 \newblock Ballinger Publishing.
+
+\bibitem[\protect\citeauthoryear{Venables and Ripley}{Venables and
+  Ripley}{2002}]{nnet}
+Venables, W.~N. and B.~D. Ripley (2002).
+\newblock {\em Modern Applied Statistics with S\/} (Fourth ed.).
+\newblock New York: Springer.
+\newblock ISBN 0-387-95457-0.
 
 \bibitem[\protect\citeauthoryear{von Moschzisker}{von
   Moschzisker}{1921}]{vonmosch1921}

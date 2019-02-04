@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  3 FEB 2019 21:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  4 FEB 2019 14:45
 entering extended mode
 **./MasterThesisSfS.tex
 (MasterThesisSfS.tex
@@ -505,7 +505,8 @@ File: lstlang3.sty 2015/06/04 1.6 listings language file
 
 (MasterThesisSfS.aux (Preface.aux) (Abstract.aux) (Notation.aux)
 (Introduction.aux) (History.aux) (Data.aux) (Analysis.aux) (Summary.aux)
-(DevelopingMobile.aux) (Appendix1.aux) (Appendix2.aux) (Epilogue.aux))
+(DevelopingMobile.aux) (Appendix1.aux) (Appendix2.aux) (Appendix3.aux)
+(Epilogue.aux))
 \openout1 = `MasterThesisSfS.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 104.
@@ -522,8 +523,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 104.
 LaTeX Font Info:    ... okay on input line 104.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 104.
 LaTeX Font Info:    ... okay on input line 104.
-
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+ ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count131
 \scratchdimen=\dimen142
@@ -702,7 +702,7 @@ LaTeX Font Info:    Try loading font information for T1+aett on input line 65.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [14] [15] [16]
-<Pictures/SimpleSubTree.pdf, id=758, 505.89pt x 505.89pt>
+<Pictures/SimpleSubTree.pdf, id=751, 505.89pt x 505.89pt>
 File: Pictures/SimpleSubTree.pdf Graphic file (type pdf)
 
 <use Pictures/SimpleSubTree.pdf>
@@ -718,14 +718,14 @@ Chapter 4.
 
 
 
-] [22] <Pictures/RaceParCoord.pdf, id=824, 505.89pt x 505.89pt>
+] [22] <Pictures/RaceParCoord.pdf, id=817, 505.89pt x 505.89pt>
 File: Pictures/RaceParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/RaceParCoord.pdf>
 Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 92.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
  [23 <./Pictures/RaceParCoord.pdf>] [24]
-<Pictures/RaceDefCI.pdf, id=859, 505.89pt x 505.89pt>
+<Pictures/RaceDefCI.pdf, id=852, 505.89pt x 505.89pt>
 File: Pictures/RaceDefCI.pdf Graphic file (type pdf)
 
 <use Pictures/RaceDefCI.pdf>
@@ -735,7 +735,7 @@ Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 158.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [25 <./Pictures/RaceDefCI.pdf>]
-<Pictures/RaceGenderPolit.pdf, id=881, 505.89pt x 505.89pt>
+<Pictures/RaceGenderPolit.pdf, id=874, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderPolit.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderPolit.pdf>
@@ -745,21 +745,21 @@ Package pdftex.def Info: Pictures/RaceGenderPolit.pdf used on input line 194.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Pictures/PolBlack.pdf, id=892, 505.89pt x 505.89pt>
+<Pictures/PolBlack.pdf, id=885, 505.89pt x 505.89pt>
 File: Pictures/PolBlack.pdf Graphic file (type pdf)
 
 <use Pictures/PolBlack.pdf>
 Package pdftex.def Info: Pictures/PolBlack.pdf used on input line 222.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/PolOther.pdf, id=893, 505.89pt x 505.89pt>
+<Pictures/PolOther.pdf, id=886, 505.89pt x 505.89pt>
 File: Pictures/PolOther.pdf Graphic file (type pdf)
 
 <use Pictures/PolOther.pdf>
 Package pdftex.def Info: Pictures/PolOther.pdf used on input line 228.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/PolWhite.pdf, id=894, 505.89pt x 505.89pt>
+<Pictures/PolWhite.pdf, id=887, 505.89pt x 505.89pt>
 File: Pictures/PolWhite.pdf Graphic file (type pdf)
 
 <use Pictures/PolWhite.pdf>
@@ -770,7 +770,7 @@ Package pdftex.def Info: Pictures/PolWhite.pdf used on input line 234.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [26] [27 <./Pictures/RaceGenderPolit.pdf>]
-<Pictures/RaceGenderStrike.pdf, id=930, 505.89pt x 505.89pt>
+<Pictures/RaceGenderStrike.pdf, id=923, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderStrike.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderStrike.pdf>
@@ -780,7 +780,7 @@ Package pdftex.def Info: Pictures/RaceGenderStrike.pdf used on input line 273.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Pictures/GenderGenderStrike.pdf, id=932, 505.89pt x 505.89pt>
+<Pictures/GenderGenderStrike.pdf, id=925, 505.89pt x 505.89pt>
 File: Pictures/GenderGenderStrike.pdf Graphic file (type pdf)
 
 <use Pictures/GenderGenderStrike.pdf>
@@ -795,16 +795,20 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 f>] [29 <./Pictures/RaceGenderStrike.pdf>]
 
 LaTeX Warning: Reference `fig:racepolitics' on page 30 undefined on input line 
-322.
+336.
 
 [30 <./Pictures/GenderGenderStrike.pdf>]
-<Pictures/LawyerExp.pdf, id=988, 505.89pt x 505.89pt>
+<Pictures/LawyerExp.pdf, id=987, 505.89pt x 505.89pt>
 File: Pictures/LawyerExp.pdf Graphic file (type pdf)
 
 <use Pictures/LawyerExp.pdf>
-Package pdftex.def Info: Pictures/LawyerExp.pdf used on input line 340.
+Package pdftex.def Info: Pictures/LawyerExp.pdf used on input line 354.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
- [31 <./Pictures/LawyerExp.pdf>]) [32]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[31]) [32 <./Pictures/LawyerExp.pdf>]
 \openout2 = `Summary.aux'.
 
  (Summary.tex
@@ -867,161 +871,161 @@ iacobucci/First_Nations_Representation_Ontario_Juries.html.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--156
+Underfull \hbox (badness 10000) in paragraph at lines 156--162
 []\T1/aer/m/n/10.95 MacLean, C. (2018, Febru-ary).  Ger-ald Stan-ley ac-quit-ta
 l re-news calls
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--156
+Underfull \hbox (badness 10000) in paragraph at lines 156--162
 \T1/aer/m/n/10.95 for jus-tice re-form 27 years af-ter Man-i-toba in-quiry.  CB
 C News.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--156
+Underfull \hbox (badness 10000) in paragraph at lines 156--162
 \T1/aer/m/n/10.95 https://www.cbc.ca/news/canada/manitoba/aboriginal-justice-in
 quiry-colten-boushie-
  []
 
 
-Underfull \hbox (badness 3579) in paragraph at lines 158--164
+Underfull \hbox (badness 3579) in paragraph at lines 164--170
 []\T1/aer/m/n/10.95 Macnab, A. (2018, Febru-ary).  Stan-ley ac-quit-tal should 
 not lead to scrap-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--164
+Underfull \hbox (badness 10000) in paragraph at lines 164--170
 \T1/aer/m/n/10.95 ping peremp-tory chal-lenges, say crim-i-nal lawyers.  Cana-d
 ian Lawyer.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--164
+Underfull \hbox (badness 10000) in paragraph at lines 164--170
 \T1/aer/m/n/10.95 https://www.canadianlawyermag.com/legalfeeds/author/aidan-mac
 nab/stanley-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--164
+Underfull \hbox (badness 10000) in paragraph at lines 164--170
 \T1/aer/m/n/10.95 acquittal-should-not-lead-to-scrapping-peremptory-challenges-
 say-criminal-lawyers-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--173
+Underfull \hbox (badness 10000) in paragraph at lines 174--179
 []\T1/aer/m/n/10.95 Ministry of the At-tor-ney Gen-eral of On-tario (2018).  Th
 e an-nual
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--173
+Underfull \hbox (badness 10000) in paragraph at lines 174--179
 \T1/aer/m/n/10.95 jury se-lec-tion pro-cess.  Queen's Printer for On-tario.  Ac
 -cessed:
  []
 
 
-Overfull \hbox (19.51297pt too wide) in paragraph at lines 168--173
+Overfull \hbox (19.51297pt too wide) in paragraph at lines 174--179
 \T1/aer/m/n/10.95 https://www.attorneygeneral.jus.gov.on.ca/english/courts/jury
 /jury_selection_process.php. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--178
+Underfull \hbox (badness 10000) in paragraph at lines 181--184
 []\T1/aer/m/n/10.95 Mirriam-Webster (2019a).  Mirriam-Webster Dic-tio-nary On-l
 ine.  Ac-cessed:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--183
+Underfull \hbox (badness 10000) in paragraph at lines 186--189
 []\T1/aer/m/n/10.95 Mirriam-Webster (2019b).  Mirriam-Webster Dic-tio-nary On-l
 ine.  Ac-cessed:
  []
 
-
-Underfull \hbox (badness 4060) in paragraph at lines 201--206
+[36]
+Underfull \hbox (badness 4060) in paragraph at lines 207--212
 []\T1/aer/m/n/10.95 North Car-olina Sen-tenc-ing and Pol-icy Ad-vi-sory Com-mis
 -sion (2017).  \T1/aer/m/it/10.95 Clas-si-
  []
 
 
-Underfull \hbox (badness 3343) in paragraph at lines 201--206
+Underfull \hbox (badness 3343) in paragraph at lines 207--212
 \T1/aer/m/it/10.95 fi-ca-tion of a Sam-ple of Of-fenses\T1/aer/m/n/10.95 .  Nor
 th Car-olina Ju-di-cial Branch.  Ac-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--206
+Underfull \hbox (badness 10000) in paragraph at lines 207--212
 \T1/aer/m/n/10.95 cessed: https://www.nccourts.gov/assets/documents/publication
 s/Sample-list-
  []
 
-[36]
-Underfull \hbox (badness 2426) in paragraph at lines 220--226
+
+Underfull \hbox (badness 2426) in paragraph at lines 226--232
 []\T1/aer/m/n/10.95 Quenneville, G. (2018, Febru-ary).  What hap-pened on Ger-a
 ld Stan-ley's farm
  []
 
 
-Underfull \hbox (badness 5862) in paragraph at lines 220--226
+Underfull \hbox (badness 5862) in paragraph at lines 226--232
 \T1/aer/m/n/10.95 the day Colten Boushie was shot, as told by wit-nesses.  CBC 
 News.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 220--226
+Underfull \hbox (badness 10000) in paragraph at lines 226--232
 \T1/aer/m/n/10.95 https://www.cbc.ca/news/canada/saskatoon/what-happened-stanle
 y-farm-boushie-
  []
 
 
-Underfull \hbox (badness 4242) in paragraph at lines 229--235
+Underfull \hbox (badness 4242) in paragraph at lines 235--241
 []\T1/aer/m/n/10.95 Quenneville, G. and J. War-ick (2018, Febru-ary).  Shouts o
 f 'mur-derer' in
  []
 
 
-Underfull \hbox (badness 1776) in paragraph at lines 229--235
+Underfull \hbox (badness 1776) in paragraph at lines 235--241
 \T1/aer/m/n/10.95 court-room af-ter Ger-ald Stan-ley ac-quit-ted in Colten Bous
 hie shoot-ing.  CBC
  []
 
 
-Underfull \hbox (badness 5475) in paragraph at lines 229--235
+Underfull \hbox (badness 5475) in paragraph at lines 235--241
 \T1/aer/m/n/10.95 News.  https://www.cbc.ca/news/canada/saskatoon/gerald-stanle
 y-colten-boushie-
  []
 
 
-Underfull \hbox (badness 2894) in paragraph at lines 282--287
+Underfull \hbox (badness 2894) in paragraph at lines 288--293
 []\T1/aer/m/n/10.95 Supreme Court of Canada (1991).  R. v. sher-ratt.  Supreme 
 Court Judge-
  []
 
 
-Underfull \hbox (badness 2181) in paragraph at lines 290--293
+Underfull \hbox (badness 2181) in paragraph at lines 296--299
 []\T1/aer/m/n/10.95 Supreme Court of the United States (1965).  Swain v. Al-aba
 ma.  Ac-cessed:
  []
 
 
-Underfull \hbox (badness 1609) in paragraph at lines 296--299
+Underfull \hbox (badness 1609) in paragraph at lines 302--305
 []\T1/aer/m/n/10.95 Supreme Court of the United States (1986).  Bat-son v. Ken-
 tucky.  Ac-cessed:
  []
 
-
-Underfull \hbox (badness 2035) in paragraph at lines 302--305
+[37]
+Underfull \hbox (badness 2035) in paragraph at lines 308--311
 []\T1/aer/m/n/10.95 Supreme Court of the United States (1993).  J.E.B. v. Al-ab
 ama.  Ac-cessed:
  []
 
-[37]) [38]
+) [38]
 \openout2 = `DevelopingMobile.aux'.
 
  (DevelopingMobile.tex
 Appendix A.
-<Pictures/FirstMosaic.pdf, id=1048, 505.89pt x 505.89pt>
+<Pictures/FirstMosaic.pdf, id=1045, 505.89pt x 505.89pt>
 File: Pictures/FirstMosaic.pdf Graphic file (type pdf)
 
 <use Pictures/FirstMosaic.pdf>
@@ -1034,7 +1038,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [39
 
 
-] <Pictures/FirstParCoord.pdf, id=1061, 505.89pt x 505.89pt>
+] <Pictures/FirstParCoord.pdf, id=1058, 505.89pt x 505.89pt>
 File: Pictures/FirstParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/FirstParCoord.pdf>
@@ -1056,51 +1060,114 @@ Underfull \vbox (badness 1924) has occurred while \output is active []
 
  (Appendix1.tex
 Appendix B.
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+[]|\T1/aer/m/n/10.95 08CRS50940, 08CRS52888, 09CRS000305,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+\T1/aer/m/n/10.95 09CRS1106, 09CRS50752, 10CR52031,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+\T1/aer/m/n/10.95 10CRS051975, 10CRS1215, 10CRS397,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+\T1/aer/m/n/10.95 10CRS51388, 10CRS51610, 10CRS52410,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+\T1/aer/m/n/10.95 11CRS051642, 11CRS051795, 11CRS1577,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+\T1/aer/m/n/10.95 11CRS1745, 11CRS1783, 11CRS51204,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+\T1/aer/m/n/10.95 11CRS51895, 11CRS52470, 08CRS54836,
+ []
+
+<Pictures/ChargeDiagram.pdf, id=1089, 1011.78pt x 722.7pt>
+File: Pictures/ChargeDiagram.pdf Graphic file (type pdf)
+
+<use Pictures/ChargeDiagram.pdf>
+Package pdftex.def Info: Pictures/ChargeDiagram.pdf used on input line 31.
+(pdftex.def)             Requested size: 1011.77753pt x 722.69823pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 LaTeX Font Info:    External font `cmex7' loaded for size
-(Font)              <7> on input line 9.
+(Font)              <7> on input line 38.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 9.
+(hyperref)                removing `math shift' on input line 38.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \kern 3.04074pt
-(hyperref)                removed on input line 9.
+(hyperref)                removed on input line 38.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 9.
+(hyperref)                removing `math shift' on input line 38.
 
 
-LaTeX Warning: Reference `App:listings' on page 43 undefined on input line 10.
-
-
-Underfull \vbox (badness 5345) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [43
 
 
 
 ]
+
+LaTeX Warning: Text page 44 contains only floats.
+
+
+Overfull \vbox (6.6765pt too high) has occurred while \output is active []
+
+
+[44 <./Pictures/ChargeDiagram.pdf>]) [45]
+\openout2 = `Appendix2.aux'.
+
+ (Appendix2.tex [46
+
+
+
+]
+Appendix C.
+
+Overfull \hbox (5.23248pt too wide) in paragraph at lines 3--3
+[]\T1/aer/bx/n/14.4 Conditional Dis-tri-bu-tion of a Pois-son Ex-pec-ta-tion Gi
+ven
+ []
+
+[47]) [48]
+\openout2 = `Appendix3.aux'.
+
+ (Appendix3.tex
+Appendix D.
+
+Overfull \hbox (100.20279pt too wide) in paragraph at lines 5--8
+\T1/aer/m/n/10.95 way of ac-cess-ing the code is through the au-thor's GitHub (
+https://github.com/Salahub/peremptory_challenges),
+ []
+
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 40.
+nput line 9.
+(Pictures/DataProcess.R [49
 
-(Pictures/DataProcess.R [44]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [45]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [46]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [47]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [48]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [49]
+]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [50]
@@ -1116,6 +1183,21 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [54]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [55]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [56]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [57]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [58]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [59]
 Overfull \hbox (10.07137pt too wide) in paragraph at lines 647--648
 [][][][][][][] 
  []
@@ -1128,69 +1210,7 @@ Overfull \hbox (15.16899pt too wide) in paragraph at lines 661--662
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [55]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [56]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [57]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [58])
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-[]|\T1/aer/m/n/10.95 08CRS50940, 08CRS52888, 09CRS000305,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-\T1/aer/m/n/10.95 09CRS1106, 09CRS50752, 10CR52031,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-\T1/aer/m/n/10.95 10CRS051975, 10CRS1215, 10CRS397,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-\T1/aer/m/n/10.95 10CRS51388, 10CRS51610, 10CRS52410,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-\T1/aer/m/n/10.95 11CRS051642, 11CRS051795, 11CRS1577,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-\T1/aer/m/n/10.95 11CRS1745, 11CRS1783, 11CRS51204,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-\T1/aer/m/n/10.95 11CRS51895, 11CRS52470, 08CRS54836,
- []
-
-<Pictures/ChargeDiagram.pdf, id=2037, 1011.78pt x 722.7pt>
-File: Pictures/ChargeDiagram.pdf Graphic file (type pdf)
-
-<use Pictures/ChargeDiagram.pdf>
-Package pdftex.def Info: Pictures/ChargeDiagram.pdf used on input line 65.
-(pdftex.def)             Requested size: 1011.77753pt x 722.69823pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-(Pictures/AnalysisScript.R [59]
-
-LaTeX Warning: Text page 60 contains only floats.
-
-
-Overfull \vbox (6.6765pt too high) has occurred while \output is active []
-
-
-[60 <./Pictures/ChargeDiagram.pdf>]
+ [60]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [61]
@@ -1199,10 +1219,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [62]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [63]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [64]
+ [63])
+(Pictures/AnalysisScript.R [64]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [65]
@@ -1236,6 +1254,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [75]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [76]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [77]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [78]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [79]
 Overfull \hbox (66.14525pt too wide) in paragraph at lines 861--862
 [][][][][][][] 
  []
@@ -1311,9 +1341,6 @@ Overfull \hbox (45.36424pt too wide) in paragraph at lines 861--862
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [76]
 Overfull \hbox (45.75475pt too wide) in paragraph at lines 863--864
 [][][][][][][] 
  []
@@ -1393,133 +1420,116 @@ Overfull \hbox (24.97374pt too wide) in paragraph at lines 863--864
 []  
  []
 
-)
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 76.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                \kern 3.04074pt
-(hyperref)                removed on input line 76.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 76.
-
-) [77]
-\openout2 = `Appendix2.aux'.
-
- (Appendix2.tex [78
-
-
-
-]
-Appendix C.
-) [79] [80
+ [80]))
+[81] [82
 
 
 ]
 \openout2 = `Epilogue.aux'.
 
- (Epilogue.tex) [81
+ (Epilogue.tex) [83
 
 
-] [82
+] [84
 
 
 ]
-<confirmation-originality-scan.pdf, id=3030, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=3042, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf>
 Package pdftex.def Info: confirmation-originality-scan.pdf used on input line 2
-28.
+29.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf>
 Package pdftex.def Info: confirmation-originality-scan.pdf used on input line 2
-28.
+29.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 
-<confirmation-originality-scan.pdf, id=3033, page=1, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=3045, page=1, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 228.
-(pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
-File: confirmation-originality-scan.pdf Graphic file (type pdf)
-
-<use confirmation-originality-scan.pdf, page 1>
-Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 228.
+ line 229.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 228.
+ line 229.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 228.
+ line 229.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
 Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
- line 228.
+ line 229.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
- [83 <./confirmation-originality-scan.pdf, page is rotated 270 degrees>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 229.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 229.
+File: confirmation-originality-scan.pdf Graphic file (type pdf)
+
+<use confirmation-originality-scan.pdf, page 1>
+Package pdftex.def Info: confirmation-originality-scan.pdf, page1 used on input
+ line 229.
+(pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
+ [85 <./confirmation-originality-scan.pdf, page is rotated 270 degrees>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 230.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 230.
  (MasterThesisSfS.aux (Preface.aux)
 (Abstract.aux) (Notation.aux) (Introduction.aux) (History.aux) (Data.aux)
 (Analysis.aux) (Summary.aux) (DevelopingMobile.aux) (Appendix1.aux)
-(Appendix2.aux) (Epilogue.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 229.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 229.
+(Appendix2.aux) (Appendix3.aux) (Epilogue.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 230.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 230.
 Package rerunfilecheck Info: File `MasterThesisSfS.out' has not changed.
-(rerunfilecheck)             Checksum: C39FA20E21A65924694D25F85CF3E5C6;3215.
+(rerunfilecheck)             Checksum: AC88B2448B4494432352D79B3B086B21;3180.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 229.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 230.
  ) 
 Here is how much of TeX's memory you used:
- 14905 strings out of 493328
- 212464 string characters out of 3139124
- 750253 words of memory out of 3000000
- 16007 multiletter control sequences out of 15000+200000
+ 14926 strings out of 493328
+ 212713 string characters out of 3139124
+ 770253 words of memory out of 3000000
+ 16017 multiletter control sequences out of 15000+200000
  66996 words of font info for 139 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,20n,47p,338b,2394s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
-t8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/latxfont/linew1
-0.pfb>
-Output written on MasterThesisSfS.pdf (95 pages, 1596408 bytes).
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
+i9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/latxfont/linew10.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on MasterThesisSfS.pdf (97 pages, 1630442 bytes).
 PDF statistics:
- 3512 PDF objects out of 3580 (max. 8388607)
- 2025 named destinations out of 2073 (max. 500000)
- 470 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3535 PDF objects out of 3580 (max. 8388607)
+ 2029 named destinations out of 2073 (max. 500000)
+ 462 words of extra memory for PDF output out of 10000 (max. 10000000)
 

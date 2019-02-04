@@ -3,10 +3,8 @@
  (lambda ()
    (LaTeX-add-labels
     "app:complement"
-    "app:proccode"
     "app:irregs"
     "app:charge"
-    "fig:chargetree"
-    "app:analysis"))
+    "fig:chargetree"))
  :latex)
 

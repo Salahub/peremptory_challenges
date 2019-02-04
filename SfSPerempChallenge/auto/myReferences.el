@@ -2,6 +2,8 @@
  "myReferences"
  (lambda ()
    (LaTeX-add-bibitems
+    "nnet"
+    "lang1996"
     "revesz2016"
     "sison1995"
     "multinomci"

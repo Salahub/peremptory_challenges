@@ -298,6 +298,22 @@ construction and testing of specific models in \ref{sec:mods}.
 
 \section{Modelling} \label{sec:mods}
 
+Controlling for the myriad of possible confounding factors motivated the fitting of multiple models to test the significance and
+magnitude of the impact of certain variables on the probability of venire member rejection. Here, the use of the mobile plot in
+Figure \ref{fig:racedefmob} and others is suggestive of a model by design. The creation of a plot with conditional probabilities
+contingent on other factors is suggestive of a conditional multinomial distribution, and so fitting multinomial log-linear
+regression seemed a natural choice.
+
+It should be noted that early modelling instead used Poisson regression, but as the conditional distribution of a particular
+outcome given some marginal count is multinomial (as shown in \ref{app:mathres}), these two models are essentially
+equivalent. There are known transforms to move between the models and their equivalencies are well documented
+(\cite{lang1996}). For greater interpretability, however, the fitting performed used multinomial models as implemented in the
+\texttt{nnet} package in \Rp, which implements a method of fitting multinomial models discussed in \cite{nnet}. While in Poisson
+models the interaction terms are the only quantities of interest, and the main effects merely serve as constraints, the
+multinomial fit leads to the more intuitive main effect importance for the different factors.
+
+
+
 In order to create a single model to test the statistical significance of the differences observed for strike rates by race,
 defendant race, and party doing the striking, a saturated poisson regression model was fit to the data. Letting $i$ denote the
 level of the venire member race, $j$ the defendant race, and $k$ the disposition, the numbers of observed venire members in each
