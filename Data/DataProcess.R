@@ -741,9 +741,12 @@ sun.swap$CrimeType <- as.factor(sun.swap$CrimeType)
 ## synthesize additional columns
 sun.swap <- SynCols(sun.swap)
 
-## now organize this on the juror scale
+## now organize this on the juror scale and perform some simple variable addition
 sun.juror <- UniqueAgg(sun.swap, by = "JurorNumber", collapse = ",")
 sun.juror$VisMin <- as.logical(sun.juror$VisMin)
+sun.juror$MatchSimp <- sapply(str_split(sun.juror$RaceMatch, ","), function(el) any(as.logical(el)))
+sun.juror$DispSimp <- sun.juror$Disposition
+levels(sun.juror$DispSimp)[3] <- "Kept"
 
 ## Checkpoint 2: the swapped data has been processed and summarized to be on the scale of individual jurors
 ## save the swapped data
@@ -783,6 +786,7 @@ sun.trialsum$DefWhiteOther <- as.factor(FactorReduce(sun.trialsum$DefWhiteBlack,
 ## the Kullback-Leibler divergence
 sun.trialsum$KLdiv <- kldiv(sun.trialsum[,grepl("Jury", names(sun.trialsum))],
                             sun.trialsum[,grepl("Venire", names(sun.trialsum))])
+
 
 ## Checkpoint 3: the data has been set to the trial level and summarized
 ## save this
