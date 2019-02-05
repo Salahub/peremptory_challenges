@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  4 FEB 2019 14:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  4 FEB 2019 22:16
 entering extended mode
 **./MasterThesisSfS.tex
 (MasterThesisSfS.tex
@@ -795,14 +795,14 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 f>] [29 <./Pictures/RaceGenderStrike.pdf>]
 
 LaTeX Warning: Reference `fig:racepolitics' on page 30 undefined on input line 
-336.
+338.
 
 [30 <./Pictures/GenderGenderStrike.pdf>]
-<Pictures/LawyerExp.pdf, id=987, 505.89pt x 505.89pt>
+<Pictures/LawyerExp.pdf, id=990, 505.89pt x 505.89pt>
 File: Pictures/LawyerExp.pdf Graphic file (type pdf)
 
 <use Pictures/LawyerExp.pdf>
-Package pdftex.def Info: Pictures/LawyerExp.pdf used on input line 354.
+Package pdftex.def Info: Pictures/LawyerExp.pdf used on input line 356.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 
@@ -827,195 +827,195 @@ Underfull \hbox (badness 6893) in paragraph at lines 12--16
  []
 
 
-Underfull \hbox (badness 4846) in paragraph at lines 91--94
+Underfull \hbox (badness 4846) in paragraph at lines 97--100
 []\T1/aer/m/n/10.95 Government of Canada (1985).  Crim-i-nal code sec-tion 634.
   https://laws-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 97--101
-[]\T1/aer/m/n/10.95 Government of Saskatchewan (1998).  Jury act, 1998.  Ac-ces
-sed:
  []
 
 [35
 
 ]
-Underfull \hbox (badness 1248) in paragraph at lines 123--128
+Underfull \hbox (badness 10000) in paragraph at lines 103--107
+[]\T1/aer/m/n/10.95 Government of Saskatchewan (1998).  Jury act, 1998.  Ac-ces
+sed:
+ []
+
+
+Underfull \hbox (badness 1248) in paragraph at lines 129--134
 \T1/aer/m/n/10.95 The Star.  https://www.thestar.com/opinion/contributors/2018/
 04/10/eliminating-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--142
+Underfull \hbox (badness 10000) in paragraph at lines 142--148
 []\T1/aer/m/n/10.95 Iacobucci, F. (2013).  First Na-tions Rep-re-sen-ta-tion on
  On-tario Ju-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--142
+Underfull \hbox (badness 10000) in paragraph at lines 142--148
 \T1/aer/m/n/10.95 ries: Re-port of the In-de-pen-dent Re-view Con-ducted by the
  Hon-
  []
 
 
-Underfull \hbox (badness 4981) in paragraph at lines 136--142
+Underfull \hbox (badness 4981) in paragraph at lines 142--148
 \T1/aer/m/n/10.95 ourable Frank Ia-cobucci.  Min-istry of the At-tor-ney Gen-er
 al.  Ac-cessed:
  []
 
 
-Overfull \hbox (184.7028pt too wide) in paragraph at lines 136--142
+Overfull \hbox (184.7028pt too wide) in paragraph at lines 142--148
 \T1/aer/m/n/10.95 https://www.attorneygeneral.jus.gov.on.ca/english/about/pubs/
 iacobucci/First_Nations_Representation_Ontario_Juries.html. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--162
+Underfull \hbox (badness 10000) in paragraph at lines 162--168
 []\T1/aer/m/n/10.95 MacLean, C. (2018, Febru-ary).  Ger-ald Stan-ley ac-quit-ta
 l re-news calls
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--162
+Underfull \hbox (badness 10000) in paragraph at lines 162--168
 \T1/aer/m/n/10.95 for jus-tice re-form 27 years af-ter Man-i-toba in-quiry.  CB
 C News.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--162
+Underfull \hbox (badness 10000) in paragraph at lines 162--168
 \T1/aer/m/n/10.95 https://www.cbc.ca/news/canada/manitoba/aboriginal-justice-in
 quiry-colten-boushie-
  []
 
 
-Underfull \hbox (badness 3579) in paragraph at lines 164--170
+Underfull \hbox (badness 3579) in paragraph at lines 170--176
 []\T1/aer/m/n/10.95 Macnab, A. (2018, Febru-ary).  Stan-ley ac-quit-tal should 
 not lead to scrap-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--170
+Underfull \hbox (badness 10000) in paragraph at lines 170--176
 \T1/aer/m/n/10.95 ping peremp-tory chal-lenges, say crim-i-nal lawyers.  Cana-d
 ian Lawyer.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--170
+Underfull \hbox (badness 10000) in paragraph at lines 170--176
 \T1/aer/m/n/10.95 https://www.canadianlawyermag.com/legalfeeds/author/aidan-mac
 nab/stanley-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--170
+Underfull \hbox (badness 10000) in paragraph at lines 170--176
 \T1/aer/m/n/10.95 acquittal-should-not-lead-to-scrapping-peremptory-challenges-
 say-criminal-lawyers-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--179
+Underfull \hbox (badness 10000) in paragraph at lines 180--185
 []\T1/aer/m/n/10.95 Ministry of the At-tor-ney Gen-eral of On-tario (2018).  Th
 e an-nual
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--179
+Underfull \hbox (badness 10000) in paragraph at lines 180--185
 \T1/aer/m/n/10.95 jury se-lec-tion pro-cess.  Queen's Printer for On-tario.  Ac
 -cessed:
  []
 
 
-Overfull \hbox (19.51297pt too wide) in paragraph at lines 174--179
+Overfull \hbox (19.51297pt too wide) in paragraph at lines 180--185
 \T1/aer/m/n/10.95 https://www.attorneygeneral.jus.gov.on.ca/english/courts/jury
 /jury_selection_process.php. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--184
+Underfull \hbox (badness 10000) in paragraph at lines 187--190
 []\T1/aer/m/n/10.95 Mirriam-Webster (2019a).  Mirriam-Webster Dic-tio-nary On-l
 ine.  Ac-cessed:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 186--189
+Underfull \hbox (badness 10000) in paragraph at lines 192--195
 []\T1/aer/m/n/10.95 Mirriam-Webster (2019b).  Mirriam-Webster Dic-tio-nary On-l
 ine.  Ac-cessed:
  []
 
 [36]
-Underfull \hbox (badness 4060) in paragraph at lines 207--212
+Underfull \hbox (badness 4060) in paragraph at lines 213--218
 []\T1/aer/m/n/10.95 North Car-olina Sen-tenc-ing and Pol-icy Ad-vi-sory Com-mis
 -sion (2017).  \T1/aer/m/it/10.95 Clas-si-
  []
 
 
-Underfull \hbox (badness 3343) in paragraph at lines 207--212
+Underfull \hbox (badness 3343) in paragraph at lines 213--218
 \T1/aer/m/it/10.95 fi-ca-tion of a Sam-ple of Of-fenses\T1/aer/m/n/10.95 .  Nor
 th Car-olina Ju-di-cial Branch.  Ac-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 207--212
+Underfull \hbox (badness 10000) in paragraph at lines 213--218
 \T1/aer/m/n/10.95 cessed: https://www.nccourts.gov/assets/documents/publication
 s/Sample-list-
  []
 
 
-Underfull \hbox (badness 2426) in paragraph at lines 226--232
+Underfull \hbox (badness 2426) in paragraph at lines 232--238
 []\T1/aer/m/n/10.95 Quenneville, G. (2018, Febru-ary).  What hap-pened on Ger-a
 ld Stan-ley's farm
  []
 
 
-Underfull \hbox (badness 5862) in paragraph at lines 226--232
+Underfull \hbox (badness 5862) in paragraph at lines 232--238
 \T1/aer/m/n/10.95 the day Colten Boushie was shot, as told by wit-nesses.  CBC 
 News.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--232
+Underfull \hbox (badness 10000) in paragraph at lines 232--238
 \T1/aer/m/n/10.95 https://www.cbc.ca/news/canada/saskatoon/what-happened-stanle
 y-farm-boushie-
  []
 
 
-Underfull \hbox (badness 4242) in paragraph at lines 235--241
+Underfull \hbox (badness 4242) in paragraph at lines 241--247
 []\T1/aer/m/n/10.95 Quenneville, G. and J. War-ick (2018, Febru-ary).  Shouts o
 f 'mur-derer' in
  []
 
 
-Underfull \hbox (badness 1776) in paragraph at lines 235--241
+Underfull \hbox (badness 1776) in paragraph at lines 241--247
 \T1/aer/m/n/10.95 court-room af-ter Ger-ald Stan-ley ac-quit-ted in Colten Bous
 hie shoot-ing.  CBC
  []
 
 
-Underfull \hbox (badness 5475) in paragraph at lines 235--241
+Underfull \hbox (badness 5475) in paragraph at lines 241--247
 \T1/aer/m/n/10.95 News.  https://www.cbc.ca/news/canada/saskatoon/gerald-stanle
 y-colten-boushie-
  []
 
 
-Underfull \hbox (badness 2894) in paragraph at lines 288--293
+Underfull \hbox (badness 2894) in paragraph at lines 294--299
 []\T1/aer/m/n/10.95 Supreme Court of Canada (1991).  R. v. sher-ratt.  Supreme 
 Court Judge-
  []
 
 
-Underfull \hbox (badness 2181) in paragraph at lines 296--299
+Underfull \hbox (badness 2181) in paragraph at lines 302--305
 []\T1/aer/m/n/10.95 Supreme Court of the United States (1965).  Swain v. Al-aba
 ma.  Ac-cessed:
  []
 
-
-Underfull \hbox (badness 1609) in paragraph at lines 302--305
+[37]
+Underfull \hbox (badness 1609) in paragraph at lines 308--311
 []\T1/aer/m/n/10.95 Supreme Court of the United States (1986).  Bat-son v. Ken-
 tucky.  Ac-cessed:
  []
 
-[37]
-Underfull \hbox (badness 2035) in paragraph at lines 308--311
+
+Underfull \hbox (badness 2035) in paragraph at lines 314--317
 []\T1/aer/m/n/10.95 Supreme Court of the United States (1993).  J.E.B. v. Al-ab
 ama.  Ac-cessed:
  []
@@ -1025,7 +1025,7 @@ ama.  Ac-cessed:
 
  (DevelopingMobile.tex
 Appendix A.
-<Pictures/FirstMosaic.pdf, id=1045, 505.89pt x 505.89pt>
+<Pictures/FirstMosaic.pdf, id=1048, 505.89pt x 505.89pt>
 File: Pictures/FirstMosaic.pdf Graphic file (type pdf)
 
 <use Pictures/FirstMosaic.pdf>
@@ -1038,7 +1038,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [39
 
 
-] <Pictures/FirstParCoord.pdf, id=1058, 505.89pt x 505.89pt>
+] <Pictures/FirstParCoord.pdf, id=1061, 505.89pt x 505.89pt>
 File: Pictures/FirstParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/FirstParCoord.pdf>
@@ -1095,7 +1095,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--24
 \T1/aer/m/n/10.95 11CRS51895, 11CRS52470, 08CRS54836,
  []
 
-<Pictures/ChargeDiagram.pdf, id=1089, 1011.78pt x 722.7pt>
+<Pictures/ChargeDiagram.pdf, id=1092, 1011.78pt x 722.7pt>
 File: Pictures/ChargeDiagram.pdf Graphic file (type pdf)
 
 <use Pictures/ChargeDiagram.pdf>
@@ -1437,7 +1437,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-<confirmation-originality-scan.pdf, id=3042, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=3045, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf>
@@ -1451,7 +1451,7 @@ Package pdftex.def Info: confirmation-originality-scan.pdf used on input line 2
 29.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 
-<confirmation-originality-scan.pdf, id=3045, page=1, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=3048, page=1, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
@@ -1500,10 +1500,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 230.
  ) 
 Here is how much of TeX's memory you used:
- 14926 strings out of 493328
- 212713 string characters out of 3139124
+ 14931 strings out of 493328
+ 212790 string characters out of 3139124
  770253 words of memory out of 3000000
- 16017 multiletter control sequences out of 15000+200000
+ 16021 multiletter control sequences out of 15000+200000
  66996 words of font info for 139 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,20n,47p,338b,2394s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1527,9 +1527,9 @@ i9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Progra
 m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/latxfont/linew10.pfb><C:/Program
  Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on MasterThesisSfS.pdf (97 pages, 1630442 bytes).
+Output written on MasterThesisSfS.pdf (97 pages, 1631008 bytes).
 PDF statistics:
- 3535 PDF objects out of 3580 (max. 8388607)
- 2029 named destinations out of 2073 (max. 500000)
+ 3538 PDF objects out of 3580 (max. 8388607)
+ 2030 named destinations out of 2073 (max. 500000)
  462 words of extra memory for PDF output out of 10000 (max. 10000000)
 

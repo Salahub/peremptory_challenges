@@ -306,7 +306,7 @@ regression seemed a natural choice.
 
 It should be noted that early modelling instead used Poisson regression, but as the conditional distribution of a particular
 outcome given some marginal count is multinomial (as shown in \ref{app:mathres}), these two models are essentially
-equivalent. There are known transforms to move between the models and their equivalencies are well documented
+equivalent. There are known transforms (\cite{baker1994}) to move between the models and their equivalencies are well documented
 (\cite{lang1996}). For greater interpretability, however, the fitting performed used multinomial models as implemented in the
 \texttt{nnet} package in \Rp, which implements a method of fitting multinomial models discussed in \cite{nnet}. While in Poisson
 models the interaction terms are the only quantities of interest, and the main effects merely serve as constraints, the
