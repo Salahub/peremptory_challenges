@@ -527,7 +527,7 @@ anovaGen <- function(formlist, method, data, ...) {
         method(formula = el, data = data, ...)
     })
     ## return fits and print anova
-    anfit <- do.call(anova, args = models)
+    anfit <- do.call(anova, args = sapply(as.list(names(models)), as.symbol), envir = as.environment(models))
     models <- c(models, anfit)
     print(anfit)
     return(models)
@@ -642,9 +642,12 @@ sun.cause <- sun.multmod
 sun.pros <- MatRelevel(sun.multmod[sun.multmod$DispSimp != "C_rem",])
 sun.def <- MatRelevel(sun.pros[sun.pros$DispSimp != "S_rem",])
 ## create formulas to avoid repetitive writing
-formulae <- list(form.full = as.formula("DispSimp ~ Race_ + DRace_ + Pol_ + Sex_"),
-                 form.norc = as.formula("DispSimp ~ DRace_ + Pol_ + Sex_"))
+formulae <- list(form.norc = as.formula("DispSimp ~ DRace_ + Pol_ + Sex_"),
+                 form.full = as.formula("DispSimp ~ Race_ + DRace_ + Pol_ + Sex_"))
 ## now fit all models
+logmod.cause <- anovaGen(formulae, glm, sun.cause, family = binomial)
+logmod.pros <- anovaGen(formulae, glm, sun.pros, family = binomial)
+logmod.def <- anovaGen(formulae, glm, sun.def, family = binomial)
 
 ## try some mixed models to account for the case for each juror
 
