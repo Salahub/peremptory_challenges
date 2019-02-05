@@ -13,6 +13,8 @@ library(RColorBrewer)
 library(stringr)
 library(tm)
 library(MultinomialCI)
+library(nnet)
+library(lme4)
 
 ## CONSTANTS ###########################
 
@@ -518,6 +520,19 @@ FactorReduce <- function(vals, tokeep) {
     chars
 }
 
+## write a simple anova testing function for multiple formulae
+anovaGen <- function(formlist, method, data, ...) {
+    ## apply each method to the data using all formulae in formlist
+    models <- lapply(formlist, function(el) {
+        method(formula = el, data = data, ...)
+    })
+    ## return fits and print anova
+    anfit <- do.call(anova, args = models)
+    models <- c(models, anfit)
+    print(anfit)
+    return(models)
+}
+
 
 ## DATA INSPECTION #####################
 
@@ -579,11 +594,12 @@ names(sun.racelist) <- dimnames(sun.mastab)[["WhiteBlack"]]
 invisible(lapply(names(sun.racelist), function(nm) {
     tab <- sun.racelist[[nm]]
     tab <- tab[,,c("Dem","Rep","Ind")]
-    pdf(paste0(picOut, "Pol", nm, ".pdf"))
+    ## pdf(paste0(picOut, "Pol", nm, ".pdf")) # output values
+    dev.new()
     mobileplot(tab, tracemar = 1, deslev = c(1,2,5), main = paste(nm, "Venire Members"), ymax = 0.2,
                xtext = "Inner Label: Defendant Race | Outer Label: Venire Member Poitical Affiliation",
                legendlevs = c("Cause", "Defence", "Prosecution"))
-    dev.off()
+    ## dev.off() # output values
 }))
 
 ## maybe we just have a weird coincidence, what about gender?
@@ -599,6 +615,39 @@ mobileplot(apply(sun.mastab, c("Disposition","Gender","WhiteBlack"), sum)[,c(1,2
 ## race and politics?
 mobileplot(apply(sun.mastab, c("Disposition","PoliticalAffiliation","WhiteBlack"), sum)[,c("Dem", "Rep", "Ind"),],
                deslev = c(1,2,5))
+
+## do some modelling for more precise controls
+## first reorder the levels to make a comparison of those kept (a linear transformation of the rejection average displayed above)
+## to all other disposition possibilities
+sun.multmod <- MatRelevel(sun.raceknown[!grepl("U", sun.raceknown$Disposition) & !grepl("U", sun.raceknown$PoliticalAffiliation) &
+                                        ! grepl("U", sun.raceknown$Gender),])
+sun.multmod$DispSimp <- with(sun.multmod, factor(DispSimp, levels = levels(DispSimp)[c(3,1,2,4)]))
+## rename the relevant variables to make the displays easier to read
+names(sun.multmod)[match(c("WhiteBlack", "DefWhiteBlack", "PoliticalAffiliation", "Gender"), names(sun.multmod))] <-
+    c("Race_", "DRace_", "Pol_", "Sex_")
+## fit a multinomial regression model using the above investigated factors
+multmod.full <- multinom(DispSimp ~ Race_*DRace_ + Pol_ + Sex_, data = sun.multmod)
+## try removing the race and defence race interaction
+multmod.noint <- multinom(DispSimp ~ Race_ + DRace_ + Pol_ + Sex_, data = sun.multmod)
+anova(multmod.noint, multmod.full)
+## or the main race effects
+multmod.norac <- multinom(DispSimp ~ DRace_ + Pol_ + Sex_, data = sun.multmod)
+multmod.nodrc <- multinom(DispSimp ~ Race_ + Pol_ + Sex_, data = sun.multmod)
+anova(multmod.norac, multmod.noint, multmod.full)
+## even controlling for the other variables, race is highly significant, causing a large reduction of the residual deviance
+## additionally, the race and defence race interaction is significant
+
+## try sequential logistic regressions
+sun.cause <- sun.multmod
+sun.pros <- MatRelevel(sun.multmod[sun.multmod$DispSimp != "C_rem",])
+sun.def <- MatRelevel(sun.pros[sun.pros$DispSimp != "S_rem",])
+## create formulas to avoid repetitive writing
+formulae <- list(form.full = as.formula("DispSimp ~ Race_ + DRace_ + Pol_ + Sex_"),
+                 form.norc = as.formula("DispSimp ~ DRace_ + Pol_ + Sex_"))
+## now fit all models
+
+## try some mixed models to account for the case for each juror
+
 
 ## noticed pattern: the prosecution and judge seem to match, hans and vidmar suggest this could be due to experience (pg 71)
 ## get lengths
@@ -624,7 +673,6 @@ def.judge <- table(data.frame(Judge = rep(sun.trialsum$JName, times = sapply(sun
 ##   - causal modelling: establishing a clear graph of relationships makes the assumptions used to justify adjustments very clear
 ##   - look into logistic regression modelling again, the statistical rigour of the current tests is not a guarantee that they are
 ##     good or valid, perhaps the less rigorous
-##   - try doing a gender v. def gender fit and plots (negative control or more interesting results)
 ## do some more thought on models generally, motivate choices more, and be more specific about assumptions
 
 ## the independence we want to test here is that of (Race, Disposition)|(Defendant Race)
