@@ -2,6 +2,7 @@
  "Notation"
  (lambda ()
    (LaTeX-add-labels
-    "c:Notation"))
+    "c:Notation"
+    "not:variables"))
  :latex)
 
