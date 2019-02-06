@@ -620,24 +620,28 @@ mobileplot(apply(sun.mastab, c("Disposition","PoliticalAffiliation","WhiteBlack"
 ## first reorder the levels to make a comparison of those kept (a linear transformation of the rejection average displayed above)
 ## to all other disposition possibilities
 sun.multmod <- MatRelevel(sun.raceknown[!grepl("U", sun.raceknown$Disposition) & !grepl("U", sun.raceknown$PoliticalAffiliation) &
-                                        ! grepl("U", sun.raceknown$Gender),])
+                                        !grepl("U", sun.raceknown$Gender) & !grepl("U|,", sun.raceknown$DefGender),])
 sun.multmod$DispSimp <- with(sun.multmod, factor(DispSimp, levels = levels(DispSimp)[c(3,1,2,4)]))
 ## rename the relevant variables to make the displays easier to read
-names(sun.multmod)[match(c("WhiteBlack", "DefWhiteBlack", "PoliticalAffiliation", "Gender"), names(sun.multmod))] <-
-    c("Race_", "DRace_", "Pol_", "Sex_")
-## fit a multinomial regression model using the above investigated factors
-multmod.full <- multinom(DispSimp ~ Race_*DRace_ + Pol_ + Sex_, data = sun.multmod)
-## try removing the race and defence race interaction
-multmod.noint <- multinom(DispSimp ~ Race_ + DRace_ + Pol_ + Sex_, data = sun.multmod)
-anova(multmod.noint, multmod.full)
-## or the main race effects
-multmod.norac <- multinom(DispSimp ~ DRace_ + Pol_ + Sex_, data = sun.multmod)
-multmod.nodrc <- multinom(DispSimp ~ Race_ + Pol_ + Sex_, data = sun.multmod)
-anova(multmod.norac, multmod.noint, multmod.full)
-## even controlling for the other variables, race is highly significant, causing a large reduction of the residual deviance
-## additionally, the race and defence race interaction is significant
+names(sun.multmod)[match(c("WhiteBlack", "DefWhiteBlack", "PoliticalAffiliation", "Gender", "DefGender"), names(sun.multmod))] <-
+    c("Race_", "DRace_", "Pol_", "Sex_", "DSex_")
+## create a list of relevant formulae
+formulist <- list(nosexint = as.formula("DispSimp ~ Race_*DRace_ + Pol_ + Sex_ + DSex_"),
+                  full = as.formula("DispSimp ~ Race_*DRace_ + Pol_ + Sex_*DSex_"),
+                  noraceint = as.formula("DispSimp ~ Race_ + DRace_ + Pol_ + Sex_*DSex_"),
+                  nrcsxint = as.formula("DispSimp ~ DRace_ + Pol_ + Sex_*DSex_"),
+                  norace = as.formula("DispSimp ~ DRace_ + Pol_ + Sex_ + DSex_"))
+## fit multinomial regression models using the above formulae, which are chosen to investigate the factors above
+multmod.lst <- lapply(formulist, multinom, data = sun.multmod)
+## let's look at some anova comparisons between these models, all of which are nested in the full model
+multmod.aov <- do.call(anova, sapply(as.list(names(multmod.lst)), as.symbol), envir = as.environment(multmod.lst))
+multmod.aov
+## these anova comparisons show quite clearly that the race is highly significant even when the other factors are controlled
+## in particular, note that the gender interaction is not significant when added to the minimal model tested, so if a final
+## model was to be chosen, it would not include this effect
+multmod.fin <- multinom(formulist$nosexint, data = sun.multmod)
 
-## try sequential logistic regressions
+## motivated by the order of selection (cause -> prosecution -> defence), try sequential logistic regressions as well
 sun.cause <- sun.multmod
 sun.pros <- MatRelevel(sun.multmod[sun.multmod$DispSimp != "C_rem",])
 sun.def <- MatRelevel(sun.pros[sun.pros$DispSimp != "S_rem",])
