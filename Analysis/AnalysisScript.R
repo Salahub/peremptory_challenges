@@ -640,6 +640,9 @@ multmod.aov
 ## in particular, note that the gender interaction is not significant when added to the minimal model tested, so if a final
 ## model was to be chosen, it would not include this effect
 multmod.fin <- multinom(formulist$nosexint, data = sun.multmod)
+## test the null deviance of this model, does it fit adequately?
+multmod.entir <- multinom(DispSimp ~ Race_*DRace_*Pol_*Sex_*DSex_, data = sun.multmod, maxit = 200)
+anova(multmod.entir, multmod.fin)
 
 ## motivated by the order of selection (cause -> prosecution -> defence), try sequential logistic regressions as well
 sun.cause <- sun.multmod
