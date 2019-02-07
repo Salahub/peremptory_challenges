@@ -729,7 +729,11 @@ sun.swap <- as.data.frame(sun.swap)
 chargFact <- as.factor(sun.swap$ChargeTxt)
 regCharg <- StringReg(levels(chargFact))[as.numeric(chargFact)]
 ## classify these into a charge tree and aggregate this at the coarsest level
-aggCharg <- treeAgg(stringTree(regCharg, chargeTree))
+regTree <- stringTree(regCharg, chargeTree)
+## aggregate these at the coarsest level
+aggCharg <- treeAgg(regTree)
+## identify the first degree murders (this is done to ensure comparison between data sets later)
+firstdeg <- regTree$murder$`first|1`$other
 ## these can be further classified into crime classes
 crimes.trial <- CrimeClassify(aggCharg, regCharg)
 ## convert these classes into a factor for the data, start with a generic "other" vector
@@ -737,6 +741,7 @@ sun.swap$CrimeType <- rep("Other", nrow(sun.swap))
 ## now populate it
 for (nm in sort(names(crimes.trial))) sun.swap$CrimeType[crimes.trial[[nm]]] <- nm
 sun.swap$CrimeType <- as.factor(sun.swap$CrimeType)
+sun.swap$FirstDeg <- 1:nrow(sun.swap) %in% firstdeg
 
 ## synthesize additional columns
 sun.swap <- SynCols(sun.swap)
