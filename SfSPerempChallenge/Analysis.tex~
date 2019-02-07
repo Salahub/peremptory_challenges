@@ -116,12 +116,12 @@ test of a specific hypothesis:
 
 \begin{equation}
   \label{eq:vishyp}
-  D | R_{VM}, R_{D} \sim Unif(\{1,2,3\})
+  D | D \in \{2,3,4\}, R, E \sim Unif(\{2,3,4\})
 \end{equation}
 
-Where $D, R_{VM}, R_D$ are random variables representing the disposition, venire member race, and defedant race respectively. In
-words: the conditional distribution of the disposition given the racial combination is uniform. This implies that all
-three strikes occur with the same probability for each racial combination, though they may differ between racial
+Where $D, R, E$ are random variables representing the disposition, venire member race, and defedant race respectively as outlined
+in \ref{not:variables}. In words: the conditional distribution of the disposition given the racial combination is uniform. This
+implies that all three strikes occur with the same probability for each racial combination, though they may differ between racial
 combinations. Such a hypothesis allows for certain racial combinations to experience a higher strike rate generally, but
 constrains the strike rate to be the same for all parties, which would imply that all parties in the court pursue an identical
 strike strategy across all venire member and defendant race combinations.
@@ -312,7 +312,22 @@ equivalent. There are known transforms (\cite{baker1994}) to move between the mo
 models the interaction terms are the only quantities of interest, and the main effects merely serve as constraints, the
 multinomial fit leads to the more intuitive main effect importance for the different factors.
 
-The 
+For all models, the pivot level chosen to fit odds ratios was the probability that a black female venire member with Democrat
+voting tendencies was kept in the final jury in a case with a black female defendant (using the notation from \ref{not:variabels}:
+the reference venire member combination is $\mathbf{x} = (1,1,1,1,1,1)^T$). While the choice of race, gender, and political
+affiliation was not deliberate, the choice to use the probability of a venire member serving on the jury was motivated by the
+linear relationship between this quantity and the black line displayed in the mobile plots earlier. As the mobile plot horizontal
+lines have been placed at $p_r = \frac{\pi_2 + \pi_3 + \pi_4}{3}$, and $\hat{\pi}_1 = 1 - \pi_2 + \pi_3 + \pi_4$, there is a
+linear relationship between $\pi_1$, chosen as a reference, and the $p_r$ displayed in the mobile plot.
+
+The mobile plots created in \ref{sec:otherfact} and \ref{sec:impactrace} suggest, primarily, that an interaction between race and
+defendant race is relevant in modelling the conditional probability of venire member rejection. These plots do not suggest that
+any other interactions are likely to be significant. This led to a model:
+
+\begin{equation}
+  \log \frac{\pi_d^{(i)}}{\pi_1^{(i)}} = a_d + \mathbf{x}_i^T \beta + (re)_i \beta_{re}= a_i + r_i \beta_r + e_i \beta_e + p_i
+  \beta_p + g_i \beta_g + s_i \beta_s + (re)_i \beta_{re}
+\end{equation}
 
 In order to create a single model to test the statistical significance of the differences observed for strike rates by race,
 defendant race, and party doing the striking, a saturated poisson regression model was fit to the data. Letting $i$ denote the

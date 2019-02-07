@@ -19,6 +19,10 @@
     "fig:racegenpol"
     "fig:gengen"
     "sec:mods"
+    "eq:fullmod"
+    "eq:noraceintmod"
+    "eq:novmmod"
+    "tab:modcomp"
     "sec:causepro"
     "fig:lawyerexp"
     "sec:casesum"))

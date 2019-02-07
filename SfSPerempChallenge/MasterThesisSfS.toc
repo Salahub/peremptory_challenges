@@ -34,26 +34,28 @@
 \contentsline {chapter}{\numberline {4}Empirical Analysis}{21}{chapter.4}
 \contentsline {section}{\numberline {4.1}Extremes of Partiality}{21}{section.4.1}
 \contentsline {section}{\numberline {4.2}The Impact of Race}{22}{section.4.2}
-\contentsline {section}{\numberline {4.3}Other Factors}{26}{section.4.3}
-\contentsline {section}{\numberline {4.4}Modelling}{29}{section.4.4}
-\contentsline {section}{\numberline {4.5}Prosecution and Judge Homogeneity}{31}{section.4.5}
+\contentsline {section}{\numberline {4.3}Other Factors}{25}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Political Affiliation}{25}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Gender}{25}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}Modelling}{30}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Multinomial Logistic Regression}{30}{subsection.4.4.1}
+\contentsline {section}{\numberline {4.5}Prosecution and Judge Homogeneity}{32}{section.4.5}
 \contentsline {section}{\numberline {4.6}Case Level Summary}{32}{section.4.6}
-\contentsline {section}{\numberline {4.7}Useful Quoted Bits}{32}{section.4.7}
+\contentsline {section}{\numberline {4.7}Useful Quoted Bits}{33}{section.4.7}
 \contentsline {chapter}{\numberline {5}Summary}{35}{chapter.5}
 \contentsline {section}{\numberline {5.1}Future Work}{35}{section.5.1}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Bibliography}}{37}{section*.24}
+\contentsline {chapter}{\numberline {}{Bibliography}}{37}{section*.25}
 \vspace {.5\baselineskip }
 \contentsline {chapter}{\numberline {A}Developing an Effective Visualization of Conditional Probability}{41}{appendix.A}
 \contentsline {section}{\numberline {A.1}The Mobile Plot}{43}{section.A.1}
 \contentsline {chapter}{\numberline {B}Complementary information}{45}{appendix.B}
 \contentsline {section}{\numberline {B.1}Jury Sunshine Irregularities}{45}{section.B.1}
-\contentsline {section}{\numberline {B.2}Jury Sunshine Charge Classification}{47}{section.B.2}
-\contentsline {section}{\numberline {B.3}Using Sweave to include \textsf {R}$\tmspace +\thickmuskip {.2777em}$code (and more) in your report}{47}{section.B.3}
-\contentsline {chapter}{\numberline {C}Mathematical Results}{49}{appendix.C}
-\contentsline {section}{\numberline {C.1}Conditional Distribution of a Poisson Expectation Given Marginal Counts}{49}{section.C.1}
-\contentsline {chapter}{\numberline {D}Code}{51}{appendix.D}
-\contentsline {section}{\numberline {D.1}Data Processing Code}{51}{section.D.1}
-\contentsline {section}{\numberline {D.2}Analysis Code}{66}{section.D.2}
+\contentsline {section}{\numberline {B.2}Jury Sunshine Charge Classification}{45}{section.B.2}
+\contentsline {chapter}{\numberline {C}Mathematical Results}{47}{appendix.C}
+\contentsline {section}{\numberline {C.1}Conditional Distribution of a Poisson Expectation Given Marginal Counts}{47}{section.C.1}
+\contentsline {chapter}{\numberline {D}Code}{49}{appendix.D}
+\contentsline {section}{\numberline {D.1}Data Processing Code}{49}{section.D.1}
+\contentsline {section}{\numberline {D.2}Analysis Code}{64}{section.D.2}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Epilogue}}{85}{section*.30}
+\contentsline {chapter}{\numberline {}{Epilogue}}{83}{section*.31}

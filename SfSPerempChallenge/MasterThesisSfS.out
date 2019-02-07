@@ -28,22 +28,24 @@
 \BOOKMARK [1][-]{section.4.1}{Extremes of Partiality}{chapter.4}% 28
 \BOOKMARK [1][-]{section.4.2}{The Impact of Race}{chapter.4}% 29
 \BOOKMARK [1][-]{section.4.3}{Other Factors}{chapter.4}% 30
-\BOOKMARK [1][-]{section.4.4}{Modelling}{chapter.4}% 31
-\BOOKMARK [1][-]{section.4.5}{Prosecution and Judge Homogeneity}{chapter.4}% 32
-\BOOKMARK [1][-]{section.4.6}{Case Level Summary}{chapter.4}% 33
-\BOOKMARK [1][-]{section.4.7}{Useful Quoted Bits}{chapter.4}% 34
-\BOOKMARK [0][-]{chapter.5}{Summary}{}% 35
-\BOOKMARK [1][-]{section.5.1}{Future Work}{chapter.5}% 36
-\BOOKMARK [0][-]{section*.24}{Bibliography}{}% 37
-\BOOKMARK [0][-]{appendix.A}{Developing an Effective Visualization of Conditional Probability}{}% 38
-\BOOKMARK [1][-]{section.A.1}{The Mobile Plot}{appendix.A}% 39
-\BOOKMARK [0][-]{appendix.B}{Complementary information}{}% 40
-\BOOKMARK [1][-]{section.B.1}{Jury Sunshine Irregularities}{appendix.B}% 41
-\BOOKMARK [1][-]{section.B.2}{Jury Sunshine Charge Classification}{appendix.B}% 42
-\BOOKMARK [1][-]{section.B.3}{Using Sweave to include Rcode \(and more\) in your report}{appendix.B}% 43
-\BOOKMARK [0][-]{appendix.C}{Mathematical Results}{}% 44
-\BOOKMARK [1][-]{section.C.1}{Conditional Distribution of a Poisson Expectation Given Marginal Counts}{appendix.C}% 45
-\BOOKMARK [0][-]{appendix.D}{Code}{}% 46
-\BOOKMARK [1][-]{section.D.1}{Data Processing Code}{appendix.D}% 47
-\BOOKMARK [1][-]{section.D.2}{Analysis Code}{appendix.D}% 48
-\BOOKMARK [0][-]{section*.30}{Epilogue}{}% 49
+\BOOKMARK [2][-]{subsection.4.3.1}{Political Affiliation}{section.4.3}% 31
+\BOOKMARK [2][-]{subsection.4.3.2}{Gender}{section.4.3}% 32
+\BOOKMARK [1][-]{section.4.4}{Modelling}{chapter.4}% 33
+\BOOKMARK [2][-]{subsection.4.4.1}{Multinomial Logistic Regression}{section.4.4}% 34
+\BOOKMARK [1][-]{section.4.5}{Prosecution and Judge Homogeneity}{chapter.4}% 35
+\BOOKMARK [1][-]{section.4.6}{Case Level Summary}{chapter.4}% 36
+\BOOKMARK [1][-]{section.4.7}{Useful Quoted Bits}{chapter.4}% 37
+\BOOKMARK [0][-]{chapter.5}{Summary}{}% 38
+\BOOKMARK [1][-]{section.5.1}{Future Work}{chapter.5}% 39
+\BOOKMARK [0][-]{section*.25}{Bibliography}{}% 40
+\BOOKMARK [0][-]{appendix.A}{Developing an Effective Visualization of Conditional Probability}{}% 41
+\BOOKMARK [1][-]{section.A.1}{The Mobile Plot}{appendix.A}% 42
+\BOOKMARK [0][-]{appendix.B}{Complementary information}{}% 43
+\BOOKMARK [1][-]{section.B.1}{Jury Sunshine Irregularities}{appendix.B}% 44
+\BOOKMARK [1][-]{section.B.2}{Jury Sunshine Charge Classification}{appendix.B}% 45
+\BOOKMARK [0][-]{appendix.C}{Mathematical Results}{}% 46
+\BOOKMARK [1][-]{section.C.1}{Conditional Distribution of a Poisson Expectation Given Marginal Counts}{appendix.C}% 47
+\BOOKMARK [0][-]{appendix.D}{Code}{}% 48
+\BOOKMARK [1][-]{section.D.1}{Data Processing Code}{appendix.D}% 49
+\BOOKMARK [1][-]{section.D.2}{Analysis Code}{appendix.D}% 50
+\BOOKMARK [0][-]{section*.31}{Epilogue}{}% 51
