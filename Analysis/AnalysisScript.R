@@ -555,6 +555,9 @@ if ("TrialAggregated.Rds" %in% list.files(ThesisDir)) {
 ## there are two juries without charges or other info (noted in the early data cleaning but kept for other analysis), remove these
 sun.trialsum <- sun.trialsum[!(sun.trialsum$TrialNumberID %in% c("590-128","710-01")),]
 
+## also perform a more reasonable collapse of the first degree variable
+sun.juror$FirstDeg <- sapply(str_split(sun.juror$FirstDeg, ","), function(el) any(as.logical(el)))
+
 ## display information about juror rejection tendencies
 mosaicplot(Race ~ Disposition, data = sun.juror, las = 2, shade = TRUE)
 
@@ -626,10 +629,8 @@ sun.multmod$DispSimp <- with(sun.multmod, factor(DispSimp, levels = levels(DispS
 names(sun.multmod)[match(c("WhiteBlack", "DefWhiteBlack", "PoliticalAffiliation", "Gender", "DefGender"), names(sun.multmod))] <-
     c("Race_", "DRace_", "Pol_", "Sex_", "DSex_")
 ## create a list of relevant formulae
-formulist <- list(nosexint = as.formula("DispSimp ~ Race_*DRace_ + Pol_ + Sex_ + DSex_"),
-                  full = as.formula("DispSimp ~ Race_*DRace_ + Pol_ + Sex_*DSex_"),
-                  noraceint = as.formula("DispSimp ~ Race_ + DRace_ + Pol_ + Sex_*DSex_"),
-                  nrcsxint = as.formula("DispSimp ~ DRace_ + Pol_ + Sex_*DSex_"),
+formulist <- list(full = as.formula("DispSimp ~ Race_*DRace_ + Pol_ + Sex_ + DSex_"),
+                  noraceint = as.formula("DispSimp ~ Race_ + DRace_ + Pol_ + Sex_ + DSex_"),
                   norace = as.formula("DispSimp ~ DRace_ + Pol_ + Sex_ + DSex_"))
 ## fit multinomial regression models using the above formulae, which are chosen to investigate the factors above
 multmod.lst <- lapply(formulist, multinom, data = sun.multmod)
@@ -656,8 +657,16 @@ logmod.cause <- anovaGen(formulae, glm, sun.cause, family = binomial)
 logmod.pros <- anovaGen(formulae, glm, sun.pros, family = binomial)
 logmod.def <- anovaGen(formulae, glm, sun.def, family = binomial)
 
-## try some mixed models to account for the case for each juror
-
+## try some mixed models to account for the case each juror sees
+## define the formula of the model being fit
+formul.glm <- as.formula("Count ~ DispSimp:Race_ + DispSimp:Pol_ + DispSimp:Sex_ + 1|TrialNumberID")
+## summarize the data based on the formula
+sun.randIDtab <- table(sun.multmod[,c("TrialNumberID","DispSimp","Race_","Pol_","Sex_")])
+randID.nms <- dimnames(sun.randIDtab)
+## reformat to a data frame
+sun.randID <- as.data.frame(sun.randIDtab, responseName = "Count")
+## now fit a random poisson model
+glmmod <- glmer(formul.glm, data = sun.randID, family = poisson)
 
 ## noticed pattern: the prosecution and judge seem to match, hans and vidmar suggest this could be due to experience (pg 71)
 ## get lengths
