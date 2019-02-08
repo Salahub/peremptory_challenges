@@ -37,9 +37,9 @@ facilitate comparison, as both the Stubborn Legacy and Philadelphia dataset only
   noted that there is still some lack of ability to compare, as the previous studies looked at individuals sentenced to death,
   while no individuals in this data set were sentenced to death.}.
 
-\begin{table}
+\begin{table}[h!]
   \centering
-  \caption[Implied Rejection Boundaries]{The implied statistical extremity bound for symmetric rejection in the datasets given
+  \caption[Implied Rejection Boundaries]{\footnotesize The implied statistical extremity bound for symmetric rejection in the datasets given
     different distributional assumptions} \label{tab:rejbounds}
   \begin{tabular}{|c|c|c|c|} \hline
     Data & Rejection Rate & Normal & Chebyshev Limit \\ \hline
@@ -54,26 +54,33 @@ facilitate comparison, as both the Stubborn Legacy and Philadelphia dataset only
 Obviously, it is not possible to comment with authority on the presence of partiality in the population. Indeed, given the large
 divide that appears to be present politically in the United States and the rest of the Western world today, it may be easier to
 argue for a maximally spread distribution than a centralized one. Regardless of this difficulty, it is difficult to justify that
-43\% of a dataset is ``extreme'' statistically. In the normal case, this suggests that the rejection boundary is less than one
-standard deviation from the mean, i.e. that the typically sampled point will be too extreme. The Chebyshev limit is not much
-better, suggesting that the rejection boundary is at most 1.5 standard deviations from the mean in either direction.
+more than 43\% of a dataset is ``extreme'' statistically. In the normal case, this suggests that the rejection boundary is less
+than one standard deviation from the mean, i.e. that the typically sampled point will be too extreme. The Chebyshev limit is not
+much better, suggesting that the rejection boundary is at most 1.5 standard deviations from the mean in either direction.
 
-This low rejection boundary given any distribution suggests that the peremptory challenge is not simply being used to remove
+This observation is, of course, complicated by the increased use of peremptory challenges for the capital cases, as seen by the
+large difference in the rejection rates between the full Sunshine data and the capital trials alone. There are many possible
+competing explanations for this difference, chiefly the high stakes of capital cases and the greater publicity these cases often
+generate before going to trial. In either case, obvious knowledge and strong opinion of a case before the trial constitutes a
+reason for a rejection with cause, and so the language used in defence of the peremptory challenge lacks adequate
+precision. Calling 43-73\% of the venire ``extreme'' is not consistent with the vernacular connotation of the word.
+
+Such high rejection rates given any distribution suggests that the peremptory challenge is not simply being used to remove
 ``extremes of partiality.'' Rather, it seems that the argument used to support and justify the practice cannot be reconciled well
 with the data, suggesting systemic over-use relative to its supported use. This leads naturally to the question of how exactly
 this legal instrument is over-used, and why.
 
 \section{The Impact of Race} \label{sec:impactrace} 
 
-The racially-motivated controversy surrounding peremptory provide one possible route to investigate the pattern of peremptory
-strike over-use. To begin, a simple marginal investigation was performed to explore the impact of the simplified race on the
-peremptory strike probability. The result of this investigation is displayed in Table \ref{tab:margrace}. Of particular interest
-is whether any race is far more likely to be struck by peremptory challenge than the others, as this might suggest that race is
-the target of the over-use of strikes.
+The racially-motivated controversy surrounding peremptory provide one hypothesis in the pattern of peremptory strike over-use
+which may be investigated. To begin, a simple marginal investigation was performed to explore the impact of the simplified race on
+the peremptory strike probability. The result of this investigation is displayed in Table \ref{tab:margrace}. Of particular
+interest is whether any race is far more likely to be struck by peremptory challenge than the others, as this might suggest that
+race is the target of the over-use of strikes.
 
-\begin{table}
+\begin{table}[h!]
   \centering
-  \caption[Strike Rate by Race]{The conditional probability of a venire member being struck peremptorily by the simplified venire
+  \caption[Strike Rate by Race]{\footnotesize The conditional probability of a venire member being struck peremptorily by the simplified venire
     member race across data sets. These values are smaller than the values presented in the extremity analysis as only the
     individuals which were identifiably removed by peremptory challenge are counted in this table. Regardless, the comparisons 
     remain similar if the unattributed removals are included. Note that the Philadelphia trial data only indicated black and
@@ -99,7 +106,8 @@ relationship is displayed in Figure \ref{fig:racedefmob}.
 \begin{figure}[!h]
   \centering
   \epsfCfile{0.7}{RaceParCoord}
-  \caption[The ``Mobile Plot'' of Racial Combination and Strikes]{The conditional probability of successful challenges given the
+  \caption[The ``Mobile Plot'' of Racial Combination and
+  Strikes (Sunshine)]{\footnotesize The conditional probability of successful challenges given the
     venire member and defendant race, with the expected value represented by the horizontal black line, and the observed values
     represented by the point at the end of the dotted line. Each horizontal black line corresponds to a particular venire member
     and defendant race combination, with a length proportional to the number of venire members with that combination. The dashed
@@ -111,7 +119,7 @@ relationship is displayed in Figure \ref{fig:racedefmob}.
 A detailed description of this plot and its development which includes a discussion of the principles of graphics and perception
 which were used to devise its form is presented in \ref{app:devmob}\footnote{Here it suffices to mention that much of its design
   was motivated by the philosophy of \cite{VisualDisplayQuant} and the results of \cite{cleveland1987} on the accuracy of visual
-  perception.}. Instead, the most interesting patterns visible in the plot with bee discussed here.
+  perception.}. Instead, the most interesting patterns visible in the plot will be discussed here.
 
 First, a small explanation of the plot. The plot displays the relationship between three categorical variables: venire member
 race, defendant race, and disposition (whether a venire member is struck and by whom). The vertical axis corresponds to the
@@ -128,7 +136,7 @@ test of a specific hypothesis:
   D | D \in \{2,3,4\}, R, E \sim Unif(\{2,3,4\})
 \end{equation}
 
-Where $D, R, E$ are random variables representing the disposition, venire member race, and defedant race respectively as outlined
+Where $D, R, E$ are random variables representing the disposition, venire member race, and defendant race respectively as outlined
 in \ref{not:variables}. In words: the conditional distribution of the disposition given the racial combination is uniform. This
 implies that all three strikes occur with the same probability for each racial combination, though they may differ between racial
 combinations. Such a hypothesis allows for certain racial combinations to experience a higher strike rate generally, but
@@ -139,14 +147,15 @@ Clearly, Figure \ref{fig:racedefmob} casts some doubt on this hypothesis. While 
 story to Table \ref{tab:margrace}, with little variation between them, a number of other striking patterns are visible. The first,
 and most obvious of these, is the main effect of venire member race. While the aggregate removal rates do not seem to depend on
 the race of the venire member, it is clear that the defence and prosecution pursue radically different strategies. The defence
-seems biased towards a jury with more venire members from visible minorities; all orange points are below the horizontal lines for
+seems biased towards a jury with more venire members from visible minorities. All orange points are below the horizontal lines for
 the black and other venire members, indicating these groups are less likely to be struck by the defence than expected, while the
-points are above the lines for the white venire members, indicating a higher than expected probability of defense removal for
+points are above the lines for the white venire members, indicating a higher than expected probability of defence removal for
 white venire members. The prosecution seems to mirror this tendency, striking the white venire members at a lower rate than
-expected and the visible minorities, especially black venire members, more often than expected.
+expected and the black venire members more often than expected. The prosecution seems to show no deviation from expectation for
+the venire members of other races.
 
 The addition of defendant races shows another interesting trend. It would seem that the aforementioned tendencies of the
-prosecution and defense are strongest for black defendants, which have the strongest departure of the conditional probabilities
+prosecution and defence are strongest for black defendants, which have the strongest departure of the conditional probabilities
 from the expectation. The defense and prosecution seem to have slightly more similar habits when the defendant is white, despite
 their opposite tendencies in all cases. Finally, it would seem that the removals with cause have tendencies similar to the
 prosecution, as the points representing the conditional probability of a venire member being removed with cause are always on the
@@ -165,7 +174,8 @@ intervals can be seen in Figure \ref{fig:racedefci}.
 \begin{figure}[!h]
   \centering
   \epsfCfile{0.7}{RaceDefCI}
-  \caption[Racial Combination and Strikes with Confidence Intervals]{The plot of conditional strike probability by racial
+  \caption[Racial Combination and Strikes with Confidence
+  Intervals (Sunsine)]{\footnotesize The plot of conditional strike probability by racial
     combination from above with confidence intervals added. Note that many of the seemingly striking departures seen are
     insignificant when these confidence intervals are applied.}
   \label{fig:racedefci}
@@ -177,11 +187,41 @@ confidence intervals do not constitute a proper statistical test of the impact o
 providing a viewer some sense of the expected variability in the data over repeated sampling. More rigorous testing is performed
 alongside the model building in \ref{sec:mods}.
 
+\subsection{In the Stubborn and Philadelphia Data}
+
+With the patterns for the entire Sunshine data set examined, it is important to see how general this pattern is. It is entirely
+possible that the Sunshine data simply shows a particularly bad year in North Carolina, and so seeing whether this pattern is
+present over time and in different regions is important to motivate its generality. To that end, Figure \ref{fig:racedefmob} was
+reproduced for the Sunshine capital cases, the Stubborn data, and the Philadelphia data. These plots can be see in
+\ref{fig:racedefalldata}.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.40\textwidth}
+    \epsfCfile{1}{PolBlack}
+    \caption{\footnotesize Black Venire Members}
+    \label{fig:blackdefpol}
+  \end{subfigure}
+  ~
+  \begin{subfigure}{0.40\textwidth}
+    \epsfCfile{1}{PolOther}
+    \caption{\footnotesize Other Venire Members}
+    \label{fig:otherdefpol}
+  \end{subfigure}
+  ~
+  \begin{subfigure}{0.40\textwidth}
+    \epsfCfile{1}{PolWhite}
+    \caption{\footnotesize White Venire Members}
+    \label{fig:whitedefpol}
+  \end{subfigure}
+  \caption[Strikes by Race and Defendant Race (All Capital Trial Data)]
+  {\footnotesize Conditional probability of venire member strike by defendant race and political affiliation, split by race. Note how the
+    pattern of conditional probabilities is the same across political affiliations for the same defendant race within a particular
+    venire member race, and this pattern is the aggregate pattern seen in Figure \ref{fig:racedefmob}} \label{fig:racedefpol}
+\end{figure}
+
+
 \section{Other Factors} \label{sec:otherfact}
-
-\subsection{Political Affiliation}
-
-\subsection{Gender}
 
 Of course, it would be unfair to immediately assume that the cause of the racial patterns observed above is race itself. There
 may be a plethora of attitudes associated with race that could serve as legitimate cause for a peremptory challenge. As noted by 
@@ -202,14 +242,7 @@ provided about possible mishandling of evidence without proper consideration, th
 challenges of individuals with that opinion. If such opinions are distributed heterogeneously by race, the aggregate pattern may
 appear to reflect racially-based decision making by the defence attorneys. 
 
-\begin{figure}[h!]
-  \centering
-  \epsfCfile{0.7}{RaceGenderPolit}
-  \caption[Political Affiliation by Race and Gender (Sunshine)]
-  {Conditional probabilities of political affiliation by race and gender. Note how the black venire members are far more
-    homogeneous than the white venire members for both genders.} 
-  \label{fig:racepolit}
-\end{figure}
+\subsection{Political Affiliation}
 
 \cite{revesz2016} provides, inadvertently, data which might support the above reasoning in defence of peremptory challenges in the
 United States. He notes that the distribution of political affiliation in the United States is not consistent across races, with
@@ -219,6 +252,15 @@ defence lawyers removing conservative venire members and prosecution lawyers att
 data has political affiliation, these aggregate results can be examined for the data used to generate Figure
 \ref{fig:racedefmob}. Figure \ref{fig:racepolit} displays the conditional probability of political affiliation across races and
 genders.
+
+\begin{figure}[h!]
+  \centering
+  \epsfCfile{0.7}{RaceGenderPolit}
+  \caption[Political Affiliation by Race and Gender (Sunshine)]
+  {\footnotesize Conditional probabilities of political affiliation by race and gender. Note how the black venire members are far more
+    homogeneous than the white venire members for both genders.} 
+  \label{fig:racepolit}
+\end{figure}
 
 What is immediately apparent viewing this plot and the data in \cite{revesz2016} is how closely the two data sets agree. This
 ``ideological imbalance'', as \citeauthor{revesz2016} aptly calls it, is a clear confounding factor and a possible source of a
@@ -233,23 +275,23 @@ venire races given the defendant race and political affiliation were generated. 
   \centering
   \begin{subfigure}{0.40\textwidth}
     \epsfCfile{1}{PolBlack}
-    \caption{Black Venire Members}
+    \caption{\footnotesize Black Venire Members}
     \label{fig:blackdefpol}
   \end{subfigure}
   ~
   \begin{subfigure}{0.40\textwidth}
     \epsfCfile{1}{PolOther}
-    \caption{Other Venire Members}
+    \caption{\footnotesize Other Venire Members}
     \label{fig:otherdefpol}
   \end{subfigure}
   ~
   \begin{subfigure}{0.40\textwidth}
     \epsfCfile{1}{PolWhite}
-    \caption{White Venire Members}
+    \caption{\footnotesize White Venire Members}
     \label{fig:whitedefpol}
   \end{subfigure}
   \caption[Strikes by Political Affiliation, Race, and Defendant Race (Sunshine)]
-  {Conditional probability of venire member strike by defendant race and political affiliation, split by race. Note how the
+  {\footnotesize Conditional probability of venire member strike by defendant race and political affiliation, split by race. Note how the
     pattern of conditional probabilities is the same across political affiliations for the same defendant race within a particular
     venire member race, and this pattern is the aggregate pattern seen in Figure \ref{fig:racedefmob}} \label{fig:racedefpol}
 \end{figure}
@@ -263,6 +305,8 @@ black venire members\footnote{The subgroups, black republican venire members for
 noticeable subgroups represented by this particular set of plots will be too small to provide statistically significantly results,
 the consistency of the pattern of strikes across political affiliations provides rather stark evidence against a possible claim of
 political affiliation being the reason for the strikes in the data.
+
+\subsection{Gender}
 
 Another factor which may have an impact is that of gender. While \textit{J.E.B. v. Alabama} (\cite{jebvalabama}) has also ruled
 peremptory challenges for this reason alone unconstitutional, it is noted in \cite{vandykejurysel} on page 152-153 that
@@ -285,7 +329,7 @@ strike source.
   \centering
   \epsfCfile{0.7}{RaceGenderStrike}
   \caption[Strike Source by Race and Gender (Sunshine)]
-  {Conditional probabilities of strike source by race and gender. Note that the pattern is nearly identical for the genders within
+  {\footnotesize Conditional probabilities of strike source by race and gender. Note that the pattern is nearly identical for the genders within
     each racial group.} \label{fig:racegenpol}
 \end{figure}
 
@@ -298,7 +342,7 @@ pattern of switching tendencies of the court. Figure \ref{fig:gengen} shows this
   \centering
   \epsfCfile{0.7}{GenderGenderStrike}
   \caption[Strike Source by Race and Gender (Sunshine)]
-  {Conditional probabilities of strike source by venire member gender and defendant gender. The characteristic swap of the
+  {\footnotesize Conditional probabilities of strike source by venire member gender and defendant gender. The characteristic swap of the
     oppositional preferences cannot be seen here.} \label{fig:gengen}
 \end{figure}
 
@@ -328,11 +372,11 @@ models the interaction terms are the only quantities of interest, and the main e
 multinomial fit leads to the more intuitive main effect importance for the different factors.
 
 For all models, the pivot level chosen to fit odds ratios was the probability that a black female venire member with Democrat
-voting tendencies was kept in the final jury in a case with a black female defendant (using the notation from \ref{not:variabels}:
+voting tendencies was kept in the final jury in a case with a black female defendant (using the notation from \ref{not:variables}:
 the reference venire member combination is $\mathbf{x} = (1,1,1,1,1,1)^T$). While the choice of race, gender, and political
 affiliation was not deliberate, the choice to use the probability of a venire member serving on the jury was motivated by the
 linear relationship between this quantity and the black line displayed in the mobile plots earlier. As the mobile plot horizontal
-lines have been placed at $p_r = \frac{\pi_2 + \pi_3 + \pi_4}{3}$, and $\hat{\pi}_1 = 1 - \pi_2 + \pi_3 + \pi_4$, there is a
+lines have been placed at $p_r = \frac{\pi_2 + \pi_3 + \pi_4}{3}$, and $\pi_1 = 1 - \pi_2 + \pi_3 + \pi_4$, there is a
 linear relationship between $\pi_1$, chosen as a reference, and the $p_r$ displayed in the mobile plot.
 
 The mobile plots created in \ref{sec:otherfact} and \ref{sec:impactrace} suggest, primarily, that an interaction between race and
@@ -363,10 +407,11 @@ assumptions can be testing by fitting models nested in \ref{eq:fullmod}:
 Where $\beta^{\prime}_r = 0$. Comparing \ref{eq:noraceintmod} and \ref{eq:novmmod} to \ref{eq:fullmod} gives striking
 results. These can be see in Table \ref{tab:modcomp}, which compares the deviances of the different models sequentially.
 
-\begin{table}
+\begin{table}[h!]
   \centering
   \label{tab:modcomp}
-  \caption[Model Comparisons to Determine the Importance of Race]{Comparison of models \ref{eq:novmmod} and \ref{eq:noraceintmod}
+  \caption[Model Comparisons to Determine the Importance of
+  Race]{\footnotesize Comparison of models \ref{eq:novmmod} and \ref{eq:noraceintmod}
     to \ref{eq:fullmod}, displaying the residual deviance, residual degrees of freedom, differences, and p-value of these
     differences for adjacent models.}
   \begin{tabular}{|c|c|c|c|c|} \hline
@@ -408,7 +453,7 @@ as shown in Figure \ref{fig:lawyerexp}.
 \begin{figure}[h!]
   \epsfCfile{.7}{LawyerExp}
   \caption[Lawyer Experience (Sunshine)]
-  {Distributions of lawyer experience for prosecutors and defence attorneys}
+  {\footnotesize Distributions of lawyer experience for prosecutors and defence attorneys}
   \label{fig:lawyerexp}
 \end{figure}
 

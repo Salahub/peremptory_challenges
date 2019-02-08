@@ -30,7 +30,12 @@ inequality (see \cite{chebyshev}) provide an upper limit to the dispersion of an
 This study suggests that it would not be unreasonable to view the overall causal and peremptory challenge rates as the tails of a
 normal distribution, and the Chebyshev limit gives an estimate of the extremality of rejections given a maximally dispersed
 distribution of opinions. Table \ref{tab:rejbounds} provides a summary of the rejection rates of the different data sets and the
-implied standard distance from the centre that these imply for symmetric rejection.
+implied standard distance from the centre that these imply for symmetric rejection. Note that two rows are provided for the
+Sunshine data, the first for the entire data set of jury trials and the second for first degree murder\footnote{The only sentence
+  with the potential of a death penalty, as informed by the sentencing guidelines provided in \cite{offenseclass}.}. This was done to
+facilitate comparison, as both the Stubborn Legacy and Philadelphia dataset only addressed capital cases\footnote{It should be
+  noted that there is still some lack of ability to compare, as the previous studies looked at individuals sentenced to death,
+  while no individuals in this data set were sentenced to death.}.
 
 \begin{table}
   \centering
@@ -39,6 +44,7 @@ implied standard distance from the centre that these imply for symmetric rejecti
   \begin{tabular}{|c|c|c|c|} \hline
     Data & Rejection Rate & Normal & Chebyshev Limit \\ \hline
     Sunshine & 0.434 & 0.781 & 1.517 \\
+    Sunshine Capital & 0.639 & 0.470 & 1.251 \\
     Stubborn & 0.659 & 0.442 & 1.232 \\
     Philadelphia & 0.736 & 0.337 & 1.166 \\
     \hline
@@ -57,7 +63,7 @@ This low rejection boundary given any distribution suggests that the peremptory 
 with the data, suggesting systemic over-use relative to its supported use. This leads naturally to the question of how exactly
 this legal instrument is over-used, and why.
 
-\section{The Impact of Race} \label{sec:impactrace}
+\section{The Impact of Race} \label{sec:impactrace} 
 
 The racially-motivated controversy surrounding peremptory provide one possible route to investigate the pattern of peremptory
 strike over-use. To begin, a simple marginal investigation was performed to explore the impact of the simplified race on the
@@ -74,16 +80,19 @@ the target of the over-use of strikes.
     non-black venire members and so only two numbers can be reported.} \label{tab:margrace}
   \begin{tabular}{|c|c c c|} \hline
     Data & Black & Other & White \\ \hline
-    Sunshine & 0.23 & 0.24 & 0.25 \\ 
+    Sunshine & 0.23 & 0.24 & 0.25 \\
+    Sunshine Capital & 0.22 & 0.27 & 0.27 \\
     Stubborn & 0.65 & 0.36 & 0.66 \\ 
     Philadelphia & 0.67 & \multicolumn{2}{c|}{0.68} \\ \hline
   \end{tabular}
 \end{table}
 
-The differences in these probabilities are significant in the Sunshine data at $\alpha = 0.05$ by merit its size, but an effect
-size of 2\% is hardly relevant if one considers that the size of each empanelled jury is typically only 12. Moreover, the average
-number of venire members which is interviewed to create the jury is only 19. Perhaps there is a more interesting relationship
-present at the racial level. Taking inspiration from \textit{Swain v. Alabama}, \textit{Batson v. Kentucky}, and
+These probabilities are different, but not greatly so. Indeed, the trend of higher probabilities for the removal of white jurors
+across all data sets is perhaps counter-intuitive given the history of peremptory challenge controversy in the United States. In
+any case, the small magnitude of these differences seems to suggest that there is no strong racial bias at the aggregate level,
+whether or not the results are statistically significant\footnote{Consider that the impact of a statistically significant
+  difference of a few percent when the jury size is 12 for each trial would be minor.}. Perhaps there is a more interesting
+relationship present at the racial level. Taking inspiration from \textit{Swain v. Alabama}, \textit{Batson v. Kentucky}, and
 \textit{R. v. Stanley}, perhaps viewing the relationship between venire member race and defendant race would be informative. This
 relationship is displayed in Figure \ref{fig:racedefmob}.
 
@@ -149,9 +158,9 @@ While Figure \ref{fig:racedefmob} is quite suggestive, the widths of certain hor
 venire members with a race other than white or black, suggest that perhaps some of the more extreme tendencies are simply a result
 of the well-known higher variation of samples with small sizes. In order to see the true nature of the noted departures some
 incorporation of the variation one expects from each observed value is required. This is accomplished by the addition of
-approximate 95\%  multinomial confidence intervals using the \texttt{MultinomialCI} package in \Rp, which implements simultaneous
-confidence intervals for multinomial proportions following the method presented in \cite{sison1995}. These confidence intervals
-can be seen in Figure \ref{fig:racedefci}.
+approximate 95\%  simultaneous multinomial confidence intervals using the \texttt{MultinomialCI} package in \Rp, which implements
+simultaneous confidence intervals for multinomial proportions following the method presented in \cite{sison1995}. These confidence
+intervals can be seen in Figure \ref{fig:racedefci}.
 
 \begin{figure}[!h]
   \centering
@@ -169,6 +178,10 @@ providing a viewer some sense of the expected variability in the data over repea
 alongside the model building in \ref{sec:mods}.
 
 \section{Other Factors} \label{sec:otherfact}
+
+\subsection{Political Affiliation}
+
+\subsection{Gender}
 
 Of course, it would be unfair to immediately assume that the cause of the racial patterns observed above is race itself. There
 may be a plethora of attitudes associated with race that could serve as legitimate cause for a peremptory challenge. As noted by 
@@ -298,6 +311,8 @@ construction and testing of specific models in \ref{sec:mods}.
 
 \section{Modelling} \label{sec:mods}
 
+\subsection{Multinomial Logistic Regression}
+
 Controlling for the myriad of possible confounding factors motivated the fitting of multiple models to test the significance and
 magnitude of the impact of certain variables on the probability of venire member rejection. Here, the use of the mobile plot in
 Figure \ref{fig:racedefmob} and others is suggestive of a model by design. The creation of a plot with conditional probabilities
@@ -325,33 +340,56 @@ defendant race is relevant in modelling the conditional probability of venire me
 any other interactions are likely to be significant. This led to a model:
 
 \begin{equation}
+  \label{eq:fullmod}
   \log \frac{\pi_d^{(i)}}{\pi_1^{(i)}} = a_d + \mathbf{x}_i^T \beta + (re)_i \beta_{re}= a_i + r_i \beta_r + e_i \beta_e + p_i
   \beta_p + g_i \beta_g + s_i \beta_s + (re)_i \beta_{re}
 \end{equation}
 
-In order to create a single model to test the statistical significance of the differences observed for strike rates by race,
-defendant race, and party doing the striking, a saturated poisson regression model was fit to the data. Letting $i$ denote the
-level of the venire member race, $j$ the defendant race, and $k$ the disposition, the numbers of observed venire members in each
-$ijk$ combination, $y_{ijk}$ were modelled as Poisson-distributed random variables with expectation $\lambda_{ijk}$. A saturated
-model was then fit to the data, that is a model described by the equation:
+The fundamental purpose of fitting this model is to test two effects. The first is whether the interaction between defendant race
+and venire member race is significant, as has been suggested by the controversial trials named in \ref{c:background}, and the
+second is whether the venire member race is a significant factor in the presence of the other controlled factors. These two
+assumptions can be testing by fitting models nested in \ref{eq:fullmod}:
 
-\begin{multline}
-  \log{E[y_{ijk}]} = \textbf{x}_{ijk}\beta = \beta_o + \beta_R x_{i..}  + \beta_{D} x_{.j.} + \beta_S x_{..k} +\beta_{R:D}x_{i..}
-  x_{.j.} + \beta_{R:S} x_{i..} x_{..k} +\beta_{D:S} x_{.j.}x_{..k} \\+ \beta_{R:D:S} x_{i..} x_{.j.} x_{..k}
-\end{multline}
+\begin{equation}
+  \label{eq:noraceintmod}
+  \log \frac{\pi_d^{(i)}}{\pi_1^{(i)}} = a_d + \mathbf{x}_i^T \beta
+\end{equation}
 
-Where $x_{i..}$ indicates the race level of the $ijk$ cell, and $x_{.j.},x_{..k}$ are defined analogously for the defendant race
-and disposition. The interaction terms then serve to answer questions about the racial pattern of strikes which is utilized by
-each party given the defendant race. Most interesting to this investigation is the third order interaction term. This term
-indicates a significant difference in racial strike patterns given the party striking and the defendant race. In other words, this
-term accounts for different patterns for the different parties which are not independant of the defendant race.
+\begin{equation}
+  \label{eq:novmmod}
+  \log \frac{\pi_d^{(i)}}{\pi_1^{(i)}} = a_d + \mathbf{x}_i^T \beta^{\prime}
+\end{equation}
 
-While this second tendency seems to have no justification beyond race, the dominant tendency may have other justification than
-simply skin colour. As was noted by ``Ideological Imbalance and Peremptory Challenge'', black individuals are more consistently
-aligned with the democratic party, and as a consequence a lawyer which suspects this political bias will impact the trial outcome
-would preferentially strike or keep black jurors in order to keep as many left wing individuals as possible. In this data, this
-political imbalance is incredibly prevalent, as can be seen in Figure \ref{fig:racepolitics} \textcolor{red}{Add the plot of this
-  effect here, elaborate on this pattern more based on the plot}.
+Where $\beta^{\prime}_r = 0$. Comparing \ref{eq:noraceintmod} and \ref{eq:novmmod} to \ref{eq:fullmod} gives striking
+results. These can be see in Table \ref{tab:modcomp}, which compares the deviances of the different models sequentially.
+
+\begin{table}
+  \centering
+  \label{tab:modcomp}
+  \caption[Model Comparisons to Determine the Importance of Race]{Comparison of models \ref{eq:novmmod} and \ref{eq:noraceintmod}
+    to \ref{eq:fullmod}, displaying the residual deviance, residual degrees of freedom, differences, and p-value of these
+    differences for adjacent models.}
+  \begin{tabular}{|c|c|c|c|c|} \hline
+    Model & Residual df & Residual Deviance & Difference & $P(\chi^2)$ \\ \hline
+    \ref{eq:novmmod} & 55527 & 39496 &  &  \\
+    \ref{eq:noraceintmod} & 55521 & 39087 & 405 & ~0 \\
+    \ref{eq:fullmod} & 55509 & 39023 & 67 & 1.4e-9 \\ \hline
+  \end{tabular}
+\end{table}
+
+Even when controlling for defendant characteristics and the venire member's political affiliation and sex, the race of the venire
+member and its interaction with the defendant race are both highly significant at the $\alpha = 0.05$ level. This suggests that
+the rejection of venire members is, at least in part, based on their racial characteristics. Whether this is due to opinions
+associated with race or not is impossible to say from this data, but the control of political affiliation provides a suggestion
+that commonly held opinions within racial groups are not the cause.
+
+Of course, this result fails to account for a critical dependency between these juror rejections: the case being tried. Some
+elements of the case have been accounted for here, for example the defendant race and gender, but there are obvious dependencies
+which such broad categories do not control. Effects dependent on complex interactions between lawyers, the region of the trial,
+and the charges laid against the defendant are sure to affect the observed rejection rates.
+
+To account for these effects with a limited number of coefficients, and without overfitting, mixed models were used to fit a model
+of rejection rates, using the \texttt{lme4} package in \Rp. This model was a very simple Poisson model with random 
 
 \section{Prosecution and Judge Homogeneity} \label{sec:causepro}
 
