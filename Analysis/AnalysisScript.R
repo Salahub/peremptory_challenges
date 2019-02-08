@@ -26,8 +26,7 @@ SunshineSheets <- excel_sheets(SunshineFile)
 NorthCarFile <- paste0(ThesisDir,
                        "/Jury Study Data and Materials/NC Jury Selection Study Database6 Dec 2011.csv")
 
-PhillyFile <- paste0(ThesisDir,
-                     "/Voir Dire Data & Codebook/capital_venires.csv")
+PhillyFile <- paste0(ThesisDir,"/PhillyNA.csv")
 
 picOut <- "c:/Users/Chris/Documents/ETH Zurich/Thesis/SfSPerempChallenge/Pictures/"
 
@@ -536,21 +535,23 @@ anovaGen <- function(formlist, method, data, ...) {
 
 ## DATA INSPECTION #####################
 
-## load the data
+## load the sunshine data
 if ("FullSunshine_Swapped.csv" %in% list.files(ThesisDir)) {
     sun.swap <- read.csv(paste0(ThesisDir, "/FullSunshine_Swapped.csv"))
 } else source(paste0(ThesisDir, "/DataProcess.R"))
 FullSunshine <- read.csv(paste0(ThesisDir, "/FullSunshine.csv"))
-
 ## summarize onto the correct scale, the jurors
 if ("JurorAggregated.Rds" %in% list.files(ThesisDir)) {
     sun.juror <- readRDS(paste0(ThesisDir, "/JurorAggregated.Rds"))
 } else sun.juror <- UniqueAgg(sun.swap, by = "JurorNumber", collapse = ",")
-
 ## also load the data summarized onto the trial scale
 if ("TrialAggregated.Rds" %in% list.files(ThesisDir)) {
     sun.trialsum <- readRDS(paste0(ThesisDir, "/TrialAggregated.Rds"))
 } else warning(paste0("No trial aggregated data found in ", ThesisDir))
+
+## load the stubborn and Philadelphia data sets
+stub <- read.csv(NorthCarFile)
+phil <- read.csv(PhillyFile)
 
 ## there are two juries without charges or other info (noted in the early data cleaning but kept for other analysis), remove these
 sun.trialsum <- sun.trialsum[!(sun.trialsum$TrialNumberID %in% c("590-128","710-01")),]
@@ -576,6 +577,9 @@ mobileplot(deslev = c(1,2,5), legendlevs = c("Cause","Defence","Prosecution"),
 mobileplot(deslev = c(1,2,5), testlines = TRUE, legendlevs = c("Cause","Defence","Prosecution"),
                main = "Conditional Probability of Removal by Race and Race of Defendant",
            xtext = "Inner Label: Defendant Race | Outer Label: Venire Member Race")
+
+## let's check for the other data
+
 
 ## what about race and political affiliation
 mobileplot(table(MatRelevel(sun.juror[sun.juror$WhiteBlack != "U" & sun.juror$PoliticalAffiliation != "U" &
@@ -631,6 +635,8 @@ names(sun.multmod)[match(c("WhiteBlack", "DefWhiteBlack", "PoliticalAffiliation"
 ## create a list of relevant formulae
 formulist <- list(full = as.formula("DispSimp ~ Race_*DRace_ + Pol_ + Sex_ + DSex_"),
                   noraceint = as.formula("DispSimp ~ Race_ + DRace_ + Pol_ + Sex_ + DSex_"),
+                  nosex = as.formula("DispSimp ~ Race_ + DRace_ + Pol_ + DSex_"),
+                  nopol = as.formula("DispSimp ~ Race_ + DRace_ + Sex_ + DSex_"),
                   norace = as.formula("DispSimp ~ DRace_ + Pol_ + Sex_ + DSex_"))
 ## fit multinomial regression models using the above formulae, which are chosen to investigate the factors above
 multmod.lst <- lapply(formulist, multinom, data = sun.multmod)
@@ -640,7 +646,7 @@ multmod.aov
 ## these anova comparisons show quite clearly that the race is highly significant even when the other factors are controlled
 ## in particular, note that the gender interaction is not significant when added to the minimal model tested, so if a final
 ## model was to be chosen, it would not include this effect
-multmod.fin <- multinom(formulist$nosexint, data = sun.multmod)
+multmod.fin <- multinom(formulist$full, data = sun.multmod)
 ## test the null deviance of this model, does it fit adequately?
 multmod.entir <- multinom(DispSimp ~ Race_*DRace_*Pol_*Sex_*DSex_, data = sun.multmod, maxit = 200)
 anova(multmod.entir, multmod.fin)
@@ -656,17 +662,6 @@ formulae <- list(form.norc = as.formula("DispSimp ~ DRace_ + Pol_ + Sex_"),
 logmod.cause <- anovaGen(formulae, glm, sun.cause, family = binomial)
 logmod.pros <- anovaGen(formulae, glm, sun.pros, family = binomial)
 logmod.def <- anovaGen(formulae, glm, sun.def, family = binomial)
-
-## try some mixed models to account for the case each juror sees
-## define the formula of the model being fit
-formul.glm <- as.formula("Count ~ DispSimp:Race_ + DispSimp:Pol_ + DispSimp:Sex_ + 1|TrialNumberID")
-## summarize the data based on the formula
-sun.randIDtab <- table(sun.multmod[,c("TrialNumberID","DispSimp","Race_","Pol_","Sex_")])
-randID.nms <- dimnames(sun.randIDtab)
-## reformat to a data frame
-sun.randID <- as.data.frame(sun.randIDtab, responseName = "Count")
-## now fit a random poisson model
-glmmod <- glmer(formul.glm, data = sun.randID, family = poisson)
 
 ## noticed pattern: the prosecution and judge seem to match, hans and vidmar suggest this could be due to experience (pg 71)
 ## get lengths
