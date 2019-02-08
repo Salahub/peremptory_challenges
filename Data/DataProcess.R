@@ -815,6 +815,20 @@ PhillyNA <- as.data.frame(lapply(PhillyData, function(el) if (is.character(el)) 
                                                               el[is.na(el)] <- 0
                                                               el
                                                           }))
+## now add some columns to make this data consistent with the sunshine data
+PhillyNA$DispSimp <- as.factor(with(PhillyNA,
+                                    sapply(1:nrow(PhillyNA),
+                                           function(ind) {
+                                               if (PSTRIKE[ind]) {
+                                                   "S_rem"
+                                               } else if (DSTRIKE[ind]) {
+                                                   "D_rem"
+                                               } else if (!FINLJURY[ind]) {
+                                                   "C_rem"
+                                               } else "Kept"
+                                           })))
+PhillyNA$WhiteBlack <- as.factor(c("White|Other", "Black")[PhillyNA$CRACE98X + 1])
+PhillyNA$DefWhiteBlack <- as.factor(c("White|Other", "Black")[PhillyNA$BLACKD + 1])
 
 ## CHARGE CLASSIFICATION IMAGES ########
 ## presented here is the code to generate the appendix charge classification images
