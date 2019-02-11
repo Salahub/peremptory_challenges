@@ -829,6 +829,48 @@ PhillyNA$DispSimp <- as.factor(with(PhillyNA,
                                            })))
 PhillyNA$WhiteBlack <- as.factor(c("White|Other", "Black")[PhillyNA$CRACE98X + 1])
 PhillyNA$DefWhiteBlack <- as.factor(c("White|Other", "Black")[PhillyNA$BLACKD + 1])
+PhillyNA$Gender <- as.factor(c("F", "M")[PhillyNA$JMALE98 + 1])
+PhillyNA$DefGender <- as.factor(c("F", "M")[PhillyNA$MALEDEF + 1])
+## write the data
+write.csv(PhillyNA, file = "PhillyNA.csv", row.names = FALSE)
+
+
+## STUBBORN DATA #######################
+## load the stubborn data
+NorthCarData <- NorthCarData[,c("CSStudyID", "cV1003", "cV1036", "DefB", "DefRM", "DName",
+                                "RaceLabel", "served", "sex", "StrikeDef", "StrikeState")]
+
+## perform some simple processing and variable synthesis
+NorthCarNA <- NorthCarData
+## an analogous defendant race variable to the sunshine data
+NorthCarNA$DefWhiteBlack <- as.factor(with(NorthCarNA,
+                                     sapply(1:nrow(NorthCarNA),
+                                            function(ind) {
+                                                if (DefB[ind]) {
+                                                    "Black"
+                                                } else if (is.na(DefRM[ind])) {
+                                                    "Unknown"
+                                                } else if (DefRM[ind]) {
+                                                    "Other"
+                                                } else "White"
+                                            })))
+## the venire member race and gender
+NorthCarNA$WhiteBlack <- FactorReduce(NorthCarNA$RaceLabel, c("White","Black"))
+NorthCarNA$Gender <- c("F","M")[as.numeric(NorthCarNA$sex)]
+## the disposition
+NorthCarNA$DispSimp <- as.factor(with(NorthCarNA,
+                                      sapply(1:nrow(NorthCarNA),
+                                             function(ind) {
+                                                 if (StrikeDef[ind]) {
+                                                     "D_rem"
+                                                 } else if (StrikeState[ind]) {
+                                                     "S_rem"
+                                                 } else if (served[ind]) {
+                                                     "Kept"
+                                                 } else "C_rem"
+                                             })))
+## write the data
+write.csv(NorthCarNA, file = "StubbornNA.csv", row.names = FALSE)
 
 ## CHARGE CLASSIFICATION IMAGES ########
 ## presented here is the code to generate the appendix charge classification images

@@ -23,8 +23,7 @@ ThesisDir <- "c:/Users/Chris/Documents/ETH Zurich/Thesis/Data"
 SunshineFile <- paste0(ThesisDir, "/JurySunshineExcel.xlsx")
 SunshineSheets <- excel_sheets(SunshineFile)
 
-NorthCarFile <- paste0(ThesisDir,
-                       "/Jury Study Data and Materials/NC Jury Selection Study Database6 Dec 2011.csv")
+NorthCarFile <- paste0(ThesisDir,"/StubbornNA.csv")
 
 PhillyFile <- paste0(ThesisDir,"/PhillyNA.csv")
 
@@ -214,8 +213,8 @@ parcoordrace <- function() {
 ## the better version of the above function, takes an arbitrary three-way contingency table and plots the different conditional
 ## probabilities of the desired margins
 mobileplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, addlines = FALSE,
-                           space = 0.025, testlines = FALSE, legendlevs = NULL, xtext = NULL, ymax = 0,
-                           alpha = 0.05, ...) {
+                       space = 0.025, testlines = FALSE, legendlevs = NULL, xtext = NULL, ymax = 0,
+                       alpha = 0.05, temPal = NULL, ...) {
     ## in the default case (no table provided), look at the key race relationships, as these motivated this study
     if (is.null(tabl)) {
         ## for cleanliness, remove those jurors with unknown races
@@ -237,7 +236,7 @@ mobileplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, add
     ## handle a null desired level setting
     if (is.null(deslev)) deslev <- 1:length(tabnames[[tracemar]])
     ## create a palette
-    temPal <- brewer.pal(length(deslev), "Set2")
+    if (is.null(temPal)) temPal <- brewer.pal(length(deslev), "Set2")
     ## calculate the conditional probability distribution of outcome given non-trace margins using outcometab
     condout <- apply(outcometab, nontrace, function(margin) margin/sum(margin))
     ## and the sums
@@ -558,6 +557,7 @@ sun.trialsum <- sun.trialsum[!(sun.trialsum$TrialNumberID %in% c("590-128","710-
 
 ## also perform a more reasonable collapse of the first degree variable
 sun.juror$FirstDeg <- sapply(str_split(sun.juror$FirstDeg, ","), function(el) any(as.logical(el)))
+sun.juror$AnyDefVisMin <- sapply(str_split(sun.juror$DefVisMin, ","), function(el) any(as.logical(el)))
 
 ## display information about juror rejection tendencies
 mosaicplot(Race ~ Disposition, data = sun.juror, las = 2, shade = TRUE)
@@ -579,7 +579,28 @@ mobileplot(deslev = c(1,2,5), testlines = TRUE, legendlevs = c("Cause","Defence"
            xtext = "Inner Label: Defendant Race | Outer Label: Venire Member Race")
 
 ## let's check for the other data
-
+## this requires some significant filtering of the sunshine data to only include capital trials, and additionally to
+## ensure that the disposition data is comparable to the stubborn data, which did not include challenges with cause
+with(sun.raceknown[sun.raceknown$FirstDeg & sun.raceknown$Disposition != "C_rem",],
+     mobileplot(table(Disposition, DefWhiteBlack == "Black", WhiteBlack == "Black"), deslev = c(2,5), testlines = T,
+                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                legendlevs = c("Defence","Prosecution"),
+                main = "Conditional Probability of Removal (Sunshine)",
+                xtext = "Inner Label: Defendant Black | Outer Label: Venire Member Black"))
+## now the stubborn data
+with(stub,
+     mobileplot(table(DispSimp, DefWhiteBlack == "Black", WhiteBlack == "Black"),
+                deslev = c(1,3), testlines = T, legendlevs = c("Defence","Prosecution"),
+                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                main = "Conditional Probability of Removal (Stubborn)",
+                xtext = "Inner Label: Defendant Black | Outer Label: Venire Member Black"))
+## finally the philly data
+with(phil[phil$DispSimp != "C_rem",],
+     mobileplot(table(DispSimp, DefWhiteBlack %in% "Black", WhiteBlack %in% "Black"),
+                deslev = c(2,4), testlines = T, legendlevs = c("Defence","Prosecution"),
+                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                main = "Conditional Probability of Removal (Philadelphia)",
+                xtext = "Inner Label: Defendant Black | Outer Label: Venire Member Black"))
 
 ## what about race and political affiliation
 mobileplot(table(MatRelevel(sun.juror[sun.juror$WhiteBlack != "U" & sun.juror$PoliticalAffiliation != "U" &
@@ -621,7 +642,31 @@ mobileplot(apply(sun.mastab, c("Disposition","Gender","WhiteBlack"), sum)[,c(1,2
            xtext = "Inner Level: Gender | Outer Level: Race")
 ## race and politics?
 mobileplot(apply(sun.mastab, c("Disposition","PoliticalAffiliation","WhiteBlack"), sum)[,c("Dem", "Rep", "Ind"),],
-               deslev = c(1,2,5))
+           deslev = c(1,2,5))
+
+## try these combinations for the other data
+## start with the restricted sunshine data
+with(MatRelevel(sun.raceknown[sun.raceknown$FirstDeg & sun.raceknown$Disposition != "C_rem" &
+                             sun.raceknown$Gender != "U",]),
+     mobileplot(table(DispSimp, Gender, WhiteBlack == "Black"), deslev = c(1,3), testlines = T,
+                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                main = "Conditional Probability by Gender and Race (Sunshine)",
+                legendlevs = c("Defence","Prosecution"),
+                xtext = "Inner Level: Gender | Outer Level: Black"))
+## the stubborn data
+with(stub,
+     mobileplot(table(DispSimp, Gender, WhiteBlack == "Black"), deslev = c(1,3), testlines = T,
+                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                main = "Conditional Probability by Gender and Race (Stubborn)",
+                legendlevs = c("Defence","Prosecution"),
+                xtext = "Inner Level: Gender | Outer Level: Black"))
+## now the philly data
+with(phil[phil$DispSimp != "C_rem",],
+     mobileplot(table(DispSimp, Gender, WhiteBlack == "Black"), deslev = c(2,4), testlines = T,
+                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                main = "Conditional Probability by Gender and Race (Philadelphia)",
+                legendlevs = c("Defence","Prosecution"),
+                xtext = "Inner Level: Gender | Outer Level: Black"))
 
 ## do some modelling for more precise controls
 ## first reorder the levels to make a comparison of those kept (a linear transformation of the rejection average displayed above)
@@ -650,6 +695,9 @@ multmod.fin <- multinom(formulist$full, data = sun.multmod)
 ## test the null deviance of this model, does it fit adequately?
 multmod.entir <- multinom(DispSimp ~ Race_*DRace_*Pol_*Sex_*DSex_, data = sun.multmod, maxit = 200)
 anova(multmod.entir, multmod.fin)
+## combine these values into a table for easy reading and copying
+multmod.finsum <- summary(multmod.fin)
+cbind(t(multmod.finsum$coefficients), t(multmod.finsum$standard.errors))
 
 ## motivated by the order of selection (cause -> prosecution -> defence), try sequential logistic regressions as well
 sun.cause <- sun.multmod
@@ -681,13 +729,6 @@ pros.judge <- table(data.frame(Judge = rep(sun.trialsum$JName, times = sapply(su
                                Pros = unlist(sun.trialsum$ProsName)))
 def.judge <- table(data.frame(Judge = rep(sun.trialsum$JName, times = sapply(sun.trialsum$DefAttyName, length)),
                               Def = unlist(sun.trialsum$DefAttyName)))
-
-## models:
-##   - try fitting separate logistic regressions Ho model: disp ~ def*pol Ha model: disp ~ def*pol*race
-##   - causal modelling: establishing a clear graph of relationships makes the assumptions used to justify adjustments very clear
-##   - look into logistic regression modelling again, the statistical rigour of the current tests is not a guarantee that they are
-##     good or valid, perhaps the less rigorous
-## do some more thought on models generally, motivate choices more, and be more specific about assumptions
 
 ## the independence we want to test here is that of (Race, Disposition)|(Defendant Race)
 ## filter the data to remove small categories
@@ -769,16 +810,6 @@ mod.psattest <- update(mod.psat, formula = Count ~ Def_*Disp_*Race_ + Pol_*Disp_
 anova(mod.psat, mod.psattest)
 1 - pchisq(66.734, 12)
 
-## ideological imbalance, look at politics
-parcoordracev2(table(MatRelevel(sun.raceknown[sun.raceknown$PoliticalAffiliation != "U",
-                                              c("Disposition","PoliticalAffiliation","WhiteBlack")])),
-               deslev = c(1,2,5))
-
-## use radial axis plots to view the lawyers tendencies, especially those who act as both defence and prosecution lawyers
-## maybe remove the top lawyers and remodel
-## look at the most prolific lawyers for both sides
-## subset the data to only lawyers with one case to remove the lawyer dependency
-
 ## however, this suggests another question: is this strategy actually successful? That is, does there appear to
 ## be a relation between the number of peremptory challenges and the court case outcome?
 ## this may be difficult, there are a lot of factors to consider:
@@ -808,42 +839,7 @@ mosaicplot(Race ~ DefRace, data = sun.raceknown, las = 2, shade = TRUE, main = "
 par(mfrow = c(1,1))
 ## this makes the defense look as if they are not racist, though the comparison to the venire distributions in the third
 ## panel makes that clearer
-## these distributions to the venire distribution relative to defendant race, first combine the smaller races into one
-## category to make the plot less noisy and more identifiable
-## now look at how the two behave relative in their rejections and their acceptance
-eikos(WhiteBlack ~ DefWhiteBlack + DefStruck, data = sun.raceknown, xlab_rot = 90,
-      main = "Defense Challenges by Race of Venire Member and Defendant")
-eikos(WhiteBlack ~ DefWhiteBlack + ProStruck, data = sun.raceknown, xlab_rot = 90,
-      main = "Prosecution Challenges by Race of Venire Member and Defendant")
-## very interesting, the prosecution seems far more aggressive than the defense
-sun.raceknown$DefWhiteBlack[sun.raceknown$DefWhiteBlack == "Black,U"] <- "Black"
-sun.raceknown$DefWhiteBlack <- as.factor(as.character(sun.raceknown$DefWhiteBlack))
-mosaicplot(DefStruck ~ DefWhiteBlack + WhiteBlack, dir = c("v","v","h"), data = sun.raceknown, shade = TRUE, las = 2,
-           xlab = "Defendant Race and Defence Removals", ylab = "Juror Race", main = "Defence Removal by Defendant Race")
-mosaicplot(ProStruck ~ DefWhiteBlack + WhiteBlack, dir = c("v","v","h"),  data = sun.raceknown, shade = TRUE, las = 2,
-           xlab = "Defendant Race and Prosecution Removals", ylab = "Juror Race", main = "Prosecution Removal by Defendant Race")
 
-## that result is very interesting, the defense strike rates when conditioned on defendant race show no racial
-## preference, with a preference to reject white jurors regardless of defendant, but those of the prosecution do,
-## maybe by victim race?
-mosaicplot(Race ~ VictimRace, data = sun.raceknown[as.logical(sun.raceknown$DefStruck),], shade = TRUE,
-           main = "Race of Defense-Struck Jurors to Defendant Race", las = 2)
-mosaicplot(Race ~ VictimRace, data = sun.raceknown[as.logical(sun.raceknown$ProStruck),], shade = TRUE,
-           main = "Race of Prosecution-Struck Jurors to Defendant Race", las = 2)
-## hard to see anything there, the majority of victim races are unknown, maybe looking at the races removed by defense
-## attorney type
-mosaicplot(DefAttyType ~ Race, data = sun.raceknown[as.logical(sun.raceknown$DefStruck),], shade = TRUE, las = 2,
-           main = "Race of Defense-Struck Jurors to Defense Attorney Type")
-mosaicplot(WhiteBlack ~ DefAttyType, data = sun.raceknown[as.logical(sun.raceknown$DefStruck),], shade = TRUE, las = 2,
-           main = "Race of Defense-Strick Jurors to Defense Attorney Type")
-eikos(WhiteBlack ~ DefWhiteBlack + DefAttyType, data = sun.raceknown[as.logical(sun.raceknown$DefStruck),],
-      xlab_rot = 90)
-## so what have we seen above is that the prosecuton and defense seem to behave very differently in their jury selection
-## tactics, the defense seems to reject white individuals at a high rate regardless of the defendant, while the prosecution
-## seems to prefer the rejection of venire members of the same race as the defendant
-
-## this last plot shows that different types of lawyers may have different strategies, suggests a new investigation:
-## that of lawyer strategy and success based on lawyer tendencies, aggregating by trial first will be easiest
 
 ## load the jury summaries
 if ("AllJuries.Rds" %in% list.files(ThesisDir)) {
