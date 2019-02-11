@@ -35,11 +35,6 @@ you can include several chapters in the main part of your work).
   \label{fig:chargetree}
 \end{figure}
 
-\section{Using Sweave to include \Rp code (and more) in your report}
-The easiest (and most elegant) way to include \Rp code and its output (and
-have all your figures up to date with your report) is to use Sweave. You
-can find an introduction Sweave in \texttt{/u/sfs/StatSoftDoc/Sweave/Sweave-tutorial.pdf}.
-
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "MasterThesisSfS"
