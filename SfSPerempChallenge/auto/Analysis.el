@@ -34,6 +34,15 @@
     "tab:fullmodracecoef"
     "fig:modallcoef"
     "fig:modselcoef"
-    "sec:casesum"))
+    "sec:casesum"
+    "subsec:struckjur"
+    "subsec:vistrend"
+    "fig:trialprodef"
+    "fig:defracestrike"
+    "fig:proracestrike"
+    "fig:defandpros"
+    "fig:defraceprop"
+    "fig:proraceprop"
+    "fig:defproprop"))
  :latex)
 

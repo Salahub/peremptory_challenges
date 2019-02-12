@@ -1,5 +1,8 @@
 \chapter{Empirical Analysis} \label{c:analysis}
 
+Palettes by the \texttt{RColorBrewer} package in \Rp \cite{rcolorbrewer}, with care made to use palettes which are color-blind
+friendly. \cite{wong2011} provided the inspiration for other palettes.
+
 With this data cleaned and processed, questions can now be posed and addressed through analysis. A few obvious questions come to
 mind, considering the previous work done on this subject and the modern controversy surrounding it. First, there is the obvious
 question of not only the possible racial imbalance of peremptory challenge use, but how this imbalance changes with the race of
@@ -399,7 +402,7 @@ before, the data has been restricted to ensure a fair comparison across all data
     \label{fig:philcompgen}
   \end{subfigure}
   ~
-    \begin{subfigure}{0.4\textwidth}
+  \begin{subfigure}{0.4\textwidth}
     \epsfCfile{1}{SunGenderComp}
     \caption{\footnotesize Pattern in the Sunshine Data}
     \label{fig:suncompgen}
@@ -559,6 +562,55 @@ more detailed insight into the impact of challenges at a more relevant scale. Ad
 synthesis of certain measures, such as a disitributional difference via the Kullback-Leibler divergence (\cite{kullback1951}),
 which would otherwise not be well defined. This particular perspective of the data has also not been explored by any other studies
 known to the author.
+
+\subsection{Estimating Struck Juror Counts} \label{subsec:struckjur}
+
+\subsection{Visualizing the Trends} \label{subsec:vistrend}
+
+\subsubsection{The Positional Boxplot}
+
+\begin{figure}[h!]
+  \centering
+  \epsfCfile{0.7}{DefProStrikesTrial}
+  \caption[Prosecution and Defence Strikes by Trial]{The positional boxplot of strikes by race of defendant for the Sunshine data}
+  \label{fig:trialprodef}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.7\textwidth}
+    \epsfCfile{1}{DefStrikesTrial}
+    \caption{\footnotesize Defence racial strike pattern}
+    \label{fig:defracestrike}
+  \end{subfigure}
+  ~
+  \begin{subfigure}{0.7\textwidth}
+    \epsfCfile{1}{ProStrikesTrial}
+    \caption{\footnotesize Prosecution racial strike pattern}
+    \label{fig:proracestrike}
+  \end{subfigure}
+  \caption[Racial Strike Pattern by Party]
+  {\footnotesize Positional boxplot of racial strikes by defence and prosecution.}
+  \label{fig:defandpros}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.7\textwidth}
+    \epsfCfile{1}{DefStrProp}
+    \caption{\footnotesize Defence racial strike pattern}
+    \label{fig:defraceprop}
+  \end{subfigure}
+  ~
+  \begin{subfigure}{0.7\textwidth}
+    \epsfCfile{1}{ProStrProp}
+    \caption{\footnotesize Prosecution racial strike pattern}
+    \label{fig:proraceprop}
+  \end{subfigure}
+  \caption[Racial Strike Proportions by Party]
+  {\footnotesize Positional boxplot of racial strikes by defence and prosecution.}
+  \label{fig:defproprop}
+\end{figure}
 
 \section{Useful Quoted Bits}
 

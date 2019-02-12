@@ -208,6 +208,11 @@ Morehead, J.~W. (1994).
   selection.
 \newblock {\em DePaul Law Review\/}~{\em 43}, 625.
 
+\bibitem[\protect\citeauthoryear{Neuwirth}{Neuwirth}{2014}]{rcolorbrewer}
+Neuwirth, E. (2014).
+\newblock {\em RColorBrewer: ColorBrewer Palettes}.
+\newblock R package version 1.1-2.
+
 \bibitem[\protect\citeauthoryear{Nisbett and Kunda}{Nisbett and
   Kunda}{1985}]{nisbett1985}
 Nisbett, R.~E. and Z.~Kunda (1985).
@@ -364,6 +369,11 @@ Weisstein, E.~W. (2018).
 Wickham, H. and J.~Bryan (2018).
 \newblock {\em readxl: Read Excel Files}.
 \newblock R package version 1.1.0.
+
+\bibitem[\protect\citeauthoryear{Wong}{Wong}{2011}]{wong2011}
+Wong, B. (2011).
+\newblock Points of view: Color blindness.
+\newblock {\em Nature Methods\/}~{\em 8\/}(441).
 
 \bibitem[\protect\citeauthoryear{Woolley}{Woolley}{2018}]{woolley2018}
 Woolley, A. (2018).

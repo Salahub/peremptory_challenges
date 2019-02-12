@@ -35,19 +35,21 @@
 \BOOKMARK [1][-]{section.4.4}{Modelling}{chapter.4}% 35
 \BOOKMARK [2][-]{subsection.4.4.1}{Multinomial Logistic Regression}{section.4.4}% 36
 \BOOKMARK [1][-]{section.4.5}{Case Level Summary}{chapter.4}% 37
-\BOOKMARK [1][-]{section.4.6}{Useful Quoted Bits}{chapter.4}% 38
-\BOOKMARK [0][-]{chapter.5}{Summary}{}% 39
-\BOOKMARK [1][-]{section.5.1}{Future Work}{chapter.5}% 40
-\BOOKMARK [0][-]{section*.29}{Bibliography}{}% 41
-\BOOKMARK [0][-]{appendix.A}{Developing an Effective Visualization of Conditional Probability}{}% 42
-\BOOKMARK [1][-]{section.A.1}{The Mobile Plot}{appendix.A}% 43
-\BOOKMARK [0][-]{appendix.B}{Complementary information}{}% 44
-\BOOKMARK [1][-]{section.B.1}{Jury Sunshine Irregularities}{appendix.B}% 45
-\BOOKMARK [1][-]{section.B.2}{Jury Sunshine Charge Classification}{appendix.B}% 46
-\BOOKMARK [1][-]{section.B.3}{Prosecution and Judge Homogeneity}{appendix.B}% 47
-\BOOKMARK [0][-]{appendix.C}{Mathematical Results}{}% 48
-\BOOKMARK [1][-]{section.C.1}{Conditional Distribution of a Poisson Expectation Given Marginal Counts}{appendix.C}% 49
-\BOOKMARK [0][-]{appendix.D}{Code}{}% 50
-\BOOKMARK [1][-]{section.D.1}{Data Processing Code}{appendix.D}% 51
-\BOOKMARK [1][-]{section.D.2}{Analysis Code}{appendix.D}% 52
-\BOOKMARK [0][-]{section*.36}{Epilogue}{}% 53
+\BOOKMARK [2][-]{subsection.4.5.1}{Estimating Struck Juror Counts}{section.4.5}% 38
+\BOOKMARK [2][-]{subsection.4.5.2}{Visualizing the Trends}{section.4.5}% 39
+\BOOKMARK [1][-]{section.4.6}{Useful Quoted Bits}{chapter.4}% 40
+\BOOKMARK [0][-]{chapter.5}{Summary}{}% 41
+\BOOKMARK [1][-]{section.5.1}{Future Work}{chapter.5}% 42
+\BOOKMARK [0][-]{section*.33}{Bibliography}{}% 43
+\BOOKMARK [0][-]{appendix.A}{Developing an Effective Visualization of Conditional Probability}{}% 44
+\BOOKMARK [1][-]{section.A.1}{The Mobile Plot}{appendix.A}% 45
+\BOOKMARK [0][-]{appendix.B}{Complementary information}{}% 46
+\BOOKMARK [1][-]{section.B.1}{Jury Sunshine Irregularities}{appendix.B}% 47
+\BOOKMARK [1][-]{section.B.2}{Jury Sunshine Charge Classification}{appendix.B}% 48
+\BOOKMARK [1][-]{section.B.3}{Prosecution and Judge Homogeneity}{appendix.B}% 49
+\BOOKMARK [0][-]{appendix.C}{Mathematical Results}{}% 50
+\BOOKMARK [1][-]{section.C.1}{Conditional Distribution of a Poisson Expectation Given Marginal Counts}{appendix.C}% 51
+\BOOKMARK [0][-]{appendix.D}{Code}{}% 52
+\BOOKMARK [1][-]{section.D.1}{Data Processing Code}{appendix.D}% 53
+\BOOKMARK [1][-]{section.D.2}{Analysis Code}{appendix.D}% 54
+\BOOKMARK [0][-]{section*.40}{Epilogue}{}% 55

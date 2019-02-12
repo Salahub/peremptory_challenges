@@ -34,30 +34,33 @@
 \contentsline {chapter}{\numberline {4}Empirical Analysis}{21}{chapter.4}
 \contentsline {section}{\numberline {4.1}Extremes of Partiality}{21}{section.4.1}
 \contentsline {section}{\numberline {4.2}The Impact of Race}{23}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}In the Stubborn and Philadelphia Data}{26}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.1}In the Stubborn and Philadelphia Data}{25}{subsection.4.2.1}
 \contentsline {section}{\numberline {4.3}Other Factors}{27}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Political Affiliation in the Sunshine Data}{28}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Gender in the Sunshine Data}{30}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}The Stubborn and Philadelphia Data Sets}{32}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Modelling}{33}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Multinomial Logistic Regression}{33}{subsection.4.4.1}
-\contentsline {section}{\numberline {4.5}Case Level Summary}{35}{section.4.5}
-\contentsline {section}{\numberline {4.6}Useful Quoted Bits}{36}{section.4.6}
-\contentsline {chapter}{\numberline {5}Summary}{37}{chapter.5}
-\contentsline {section}{\numberline {5.1}Future Work}{37}{section.5.1}
+\contentsline {subsection}{\numberline {4.3.2}Gender in the Sunshine Data}{29}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}The Stubborn and Philadelphia Data Sets}{31}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Modelling}{32}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Multinomial Logistic Regression}{32}{subsection.4.4.1}
+\contentsline {section}{\numberline {4.5}Case Level Summary}{36}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Estimating Struck Juror Counts}{37}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Visualizing the Trends}{37}{subsection.4.5.2}
+\contentsline {subsubsection}{The Positional Boxplot}{37}{section*.29}
+\contentsline {section}{\numberline {4.6}Useful Quoted Bits}{37}{section.4.6}
+\contentsline {chapter}{\numberline {5}Summary}{41}{chapter.5}
+\contentsline {section}{\numberline {5.1}Future Work}{41}{section.5.1}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Bibliography}}{39}{section*.29}
+\contentsline {chapter}{\numberline {}{Bibliography}}{43}{section*.33}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {A}Developing an Effective Visualization of Conditional Probability}{43}{appendix.A}
-\contentsline {section}{\numberline {A.1}The Mobile Plot}{45}{section.A.1}
-\contentsline {chapter}{\numberline {B}Complementary information}{47}{appendix.B}
-\contentsline {section}{\numberline {B.1}Jury Sunshine Irregularities}{47}{section.B.1}
-\contentsline {section}{\numberline {B.2}Jury Sunshine Charge Classification}{47}{section.B.2}
-\contentsline {section}{\numberline {B.3}Prosecution and Judge Homogeneity}{47}{section.B.3}
-\contentsline {chapter}{\numberline {C}Mathematical Results}{51}{appendix.C}
-\contentsline {section}{\numberline {C.1}Conditional Distribution of a Poisson Expectation Given Marginal Counts}{51}{section.C.1}
-\contentsline {chapter}{\numberline {D}Code}{53}{appendix.D}
-\contentsline {section}{\numberline {D.1}Data Processing Code}{53}{section.D.1}
-\contentsline {section}{\numberline {D.2}Analysis Code}{53}{section.D.2}
+\contentsline {chapter}{\numberline {A}Developing an Effective Visualization of Conditional Probability}{47}{appendix.A}
+\contentsline {section}{\numberline {A.1}The Mobile Plot}{49}{section.A.1}
+\contentsline {chapter}{\numberline {B}Complementary information}{51}{appendix.B}
+\contentsline {section}{\numberline {B.1}Jury Sunshine Irregularities}{51}{section.B.1}
+\contentsline {section}{\numberline {B.2}Jury Sunshine Charge Classification}{51}{section.B.2}
+\contentsline {section}{\numberline {B.3}Prosecution and Judge Homogeneity}{51}{section.B.3}
+\contentsline {chapter}{\numberline {C}Mathematical Results}{55}{appendix.C}
+\contentsline {section}{\numberline {C.1}Conditional Distribution of a Poisson Expectation Given Marginal Counts}{55}{section.C.1}
+\contentsline {chapter}{\numberline {D}Code}{57}{appendix.D}
+\contentsline {section}{\numberline {D.1}Data Processing Code}{57}{section.D.1}
+\contentsline {section}{\numberline {D.2}Analysis Code}{57}{section.D.2}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Epilogue}}{55}{section*.36}
+\contentsline {chapter}{\numberline {}{Epilogue}}{59}{section*.40}

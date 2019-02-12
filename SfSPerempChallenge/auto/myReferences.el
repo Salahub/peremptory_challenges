@@ -2,6 +2,8 @@
  "myReferences"
  (lambda ()
    (LaTeX-add-bibitems
+    "wong2011"
+    "rcolorbrewer"
     "stilldamaged"
     "baker1994"
     "nnet"
