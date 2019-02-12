@@ -583,7 +583,7 @@ mobileplot(deslev = c(1,2,5), testlines = TRUE, legendlevs = c("Cause","Defence"
 ## ensure that the disposition data is comparable to the stubborn data, which did not include challenges with cause
 with(sun.raceknown[sun.raceknown$FirstDeg & sun.raceknown$Disposition != "C_rem",],
      mobileplot(table(Disposition, DefWhiteBlack == "Black", WhiteBlack == "Black"), deslev = c(2,5), testlines = T,
-                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                temPal = racePal[c(2,3)], ymax = 0.6,
                 legendlevs = c("Defence","Prosecution"),
                 main = "Conditional Probability of Removal (Sunshine)",
                 xtext = "Inner Label: Defendant Black | Outer Label: Venire Member Black"))
@@ -591,14 +591,14 @@ with(sun.raceknown[sun.raceknown$FirstDeg & sun.raceknown$Disposition != "C_rem"
 with(stub,
      mobileplot(table(DispSimp, DefWhiteBlack == "Black", WhiteBlack == "Black"),
                 deslev = c(1,3), testlines = T, legendlevs = c("Defence","Prosecution"),
-                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                temPal = racePal[c(2,3)], ymax = 0.6,
                 main = "Conditional Probability of Removal (Stubborn)",
                 xtext = "Inner Label: Defendant Black | Outer Label: Venire Member Black"))
 ## finally the philly data
 with(phil[phil$DispSimp != "C_rem",],
      mobileplot(table(DispSimp, DefWhiteBlack %in% "Black", WhiteBlack %in% "Black"),
                 deslev = c(2,4), testlines = T, legendlevs = c("Defence","Prosecution"),
-                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                temPal = racePal[c(2,3)], ymax = 0.6,
                 main = "Conditional Probability of Removal (Philadelphia)",
                 xtext = "Inner Label: Defendant Black | Outer Label: Venire Member Black"))
 
@@ -649,21 +649,21 @@ mobileplot(apply(sun.mastab, c("Disposition","PoliticalAffiliation","WhiteBlack"
 with(MatRelevel(sun.raceknown[sun.raceknown$FirstDeg & sun.raceknown$Disposition != "C_rem" &
                              sun.raceknown$Gender != "U",]),
      mobileplot(table(DispSimp, Gender, WhiteBlack == "Black"), deslev = c(1,3), testlines = T,
-                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                temPal = racePal[c(2,3)], ymax = 0.6,
                 main = "Conditional Probability by Gender and Race (Sunshine)",
                 legendlevs = c("Defence","Prosecution"),
                 xtext = "Inner Level: Gender | Outer Level: Black"))
 ## the stubborn data
 with(stub,
      mobileplot(table(DispSimp, Gender, WhiteBlack == "Black"), deslev = c(1,3), testlines = T,
-                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                temPal = racePal[c(2,3)], ymax = 0.6,
                 main = "Conditional Probability by Gender and Race (Stubborn)",
                 legendlevs = c("Defence","Prosecution"),
                 xtext = "Inner Level: Gender | Outer Level: Black"))
 ## now the philly data
 with(phil[phil$DispSimp != "C_rem",],
      mobileplot(table(DispSimp, Gender, WhiteBlack == "Black"), deslev = c(2,4), testlines = T,
-                temPal = brewer.pal(3, "Set2")[c(2,3)], ymax = 0.6,
+                temPal = racePal[c(2,3)], ymax = 0.6,
                 main = "Conditional Probability by Gender and Race (Philadelphia)",
                 legendlevs = c("Defence","Prosecution"),
                 xtext = "Inner Level: Gender | Outer Level: Black"))
@@ -693,11 +693,50 @@ multmod.aov
 ## model was to be chosen, it would not include this effect
 multmod.fin <- multinom(formulist$full, data = sun.multmod)
 ## test the null deviance of this model, does it fit adequately?
-multmod.entir <- multinom(DispSimp ~ Race_*DRace_*Pol_*Sex_*DSex_, data = sun.multmod, maxit = 200)
+multmod.entir <- multinom(DispSimp ~ Race_*DRace_*Pol_*Sex_*DSex_, data = sun.multmod, maxit = 250)
 anova(multmod.entir, multmod.fin)
 ## combine these values into a table for easy reading and copying
 multmod.finsum <- summary(multmod.fin)
-cbind(t(multmod.finsum$coefficients), t(multmod.finsum$standard.errors))
+multmod.finCI <- cbind(t(multmod.finsum$coefficients),
+                       t(multmod.finsum$coefficients) - 2*t(multmod.finsum$standard.errors),
+                       t(multmod.finsum$coefficients) + 2*t(multmod.finsum$standard.errors))[,c(1,4,7,2,5,8,3,6,9)]
+
+## write a small function to convert this to a latex table
+CItoLatex <- function(tab, rnd = 2, refs = c(1,4,7) {
+    paste(sapply(rownames(tab),
+                 function(nm) {
+                     paste(nm,
+                           paste0(sapply(refs,
+                                         function(ind) {
+                                             paste0(round(tab[nm,ind],rnd), " (", round(tab[nm,ind+1],rnd),
+                                                    ",", round(tab[nm,ind+2],rnd), ")")
+                                         }),
+                                  collapse = " & "),
+                           sep = " & ")
+                 }),
+          collapse = "\\")
+}
+
+## now to generate a plot of these values
+multmod.coefy <- rep(1:nrow(multmod.finCI), each = 3) + c(-0.1,0,0.1)
+plot(NA, xlim = range(multmod.finCI), ylim = range(multmod.coefy), xaxt = "n", ylab = "Coefficient Value")
+## add vertical line to indicate the defense
+abline(v = 0, col = "black")
+## add lines for each row and effect
+invisible(sapply(1:nrow(multmod.finCI),
+      function(row) sapply(c(1,4,7),
+                           function(ind) {
+                               adj <- switch(as.character(ind), "1" = 1, "4" = 2, "7" = 3)
+                               vals <- multmod.finCI[row,ind:(ind+2)]
+                               lines(x = vals[c(2,3)], y = rep(multmod.coefy[3*(row-1) + adj],2),
+                                     col = racePal[adj])
+                               points(x = vals[1], y = multmod.coefy[3*(row-1) + adj],
+                                      col = racePal[adj])
+                           })))
+## add a legend
+legend(x = mean(range(multmod.finCI)), y = max(multmod.coefy)*1.01, horiz = TRUE, xjust = 0.5, yjust = 0,
+       legend = c("Cause","Defence","Prosecution"), fill = racePal, xpd = NA, bg = "white", cex = 0.7)
+
 
 ## motivated by the order of selection (cause -> prosecution -> defence), try sequential logistic regressions as well
 sun.cause <- sun.multmod
