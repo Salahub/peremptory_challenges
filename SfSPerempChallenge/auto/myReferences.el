@@ -2,6 +2,7 @@
  "myReferences"
  (lambda ()
    (LaTeX-add-bibitems
+    "stilldamaged"
     "baker1994"
     "nnet"
     "lang1996"

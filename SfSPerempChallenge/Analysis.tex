@@ -433,12 +433,11 @@ models the interaction terms are the only quantities of interest, and the main e
 multinomial fit leads to the more intuitive main effect importance for the different factors.
 
 For all models, the pivot level chosen to fit odds ratios was the probability that a black female venire member with Democrat
-voting tendencies was kept in the final jury in a case with a black female defendant (using the notation from \ref{not:variables}:
+voting tendencies was struck by the defence in a case with a black female defendant (using the notation from \ref{not:variables}:
 the reference venire member combination is $\mathbf{x} = (1,1,1,1,1,1)^T$). While the choice of race, gender, and political
-affiliation was not deliberate, the choice to use the probability of a venire member serving on the jury was motivated by the
-linear relationship between this quantity and the black line displayed in the mobile plots earlier. As the mobile plot horizontal
-lines have been placed at $p_r = \frac{\pi_2 + \pi_3 + \pi_4}{3}$, and $\pi_1 = 1 - \pi_2 + \pi_3 + \pi_4$, there is a
-linear relationship between $\pi_1$, chosen as a reference, and the $p_r$ displayed in the mobile plot.
+affiliation was not deliberate, the choice to use the probability of a venire member being kept was made in order to make the
+visualizations constructed using the coefficients clearer and easier to compare to previous visualizations, which displayed the
+conditional probabilities of removal with cause and strikes by defence and prosecution.
 
 The mobile plots created in \ref{sec:otherfact} and \ref{sec:impactrace} suggest, primarily, that an interaction between race and
 defendant race is relevant in modelling the conditional probability of venire member rejection. These plots do not suggest that
@@ -446,8 +445,10 @@ any other interactions are likely to be significant. This led to a model:
 
 \begin{equation}
   \label{eq:fullmod}
-  \log \frac{\pi_d^{(i)}}{\pi_1^{(i)}} = a_d + \mathbf{x}_i^T \beta + (re)_i \beta_{re}= a_i + r_i \beta_r + e_i \beta_e + p_i
-  \beta_p + g_i \beta_g + s_i \beta_s + (re)_i \beta_{re}
+  \begin{split}
+    \log \frac{\pi_d^{(i)}}{\pi_3^{(i)}} & = a_d + \mathbf{x}_i^T \beta + (re)_i \beta_{re} \\
+    & = a_i + r_i \beta_r + e_i \beta_e + p_i \beta_p + g_i \beta_g + s_i \beta_s + (re)_i \beta_{re}
+  \end{split}
 \end{equation}
 
 The fundamental purpose of fitting this model is to test two effects. The first is whether the interaction between defendant race
@@ -457,12 +458,12 @@ assumptions can be testing by fitting models nested in \ref{eq:fullmod}:
 
 \begin{equation}
   \label{eq:noraceintmod}
-  \log \frac{\pi_d^{(i)}}{\pi_1^{(i)}} = a_d + \mathbf{x}_i^T \beta
+  \log \frac{\pi_d^{(i)}}{\pi_3^{(i)}} = a_d + \mathbf{x}_i^T \beta
 \end{equation}
 
 \begin{equation}
   \label{eq:novmmod}
-  \log \frac{\pi_d^{(i)}}{\pi_1^{(i)}} = a_d + \mathbf{x}_i^T \beta^{\prime}
+  \log \frac{\pi_d^{(i)}}{\pi_3^{(i)}} = a_d + \mathbf{x}_i^T \beta^{\prime}
 \end{equation}
 
 Where $\beta^{\prime}_r = 0$. Comparing \ref{eq:noraceintmod} and \ref{eq:novmmod} to \ref{eq:fullmod} gives striking
@@ -470,11 +471,11 @@ results. These can be see in Table \ref{tab:modcomp}, which compares the devianc
 
 \begin{table}[h!]
   \centering
-  \label{tab:modcomp}
   \caption[Model Comparisons to Determine the Importance of
   Race]{\footnotesize Comparison of models \ref{eq:novmmod} and \ref{eq:noraceintmod}
     to \ref{eq:fullmod}, displaying the residual deviance, residual degrees of freedom, differences, and p-value of these
     differences for adjacent models.}
+  \label{tab:modcomp}
   \begin{tabular}{|c|c|c|c|c|} \hline
     Model & Residual df & Residual Deviance & Difference & $P(\chi^2)$ \\ \hline
     \ref{eq:novmmod} & 55527 & 39496 &  &  \\
@@ -490,25 +491,60 @@ associated with race or not is impossible to say from this data, but the control
 that commonly held opinions within racial groups are not the cause. Note that the residual deviance values suggest that this model
 is underdispersed, suggesting that the significant test results gained are conservative.
 
-The estimated odds ratios for the different racial combinations and their approximate 95\% confidence intervals for different
-outcomes are displayed in Table \ref{tab:fullmodcoef}. Note that the reference racial combination is a black venire member
-considered for a case with a black defendant.
+The estimated coefficients for the different effects and their approximate 95\% confidence intervals are displayed in Table
+\ref{tab:fullmodracecoef}.
 
 \begin{table}[h!]
   \centering
-  \label{tab:fullmodcoef}
-  \begin{tabular}{|c|c|c|c|c|c|c|} \hline
+  \caption[Final Model Race Coefficients Confidence Intervals Excluding Kept]{The coefficients of \ref{eq:fullmod} and approximate
+    95\% confidence intervals. The features of venire members are given no indication, those of the defendant are clearly
+    indicated as such.}
+  \label{tab:fullmodracecoef}
+  \begin{tabular}{|c|c|c|c|} \hline
+    Coefficient & Cause & Defence & Prosecution \\ \hline
+    (Intercept) & -2.18 (-2.4,-1.96) & -2.66 (-2.88,-2.44) & -1.45 (-1.64,-1.26)\\
+    Other & 0.59 (0.3,0.89) & 0.63 (0.22,1.04) & -0.19 (-0.52,0.14)\\
+    White & -0.25 (-0.4,-0.1) & 1.21 (1.02,1.4) & -0.8 (-0.95,-0.66)\\
+    Defendant Other & 0.02 (-0.5,0.55) & 0.69 (0.08,1.29) & -0.21 (-0.71,0.3)\\
+    Defendant White & 0.03 (-0.19,0.26) & 0.67 (0.39,0.95) & -0.33 (-0.55,-0.11)\\
+    Independent & 0 (-0.13,0.13) & 0.06 (-0.05,0.18) & -0.03 (-0.17,0.1)\\
+    Libertarian & -0.5 (-1.74,0.74) & -0.7 (-1.93,0.54) & -0.28 (-1.51,0.96)\\
+    Republican & -0.14 (-0.27,-0.02) & 0.14 (0.04,0.25) & -0.22 (-0.35,-0.08)\\
+    Male & 0.03 (-0.07,0.12) & -0.01 (-0.09,0.08) & 0.26 (0.16,0.36)\\
+    Defedant Male & 0.74 (0.55,0.94) & 0.25 (0.1,0.39) & 0.21 (0.04,0.38)\\
+    Other \& Def. Other & -0.08 (-1.29,1.13) & -10.68 (-10.68,-10.68) & 0.12 (-1.29,1.53)\\
+    White \& Def. Other & 0.18 (-0.42,0.78) & -0.65 (-1.3,0) & 0.62 (0.03,1.21)\\
+    Other \& Def. White & 0.02 (-0.55,0.6) & -0.46 (-1.21,0.29) & 0.61 (-0.02,1.23)\\
+    White \& Def. White & 0.03 (-0.23,0.28) & -0.91 (-1.2,-0.61) & 0.42 (0.16,0.67) \\ \hline
   \end{tabular}
-\end{table}    
+\end{table}
 
-Such analysis is consistent with the modelling found in \cite{StubbornLegacy} and \cite{PerempChalMurder}. Both of these studies
-performed logistic regression analysis of the prosecution strike patterns, controlling for attitudinal variables. In both cases,
-the venire member race remained a significant predictor of the venire member removal. Additionally, \citeauthor{PerempChalMurder}
-fit analogous models for the defence strike use and found the race remained significant even when the attitudinal variables were
-controlled. Together, these three data sets and analyses provide a strong case that the race of a venire member is utilized by
-both the defence and prosecution to make peremptory challenge decisions both in different regions and throughout time.
+This table is somewhat daunting and difficult to interpret.
 
-\subsection{Comparing the Results to Previous Analysis}
+\begin{figure}[h!]
+  \centering
+  \epsfCfile{0.7}{AllModCoef}
+  \caption[All Model Coefficients]{All model coefficients displayed using dotplots. The lines indicate the confidence intervals
+    while the central points indicate the point estimates of coefficients.}
+  \label{fig:modallcoef}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \epsfCfile{0.7}{SelectModCoef}
+  \caption[Select Model Coefficients]{Model coefficients displayed using dotplots. The lines indicate the confidence intervals
+    while the central points indicate the point estimates of coefficients.}
+  \label{fig:modselcoef}
+\end{figure}
+
+While the lack of consistent information between data sets makes fitting additional models using the other data sets more
+difficult, such analysis is consistent with the modelling found in \cite{StubbornLegacy} and \cite{PerempChalMurder}. Both of
+these studies performed logistic regression analysis of the prosecution strike patterns, controlling for attitudinal variables. In
+both cases, the venire member race remained a significant predictor of the venire member removal. Additionally,
+\citeauthor{PerempChalMurder} fit analogous models for the defence strike use and found the race remained significant even when
+the attitudinal variables were controlled. Together, these three data sets and analyses provide a strong case that the race of a
+venire member is utilized by both the defence and prosecution to make peremptory challenge decisions both in different regions and
+throughout time.
                 
 \section{Case Level Summary} \label{sec:casesum}
 

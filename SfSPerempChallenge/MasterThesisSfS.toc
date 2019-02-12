@@ -41,23 +41,23 @@
 \contentsline {subsection}{\numberline {4.3.3}The Stubborn and Philadelphia Data Sets}{32}{subsection.4.3.3}
 \contentsline {section}{\numberline {4.4}Modelling}{33}{section.4.4}
 \contentsline {subsection}{\numberline {4.4.1}Multinomial Logistic Regression}{33}{subsection.4.4.1}
-\contentsline {section}{\numberline {4.5}Case Level Summary}{34}{section.4.5}
-\contentsline {section}{\numberline {4.6}Useful Quoted Bits}{35}{section.4.6}
+\contentsline {section}{\numberline {4.5}Case Level Summary}{35}{section.4.5}
+\contentsline {section}{\numberline {4.6}Useful Quoted Bits}{36}{section.4.6}
 \contentsline {chapter}{\numberline {5}Summary}{37}{chapter.5}
 \contentsline {section}{\numberline {5.1}Future Work}{37}{section.5.1}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Bibliography}}{39}{section*.26}
+\contentsline {chapter}{\numberline {}{Bibliography}}{39}{section*.29}
 \vspace {.5\baselineskip }
 \contentsline {chapter}{\numberline {A}Developing an Effective Visualization of Conditional Probability}{43}{appendix.A}
 \contentsline {section}{\numberline {A.1}The Mobile Plot}{45}{section.A.1}
 \contentsline {chapter}{\numberline {B}Complementary information}{47}{appendix.B}
-\contentsline {section}{\numberline {B.1}Prosecution and Judge Homogeneity}{47}{section.B.1}
-\contentsline {section}{\numberline {B.2}Jury Sunshine Irregularities}{48}{section.B.2}
-\contentsline {section}{\numberline {B.3}Jury Sunshine Charge Classification}{48}{section.B.3}
+\contentsline {section}{\numberline {B.1}Jury Sunshine Irregularities}{47}{section.B.1}
+\contentsline {section}{\numberline {B.2}Jury Sunshine Charge Classification}{47}{section.B.2}
+\contentsline {section}{\numberline {B.3}Prosecution and Judge Homogeneity}{47}{section.B.3}
 \contentsline {chapter}{\numberline {C}Mathematical Results}{51}{appendix.C}
 \contentsline {section}{\numberline {C.1}Conditional Distribution of a Poisson Expectation Given Marginal Counts}{51}{section.C.1}
 \contentsline {chapter}{\numberline {D}Code}{53}{appendix.D}
 \contentsline {section}{\numberline {D.1}Data Processing Code}{53}{section.D.1}
 \contentsline {section}{\numberline {D.2}Analysis Code}{53}{section.D.2}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Epilogue}}{55}{section*.33}
+\contentsline {chapter}{\numberline {}{Epilogue}}{55}{section*.36}

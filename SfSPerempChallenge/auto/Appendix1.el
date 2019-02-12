@@ -3,10 +3,10 @@
  (lambda ()
    (LaTeX-add-labels
     "app:complement"
-    "sec:causepro"
-    "fig:lawyerexp"
     "app:irregs"
     "app:charge"
-    "fig:chargetree"))
+    "fig:chargetree"
+    "sec:causepro"
+    "fig:lawyerexp"))
  :latex)
 

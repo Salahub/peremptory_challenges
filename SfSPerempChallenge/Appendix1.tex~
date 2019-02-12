@@ -1,10 +1,31 @@
 \chapter{Complementary information}
 \label{app:complement}
 
-Additional material. For example long mathematical derivations could be
-given in the appendix. Or you could include part of your code that is
-needed in printed form. You can add several Appendices to your thesis (as
-you can include several chapters in the main part of your work).
+\section{Prosecution and Judge Homogeneity} \label{sec:causepro}
+
+As noted in \ref{sec:impactrace}, the prosecution and judge seem to match in their strike tendencies for every combination. This
+suggests that both challenges with cause and the prosecution tend to have the same effect on the jury composition, though the
+magnitudes can differ greatly for these two strikes. An immediate explanation to this is offered by \cite{hansvidjudging}, who
+outline, on pages 69-70, the skill and tact required to effectively propose challenges with cause. In order to determine an
+individual's bias, it is frequently the case that a direct question will fail to garner an honest reponse due to social pressures.
+As a consequence, the questions asked of venire members must be carefully presented.
+
+Using this as a motivation, an obvious possible explanation for the challenges with cause is that the prosecution is simply more
+experienced on average than the defence. To determine the veracity of this claim, the licensing year of each lawyer was subtracted
+from the outcome date of each trial. The resulting distribution of years of experience was then plotted in back-to-back histograms
+as shown in Figure \ref{fig:lawyerexp}.
+
+\begin{figure}[h!]
+  \epsfCfile{.5}{LawyerExp}
+  \caption[Lawyer Experience (Sunshine)]
+  {\footnotesize Distributions of lawyer experience for prosecutors and defence attorneys}
+  \label{fig:lawyerexp}
+\end{figure}
+
+Clearly, this hypothesis is not supported by the data. It seems the typical defence lawyer is more experienced than the typical
+prosecutor, not less. Indeed, the prosecutors seem to be much more likely to be inexperienced than the defence lawyers. This
+suggests that the cause of this matching departure from the expected independent hypothesis has some different cause. Future
+investigation may endeavour to answer this question.
 
 \section{Jury Sunshine Irregularities} \label{app:irregs}
 

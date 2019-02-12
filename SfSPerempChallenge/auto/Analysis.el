@@ -31,7 +31,9 @@
     "eq:noraceintmod"
     "eq:novmmod"
     "tab:modcomp"
-    "tab:fullmodcoef"
+    "tab:fullmodracecoef"
+    "fig:modallcoef"
+    "fig:modselcoef"
     "sec:casesum"))
  :latex)
 
