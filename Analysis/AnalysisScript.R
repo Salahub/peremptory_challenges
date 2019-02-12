@@ -37,6 +37,8 @@ LevPol <-  sort(c("Dem","Lib","Rep","Ind","U"))
 
 ## color constants
 racePal <- brewer.pal(3, "Set2") # c("steelblue","grey50","firebrick")
+racePal2 <- c(rgb(0,114,178,maxColorValue=255),rgb(213,94,0,maxColorValue=255),
+              rgb(204,121,167,maxColorValue=255))
 whitePal <- c("steelblue","firebrick")
 crimePal <- brewer.pal(7, "Set1")
 dispPal <- brewer.pal(3, "Set2")
@@ -98,7 +100,7 @@ posboxplot <- function(x, y, cats, boxcolours = NULL, boxwids = 0.8, alphaencodi
     xvec <- lapply(1:(ncats+1), function(n) rectx[,n])
     ## place the rectangles by unlisting this structure correctly
     rect(xleft = unlist(xvec[1:ncats]), ybottom = recty[,1], xright = unlist(xvec[2:(ncats+1)]),
-         ytop = recty[,2], col = boxcols, border = boxcols)
+         ytop = recty[,2], col = boxcols, border = "black")##boxcols)
     ## include a legend if desired
     if (inc.leg) legend(x = "top", legend = colnames(rectx)[-1],fill = boxcolours, bty = "n",
                         xpd = NA, horiz = TRUE)
@@ -531,6 +533,46 @@ anovaGen <- function(formlist, method, data, ...) {
     return(models)
 }
 
+## write a small function to convert a later table to a latex table
+CItoLatex <- function(tab, rnd = 2, refs = c(1,4,7)) {
+    paste(sapply(rownames(tab),
+                 function(nm) {paste(nm,
+                                     paste0(sapply(refs, function(ind) {
+                                             paste0(round(tab[nm,ind],rnd), " (",
+                                                    round(tab[nm,ind+1],rnd),
+                                                    ",", round(tab[nm,ind+2],rnd), ")")}),
+                                  collapse = " & "), sep = " & ")}), collapse = "\\")
+}
+
+## another small function to plot model parameters in a dot plot
+modeldotplot <- function(CItab, xvals, labs, refs = c(1,4,7), ...) {
+    ## get y positions of coefficients
+    multmod.coefy <- rev(rep(1:nrow(CItab), each = 3) + c(-0.1,0,0.1))
+    ## generate a nice plot
+    par(mar = c(5.1,10.1,4.1,2.1))
+    plot(NA, xlim = range(xvals), ylim = range(multmod.coefy), yaxt = "n", xlab = "Coefficient Value",
+         ylab = "")
+    axis(side = 2, labels = labs, at = rev(1:nrow(CItab)), las = 2)
+    ## add vertical line to indicate zero
+    abline(v = 0, col = "black")
+    ## add lines for each row and effect
+    invisible(sapply(1:nrow(CItab),
+                     function(row) sapply(refs,
+                       function(ind) {
+                           adj <- switch(as.character(ind), "1" = 1, "4" = 2, "7" = 3)
+                           vals <- CItab[row,ind:(ind+2)]
+                           lines(x = vals[c(2,3)], y = rep(multmod.coefy[3*(row-1) + adj],2),
+                                 col = racePal[adj])
+                           points(x = vals[1], y = multmod.coefy[3*(row-1) + adj],
+                                  col = racePal[adj], pch = 20)
+                       })))
+    ## add a legend
+    legend(x = mean(c(-3,2)), y = max(multmod.coefy)*1.02, horiz = TRUE, xjust = 0.5, yjust = 0,
+           legend = c("Cause","Defence","Prosecution"), fill = racePal, xpd = NA, bg = "white", cex = 0.7)
+    ## reset parameters
+    par(mar = c(5.1,4.1,4.1,2.1))
+}
+
 
 ## DATA INSPECTION #####################
 
@@ -700,55 +742,19 @@ multmod.finsum <- summary(multmod.fin)
 multmod.finCI <- cbind(t(multmod.finsum$coefficients),
                        t(multmod.finsum$coefficients) - 2*t(multmod.finsum$standard.errors),
                        t(multmod.finsum$coefficients) + 2*t(multmod.finsum$standard.errors))[,c(1,4,7,2,5,8,3,6,9)]
+## generate the table
+CItoLatex(multmod.finCI)
 
-## write a small function to convert this to a latex table
-CItoLatex <- function(tab, rnd = 2, refs = c(1,4,7) {
-    paste(sapply(rownames(tab),
-                 function(nm) {
-                     paste(nm,
-                           paste0(sapply(refs,
-                                         function(ind) {
-                                             paste0(round(tab[nm,ind],rnd), " (", round(tab[nm,ind+1],rnd),
-                                                    ",", round(tab[nm,ind+2],rnd), ")")
-                                         }),
-                                  collapse = " & "),
-                           sep = " & ")
-                 }),
-          collapse = "\\")
-}
-
-## now to generate a plot of these values
-multmod.coefy <- rep(1:nrow(multmod.finCI), each = 3) + c(-0.1,0,0.1)
-plot(NA, xlim = range(multmod.finCI), ylim = range(multmod.coefy), xaxt = "n", ylab = "Coefficient Value")
-## add vertical line to indicate the defense
-abline(v = 0, col = "black")
-## add lines for each row and effect
-invisible(sapply(1:nrow(multmod.finCI),
-      function(row) sapply(c(1,4,7),
-                           function(ind) {
-                               adj <- switch(as.character(ind), "1" = 1, "4" = 2, "7" = 3)
-                               vals <- multmod.finCI[row,ind:(ind+2)]
-                               lines(x = vals[c(2,3)], y = rep(multmod.coefy[3*(row-1) + adj],2),
-                                     col = racePal[adj])
-                               points(x = vals[1], y = multmod.coefy[3*(row-1) + adj],
-                                      col = racePal[adj])
-                           })))
-## add a legend
-legend(x = mean(range(multmod.finCI)), y = max(multmod.coefy)*1.01, horiz = TRUE, xjust = 0.5, yjust = 0,
-       legend = c("Cause","Defence","Prosecution"), fill = racePal, xpd = NA, bg = "white", cex = 0.7)
-
-
-## motivated by the order of selection (cause -> prosecution -> defence), try sequential logistic regressions as well
-sun.cause <- sun.multmod
-sun.pros <- MatRelevel(sun.multmod[sun.multmod$DispSimp != "C_rem",])
-sun.def <- MatRelevel(sun.pros[sun.pros$DispSimp != "S_rem",])
-## create formulas to avoid repetitive writing
-formulae <- list(form.norc = as.formula("DispSimp ~ DRace_ + Pol_ + Sex_"),
-                 form.full = as.formula("DispSimp ~ Race_ + DRace_ + Pol_ + Sex_"))
-## now fit all models
-logmod.cause <- anovaGen(formulae, glm, sun.cause, family = binomial)
-logmod.pros <- anovaGen(formulae, glm, sun.pros, family = binomial)
-logmod.def <- anovaGen(formulae, glm, sun.def, family = binomial)
+## use the model dot plot function to plot these coefficients
+modeldotplot(multmod.finCI, xvals = c(-3,2),
+             labs = c("(Intercept)", "Other","White","Def. Other","Def. White","Independent","Libertarian",
+                      "Republican","Male","Def. Male","Other & Def. Other","White & Def. Other",
+                      "Other & Def. White","White & Def. White"))
+## and a smaller, cleaner plot
+multmod.filtCI <- multmod.finCI[!grepl("Other|Pol_Lib", rownames(multmod.finCI)),]
+modeldotplot(multmod.filtCI, xvals = range(multmod.filtCI),
+             labs = c("(Intercept)","White","Def. White","Independent",
+                          "Republican","Male","Def. Male","White & Def. White"))
 
 ## noticed pattern: the prosecution and judge seem to match, hans and vidmar suggest this could be due to experience (pg 71)
 ## get lengths
@@ -769,117 +775,8 @@ pros.judge <- table(data.frame(Judge = rep(sun.trialsum$JName, times = sapply(su
 def.judge <- table(data.frame(Judge = rep(sun.trialsum$JName, times = sapply(sun.trialsum$DefAttyName, length)),
                               Def = unlist(sun.trialsum$DefAttyName)))
 
-## the independence we want to test here is that of (Race, Disposition)|(Defendant Race)
-## filter the data to remove small categories
-sun.chitest <- sun.raceknown
-sun.chitest$Disposition <- gsub("U_rem", "Unknown", gsub("Foreman", "Kept", sun.chitest$Disposition))
-## start by generating a table
-dispTab <- table(sun.chitest[,c("DefWhiteBlack", "Disposition", "WhiteBlack")])
-## now apply chi-square tests across the proper margin, start by simply generating the residuals
-dispRes <- lapply(setNames(1:dim(dispTab)[1], dimnames(dispTab)[[1]]), function(ind) {
-    ## extract the two way table of this index
-    tab <- dispTab[ind,,]
-    tabdf <- dim(tab) - 1
-    ## calculate the expected values
-    exp <- outer(rowSums(tab), colSums(tab))/sum(tab)
-    ## and residuals
-    resids <- (tab - exp)/sqrt(exp)
-    ## calculate the observed chi-sq value
-    chival <- sum(resids^2)
-    ## and the p value
-    pval <- 1 - pchisq(chival, df = tabdf[1]*tabdf[2])
-    ## return these in a list
-    list(pval = pval, chisq = chival, df = tabdf[1]*tabdf[2], residuals = resids)
-})
-## so, there is a significant difference in behaviour at the 5% level, and it is highly significant for white and black jurors
 
-## but these results do not control for much, there could be many factors confounding this result
-## first create a new data set for the model building
-sun.jurmod <- sun.raceknown
-sun.jurmod$DefVisMin <- sun.jurmod$DefWhiteBlack != "White"
-sun.jurmod$VisMin <- sun.jurmod$WhiteBlack != "White"
-sun.jurmod$DefStruck <- as.logical(sun.jurmod$DefStruck)
-sun.jurmod$ProStruck <- as.logical(sun.jurmod$ProStruck)
-## now the tricky part, predicting the rejection of a potential juror based on a host of factors, the problem is that we must
-## perform multinomial regression on the data, but this multinomial regression makes comparison of certain parameters
-## impossible, i.e. there is no mathematical way to compare the impact of race for prosecution and defense rejection statistically
-## start by building separate defense and prosecution rejection models
-mod.def1 <- glm(DefStruck ~ Race + DefRace + Gender + DefGender + CrimeType + DefAttyType + PoliticalAffiliation,
-               data = sun.jurmod, family = binomial)
-## very poorly fit model, but the reason should be fairly clear, the crime data in particular has very specific and small
-## classes, try building up the model instead, and using the simpler race variable
-mod.def2 <- glm(DefStruck ~ WhiteBlack*DefWhiteBlack, data = sun.jurmod, family = binomial)
-mod.def3 <- update(mod.def2, formula = DefStruck ~ WhiteBlack + DefWhiteBlack)
-
-## idea: instead of multinomial regression, do poisson regression on the dispTab above, this allows comparisons
-sun.rdat <- data.frame(DefRace = rep(c("Black", "Other", "White"), times = 12),
-                       Disposition = rep(rep(c("C_rem", "D_rem", "Kept", "S_rem"), each = 3), times = 3),
-                       Race = rep(c("Black", "Other", "White"), each = 12),
-                       Count = c(dispTab[,c("C_rem","D_rem","Kept","S_rem"),]))
-## estimate the saturated model first
-mod.rsat <- glm(Count ~ DefRace*Disposition*Race, family = poisson, data = sun.rdat)
-## now test if the final interaction term can be removed
-mod.r1 <- update(mod.rsat, formula = Count ~ DefRace*Disposition + DefRace*Race + Disposition*Race)
-## look at the significance
-1 - pchisq(mod.r1$deviance, mod.r1$df.residual)
-## so, quite clearly, we cannot remove the three way interaction from the model, as it is highly significant
-## the interpretation: the distribution of strikes, kept, etc. depends on both the venire member race and the defendant race
-## still, this is perhaps not precise enough, if we change this data to only delineate between those kept and the behaviour of
-## the lawyers
-sun.rdat2 <- sun.rdat[sun.rdat$Disposition != "C_rem",]
-mod.rsat2 <- glm(Count ~ DefRace*Disposition*Race, family = poisson, data = sun.rdat2)
-
-## this is an interesting result, but perhaps it is related to political affiliation (as indicated by the ideological balance
-## paper)
-## create a table to test this hypothesis
-dispTab.pol <- table(MatRelevel(sun.chitest[!(sun.chitest$PoliticalAffiliation %in% c("Lib","U")),
-                                            c("Disposition","PoliticalAffiliation","WhiteBlack","DefWhiteBlack")]))
-dispTab.pol <- dispTab.pol[c("C_rem","D_rem","Kept","S_rem"),,,]
-## convert to a data frame for fitting
-sun.pdat <- data.frame(Disp_ = rep(c("C_rem", "D_rem", "Kept", "S_rem"), times = 27),
-                       Pol_ = rep(rep(c("Dem", "Ind", "Rep"), each = 4), times = 9),
-                       Race_ = rep(rep(c("Black", "Other", "White"), each = 12), times = 3),
-                       Def_ = rep(c("Black", "Other", "White"), each = 36),
-                       Count = c(dispTab.pol[,,,]))
-## fit a model analogous to those fit above, now controlled for political choices in disposition
-mod.psat <- glm(Count ~ Def_*Disp_*Race_+ Pol_*Disp_, family = poisson, data = sun.pdat)
-## now remove the third order interaction in the model
-mod.psattest <- update(mod.psat, formula = Count ~ Def_*Disp_*Race_ + Pol_*Disp_ - Def_:Disp_:Race_)
-## test the models
-anova(mod.psat, mod.psattest)
-1 - pchisq(66.734, 12)
-
-## however, this suggests another question: is this strategy actually successful? That is, does there appear to
-## be a relation between the number of peremptory challenges and the court case outcome?
-## this may be difficult, there are a lot of factors to consider:
-##                  - the lawyer and their track record
-##                  - how to judge the success/failure of the case
-## see if the presence of challenges is related to the verdict
-mosaicplot(PerempStruck ~ Guilty, data = sun.swap, main = "Strikes by Guilt", shade = TRUE)
-## on the level of jurors, this is certainly not the case, but this is not the correct scale for the question being
-## asked, this question will be addressed again in the case-summarized data
-
-## a third obvious question is a comparison of which races strike or keep which others, used the synthesized variable
-## above to try and identify this
-mosaicplot(Race ~ StruckBy, data = sun.raceknown, shade = TRUE, main = "Race of Juror to Race Removing Juror",
-           las = 2)
-mosaicplot(Race ~ StruckBy, data = sun.raceknown[sun.raceknown$StruckBy != "Not Struck",], shade = TRUE,
-           main = "Race to Race Removing (Only Removed)", las = 2)
-## this plot shows no large systematic deviation between the races in their rejection habits, this suggests, that
-## the rejection that occurs is not as simple as a group identity check
-## this might be the wrong race to check, though, perhaps we are better comparing the defendant and victim races to
-## strike habits
-par(mfrow = c(1,3))
-mosaicplot(Race ~ DefRace, data = sun.raceknown[as.logical(sun.raceknown$DefStruck),], shade = TRUE,
-           main = "Race of Defense-Struck Jurors to Defendant Race", las = 2)
-mosaicplot(Race ~ DefRace, data = sun.raceknown[as.logical(sun.raceknown$ProStruck),], shade = TRUE,
-           main = "Race of Prosecution-Struck Jurors to Defendant Race", las = 2)
-mosaicplot(Race ~ DefRace, data = sun.raceknown, las = 2, shade = TRUE, main = "Race of Defendant to Venire Race")
-par(mfrow = c(1,1))
-## this makes the defense look as if they are not racist, though the comparison to the venire distributions in the third
-## panel makes that clearer
-
-
+## TRIAL LEVEL DATA ####################
 ## load the jury summaries
 if ("AllJuries.Rds" %in% list.files(ThesisDir)) {
     sun.jursum <- readRDS(paste0(ThesisDir, "/AllJuries.Rds"))
@@ -887,143 +784,64 @@ if ("AllJuries.Rds" %in% list.files(ThesisDir)) {
 
 ## now look at removals across trials for defense and prosecution
 with(sun.trialsum, plot(jitter(DefRemEst, factor = 2), jitter(ProRemEst, factor = 2), pch = 20,
-                        xlab = "Defense Strike Count (jittered)", ylab = "Prosecution Strike Count (jittered)",
-                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.3)))
+                        xlab = "Defence Strike Count (jittered)", ylab = "Prosecution Strike Count (jittered)",
+                        col = adjustcolor(racePal2[as.numeric(DefWhiteBlack)], alpha.f = 0.3)))
 abline(0,1)
 legend(x = "topleft", legend = levels(sun.trialsum$DefWhiteBlack), col = racePal, pch = 20, title = "Defendant Race")
+## remove the unknown defendant races
+sun.trialrace <- sun.trialsum[sun.trialsum$DefWhiteBlack != "U",]
+sun.trialrace$DefWhiteBlack <- as.factor(as.character(sun.trialrace$DefWhiteBlack))
 ## this is only somewhat informative, it is difficult to see any patterns, use the custom posboxplot function
 ## first encode relative size of point by alpha blending
-with(sun.trialsum, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal, xlab = "Defense Strike Count",
+with(sun.trialrace, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal2, xlab = "Defence Strike Count",
                               ylab = "Prosecution Strike Count", boxwids = 0.8, alphamin = 0.05))
 ## next by area, another encoding option in this function
-with(sun.trialsum, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal, xlab = "Defense Strike Count",
-                              ylab = "Prosecution Strike Count", alphaencoding = FALSE, areaencoding = TRUE))
+with(sun.trialrace, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal2, xlab = "Defence Strike Count",
+                               ylab = "Prosecution Strike Count", alphaencoding = FALSE, areaencoding = TRUE,
+                               main = "Prosecution and Defence Strikes by Trial"))
+abline(a = 0, b = 1)
 
-## break apart in more detail for the defense
-DefStruckMeans <- with(sun.trialsum, sapply(levels(DefWhiteBlack),
-                                            function(rc) c(mean((Race.DefRem.Black/Race.Venire.Black)[DefWhiteBlack == rc],
-                                                                na.rm = TRUE),
-                                                           mean((Race.DefRem.White/Race.Venire.White)[DefWhiteBlack == rc],
-                                                                na.rm = TRUE))))
-with(sun.trialsum, plot(Race.DefRem.Black/Race.Venire.Black, Race.DefRem.White/Race.Venire.White, pch = 20,
-                        xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
-                        xlim = c(0,1), ylim = c(0,1), main = "Defense Strike Proportions",
-                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
-abline(0,1)
-points(DefStruckMeans[1,], DefStruckMeans[2,], col = racePal, pch = 4, cex = 2, lwd = 1.5)
-legend(x = "topright", title = "Defendant Race", col = c(racePal,"black"), pch = c(rep(20,3),4), bg = "white",
-       legend = c(levels(sun.trialsum$DefWhiteBlack),"Mean"))
-## hard to see the patterns at the lines, jitter the proportions
-with(sun.trialsum, plot(Race.DefRem.Black/Race.Venire.Black + runif(nrow(sun.trialsum), min = -0.03, max = 0.03),
-                        Race.DefRem.White/Race.Venire.White, pch = 20,
-                        xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
-                        xlim = c(0,1), ylim = c(0,1), main = "Defense Strike Proportions",
-                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.1)))
-
-
-## and for the prosecution
-ProStruckMeans <- with(sun.trialsum, sapply(levels(DefWhiteBlack),
-                                            function(rc) c(mean((Race.ProRem.Black/Race.Venire.Black)[DefWhiteBlack == rc],
-                                                                na.rm = TRUE),
-                                                           mean((Race.ProRem.White/Race.Venire.White)[DefWhiteBlack == rc],
-                                                                na.rm = TRUE))))
-with(sun.trialsum, plot(Race.ProRem.Black/Race.Venire.Black, Race.ProRem.White/Race.Venire.White, pch = 20,
-                        xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
-                        xlim = c(0,1), ylim = c(0,1), main = "Prosecution Strike Proportions",
-                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
-abline(0,1)
-points(ProStruckMeans[1,], ProStruckMeans[2,], col = racePal, pch = 4, cex = 2, lwd = 1.5)
-legend(x = "topright", title = "Defendant Race", col = c(racePal,"black"), pch = c(rep(20,3),4), bg = "white",
-       legend = c(levels(sun.trialsum$DefWhiteBlack),"Mean"))
-## again hard to see, try jittering
-with(sun.trialsum, plot(Race.ProRem.Black/Race.Venire.Black + runif(nrow(sun.trialsum), min = -0.03, max = 0.03),
-                        Race.ProRem.White/Race.Venire.White, pch = 20,
-                        xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
-                        xlim = c(0,1), ylim = c(0,1), main = "Prosecution Strike Proportions",
-                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.1)))
-
-## both of these plots show a much higher proportion of the black venire is usually struck for both sides, an unsurprising result
-## given the the black venire was shown to be smaller in the aggregate statistics, looking at raw counts next:
-## for the defense
-with(sun.trialsum, plot(jitter(Race.DefRem.Black, factor = 2), jitter(Race.DefRem.White, factor = 2), pch = 20,
-                        xlab = "Black Venire Strike Count (jittered)", ylab = "White Venire Strike Count (jittered)",
-                        xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts",
-                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
-legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "white", legend = levels(sun.trialsum$DefWhiteBlack))
+## what about counts for each side?
 ## use custom plot here
-with(sun.trialsum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal,
-                              xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
-                              xlim = c(0,13), ylim = c(0,13), main = "Defense Strike Counts"))
-with(sun.trialsum, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal,
+with(sun.trialrace, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal2,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
                               xlim = c(0,13), ylim = c(0,13), main = "Defence Strike Counts",
                               alphaencoding = FALSE, areaencoding = TRUE))
-
-## for the prosecution
-with(sun.trialsum, plot(jitter(Race.ProRem.Black, factor = 1.2), jitter(Race.ProRem.White, factor = 1.2), pch = 20,
-                        xlab = "Black Venire Strike Count (jittered)", ylab = "White Venire Strike Count (jittered)",
-                        xlim = c(0,8), ylim = c(0,8), main = "Prosecution Strike Counts",
-                        col = adjustcolor(racePal[as.numeric(DefWhiteBlack)], alpha.f = 0.2)))
-legend(x = "topright", title = "Defendant Race", col = racePal, pch = 20, bg = "white", legend = levels(sun.trialsum$DefWhiteBlack))
-## more of the custom plot
-with(sun.trialsum, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal,
-                              xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
-                              xlim = c(0,13), ylim = c(0,13), main = "Prosecution Strike Counts"))
-with(sun.trialsum, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal,
+## more of the custom plot for the prosecution
+with(sun.trialrace, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal2,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
                               xlim = c(0,13), ylim = c(0,13), main = "Prosecution Strike Counts",
                               alphaencoding = FALSE, areaencoding = TRUE))
 
-## interesting, this shows some patterns in lawyer behaviour at the trial level
+## break apart in more detail for the defence, first find the means by defendant race
+DefStruckMeans <- with(sun.trialrace,
+                       sapply(levels(DefWhiteBlack),
+                              function(rc) c(mean((Race.DefRem.Black/Race.Venire.Black)[DefWhiteBlack == rc],
+                                                  na.rm = TRUE),
+                                             mean((Race.DefRem.White/Race.Venire.White)[DefWhiteBlack == rc],
+                                                  na.rm = TRUE))))
+## plot the proportion of venire members struck by race given defendant race
+with(sun.trialrace, plot(Race.DefRem.Black/Race.Venire.Black, Race.DefRem.White/Race.Venire.White, pch = 20,
+                        xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
+                        xlim = c(0,1), ylim = c(0,1), main = "Defence Strike Proportions",
+                        col = adjustcolor(racePal2[as.numeric(DefWhiteBlack)], alpha.f = 0.5)))
+abline(0,1)
+points(DefStruckMeans[1,], DefStruckMeans[2,], bg = racePal2, pch = 22, cex = 1.5, col = "black")
+legend(x = "topright", title = "Defendant Race", col = c(racePal2,"black"), pch = c(rep(20,3),22), bg = "white",
+       legend = c(levels(sun.trialrace$DefWhiteBlack),"Mean"))
 
-## so there are some obvious patterns we can see in the aggregated data and in the individual cases, see if these affect outcomes
-with(sun.trialsum, plot(DefRemEst ~ Outcome))
-with(sun.trialsum, plot(ProRemEst ~ Outcome))
-## nothing obvious there, but there is no control for charges/crime type
-
-## compare these to other variables
-mosaicplot(DefRace ~ CrimeType, data = sun.trialsum, las = 2, main = "Crime and Race", shade = TRUE)
-mosaicplot(Outcome ~ CrimeType, data = sun.trialsum, las = 2, main = "Crime and Outcome", shade = TRUE)
-boxplot(DefRemEst ~ CrimeType, data = sun.trialsum)
-with(sun.trialsum, posboxplot(as.numeric(CrimeType), DefRemEst, DefWhiteBlack, racePal, xaxt = "n",
-                              ylab = "Defense Strike Count", xlab = "Crime Type"))
-axis(side = 1, at = 1:7, labels = levels(sun.trialsum$CrimeType))
-boxplot(ProRemEst ~ CrimeType, data = sun.trialsum)
-with(sun.trialsum, posboxplot(as.numeric(CrimeType), ProRemEst, DefWhiteBlack, racePal, xaxt = "n",
-                              ylab = "Prosecution Strike Count", xlab = "Crime Type"))
-axis(side = 1, at = 1:7, labels = levels(sun.trialsum$CrimeType))
-
-## try using the positional boxplots
-with(sun.trialsum, posboxplot(DefRemEst, ProRemEst, CrimeType, crimePal))
-## too many classes, maybe try drug, sex, theft, other
-sun.trialsum$DrugSexTheft <- as.factor(FactorReduce(sun.trialsum$CrimeType, tokeep = c("Drug","Sex","Theft")))
-with(sun.trialsum, posboxplot(DefRemEst, ProRemEst, DrugSexTheft, boxcolours = brewer.pal(4, "Set1")))
-## also summarize this for the juror data
-sun.juror$DrugSexTheft <- as.factor(FactorReduce(sun.juror$CrimeType, tokeep = c("Drug","Sex","Theft")))
-
-## try something different, plot the tendency of the lawyers themselves
-## idea: horizontal axis is lawyers, vertical is strikes
-LawyerTends <- lapply(unique(c(sun.trialsum$DefAttyName,sun.trialsum$ProsName)),
-                      function(name) list(Prosecution = sun.trialsum$ProRemEst[sapply(sun.trialsum$DefAttyName,
-                                                                                      function(nms) name %in% nms)],
-                                          Defense = sun.trialsum$DefRemEst[sapply(sun.trialsum$ProsName,
-                                                                                  function(nms) name %in% nms)]))
-## order these by those who did both, then defense, then prosecution
-LawyerOrder <- order(sapply(LawyerTends, function(lst) {
-    lstlens <- sapply(lst, function(el) length(el) > 0)
-    if (all(lstlens)) {
-        0
-    } else if (lstlens[[2]]) {
-        1
-    } else 2}
-    ))
-## reorder the lawyer tendencies
-LawyerTends <- LawyerTends[LawyerOrder]
-## plot these
-plot(NA, xlim = c(1,length(LawyerTends)), ylim = c(0, max(unlist(LawyerTends), na.rm = TRUE)))
-invisible(lapply(1:length(LawyerTends), function(ind) {
-    vals <- LawyerTends[[ind]]
-    points(rep(ind, length(vals$Defense)), vals$Defense, col = adjustcolor("steelblue", alpha.f = 0.p1), pch = 20)
-    points(rep(ind, length(vals$Prosecution)), vals$Prosecution, col = adjustcolor("red", alpha.f = 0.1), pch = 20)
-}))
-lines(1:length(LawyerTends), sapply(LawyerTends, function(el) mean(unlist(el), na.rm = TRUE)))
+## do the same for the prosecution, start by calculating means
+ProStruckMeans <- with(sun.trialrace, sapply(levels(DefWhiteBlack),
+                                            function(rc) c(mean((Race.ProRem.Black/Race.Venire.Black)[DefWhiteBlack == rc],
+                                                                na.rm = TRUE),
+                                                           mean((Race.ProRem.White/Race.Venire.White)[DefWhiteBlack == rc],
+                                                                na.rm = TRUE))))
+## plot the strike proportions by defendant race
+with(sun.trialrace, plot(Race.ProRem.Black/Race.Venire.Black, Race.ProRem.White/Race.Venire.White, pch = 20,
+                        xlab = "Black Venire Proportion Struck", ylab = "White Venire Proportion Struck",
+                        xlim = c(0,1), ylim = c(0,1), main = "Prosecution Strike Proportions",
+                        col = adjustcolor(racePal2[as.numeric(DefWhiteBlack)], alpha.f = 0.5)))
+abline(0,1)
+points(ProStruckMeans[1,], ProStruckMeans[2,], bg = racePal2, pch = 22, cex = 1.5, col = "black")
+legend(x = "topright", title = "Defendant Race", col = c(racePal2,"black"), pch = c(rep(20,3),22), bg = "white",
+       legend = c(levels(sun.trialrace$DefWhiteBlack),"Mean"))
