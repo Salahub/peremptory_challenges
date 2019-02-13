@@ -14,11 +14,12 @@ A level-1 auxiliary file: Appendix2.aux
 A level-1 auxiliary file: Appendix3.aux
 A level-1 auxiliary file: Epilogue.aux
 Database file #1: myReferences.bib
-I was expecting a `,' or a `}'---line 10 of file myReferences.bib
+I was expecting a `,' or a `}'---line 27 of file myReferences.bib
  : 
  : author = {Gallup}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "vandykejursel"
 Warning--no key, author in gallupdeath
 Warning--no author, editor, or organization in gallupdeath
 Warning--to sort, need author or key in gallupdeath

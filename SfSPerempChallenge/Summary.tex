@@ -1,14 +1,46 @@
 \chapter{Summary}
-\label{s:Summary}
+\label{c:Summary}
 
 Summarize the presented work. Why is it useful to the research field or institute?
 
 
 \section{Future Work}
-\label{ss:FutureWork}
+\label{sec:FutureWork}
 
-Possible ways to extend the work.
+One obvious way to extend the work done here is through more thorough modelling. While the multinomial regression model fit in
+\ref{sec:mods} served its purpose, much more precise models could be fit using casual graphs. Such causal modelling has the
+possibility to extend the observations of the model from the simple pattern identification of the multinomial model and
+visualizations presented here to precise statements about the magnitude of causal effects between factors. Representing the
+factors in a causal graph would also be a useful exercise in making the assumptions of the model abundantly clear. Logistic
+regression models and multinomial models, which have been the norm for peremptory challenge data so far, are less clear about
+their assumptions, especially to those not trained to fit and analyze these models.
 
+Other possible models of interest are mixed models. In this work the attempts to fit mixed models were not discussed, but at
+several points models with random effects for each trial were attempted. Unfortunately, these models failed to converge. Not a
+great deal of time was spent trying to transform the data to facilitate convergence to a reasonable value, and so no mixed models
+were fit. Such models are attractive because they have the potential to flexibly control for a host of factors which will vary
+over the course of each trial, and do so in a manner which involves minimal parameters. Controlling a random effect for lawyer,
+for instance, could shed light on how variable lawyers are in their behaviour. This dimension of individual variability is
+essentially unadressed by the aggregate examinations of this work.
+
+Another extension would be further investigation of the Sunshine data. It is an incredibly rich data set and this work only
+examined one small facet of it. The crime classification outlined in \ref{sec:jspdata}, for example, was never utilized in the
+analysis of this data, despite the investment of time and effort in performing this clean up. Perhaps this method could also be
+applied to other irregular data in court cases or elsewhere to efficiently categorize irregular strings.
+
+Finally, as \cite{JurySunshineProj} notes, more data is needed on this topic generally. Further efforts to collect data and
+reinforce or refute the findings of this work and previous ones should be undertaken, and efforts to centralize and regularize the
+data would assist in the ease of analysis. Increased transparency and centralized data collection have the potential to allow for
+a greater understanding of which elements of the jury trial system work and which are inappropriate. As
+\citeauthor{JurySunshineProj} puts it:
+
+\begin{quote}
+  The transformative power of data, in our view, is not limited to traffic stops or jury selection. We place our proposal in the
+  larger context of using transparency to change criminal justice practices for the better. As Andrew Crespo has pointed out, the
+  criminal courts already collect useful facts that remain hidden because they are scattered in single files or inaccessible
+  formats. An effort to assemble these facts in aggregate form could improve the courts' efforts to regulate the work of other
+  criminal justice players, such as police and prosecutors.
+\end{quote}
 
 %%% Local Variables: 
 %%% mode: latex

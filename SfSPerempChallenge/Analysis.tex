@@ -300,7 +300,7 @@ attorneys\footnote{\cite{StubbornLegacy} and \cite{PerempChalMurder} both provid
   this data interacted with the questions asked during voire dire is unclear. Additionally, it is missing in the
   \cite{JurySunshineProj} data.}. 
 
-\subsection{Political Affiliation in the Sunshine Data}
+\subsection{Political Affiliation in the Sunshine Data} \label{sec:polaff}
 
 \begin{figure}[h!]
   \centering
@@ -579,6 +579,8 @@ using the standard errors of the coefficients and using a normal assumption\foot
   \end{tabular}
 \end{table}
 
+\subsection{Examining the Coefficients} \label{sec:examcoef}
+
 This table is somewhat daunting and difficult to interpret. No sense for the relative magnitudes of the coefficients or their
 significance is offered by the precise recording of all values. This motivated further visualization of these parameter estimates
 in an intuitive and simple way. Motivated by \cite{dotwhisker}, a custom dot and whisker plot was generated. This plot displays
@@ -637,23 +639,57 @@ venire members, where it is significantly greater than both.
 In order to look more specifically some important differentiation is necessary between the intercept values and the other
 coefficients. As with all linear models, the intercept values provide a locational measure. That is to say, the intercepts provide
 the base level upon which the coefficients act. Consequentially, the negative values of the intercept for all strike sources is to
-be expected. The 
+be expected. In the Sunshine data more venire members were kept than rejected, as can be seen in Tables \ref{tab:margrace} and
+\ref{tab:rejbounds}, and so the intercept, which gives the log odds ratio of each strike outcome to the venire member being kept,
+would naturally be negative for all strike sources.
 
-The effect of the white defendant and interaction between a white defendant and a white venire member is perhaps more
-interesting. While the coefficients make the effects clear in \ref{fig:modselcoef} and the tests and confidence intervals indicate
-that both of these factors are significant, the effects indicated were not clear in the mobile plots. The effect of a white
-defendant appears to be a less pronounced version of the 
+The more important feature to note for this intercept is the large difference between the different strike sources, without
+overlapping confidence intervals. These suggest that all three strike sources behave differently in the reference group, which
+consists of a female, black, Democrat venire member in a case with a female, black defendant. Crucially, the defence intercept is
+far lower than the prosecution, matching what was observed in Figure \ref{fig:racedefmob}, where the lowest defence strike
+probability occurred for black venire members in cases with black defendants. Also visible in this figure is an increase in
+defence strike probability and decrease in prosecution strike probability for a white defendant with a black venire member. This
+pattern is reflected perfectly in the positive defence coefficient and negative prosecution coefficient for white defendants.
 
-While the lack of consistent information between data sets makes fitting additional models using the other data sets more
-difficult, the above findings are consistent with the modelling found in \cite{StubbornLegacy} and \cite{PerempChalMurder}. Both
-of these studies performed logistic regression analysis of the prosecution strike patterns, controlling for attitudinal
-variables. In both cases, the venire member race remained a significant predictor of the venire member removal. Additionally,
-\citeauthor{PerempChalMurder} fit analogous models for the defence strike use and found the race remained significant even when
-the attitudinal variables were controlled. Together, these three data sets and analyses provide a strong case that the race of a
-venire member is utilized by both the defence and prosecution to make peremptory challenge decisions both in different regions and
-throughout time.
+The coefficients for white venire members also match the expectations of Figure \ref{Fig:racedefmob}. The defence attains its
+largest positive coefficient for this group and the prosecution is largest negative value. The dominant effect of venire member
+race visible throughout the mobile plots in \ref{sec:otherfact} and \ref{sec:impactrace} is reflected by the dominance of the
+magnitudes of the coefficients for white venire members relative to the reference black venire members. The defence is much more
+likely to reject a white venire member and the prosecution much less likely.
+
+Slightly attenuating this pattern is the interaction effect between a white defendant and a white venire member. For this specific
+combination, the defence is less likely to reject than for a white venire member with a black defendant, while the prosecution is
+more likely to reject. Both of these trends seem to be significant based on the plotted confidence intervals. Combine this
+observation with the almost mirrored pattern for a white defendant with a black venire member (given by the white defendant
+coefficient), and a more nuanced strategy becomes clear. While the prosecution dominantly rejects black venire members and the
+defence dominantly rejects white venire members, they are also sensitive to possible racial matches. The defence pattern is
+consistent with a strategy which aims to partially select for venire members which have the same race as the defendant, while the
+prosecution has the opposite pattern.
+
+This pattern is precisely the problematic behaviour which was implied by the individuals that viewed the Gerald Stanley murder
+trial as a travesty. While the data here \textit{cannot} reveal anything about that \textit{specific} trial, or indeed about the
+exercise of peremptory challenges in Canada generally. That such a pattern is clearly present in the data will no doubt feel
+vindicating for those still musing on its perceived injustice.
+
+Such racial patterns in the prosecution and the defence dominate all other effects. The political effect is minor, though
+consistent with the hypothesis put forward by \cite{revesz2016}, with a preference for Republicans by the prosecution and a
+preference for Democrats by the defence. Interestingly, all strike sources seem to have an increased probability for male venire
+members, suggesting a universal preference for female venire members on the jury. One would hope that this pattern is for some
+other reason than anything listed on pages 152-153 of \cite{vandykejurysel} and reproduced here in \ref{sec:polaff}. While no
+detailed explanation is forthcoming for this pattern in the presence of racial and political affiliation controls, it would
+certainly be an interesting avenue for further research, as the exercise of peremptory challenges based purely on gender is also
+protected since \textit{J.E.B. v. Alabama} (\cite{jebvalabama}).
+
+A lack of consistent information between data sets and of time made fitting additional models using the other data sets more
+difficult. Regardless of the lack of specific coefficient comparisons due to these difficulties, the above findings are consistent
+with the modelling results in \cite{StubbornLegacy} and \cite{PerempChalMurder}. Both of these studies performed logistic
+regression analysis of the prosecution strike patterns, controlling for attitudinal variables. In both cases, the venire member
+race remained a significant predictor of the venire member removal. Additionally, \citeauthor{PerempChalMurder} fit analogous
+models for the defence strike use and found the race remained significant even when the attitudinal variables were
+controlled. The resuls of the modelling performed here add evidence to this mounting case of racial importance in the execution of
+peremptory challenges.
                 
-\section{Case Level Summary} \label{sec:casesum}
+\section{Trial Level Summary} \label{sec:casesum}
 
 While \cite{JurySunshineProj} reported a great deal of aggregate statistics about the venire members themselves, one piece of
 investigation which was lacking was an analysis which aggregated and viewed the trends for the cases, rather than simply for
@@ -669,16 +705,60 @@ known to the author.
 
 \subsection{Estimating Struck Juror Counts} \label{subsec:struckjur}
 
-\subsection{Visualizing the Trends} \label{subsec:vistrend}
+One gap which was present in the Sunshine data was the total count of defence and prosecution removals for each trial. While this
+variable is of minor importance for modelling the individual venire members, it is of major interest when viewing the trials
+themselves. While counts of these strikes were provided in the data, there were many missing values, or values inconsistent with
+the number of associated venire members in the data. For example, many of the recorded values in these columns were zero even when
+venire members associated with that trial were marked as struck.
+
+To remedy this, for each trial a number of variables were generated. Primarily, these variables were counts of the number of
+venire members with particular characteristics which were struck by both the prosecution and defence in the trial. For example the
+variable \texttt{DefRem.Race.Black} provided the count of black venire members struck by the defence. To provide an estimate of
+the number of venire members removed by each strike source, these counts were summed for one particular variable, typically
+gender. The sum was then compared to the recorded value for that party's removed count. The greater of the two values was
+kept as an estimated count to be used in analysis. For both the prosecution and the defence, about 80\% of the sum and recorded
+values matched exactly and about 18\% of the recorded values were less than the sum. This suggests some incompleteness for the
+remaining 2--4\% of the data.
+
+\subsection{Visualizing the Racial Trends} \label{subsec:vistrend}
 
 \subsubsection{The Positional Boxplot}
+
+Motivated by the plots in the \texttt{extracat} package in \Rp (\cite{extracat}), in particular the \texttt{rmb} plot, a
+positional proportion plot, called here the ``positional boxplot,'' was developed to display the strike tendencies across
+trials. The data for each trial consists of categorical variables and two integer counts corresponding to the estimated defence
+and prosecution strike counts described in \ref{subsec:struckjur}. The positional boxplot was developed to investigate the
+relationship between the strike patterns of both parties and the defendant race.
+
+Therefore, the positional boxplot is designed to visualize the conditional distribution of a categorical variable given two
+integer count variables. Each observation consists of a level of a categorical variable and two counts. Across the whole data,
+there may be occurrences of identical values for the two counts. At each unique combination of integer counts observed, a box is
+placed with an area proportional to the number of observations with that specific combination. Each box is then subdivided
+horizontally such that the width of each subdivision is proportional to the corresponding count of each level of the categorical
+variable that occurs with that specific integer combination.
 
 \begin{figure}[h!]
   \centering
   \epsfCfile{0.7}{DefProStrikesTrial}
-  \caption[Prosecution and Defence Strikes by Trial]{The positional boxplot of strikes by race of defendant for the Sunshine data}
+  \caption[Prosecution and Defence Strikes by Trial]{\footnotesize The positional boxplot of strikes by race of defendant for the
+    Sunshine data. There does not seem to be a dependence of strike counts on the defendant race, the boxes look similar across
+    the entire plot.}
   \label{fig:trialprodef}
 \end{figure}
+
+Figure \ref{fig:trialprodef} displays a positional boxplot of defendant race to prosecution and defence estimated strike
+counts. While the internal box patterns look rather similar everywhere, split somewhat evenly between black and white defendants,
+their areas are quite revealing. In the aggregate examination of the data, it was clear that the defence had an overal higher
+strike rate than the prosecution, this effect can be viewed clearly in Figure \ref{fig:gengen} where the defence has a higher
+strike rate across all gender combinations. What was not clear was whether this pattern reflected the typical pattern at the
+individual trial level or was rather due outlier cases with abundant defence strikes. The areas of the boxes in Figure
+\ref{fig:trialprodef} indicate clearly that the defence typically uses more peremptory challenges than the prosecution in each
+trial.
+
+Of course, the most striking result of the modelling from \ref{sec:mods} seen clearly in Figure \ref{fig:modselcoef} was the
+dominance of the venire member race in determining their strike probabilities. Viewing the defendant race may simply be the wrong
+plot. Breaking this apart to display the racial tendencies across trials for both the defence and prosecution could reveal
+interesting patterns. Such a plot is shown in \ref{fig:defandpros}.
 
 \begin{figure}[h!]
   \centering
@@ -698,6 +778,19 @@ known to the author.
   \label{fig:defandpros}
 \end{figure}
 
+Figure \ref{fig:defracestrike} shows the strong preference of the defence to strike white jurors regardless of the defendant
+race. The tendency of the defence to strike jurors different than the defendant noted in \ref{sec:examcoef} is also visible in
+this plot. Note how the black defendants generally make a greater proportion of the points for higher white venire strike
+counts. In contrast, the opposite trend is shown in Figure \ref{fig:proracestrike}, where the boxes further to the left have a
+greater proportion of black defendants and those moving up have a greater proportion of white defendants.
+
+Interestingly, the prosecution also seems less biased than the defence at the trial level. The distribution of strikes seems
+similar between both black and white venire members. Such an appearance, however, is misleading, because it fails to account for
+the number of black and white venire members presented to the court. These numbers are very different, as can be seen by the
+lengths of the horizontal black lines in Figure \ref{fig:racedefmob}. A sizeable majority of the venire members are
+white. Luckily, with trial aggregated data, the raw strike counts can be normalized into proportions. The resulting scatterplots
+of these proportions by trial are displayed in Figure \ref{fig:defproprop}.
+
 \begin{figure}[h!]
   \centering
   \begin{subfigure}{0.7\textwidth}
@@ -716,7 +809,24 @@ known to the author.
   \label{fig:defproprop}
 \end{figure}
 
-\section{Useful Quoted Bits}
+Here, the prosecution and defence biases are much more clear. The prosecution never strikes more than 40\% of white venire members
+presented, and on average strikes a greater proportion of the black venire than the white venire. The defence, in contrast,
+regularly strikes more than 40\% of the white venire, and on average strikes a greater proportion of the white venire members than
+the black venire members. This reinforces the aggregate observations made in \ref{sec:mods}, indicating that these mechanics
+operate on the individual trial level, and not just over all trials. Additionally, the high variation visible in Figure
+\ref{fig:defproprop} suggests that the aggregate patterns described in \ref{sec:mods} are not followed by all defence of
+prosecution lawyers, merely on average.
+
+While these differences are perhaps interesting, the far more interesting observation that can be gleaned from these plots is the
+fundamental difference in inclusion of minority and majority groups in jury formation. The aggregate statistics indicate that the
+black venire members are a minority, and Figure \ref{fig:defproprop} suggests that as a consequence, it is common that a majority
+or all of the potential black jurors will be removed by peremptory challenge while such an occurrence is incredibly rare for the
+majority white jurors, if not impossible. While in many trials all black venire members were struck, in not a single trial was
+every white venire member struck. This suggests that if one had a strategy of keeping minorities off of juries, the peremptory
+challenge system would make this task easier. Such an observation is obvious in theory, but it is no less striking to see it
+emerge from the data.
+
+\section{On Jury Selection}
 
 \cite{vandykejurysel} spends much of chapters four and five exploring the causes for the underrepresentation of certain groups in
 jury venires, and his analysis suggests that underrepresentation starts at the jury selection stage due to fewer non-white
@@ -728,3 +838,11 @@ Such explanations provide a plausible reason why black males would be most under
 the venire is white in this data despite the majority of defendants being black. Such issues with the jury selection process will
 not, and cannot, be solved by simply removed the peremptory challenge. They have much more to do with the relationship between
 certain groups and wider society, and so require more comprehensive and complex solutions.
+
+The Gerald Stanley case serves as an excellent demonstration of this problem. As \cite{boushie750} report, 750 individuals on the
+jury roll were sent court summons, but only 204 of these individuals appeared on the day of the trial. This large non-response
+population introduces the potential for incredible bias in the venire that is to be used for selection. If there is some
+relationship between demographics and an inability to serve on a jury or a lack of will to respond to a court summons, as
+\cite{vandykejursel} suggests with ample evidence, then problems with minority representaton may be due in larger part to the
+method of jury summons than the exercise of challenges in the courtroom. Removing the peremptory challenge may serve as a useful
+step in the right direction, but it cannot be expected to ``fix'' minority representation alone.

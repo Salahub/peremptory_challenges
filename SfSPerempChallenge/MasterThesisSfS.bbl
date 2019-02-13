@@ -244,6 +244,13 @@ Petersen, C. (1993).
   selection process.
 \newblock {\em McGill Law Journal\/}~{\em 38\/}(1).
 
+\bibitem[\protect\citeauthoryear{Pilh{\"o}fer and Unwin}{Pilh{\"o}fer and
+  Unwin}{2013}]{extracat}
+Pilh{\"o}fer, A. and A.~Unwin (2013).
+\newblock New approaches in visualization of categorical data: {R} package
+  {extracat}.
+\newblock {\em Journal of Statistical Software\/}~{\em 53\/}(7), 1--25.
+
 \bibitem[\protect\citeauthoryear{Quenneville}{Quenneville}{2018}]{StanleyWitnessAccounts}
 Quenneville, G. (2018, February).
 \newblock {What happened on Gerald Stanley's farm the day Colten Boushie was
