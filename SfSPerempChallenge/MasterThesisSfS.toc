@@ -3,6 +3,7 @@
 \contentsline {section}{\numberline {0.2}Variables}{xi}{section.0.2}
 \contentsline {chapter}{\numberline {}{Notation}}{xi}{section*.6}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}A Note on Palette Choice}{2}{section.1.1}
 \contentsline {chapter}{\numberline {2}Peremptory Challenges}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Jury Selection Procedures}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}The Role of the Jury}{5}{section.2.2}
@@ -31,32 +32,31 @@
 \contentsline {section}{\numberline {3.3}Philadelphia Data}{19}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Methodology}{19}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Cleaning}{20}{subsection.3.3.2}
-\contentsline {chapter}{\numberline {4}Empirical Analysis}{21}{chapter.4}
+\contentsline {chapter}{\numberline {4}Analysis}{21}{chapter.4}
 \contentsline {section}{\numberline {4.1}Extremes of Partiality}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}The Impact of Race}{23}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}In the Stubborn and Philadelphia Data}{25}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Other Factors}{27}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Political Affiliation in the Sunshine Data}{28}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Gender in the Sunshine Data}{29}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}The Stubborn and Philadelphia Data Sets}{31}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Modelling}{32}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Multinomial Logistic Regression}{32}{subsection.4.4.1}
-\contentsline {section}{\numberline {4.5}Case Level Summary}{36}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Estimating Struck Juror Counts}{37}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Visualizing the Trends}{37}{subsection.4.5.2}
-\contentsline {subsubsection}{The Positional Boxplot}{37}{section*.29}
-\contentsline {section}{\numberline {4.6}Useful Quoted Bits}{37}{section.4.6}
-\contentsline {chapter}{\numberline {5}Summary}{41}{chapter.5}
-\contentsline {section}{\numberline {5.1}Future Work}{41}{section.5.1}
+\contentsline {section}{\numberline {4.2}The Impact of Race}{24}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}In the Stubborn and Philadelphia Data}{26}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}Other Factors}{28}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Political Affiliation in the Sunshine Data}{29}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Gender in the Sunshine Data}{30}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}The Stubborn and Philadelphia Data Sets}{33}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Modelling}{34}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Multinomial Logistic Regression}{34}{subsection.4.4.1}
+\contentsline {section}{\numberline {4.5}Case Level Summary}{38}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Estimating Struck Juror Counts}{39}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Visualizing the Trends}{39}{subsection.4.5.2}
+\contentsline {subsubsection}{The Positional Boxplot}{39}{section*.30}
+\contentsline {section}{\numberline {4.6}Useful Quoted Bits}{39}{section.4.6}
+\contentsline {chapter}{\numberline {5}Summary}{43}{chapter.5}
+\contentsline {section}{\numberline {5.1}Future Work}{43}{section.5.1}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Bibliography}}{43}{section*.33}
+\contentsline {chapter}{\numberline {}{Bibliography}}{45}{section*.34}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {A}Developing an Effective Visualization of Conditional Probability}{47}{appendix.A}
-\contentsline {section}{\numberline {A.1}The Mobile Plot}{49}{section.A.1}
-\contentsline {chapter}{\numberline {B}Complementary information}{51}{appendix.B}
-\contentsline {section}{\numberline {B.1}Jury Sunshine Irregularities}{51}{section.B.1}
-\contentsline {section}{\numberline {B.2}Jury Sunshine Charge Classification}{51}{section.B.2}
-\contentsline {section}{\numberline {B.3}Prosecution and Judge Homogeneity}{51}{section.B.3}
+\contentsline {chapter}{\numberline {A}Developing an Effective Visualization of Conditional Probability}{49}{appendix.A}
+\contentsline {section}{\numberline {A.1}The Mobile Plot}{51}{section.A.1}
+\contentsline {chapter}{\numberline {B}Complementary information}{53}{appendix.B}
+\contentsline {section}{\numberline {B.1}Jury Sunshine Irregularities}{53}{section.B.1}
+\contentsline {section}{\numberline {B.2}Jury Sunshine Charge Classification}{53}{section.B.2}
 \contentsline {chapter}{\numberline {C}Mathematical Results}{55}{appendix.C}
 \contentsline {section}{\numberline {C.1}Conditional Distribution of a Poisson Expectation Given Marginal Counts}{55}{section.C.1}
 \contentsline {chapter}{\numberline {D}Code}{57}{appendix.D}

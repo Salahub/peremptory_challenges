@@ -2,6 +2,8 @@
  "myReferences"
  (lambda ()
    (LaTeX-add-bibitems
+    "dotwhisker"
+    "gallupdeath"
     "wong2011"
     "rcolorbrewer"
     "stilldamaged"

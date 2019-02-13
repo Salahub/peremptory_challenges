@@ -5,8 +5,6 @@
     "app:complement"
     "app:irregs"
     "app:charge"
-    "fig:chargetree"
-    "sec:causepro"
-    "fig:lawyerexp"))
+    "fig:chargetree"))
  :latex)
 

@@ -1,5 +1,8 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{??}{gal}{}]{gallupdeath}
+In depth: Death penalty.
+
 \bibitem[\protect\citeauthoryear{{42nd Parliament of Canada}}{{42nd Parliament
   of Canada}}{2018a}]{billc75}
 {42nd Parliament of Canada} (2018a, March).
@@ -295,6 +298,11 @@ Sison, C.~P. and J.~Glaz (1995).
   multinomial proportions.
 \newblock {\em Journal of the American Statistical Association\/}~{\em
   90\/}(429), 366--369.
+
+\bibitem[\protect\citeauthoryear{Solt and Hu}{Solt and Hu}{2018}]{dotwhisker}
+Solt, F. and Y.~Hu (2018).
+\newblock {\em dotwhisker: Dot-and-Whisker Plots of Regression Results}.
+\newblock R package version 0.5.0.
 
 \bibitem[\protect\citeauthoryear{{Statistics Canada}}{{Statistics
   Canada}}{2018}]{SaskatchewanCrime}
