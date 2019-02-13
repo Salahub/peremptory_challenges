@@ -553,7 +553,8 @@ modeldotplot <- function(CItab, xvals, labs, refs = c(1,4,7), ...) {
     plot(NA, xlim = range(xvals), ylim = range(multmod.coefy), yaxt = "n", xlab = "Coefficient Value",
          ylab = "")
     axis(side = 2, labels = labs, at = rev(1:nrow(CItab)), las = 2)
-    ## add vertical line to indicate zero
+    ## add vertical lines to indicate zero and other integer values for reference
+    abline(v = floor(seq(min(xvals),max(xvals),by=1)), col = adjustcolor("gray50", alpha.f = 0.3))
     abline(v = 0, col = "black")
     ## add lines for each row and effect
     invisible(sapply(1:nrow(CItab),
@@ -571,6 +572,28 @@ modeldotplot <- function(CItab, xvals, labs, refs = c(1,4,7), ...) {
            legend = c("Cause","Defence","Prosecution"), fill = racePal, xpd = NA, bg = "white", cex = 0.7)
     ## reset parameters
     par(mar = c(5.1,4.1,4.1,2.1))
+}
+
+## add a function to display symmetric rejection boundaries for a given distribution function
+dispsym <- function(bounds, labels, distfun = dnorm, xrng = c(-3,3), npts = 201, ...) {
+    ## set x values and y values
+    xpts <- seq(from = xrng[1], to = xrng[2], length.out = npts)
+    ypts <- distfun(xpts)
+    ## first plot the distribution function
+    plot(x = xpts, y = ypts, type = 'l', ...)
+    abline(h = 0)
+    ## next add symmetric rejection intervals for each provided bound
+    absbs <- abs(bounds)
+    invisible(sapply(absbs, function(bnd) {
+        ltxt <- labels[absbs == bnd]
+        lowx <- xpts <= -bnd
+        upx <- xpts >= bnd
+        polygon(x = c(rep(xpts[lowx], times = c(rep(1, sum(lowx)-1),2)), xpts[1]),
+                y = c(ypts[lowx],0,0), col = adjustcolor("firebrick", alpha.f = 0.2))
+        polygon(x = c(rep(xpts[upx], times = c(2,rep(1, sum(upx)-1))), xpts[npts]),
+                y = c(0,ypts[upx],0), col = adjustcolor("firebrick", alpha.f = 0.2))
+        text(x = -bnd, y = 0, labels = ltxt, adj = c(0,-0.5), srt = 90)
+    }))
 }
 
 
@@ -649,7 +672,7 @@ mobileplot(table(MatRelevel(sun.juror[sun.juror$WhiteBlack != "U" & sun.juror$Po
                                       sun.juror$Gender != "U",
                                       c("PoliticalAffiliation","Gender","WhiteBlack")])),
            deslev = c(1,2,4), main = "Venire Member Political Affiliation by Race and Gender",
-           legendlevs = c("Democrat","Independent","Republican"),
+           legendlevs = c("Democrat","Independent","Republican"), temPal = c("steelblue","grey50","firebrick"),
            xtext = "Inner Label: Gender | Outer Label: Race")
 
 ## let's look at other effects by creating a master table which can be summarized in numerous ways
@@ -720,7 +743,8 @@ sun.multmod$DispSimp <- with(sun.multmod, factor(DispSimp, levels = levels(DispS
 names(sun.multmod)[match(c("WhiteBlack", "DefWhiteBlack", "PoliticalAffiliation", "Gender", "DefGender"), names(sun.multmod))] <-
     c("Race_", "DRace_", "Pol_", "Sex_", "DSex_")
 ## create a list of relevant formulae
-formulist <- list(full = as.formula("DispSimp ~ Race_*DRace_ + Pol_ + Sex_ + DSex_"),
+formulist <- list(extra = as.formula("DispSimp ~ Race_*DRace_ + Pol_ + Sex_*DSex_"),
+                  full = as.formula("DispSimp ~ Race_*DRace_ + Pol_ + Sex_ + DSex_"),
                   noraceint = as.formula("DispSimp ~ Race_ + DRace_ + Pol_ + Sex_ + DSex_"),
                   nosex = as.formula("DispSimp ~ Race_ + DRace_ + Pol_ + DSex_"),
                   nopol = as.formula("DispSimp ~ Race_ + DRace_ + Sex_ + DSex_"),
