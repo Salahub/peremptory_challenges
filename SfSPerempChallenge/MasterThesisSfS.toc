@@ -53,15 +53,15 @@
 \vspace {.5\baselineskip }
 \contentsline {chapter}{\numberline {}{Bibliography}}{49}{section*.34}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {A}Developing an Effective Visualization of Conditional Probability}{53}{appendix.A}
-\contentsline {section}{\numberline {A.1}The Mobile Plot}{55}{section.A.1}
-\contentsline {chapter}{\numberline {B}Complementary information}{57}{appendix.B}
-\contentsline {section}{\numberline {B.1}Jury Sunshine Irregularities}{57}{section.B.1}
-\contentsline {section}{\numberline {B.2}Jury Sunshine Charge Classification}{57}{section.B.2}
-\contentsline {chapter}{\numberline {C}Mathematical Results}{59}{appendix.C}
-\contentsline {section}{\numberline {C.1}Conditional Distribution of a Poisson Expectation Given Marginal Counts}{59}{section.C.1}
-\contentsline {chapter}{\numberline {D}Code}{61}{appendix.D}
-\contentsline {section}{\numberline {D.1}Data Processing Code}{61}{section.D.1}
-\contentsline {section}{\numberline {D.2}Analysis Code}{61}{section.D.2}
+\contentsline {chapter}{\numberline {A}Developing an Effective Visualization of Conditional Probability}{55}{appendix.A}
+\contentsline {section}{\numberline {A.1}The Mobile Plot}{57}{section.A.1}
+\contentsline {chapter}{\numberline {B}Complementary information}{59}{appendix.B}
+\contentsline {section}{\numberline {B.1}Jury Sunshine Irregularities}{59}{section.B.1}
+\contentsline {section}{\numberline {B.2}Jury Sunshine Charge Classification}{59}{section.B.2}
+\contentsline {chapter}{\numberline {C}Mathematical Results}{61}{appendix.C}
+\contentsline {section}{\numberline {C.1}Conditional Distribution of a Poisson Expectation Given Marginal Counts}{61}{section.C.1}
+\contentsline {chapter}{\numberline {D}Code}{63}{appendix.D}
+\contentsline {section}{\numberline {D.1}Data Processing Code}{63}{section.D.1}
+\contentsline {section}{\numberline {D.2}Analysis Code}{63}{section.D.2}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Epilogue}}{63}{section*.40}
+\contentsline {chapter}{\numberline {}{Epilogue}}{65}{section*.40}
