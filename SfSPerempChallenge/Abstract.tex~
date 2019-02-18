@@ -1,6 +1,11 @@
 \chapter*{Abstract}
 
-Short summary of my thesis.
+The legal practice of peremptory challenges is described, outlining its past and present racial controversies as well as defences
+provided in its favour. These defenses are analyzed statistically, and novel visual tools including the mobile plot and the
+positional boxplot are developed to explore three data sets (\cite{JurySunshineProj}, \cite{StubbornLegacy}, and
+\cite{PerempChalMurder}) and test whether race is a determining factor in peremptory challenge exercise. Mulitnomial regression
+models motivated by these visualizations are fit and used to generate precise parameter estimates which indicate the dominance of
+race in peremptory challenge decisions. Trial level summaries are produced and discussed.
  
 
 %%% Local Variables: 

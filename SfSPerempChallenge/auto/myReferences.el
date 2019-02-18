@@ -67,12 +67,6 @@
     "fraughthistory"
     "peremparegood"
     "goodfirststep"
-    "bothwrong"
-    "Reference"
-    "StaWW91"
-    "Buhl93"
-    "HamF85"
-    "HamF91"
-    "HamFRRS86"))
+    "bothwrong"))
  :bibtex)
 

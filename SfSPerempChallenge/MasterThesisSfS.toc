@@ -1,67 +1,65 @@
 \select@language {english}
-\contentsline {section}{\numberline {0.1}Terms}{xi}{section.0.1}
-\contentsline {section}{\numberline {0.2}Variables}{xi}{section.0.2}
 \contentsline {chapter}{\numberline {}{Notation}}{xi}{section*.6}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}A Note on Palette Choice}{2}{section.1.1}
-\contentsline {chapter}{\numberline {2}Peremptory Challenges}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}Jury Selection Procedures}{3}{section.2.1}
-\contentsline {section}{\numberline {2.2}The Role of the Jury}{5}{section.2.2}
-\contentsline {section}{\numberline {2.3}Modern Peremptory Challenge Controversy}{5}{section.2.3}
-\contentsline {section}{\numberline {2.4}The Role of the Peremptory Challenge}{7}{section.2.4}
-\contentsline {section}{\numberline {2.5}History}{7}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Pre-English History}{8}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}In English Law (1066--1988)}{8}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}In American Law (ca. 1700--1986)}{9}{subsection.2.5.3}
-\contentsline {subsection}{\numberline {2.5.4}In Canadian Law (ca 1800--2018)}{10}{subsection.2.5.4}
-\contentsline {section}{\numberline {2.6}Summary}{11}{section.2.6}
-\contentsline {chapter}{\numberline {3}Data}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}Jury Sunshine Project}{13}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Methodology}{13}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Cleaning}{14}{subsection.3.1.2}
-\contentsline {subsubsection}{Flattening the Data}{14}{section*.8}
-\contentsline {subsubsection}{Uninformative Columns}{15}{section*.9}
-\contentsline {subsubsection}{Coding Inconsistencies}{15}{section*.10}
-\contentsline {subsubsection}{Swaps}{16}{section*.11}
-\contentsline {subsubsection}{Charge Classification}{16}{section*.12}
-\contentsline {subsubsection}{Variable Level Renaming}{17}{section*.14}
-\contentsline {subsection}{\numberline {3.1.3}Variable Synthesis}{18}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}Stubborn Legacy Data}{18}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Methodology}{18}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Cleaning}{19}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Philadelphia Data}{19}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Methodology}{19}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Cleaning}{20}{subsection.3.3.2}
-\contentsline {chapter}{\numberline {4}Analysis}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Extremes of Partiality}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}The Impact of Race}{24}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}In the Stubborn and Philadelphia Data}{26}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Other Factors}{28}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Political Affiliation in the Sunshine Data}{29}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Gender in the Sunshine Data}{30}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}The Stubborn and Philadelphia Data Sets}{33}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Modelling}{34}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Multinomial Logistic Regression}{34}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Examining the Coefficients}{37}{subsection.4.4.2}
-\contentsline {section}{\numberline {4.5}Trial Level Summary}{40}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Estimating Struck Juror Counts}{40}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Visualizing the Racial Trends}{41}{subsection.4.5.2}
-\contentsline {subsubsection}{The Positional Boxplot}{41}{section*.30}
-\contentsline {section}{\numberline {4.6}On Jury Selection}{43}{section.4.6}
-\contentsline {chapter}{\numberline {5}Summary}{47}{chapter.5}
-\contentsline {section}{\numberline {5.1}Future Work}{47}{section.5.1}
+\contentsline {section}{\numberline {1.1}A Note on Palette Choice}{3}{section.1.1}
+\contentsline {chapter}{\numberline {2}Peremptory Challenges}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Jury Selection Procedures}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}The Role of the Jury}{7}{section.2.2}
+\contentsline {section}{\numberline {2.3}Modern Peremptory Challenge Controversy}{7}{section.2.3}
+\contentsline {section}{\numberline {2.4}The Role of the Peremptory Challenge}{9}{section.2.4}
+\contentsline {section}{\numberline {2.5}History}{10}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Pre-English History}{10}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}In English Law (1066--1988)}{10}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}In American Law (ca. 1700--1986)}{11}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}In Canadian Law (ca 1800--2018)}{12}{subsection.2.5.4}
+\contentsline {section}{\numberline {2.6}Summary}{13}{section.2.6}
+\contentsline {chapter}{\numberline {3}Data}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}Jury Sunshine Project}{15}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Methodology}{15}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Cleaning}{16}{subsection.3.1.2}
+\contentsline {subsubsection}{Flattening the Data}{16}{section*.10}
+\contentsline {subsubsection}{Uninformative Columns}{17}{section*.11}
+\contentsline {subsubsection}{Coding Inconsistencies}{17}{section*.12}
+\contentsline {subsubsection}{Swaps}{18}{section*.13}
+\contentsline {subsubsection}{Charge Classification}{18}{section*.14}
+\contentsline {subsubsection}{Variable Level Renaming}{19}{section*.16}
+\contentsline {subsection}{\numberline {3.1.3}Variable Synthesis}{20}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Stubborn Legacy Data}{20}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Methodology}{20}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Cleaning}{21}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Philadelphia Data}{21}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Methodology}{21}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Cleaning}{22}{subsection.3.3.2}
+\contentsline {chapter}{\numberline {4}Analysis}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}Extremes of Partiality}{23}{section.4.1}
+\contentsline {section}{\numberline {4.2}The Impact of Race}{26}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}In the Stubborn and Philadelphia Data}{28}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}Other Factors}{30}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Political Affiliation in the Sunshine Data}{31}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Gender in the Sunshine Data}{32}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}The Stubborn and Philadelphia Data Sets}{35}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Modelling}{36}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Multinomial Logistic Regression}{36}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Examining the Coefficients}{39}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}Trial Level Summary}{42}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Estimating Struck Juror Counts}{42}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Visualizing the Racial Trends}{43}{subsection.4.5.2}
+\contentsline {subsubsection}{The Positional Boxplot}{43}{section*.32}
+\contentsline {section}{\numberline {4.6}On Jury Selection}{45}{section.4.6}
+\contentsline {chapter}{\numberline {5}Summary}{49}{chapter.5}
+\contentsline {section}{\numberline {5.1}Future Work}{49}{section.5.1}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Bibliography}}{49}{section*.34}
+\contentsline {chapter}{\numberline {}{Bibliography}}{51}{section*.36}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {A}Developing an Effective Visualization of Conditional Probability}{55}{appendix.A}
-\contentsline {section}{\numberline {A.1}The Mobile Plot}{57}{section.A.1}
-\contentsline {chapter}{\numberline {B}Complementary information}{59}{appendix.B}
-\contentsline {section}{\numberline {B.1}Jury Sunshine Irregularities}{59}{section.B.1}
-\contentsline {section}{\numberline {B.2}Jury Sunshine Charge Classification}{59}{section.B.2}
-\contentsline {chapter}{\numberline {C}Mathematical Results}{61}{appendix.C}
-\contentsline {section}{\numberline {C.1}Conditional Distribution of a Poisson Expectation Given Marginal Counts}{61}{section.C.1}
-\contentsline {chapter}{\numberline {D}Code}{63}{appendix.D}
-\contentsline {section}{\numberline {D.1}Data Processing Code}{63}{section.D.1}
-\contentsline {section}{\numberline {D.2}Analysis Code}{63}{section.D.2}
+\contentsline {chapter}{\numberline {A}Developing an Effective Visualization of Conditional Probability}{57}{appendix.A}
+\contentsline {section}{\numberline {A.1}The Mobile Plot}{59}{section.A.1}
+\contentsline {chapter}{\numberline {B}Complementary information}{61}{appendix.B}
+\contentsline {section}{\numberline {B.1}Jury Sunshine Irregularities}{61}{section.B.1}
+\contentsline {section}{\numberline {B.2}Jury Sunshine Charge Classification}{61}{section.B.2}
+\contentsline {chapter}{\numberline {C}Mathematical Results}{63}{appendix.C}
+\contentsline {section}{\numberline {C.1}Conditional Distribution of a Poisson Expectation Given Marginal Counts}{63}{section.C.1}
+\contentsline {chapter}{\numberline {D}Code}{65}{appendix.D}
+\contentsline {section}{\numberline {D.1}Data Processing Code}{65}{section.D.1}
+\contentsline {section}{\numberline {D.2}Analysis Code}{65}{section.D.2}
 \vspace {.5\baselineskip }
-\contentsline {chapter}{\numberline {}{Epilogue}}{65}{section*.40}
+\contentsline {chapter}{\numberline {}{Epilogue}}{67}{section*.42}

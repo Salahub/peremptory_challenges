@@ -39,6 +39,15 @@ were turned to the other two data sets. The results of this analysis are compare
 \ref{c:comparison}. Finally, the results and findings are summarized in \ref{c:conclusion}, and recommendations based on the
 observations obtained here are provided.
 
+\section{A Note on Palette Choice}
+
+The analysis and presentation of results in this paper is primarily visual, utilizing graphs and figures rather than tables to
+communicate patterns and estimates. In order to make these visual presentations of the data as accessible as possible, the colours
+and palettes used were very deliberately chosen to be visibly different for as many individuals as possible, including the large
+minority of colour blind individuals. Choosing such colours and palettes was made much simpler by the \texttt{RColorBrewer}
+package in \Rp (\cite{rcolorbrewer}) and \cite{wong2011}, both of which provide suggested colour-blind safe palettes and
+recommendations. Additionally, most colours are redundantly encoded by position or order where possible, to make the main results
+of the paper clearer.
 
 %%% Local Variables: 
 %%% mode: latex

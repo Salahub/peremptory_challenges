@@ -1,6 +1,8 @@
 \chapter*{Notation and Terms}
 \label{c:Notation}
 
+\section{Terms}
+
 In order to facilitate clarity despite brevity, a list of terms used in this paper is presented here.
 
 \begin{description}
@@ -17,8 +19,33 @@ In order to facilitate clarity despite brevity, a list of terms used in this pap
 \item[Struck] In the context of a venire member being rejected from the jury, struck indicates removal by peremptory challenge or
   challenge with cause
 \item[Litigants] The accusor and the accused
+\item[Disposition] The outcome of a venire member in the jury selection process: either kept, struck with cause, struck by
+  prosecution, or struck by defence
 \end{description}
 
+\section{Variables} \label{not:variables}
+
+Across data sets and analyses, the variable names and mathematical notation will be as follows. Note that the use of a capital
+letter indicates a random variable and a lowercase letter a particular realization of a random variable.
+
+\begin{itemize}
+\item $\mathbf{x}_i = (r_i,e_i,p_i,g_i,s_i)^T$: the variable combination for a particular venire member
+\item $d \in \{1,2,3,4\}$: indicator of disposition, with the levels corresponding to kept, struck with
+  cause, struck by defence, and struck by prosecution respectively
+\item $r \in \{1,2,3\}$: indicator of venire member race, with the levels corresponding to black, other, and
+  white respectively
+\item $e \in \{1,2,3\}$: indicator of defendant race, with levels as for the venire member race
+\item $p \in \{1,2,3,4\}$: indicator of venire member political affiliation, with levels Democrat,
+  Independent, Libertarian, and Republican respectively
+\item $g \in \{1,2\}$: indicator of venire member gender, with levels female and male respectively
+\item $s \in \{1,2\}$: indicator of defendant gender, with levels as for the venire member
+\item $\pi_{i|jklmn} \in [0,1]$: the probability of disposition $i$ given factor levels $jklmn$, may be written as $\pi_i$ for
+  convenience
+\item $y_{ijklmn} \in \mathbb{N}$: the count of venire members with $\textbf{x} = (i,j,k,l,m,n)^T$
+\end{itemize}
+
+This work also uses hat notation for estimates (i.e. the estimate for $\pi$ is $\hat{\pi}$ and the estimator for $\pi$ is
+$\tilde{\pi}$).
 
 %%% Local Variables: 
 %%% mode: latex

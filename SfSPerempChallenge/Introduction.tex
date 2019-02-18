@@ -1,53 +1,77 @@
-\chapter{Introduction} 
+\chapter{Introduction} \label{c:introduction}
 
-The Gerald Stanley murder trial was noteworthy for all of the wrong reasons. The first reason was the crime itself. The rural
-region around Biggar, Saskatchewan (\cite{StanleyWitnessAccounts}) is not known for crime, indeed, the crime statistics collected by
-Statistics Canada suggest it is one of the safest in the province (\cite{SaskatchewanCrime}). Any murder at all would be worthy of
-attention and subject to plenty of drama. But beyond the damage this trial has done to the community, this trial is noteworthy
-because it led to a significant re-examination of the legal jurisprudence surrounding the jury selection process culminating in
-the proposition of Bill C-75 by the Canadian government in March of 2018 (\cite{billc75}), less than two months after the trial's
-verdict (\cite{GeraldStanleyVerdict}).
+The Gerald Stanley murder trial, officially \textit{R. v. Stanley}, was noteworthy for all of the wrong reasons. The first reason
+was the crime itself. The rural region around Biggar, Saskatchewan (\cite{StanleyWitnessAccounts}) is not known for crime, indeed,
+the crime statistics collected by Statistics Canada suggest it is one of the safest in the province
+(\cite{SaskatchewanCrime}). Any murder at all would be worthy of attention and subject to plenty of drama. But beyond the damage
+this trial has done to the community, it was noteworthy because it led to a significant re-examination of the legal jurisprudence
+surrounding the jury selection process in all of Canada. The controversy surrounding the case culminated in the proposition of
+Bill C-75 by the Canadian government in March of 2018 (\cite{billc75}), less than two months after the trial's verdict
+(\cite{GeraldStanleyVerdict}).
 
-Bill C-75, in part, aims to ameliorate one of the critical points of contention about the Gerald Stanley case: the use of
-peremptory challenges in jury selection. The outsized impact of the case was due, in large part, to it's racial aspect. Gerald
-Stanley, a white man, was accused of second degree murder in the killing of Colten Boushie, a First Nations man. Given Canada's
-troubled history with First Nations groups, this alone would have been enough to make the trial a flash point for race issues, but
-that was not the worst aspect of the trial. Rather, it was the alleged use of peremptory challenges to strike five potential
-jurors who ``appeared'' to be First Nations, resulting in an all-white jury, that proved to be the most controversial and
-influential facet of the entire affair (\cite{fiverejected}, \cite{fraughthistory}).
+Bill C-75, in part, aims to ameliorate one of the critical points of contention in the Gerald Stanley case: the use of peremptory
+challenges in jury selection. The outsized impact of the case was due, in large part, to the case's racial aspect. Gerald Stanley,
+a white man, was accused of second degree murder in the killing of Colten Boushie, a First Nations man. Given Canada's troubled
+history with First Nations groups, this alone would have been enough to make the trial a flash point for race issues, but that was
+not the worst aspect of the trial. Rather, the most controversial and influential facet of the entire affair was the alleged use
+of peremptory challenges to strike five potential jurors who ``appeared'' to be First Nations, resulting in an all-white jury
+(\cite{fiverejected}, \cite{fraughthistory}).
 
 With Bill C-75 currently moving through the Canadian parliamentary system, having completed its second reading in June
 2018 (\cite{c75legisinfo}), a close re-examination of the practice of peremptory challenge is warranted. A great deal of ink has
 already been spilled on both sides of the debate (see \cite{peremparegood}, \cite{bothwrong}, and \cite{goodfirststep}), but startlingly
-little of this discussion has been based on any hard evidence on the impact of peremptory challenge in jury selection. This paper
-aims to provide analysis and evidence to illuminate the topic further by analyzing three separate peremptory challenge
-data sets collected in the United States, namely \cite{JurySunshineProj}, \cite{StubbornLegacy}, and
-\cite{PerempChalMurder}. While this data cannot tell us if challenges were racially motivated in the Stanley trial, stepping back
-from this fraught legal episode to take a wider view of the practice of peremptory challenge provides a more sober place to start
-the discussion of its place in modern jury trials.
+little of this discussion has been based on any hard, quantitive evidence on the impact of peremptory challenge in jury
+selection. This paper aims to provide analysis and evidence to illuminate the topic further by analyzing three separate peremptory
+challenge data sets collected in the United States, namely the data from \cite{JurySunshineProj}, \cite{StubbornLegacy}, and
+\cite{PerempChalMurder}, henceforth referred to as the ``Sunshine,'' ``Stubborn,'' and ``Philadelphia'' data sets for
+convenience. While this data cannot reveal anything about the alleged racial motivation of peremptory challenge use in
+\textit{R. v. Stanley}, taking a wider view of the practice of peremptory challenge provides a more sober place to start 
+the discussion of its place in modern jury trials than the dissection of a particular controversial case.
 
-Moreover it is still relevant today, as the affected communities have held on to this trial as emblematic of the greater problems
-they face in their relations to each other, as discussed by \cite{stilldamaged}.
+Of course, this work is not the first such investigation. \cite{JurySunshineProj}, \cite{StubbornLegacy}, and
+\cite{PerempChalMurder} have all performed analysis on the factors which impact the use of peremptory challenges, and all of these
+investigations indicated that race was an important factor in determining if a venire member was removed by peremptory
+challenge. Numerous others have performed unique legal, empirical, and analytical analyses of the process, including
+\cite{hoffman1997}, \cite{vandykejurysel}, \cite{hansvidjudging}, \cite{brown1978}, and \cite{ford2010}. Most of the authors which have
+performed such analysis arrive at similar conclusions on the general importance of race in the exercise of peremptory challenges,
+and the negative impact this has on the operation and perception of justice in the legal system. \cite{hoffman1997} gives an
+exceptionally negative analysis of peremptory challenges from a legal perspective, while the game theory analysis of
+\cite{ford2010} suggests that the use of peremptory challenges may even be counter-productive.
 
-This paper will proceed in five parts. Chapter \ref{c:background} provides a brief history of the practice of peremptory
-challenges in jury trials, in particular explaining their original motivation, past implementations, and how they have developed
-in the United States, the United Kingdom, and Canada. Chapter \ref{c:data} proceeds to discuss the three data sets obtained,
-explaining the sources and collection methods before detailing the cleaning and preprocessing. Chapter \ref{c:analysis}
-then provides the details and results of the analysis performed on the different data sets. It begins discussing the Jury Sunshine
-data set, which was used as a 'test' set of sorts, where analysis could be flexibly performed before the final analysis methods
-were turned to the other two data sets. The results of this analysis are compared to previous works in Chapter
-\ref{c:comparison}. Finally, the results and findings are summarized in \ref{c:conclusion}, and recommendations based on the
-observations obtained here are provided.
+What is, perhaps crucially, missing from this rich analysis is an effective method of communicating these results. While the
+tables generated to summarize the previous analyses certainly contain all the data necessary to evaluate these analyses, they fail
+to be accessible to a casual reader, instead requiring some degree of commitment and focus to interpret and compare. Visual
+representations of the data which could be used for such quick comparison and interpretation would facilitate a greater ability of
+the empirical results of these analyses to a broader audience, and would make the work of comparing and interpreting data sets far
+more intuitive than the current table representations. This work endeavours to provide such visual tools.
+
+It consequently proceeds in four parts. Chapter \ref{c:background} provides the necessary legal context to understand the
+motivation of the previous investigations. In \ref{sec:jurysel} the general jury selection procedure is presented before the
+modern controversies of this process are outlined in \ref{sec:modper}. Legal arguments for both the jury and the peremptory
+challenge are provided interspersed in this modern history in \ref{sec:rolejur} and \ref{sec:roleper}. After the modern
+description, a brief history of the practice of peremptory challenges in jury trials is presented in \ref{sec:history}, in
+particular explaining the original motivation of the practice, its past implementations, and its development in the United States,
+the United Kingdom, and Canada.
+
+With the necessary context provided, chapter \ref{c:data} proceeds to discuss the three data sets obtained, explaining the sources
+and collection methods before detailing cleaning and preprocessing. Chapter \ref{c:analysis} then provides the details and results
+of the analysis performed on the different data sets. It begins by performing statistical analysis of one common argument in
+favour of peremptory challenge in \ref{sec:extremes} before visualizing the Sunshine data in \ref{sec:impactrace} and
+\ref{sec:otherfact}. Mobile plots (see \ref{app:devmob} are the primary visual tool used for this visual analysis of the data, and
+every visualization of the Sunshine data set is compared to analogous visualizations of the Stubborn and Philadelphia data
+sets. The implications of their similarities for generalization are discussed. These visual analyses are then used to motivate
+model selection in \ref{sec:mods} in order to estimate more precisely the impact of race in the Sunshine data. These results and
+findings are summarized in \ref{c:conclusion} and related back to the history described in \ref{c:background}. Recommendations
+based on the observations obtained here are provided alongside suggestions for future work.
 
 \section{A Note on Palette Choice}
 
 The analysis and presentation of results in this paper is primarily visual, utilizing graphs and figures rather than tables to
 communicate patterns and estimates. In order to make these visual presentations of the data as accessible as possible, the colours
-and palettes used were very deliberately chosen to be visibly different for as many individuals as possible, including the large
-minority of colour blind individuals. Choosing such colours and palettes was made much simpler by the \texttt{RColorBrewer}
-package in \Rp (\cite{rcolorbrewer}) and \cite{wong2011}, both of which provide suggested colour-blind safe palettes and
-recommendations. Additionally, most colours are redundantly encoded by position or order where possible, to make the main results
-of the paper clearer.
+and palettes used were very deliberately chosen to be distinguishable for as many individuals as possible, including colour blind
+individuals. In this endeavour, the \texttt{RColorBrewer} package in \Rp (\cite{rcolorbrewer}) and \cite{wong2011} were
+indispensible, as both provide suggested colour-blind safe palettes and colours. Additionally, most factors encoded by colours
+are redundantly encoded by position or order where possible.
 
 %%% Local Variables: 
 %%% mode: latex

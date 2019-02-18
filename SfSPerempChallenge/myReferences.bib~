@@ -1,3 +1,34 @@
+@misc{boushie750,
+title = {{'Deck is stacked against us,'says family of Colten Boushie after jury chosen for Gerald Stanley trial}},
+author = {Guy Quenneville and Jason Warick},
+howpublished = {{CBC News}},
+year = 2018,
+note = {Accessed: https://www.cbc.ca/news/canada/saskatoon/colten-boushie-shooting-case-jury-selection-gerald-stanley-1.4506931}}
+
+@article{extracat,
+title = {New Approaches in Visualization of Categorical Data: {R} Package {extracat}},
+author = {Alexander Pilh{\"o}fer and Antony Unwin},
+journal = {Journal of Statistical Software},
+year = {2013},
+volume = {53},
+number = {7},
+pages = {1--25},
+url = {http://www.jstatsoft.org/v53/i07/}}  
+
+@manual{dotwhisker,
+title = {dotwhisker: Dot-and-Whisker Plots of Regression Results},
+author = {Frederick Solt and Yue Hu},
+year = {2018},
+note = {R package version 0.5.0},
+url = {https://CRAN.R-project.org/package=dotwhisker}}
+
+@misc{gallupdeath,
+title = {In Depth: Death Penalty}
+author = {Gallup}
+year = 2018,
+howpublished = {Gallup},
+note = {Accessed: https://news.gallup.com/poll/1606/death-penalty.aspx}}
+
 @article{wong2011,
 title = {Points of View: Color Blindness},
 author = {Bang Wong},
