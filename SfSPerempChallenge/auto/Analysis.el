@@ -5,7 +5,6 @@
     "c:analysis"
     "sec:extremes"
     "tab:rejbounds"
-    "fig:rejbnds"
     "sec:impactrace"
     "tab:margrace"
     "fig:racedefmob"

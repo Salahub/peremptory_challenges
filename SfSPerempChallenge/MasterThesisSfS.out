@@ -30,17 +30,17 @@
 \BOOKMARK [1][-]{section.4.3}{Other Factors}{chapter.4}% 30
 \BOOKMARK [2][-]{subsection.4.3.1}{Political Affiliation in the Sunshine Data}{section.4.3}% 31
 \BOOKMARK [2][-]{subsection.4.3.2}{Gender in the Sunshine Data}{section.4.3}% 32
-\BOOKMARK [2][-]{subsection.4.3.3}{The Stubborn and Philadelphia Data Sets}{section.4.3}% 33
+\BOOKMARK [2][-]{subsection.4.3.3}{In the Stubborn and Philadelphia Data}{section.4.3}% 33
 \BOOKMARK [1][-]{section.4.4}{Modelling}{chapter.4}% 34
 \BOOKMARK [2][-]{subsection.4.4.1}{Multinomial Logistic Regression}{section.4.4}% 35
 \BOOKMARK [2][-]{subsection.4.4.2}{Examining the Coefficients}{section.4.4}% 36
 \BOOKMARK [1][-]{section.4.5}{Trial Level Summary}{chapter.4}% 37
 \BOOKMARK [2][-]{subsection.4.5.1}{Estimating Struck Juror Counts}{section.4.5}% 38
 \BOOKMARK [2][-]{subsection.4.5.2}{Visualizing the Racial Trends}{section.4.5}% 39
-\BOOKMARK [1][-]{section.4.6}{On Jury Selection}{chapter.4}% 40
+\BOOKMARK [1][-]{section.4.6}{On Venire Selection}{chapter.4}% 40
 \BOOKMARK [0][-]{chapter.5}{Summary}{}% 41
 \BOOKMARK [1][-]{section.5.1}{Future Work}{chapter.5}% 42
-\BOOKMARK [0][-]{section*.36}{Bibliography}{}% 43
+\BOOKMARK [0][-]{section*.35}{Bibliography}{}% 43
 \BOOKMARK [0][-]{appendix.A}{Developing an Effective Visualization of Conditional Probability}{}% 44
 \BOOKMARK [1][-]{section.A.1}{The Mobile Plot}{appendix.A}% 45
 \BOOKMARK [0][-]{appendix.B}{Complementary information}{}% 46
@@ -51,4 +51,4 @@
 \BOOKMARK [0][-]{appendix.D}{Code}{}% 51
 \BOOKMARK [1][-]{section.D.1}{Data Processing Code}{appendix.D}% 52
 \BOOKMARK [1][-]{section.D.2}{Analysis Code}{appendix.D}% 53
-\BOOKMARK [0][-]{section*.42}{Epilogue}{}% 54
+\BOOKMARK [0][-]{section*.41}{Epilogue}{}% 54

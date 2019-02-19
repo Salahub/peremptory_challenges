@@ -2,6 +2,10 @@
  "myReferences"
  (lambda ()
    (LaTeX-add-bibitems
+    "baldus2012"
+    "flanagan2015"
+    "Nunn1993"
+    "broderick1992"
     "boushie750"
     "extracat"
     "dotwhisker"

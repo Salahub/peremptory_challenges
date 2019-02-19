@@ -1,8 +1,5 @@
 \begin{thebibliography}{}
 
-\bibitem[\protect\citeauthoryear{??}{gal}{}]{gallupdeath}
-In depth: Death penalty.
-
 \bibitem[\protect\citeauthoryear{{42nd Parliament of Canada}}{{42nd Parliament
   of Canada}}{2018a}]{billc75}
 {42nd Parliament of Canada} (2018a, March).
@@ -31,6 +28,14 @@ Baker, S.~G. (1994).
 \newblock {\em Journal of the Royal Statistical Society, Series D (The
   Statistician)\/}~{\em 43\/}(4), 495--504.
 
+\bibitem[\protect\citeauthoryear{Baldus, Grosso, Dunham, Woodworth, and
+  Newell}{Baldus et~al.}{2012}]{baldus2012}
+Baldus, D.~C., C.~M. Grosso, R.~Dunham, G.~Woodworth, and R.~Newell (2012).
+\newblock Statistical proof of racial discrimination in the use of peremptory
+  challenges: The impact and promise of the miller-el line of cases as
+  reflected in the experience of one philadelphia capital case.
+\newblock {\em Iowa Law Review\/}~{\em 97}.
+
 \bibitem[\protect\citeauthoryear{Baldus, Woodworth, Zuckerman, and
   Weiner}{Baldus et~al.}{2001}]{PerempChalMurder}
 Baldus, D.~C., G.~Woodworth, D.~Zuckerman, and N.~A. Weiner (2001).
@@ -38,6 +43,11 @@ Baldus, D.~C., G.~Woodworth, D.~Zuckerman, and N.~A. Weiner (2001).
   and Empirical Analysis}.
 \newblock {\em University of Pennsylvania Journal of Consitutional Law\/}~{\em
   3\/}(1).
+
+\bibitem[\protect\citeauthoryear{Broderick}{Broderick}{1992}]{broderick1992}
+Broderick, R.~J. (1992).
+\newblock Why the peremptory challenge should be abolished.
+\newblock {\em Temple Law Review\/}~{\em 65\/}(2), 369.
 
 \bibitem[\protect\citeauthoryear{Brown, McGuire, and Winters}{Brown
   et~al.}{1978}]{brown1978}
@@ -78,6 +88,11 @@ Cleveland, W.~S. and R.~McGill (1987).
 \newblock Accessed:
   https://www.senate.gov/civics/constitution\_item/constitution.htm.
 
+\bibitem[\protect\citeauthoryear{Flanagan}{Flanagan}{2015}]{flanagan2015}
+Flanagan, F.~X. (2015).
+\newblock {Peremptory Challenges and Jury Selection}.
+\newblock {\em The Journal of Law and Economics\/}~{\em 58}.
+
 \bibitem[\protect\citeauthoryear{Ford}{Ford}{2010}]{ford2010}
 Ford, R. (2010).
 \newblock Modeling the effects of peremptory challenges on jury selection and
@@ -94,6 +109,12 @@ Friendly, M. (1994).
 \newblock Mosaic plots for multiway contingency tables.
 \newblock {\em Journal of the American Statistical Association\/}~{\em 89},
   190--200.
+
+\bibitem[\protect\citeauthoryear{Gallup}{Gallup}{2018}]{gallupdeath}
+Gallup (2018).
+\newblock In depth: Death penalty.
+\newblock Gallup.
+\newblock Accessed: https://news.gallup.com/poll/1606/death-penalty.aspx.
 
 \bibitem[\protect\citeauthoryear{{Government of Canada}}{{Government of
   Canada}}{1985}]{perempchallaw}
@@ -208,13 +229,6 @@ Neuwirth, E. (2014).
 \newblock {\em RColorBrewer: ColorBrewer Palettes}.
 \newblock R package version 1.1-2.
 
-\bibitem[\protect\citeauthoryear{Nisbett and Kunda}{Nisbett and
-  Kunda}{1985}]{nisbett1985}
-Nisbett, R.~E. and Z.~Kunda (1985).
-\newblock Perception of social distributions.
-\newblock {\em Journal of Personality and Social Psychology\/}~{\em 48\/}(2),
-  297--311.
-
 \bibitem[\protect\citeauthoryear{{North Carolina Sentencing and Policy Advisory
   Commission}}{{North Carolina Sentencing and Policy Advisory
   Commission}}{2017}]{offenseclass}
@@ -223,6 +237,11 @@ Nisbett, R.~E. and Z.~Kunda (1985).
 \newblock North Carolina Judicial Branch.
 \newblock Accessed:
   https://www.nccourts.gov/assets/documents/publications/Sample-list-2017.pdf?MAZluXuS0FWod4nFt7zXecJ8Ifu0qEZx.
+
+\bibitem[\protect\citeauthoryear{Nunn}{Nunn}{1993}]{Nunn1993}
+Nunn, K.~B. (1993).
+\newblock Rights held hostage: Race, ideology, and the peremptory challenge.
+\newblock {\em Harvard Civil Rights-Civil Liberties Law Review\/}~{\em 28}, 63.
 
 \bibitem[\protect\citeauthoryear{Page}{Page}{2005}]{page2005}
 Page, A. (2005).
