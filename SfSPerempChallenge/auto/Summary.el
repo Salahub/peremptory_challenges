@@ -2,7 +2,7 @@
  "Summary"
  (lambda ()
    (LaTeX-add-labels
-    "c:Summary"
+    "c:summary"
     "sec:FutureWork"))
  :latex)
 
