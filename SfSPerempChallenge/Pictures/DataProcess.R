@@ -342,7 +342,10 @@ CrimeClassify <- function(tree, regChar) {
 ## flexible function and add operations as desired
 SynCols <- function(data) {
     ## too busy, synthesize some variables to clearly indicate the results of defense and prosecution selection
-    data$VisibleMinor <- data$Race != "White"
+    data$VisMin <- data$Race != "White"
+    data$VisMin[data$Race == "U"] <- NA
+    data$DefVisMin <- data$DefRace != "White"
+    data$DefVisMin[data$DefRace == "U"] <- NA
     data$PerempStruck <- grepl("S_rem|D_rem", data$Disposition)
     data$DefStruck <- data$Disposition == "D_rem"
     data$ProStruck <- data$Disposition == "S_rem"
@@ -546,6 +549,8 @@ names(SunshineData) <- SunshineSheets
 NorthCarData <- read.csv(NorthCarFile)
 PhillyData <- read.csv(PhillyFile)
 
+
+## THE SUNSHINE DATA ###################
 ## clean non-informative columns
 CleanSunshine <- lapply(SunshineData, function(dat) dat[, !apply(dat,2,function(col) all(is.na(col)))])
 
@@ -724,7 +729,11 @@ sun.swap <- as.data.frame(sun.swap)
 chargFact <- as.factor(sun.swap$ChargeTxt)
 regCharg <- StringReg(levels(chargFact))[as.numeric(chargFact)]
 ## classify these into a charge tree and aggregate this at the coarsest level
-aggCharg <- treeAgg(stringTree(regCharg, chargeTree))
+regTree <- stringTree(regCharg, chargeTree)
+## aggregate these at the coarsest level
+aggCharg <- treeAgg(regTree)
+## identify the first degree murders (this is done to ensure comparison between data sets later)
+firstdeg <- regTree$murder$`first|1`$other
 ## these can be further classified into crime classes
 crimes.trial <- CrimeClassify(aggCharg, regCharg)
 ## convert these classes into a factor for the data, start with a generic "other" vector
@@ -732,12 +741,17 @@ sun.swap$CrimeType <- rep("Other", nrow(sun.swap))
 ## now populate it
 for (nm in sort(names(crimes.trial))) sun.swap$CrimeType[crimes.trial[[nm]]] <- nm
 sun.swap$CrimeType <- as.factor(sun.swap$CrimeType)
+sun.swap$FirstDeg <- 1:nrow(sun.swap) %in% firstdeg
 
 ## synthesize additional columns
 sun.swap <- SynCols(sun.swap)
 
-## now organize this on the juror scale
+## now organize this on the juror scale and perform some simple variable addition
 sun.juror <- UniqueAgg(sun.swap, by = "JurorNumber", collapse = ",")
+sun.juror$VisMin <- as.logical(sun.juror$VisMin)
+sun.juror$MatchSimp <- sapply(str_split(sun.juror$RaceMatch, ","), function(el) any(as.logical(el)))
+sun.juror$DispSimp <- sun.juror$Disposition
+levels(sun.juror$DispSimp)[3] <- "Kept"
 
 ## Checkpoint 2: the swapped data has been processed and summarized to be on the scale of individual jurors
 ## save the swapped data
@@ -778,15 +792,88 @@ sun.trialsum$DefWhiteOther <- as.factor(FactorReduce(sun.trialsum$DefWhiteBlack,
 sun.trialsum$KLdiv <- kldiv(sun.trialsum[,grepl("Jury", names(sun.trialsum))],
                             sun.trialsum[,grepl("Venire", names(sun.trialsum))])
 
+
 ## Checkpoint 3: the data has been set to the trial level and summarized
 ## save this
 saveRDS(sun.trialsum, "TrialAggregated.Rds")
 saveRDS(sun.jursum, "AllJuries.Rds")
 
 
+## THE PHILADELPHIA DATA ###############
+## the philadelphia data is already quite clean, simply synthesize some analogous variables to the jury sunshine data
+## first remove the occupation, age, question, education data (not relevant, the sunshine data does not have these variables
+## and these second data sets serve as a control and generalization test)
+PhillyData <- PhillyData[,!grepl("OCC|EDU|AGE|CHR", names(PhillyData))]
+
+## remove the persistent NAs, replace them with suitable values
+PhillyNA <- as.data.frame(lapply(PhillyData, function(el) if (is.character(el)) {
+                                                              el[is.na(el)] <- ""
+                                                              el
+                                                          } else if (is.factor(el)) {
+                                                              el
+                                                          } else {
+                                                              el[is.na(el)] <- 0
+                                                              el
+                                                          }))
+## now add some columns to make this data consistent with the sunshine data
+PhillyNA$DispSimp <- as.factor(with(PhillyNA,
+                                    sapply(1:nrow(PhillyNA),
+                                           function(ind) {
+                                               if (PSTRIKE[ind]) {
+                                                   "S_rem"
+                                               } else if (DSTRIKE[ind]) {
+                                                   "D_rem"
+                                               } else if (!FINLJURY[ind]) {
+                                                   "C_rem"
+                                               } else "Kept"
+                                           })))
+PhillyNA$WhiteBlack <- as.factor(c("White|Other", "Black")[PhillyNA$CRACE98X + 1])
+PhillyNA$DefWhiteBlack <- as.factor(c("White|Other", "Black")[PhillyNA$BLACKD + 1])
+PhillyNA$Gender <- as.factor(c("F", "M")[PhillyNA$JMALE98 + 1])
+PhillyNA$DefGender <- as.factor(c("F", "M")[PhillyNA$MALEDEF + 1])
+## write the data
+write.csv(PhillyNA, file = "PhillyNA.csv", row.names = FALSE)
+
+
+## STUBBORN DATA #######################
+## load the stubborn data
+NorthCarData <- NorthCarData[,c("CSStudyID", "cV1003", "cV1036", "DefB", "DefRM", "DName",
+                                "RaceLabel", "served", "sex", "StrikeDef", "StrikeState")]
+
+## perform some simple processing and variable synthesis
+NorthCarNA <- NorthCarData
+## an analogous defendant race variable to the sunshine data
+NorthCarNA$DefWhiteBlack <- as.factor(with(NorthCarNA,
+                                     sapply(1:nrow(NorthCarNA),
+                                            function(ind) {
+                                                if (DefB[ind]) {
+                                                    "Black"
+                                                } else if (is.na(DefRM[ind])) {
+                                                    "Unknown"
+                                                } else if (DefRM[ind]) {
+                                                    "Other"
+                                                } else "White"
+                                            })))
+## the venire member race and gender
+NorthCarNA$WhiteBlack <- FactorReduce(NorthCarNA$RaceLabel, c("White","Black"))
+NorthCarNA$Gender <- c("F","M")[as.numeric(NorthCarNA$sex)]
+## the disposition
+NorthCarNA$DispSimp <- as.factor(with(NorthCarNA,
+                                      sapply(1:nrow(NorthCarNA),
+                                             function(ind) {
+                                                 if (StrikeDef[ind]) {
+                                                     "D_rem"
+                                                 } else if (StrikeState[ind]) {
+                                                     "S_rem"
+                                                 } else if (served[ind]) {
+                                                     "Kept"
+                                                 } else "C_rem"
+                                             })))
+## write the data
+write.csv(NorthCarNA, file = "StubbornNA.csv", row.names = FALSE)
+
 ## CHARGE CLASSIFICATION IMAGES ########
 ## presented here is the code to generate the appendix charge classification images
-
 ## extract relevant charges from the clean sunshine data, avoiding duplicates
 ## regularize the charges
 chargFact.clean <- as.factor(CleanSunshine$Charges$ChargeTxt)

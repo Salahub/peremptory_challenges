@@ -2,14 +2,12 @@
 \label{app:code}
 
 \section{Data Processing Code}\label{app:proccode}
-Below is all of the code used to load and process the data, including both function definitions and the script which details the
-order and method of their calling. A more convenient way of accessing the code is through the author's GitHub
-(https://github.com/Salahub/peremptory\_challenges), where all of the code and some basic data files are posted.
+The data processing functions and code are available through the author's GitHub
+(https://github.com/Salahub/peremptory\_challenges), where the processed data is also provided.
 
-\lstinputlisting{Pictures/DataProcess.R}
+%\lstinputlisting{Pictures/DataProcess.R}
 
 \section{Analysis Code} \label{app:analysis}
-As for the data processing code, this code is more conveniently accessed using the author's GitHub
-(https://github.com/Salahub/peremptory\_challenges).
+As for the data processing code, this code is posted on the author's GitHub (https://github.com/Salahub/peremptory\_challenges).
 
-\lstinputlisting{Pictures/AnalysisScript.R}
+%\lstinputlisting{Pictures/AnalysisScript.R}

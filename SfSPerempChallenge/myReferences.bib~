@@ -1,3 +1,37 @@
+@article{baldus2012,
+author = {David C. Baldus and Catherine M. Grosso and Robert Dunham and George Woodworth and Richard Newell},
+title = {Statistical Proof of Racial Discrimination in the Use of Peremptory Challenges: The Impact and Promise of the Miller-El Line of Cases as Reflected in the Experience of One Philadelphia Capital Case},
+journal = {Iowa Law Review},
+year = 2012,
+volume = 97,
+page = 1425}
+
+@article{flanagan2015,
+author = {Francis X. Flanagan},
+title = {{Peremptory Challenges and Jury Selection}},
+journal = {The Journal of Law and Economics},
+volume = 58,
+issue = 2,
+year = 2015,
+page = 385}
+
+@article{Nunn1993,
+title = {Rights Held Hostage: Race, Ideology, and the Peremptory Challenge},
+author = {Kenneth B. Nunn},
+journal = {Harvard Civil Rights-Civil Liberties Law Review},
+volume = 28,
+year = 1993,
+pages = 63}
+
+@article{broderick1992,
+title = {Why the Peremptory Challenge Should be Abolished},
+author = {Raymond J. Broderick},
+journal = {Temple Law Review},
+volume = 65,
+number = 2,
+year = 1992,
+pages = 369}
+
 @misc{boushie750,
 title = {{'Deck is stacked against us,'says family of Colten Boushie after jury chosen for Gerald Stanley trial}},
 author = {Guy Quenneville and Jason Warick},
@@ -23,8 +57,8 @@ note = {R package version 0.5.0},
 url = {https://CRAN.R-project.org/package=dotwhisker}}
 
 @misc{gallupdeath,
-title = {In Depth: Death Penalty}
-author = {Gallup}
+title = {In Depth: Death Penalty},
+author = {Gallup},
 year = 2018,
 howpublished = {Gallup},
 note = {Accessed: https://news.gallup.com/poll/1606/death-penalty.aspx}}
