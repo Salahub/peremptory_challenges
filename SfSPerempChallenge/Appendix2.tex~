@@ -13,7 +13,7 @@ n$. Or by the definition of the conditional distribution:
   \label{eq:poiscond}
 \end{equation}
 
-Clearly this density is zero if $\sum_{i=1}^m y_i \neq n$, but consider its value with for $\sum_{i=1}^m y_i = n$. Start with
+Clearly this density is zero if $\sum_{i=1}^m y_i \neq n$, so consider its value for $\sum_{i=1}^m y_i = n$. Start with
 the distribution of $N = \sum_{i = 1}^{m} Y_i$. Note that for $A \sim Pois(\lambda_A)$ and $B \sim Pois(\lambda_B)$, where $A$ and
 $B$ are independent, the distribution of $A + B$ can be derived quite easily using the characteristic function $\varphi_{A+B}(t)$:
 
@@ -21,11 +21,11 @@ $$\varphi_{A+B}(t) = E[e^{it(A+B)}] = E[e^{itA}]E[e^{itB}] = e^{(\lambda_A + \la
 
 This is the characteristic function of a $Pois(\lambda_A + \lambda_B)$ variable, and so the sum of two Poisson random variables is
 a Poisson random variable with a rate corresponding to the sum of the two variables. Iterating this, then, one obtains $N \sim
-Pois(\sum_{i=1}^m \mu_i)$, and so the denominator of \ref{eq:poiscond} is:
+Pois(\sum_{i=1}^m \lambda_i)$, and so the denominator of \ref{eq:poiscond} is:
 
-$$P \left (\sum_{i = 1}^m Y_i = n \right ) = \frac{e^{\sum_{i=1}^m \mu_i} (\sum_{i=1}^m \mu_i)^n}{n!}$$
+$$P \left (\sum_{i = 1}^m Y_i = n \right ) = \frac{e^{-\sum_{i=1}^m \lambda_i} (\sum_{i=1}^m \lambda_i)^n}{n!}$$
 
-Additionally, recognizing that the $Y_{ij}$ are independent, and considering only the case where $\sum_{i=1}^m y_i = n$, as the
+Additionally, recognizing that the $Y_i$ are independent, and considering only the case where $\sum_{i=1}^m y_i = n$, as the
 density is zero otherwise, this can be further simplified, as this joint density can be split into a product of marginal
 densities: 
 
@@ -33,7 +33,7 @@ $$P \left (Y_1 = y_1, \dots, Y_m = y_m, \sum_{i=1}^m y_i = n \right ) = P(Y_1 = 
 
 Now each independent marginal is Poisson distributed, so the product of all of these marginals is:
 
-$$P(Y_1 = y_1) P(Y_2 = y_2) \dots P(Y_m = y_m) =  \frac{e^{\sum_{i=1}^m \mu_i} \mu_1^{y_1} \mu_2^{y_2} \dots \mu_m^{y_m}}{y_i!
+$$P(Y_1 = y_1) P(Y_2 = y_2) \dots P(Y_m = y_m) =  \frac{e^{-\sum_{i=1}^m \lambda_i} \lambda_1^{y_1} \lambda_2^{y_2} \dots \lambda_m^{y_m}}{y_i!
   y_2! \dots y_m!}$$
 
 And so \ref{eq:poiscond} simplifies to
@@ -41,15 +41,15 @@ And so \ref{eq:poiscond} simplifies to
 \begin{equation}
   \label{eq:multinom}
 \begin{split}
-  \frac{e^{\sum_{i=1}^m \mu_i} \mu_1^{y_1} \mu_2^{y_2} \dots \mu_m^{y_m}}{y_i! y_2! \dots y_m!} \cdot \frac{n!}{e^{\sum_{i=1}^m
-      \mu_i} (\sum_{i=1}^m \mu_i)^n} \\
-  = \frac{m!}{y_1! y_2! \dots y_m!} \left (\frac{\mu_1}{\sum_{i=1}^m \mu_i} \right )^{y_1} \left (\frac{\mu_2}{\sum_{i=1}^m \mu_i}
-    \right )^{y_2} \dots \left (\frac{\mu_m}{\sum_{i=1}^m \mu_i} \right )^{y_m}
+  \frac{e^{-\sum_{i=1}^m \lambda_i} \lambda_1^{y_1} \lambda_2^{y_2} \dots \lambda_m^{y_m}}{y_i! y_2! \dots y_m!} \cdot \frac{n!}{e^{-\sum_{i=1}^m
+      \lambda_i} (\sum_{i=1}^m \lambda_i)^n} \\
+  = \frac{n!}{y_1! y_2! \dots y_m!} \left (\frac{\lambda_1}{\sum_{i=1}^m \lambda_i} \right )^{y_1} \left (\frac{\lambda_2}{\sum_{i=1}^m \lambda_i}
+    \right )^{y_2} \dots \left (\frac{\lambda_m}{\sum_{i=1}^m \lambda_i} \right )^{y_m}
   \end{split}
 \end{equation}
 
 \ref{eq:multinom} is recognizably the multinomial distribution, where the probability of a particular class $i$ is given by the
-ratio of $\mu_i$ to the sum over all $\mu_j$. $\blacksquare$
+ratio of $\lambda_i$ to the sum over all $\lambda_j$. $\blacksquare$
   
 %%% Local Variables: 
 %%% mode: latex

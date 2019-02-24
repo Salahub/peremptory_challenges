@@ -45,9 +45,9 @@ letter indicates a random variable and a lowercase letter a particular realizati
   Libertarian, and Republican
 \item $g \in \{1,2\}$: indicator of venire member gender, with respective levels female and male
 \item $s \in \{1,2\}$: indicator of defendant gender, with levels as for the venire member
-\item $\pi_{d|jklmn} \in [0,1]$: the probability of disposition $d$ given factor levels $jklmn$, may be written as $\pi_d$ for
-  convenience or given a superscript $(i)$ to indicate this probability for venire member $i$
-\item $y_{djklmn} \in \mathbb{N}$: the count of venire members with $\textbf{x}_i = (d,j,k,l,m,n)^T$
+\item $\pi_{d|jklmn} \in [0,1]$: the probability of disposition $d$ given factor levels $r = j, e = k, p = l, g = m, s = n$, may
+  be written as $\pi_d$ for convenience or given a superscript $(i)$ to indicate this probability for venire member $i$
+\item $y_{djklmn} \in \mathbb{N}$: the count of venire members with $\textbf{x}_i = (j,k,l,m,n)^T$ and disposition $d$
 \end{itemize}
 
 This work also uses hat notation for estimates (i.e. the estimate for $\pi$ is $\hat{\pi}$ and the estimator for $\pi$ is

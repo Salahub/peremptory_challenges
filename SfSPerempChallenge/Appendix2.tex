@@ -20,7 +20,8 @@ $B$ are independent, the distribution of $A + B$ can be derived quite easily usi
 $$\varphi_{A+B}(t) = E[e^{it(A+B)}] = E[e^{itA}]E[e^{itB}] = e^{(\lambda_A + \lambda_B)(e^{it} - 1)}$$
 
 This is the characteristic function of a $Pois(\lambda_A + \lambda_B)$ variable, and so the sum of two Poisson random variables is
-a Poisson random variable with a rate corresponding to the sum of the two variables. Iterating this, then, one obtains $N \sim
+a Poisson random variable with a rate corresponding to the sum of the
+rates of the two variables. Iterating this, then, one obtains $N \sim
 Pois(\sum_{i=1}^m \lambda_i)$, and so the denominator of \ref{eq:poiscond} is:
 
 $$P \left (\sum_{i = 1}^m Y_i = n \right ) = \frac{e^{-\sum_{i=1}^m \lambda_i} (\sum_{i=1}^m \lambda_i)^n}{n!}$$

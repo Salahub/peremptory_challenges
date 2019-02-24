@@ -61,8 +61,8 @@ favour of peremptory challenge in \ref{sec:extremes} before visualizing the Suns
 every visualization of the Sunshine data set is compared to analogous visualizations of the Stubborn and Philadelphia data
 sets. The implications of their similarities for generalization are discussed. These visual analyses are then used to motivate
 model selection in \ref{sec:mods} in order to estimate more precisely the impact of race in the Sunshine data. These results and
-findings are summarized in \ref{c:conclusion} and related back to the history described in \ref{c:background}. Recommendations
-based on the observations obtained here are provided alongside suggestions for future work.
+findings are summarized in chapter \ref{c:summary} and related back to the history described in
+\ref{c:background}. Recommendations based on the observations obtained are provided alongside suggestions for future work.
 
 \section{A Note on Palette Choice}
 

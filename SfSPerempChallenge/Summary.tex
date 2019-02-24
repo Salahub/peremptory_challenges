@@ -3,18 +3,18 @@
 
 The visual tools and models presented here support the dominant analysis in the literature. The primary determinant in the
 exercise of peremptory challenges is race in the Sunshine data set. The prosecution tends to remove more racial minority venire
-members, particularly black ones, than expected and fewer white venire members than expected while the defence tends to have the
+members than expected and fewer white venire members than expected. The defence tends to have the
 opposite strategy. This pattern is not only seen in aggregate in \ref{sec:impactrace}, but is visible in the trial summaries
-presented in \ref{sec:casesum}. The impact of race remains clearly visible in the mobile plots even when other legitimate factors
+presented in \ref{sec:casesum}. The impact of race remains apparent in the mobile plots even when other legitimate factors
 such as political affiliation are controlled.
 
-Beyond these patterns in one data set, this work demonstrates other strengths of the mobile plot and visual
+Beyond detecting the patterns in one data set, this work demonstrates other strengths of the mobile plot and visual
 analysis. The first of these is the utility of the mobile plot to compare the strike patterns across multiple data sets. The
 similarities between the Stubborn, Philadelphia, and Sunshine data sets are immediately clear when visualized appropriately. This
 is critical in examining the practice of peremptory challenges, as it allows for a comparison of their use across studies with
 radically different study populations so long as analogous data is collected.
 
-In this case, the clarity of the similarities observed between these data sets when visualized with the mobile plot suggests the
+In this case, the strength of the similarities observed between these data sets when visualized with the mobile plot suggests the
 pattern of racial preferences is not a local phenomenon in location or time, but is a reflection of a strategy utilized by the
 prosecution and defence in jury trials generally. As more data and investigation take place, further visual comparisons can
 motivate more analysis of the similarities between these patterns in different studies. Based on the findings here and in the
@@ -28,28 +28,34 @@ models matched the analysis of the mobile plots almost exactly justifies these p
 allowed for the estimation of effects in the Sunshine data controlling for possible legitimate confounders, giving a table of
 coefficient estimates consistent with those generated previously for other data sets, such as the Stubborn and Philadelphia data.
 
-It is not until these coefficients were visualized with the dot whisker plot, however, that a number of more nuanced patterns
-became obvious. The first of these is the greater sensitivity of the defence to the race of the venire member than the
+It was not until these coefficients were visualized with the dot whisker plot, however, that a number of more nuanced patterns
+became obvious. The first of these is the greater sensitivity of the
+defence to the racial aspects of a trial than the
 prosecution. That is, the race of the venire member has a greater impact on the defence's probability of rejection than the
-prosecution's. The second pattern is the prosecution tendency to reject venire members with a race that matches the defendant and
-the defence tendency to keep matching venire members. This aggregate pattern also seems to be reflected in the trial level
-summary of the data, which suggests that at least some lawyers on some cases think that jurors with a race matching the defendant
-would favour the defence arguments.
+prosecution's. The second pattern is the tendency of race matching by
+the defence and race contrasting by the prosecution. This aggregate pattern also seems to be reflected in the trial level
+summary of the data, which suggests that this trend is not a quirk of
+aggregation, but a reflection of individual lawyer decision making.
 
 Of course, as suggestive as these patterns are, and as spotted as the history of peremptory challenges is with controversy, none
-of this can say definitively whether the individuals rejected from the venire were rejected appropriately due to their ``extreme''
+of this can say definitively whether the individuals rejected from the
+Sunshine venires were rejected appropriately due to their ``extreme''
 bias. Without detailed descriptions of the bias of the population as a whole, such judgements on the propriety of strikes simply
 cannot be made, and whether these racial strike patterns are simply the result of legitimate strikes issued for reasons related
 strongly to race remains unknown.
 
-Despite this limitation, the final scatterplots suggest a criticism of peremptory challenges which is consistent with the source
+Despite this limitation, the final scatterplots suggest a criticism of
+peremptory challenges independent of these concerns which is consistent with the source
 of controversy for \textit{Batson v. Kentucky}, \textit{Swain v. Alabama}, and \textit{R. v. Stanley}. Peremptory challenges
-frequently remove all representatives of minority groups from the venire, preventing their participation in a panel meant to
-represent the conscience of a community of which they are a part, corroding a critical function of the jury and creating a group
-sceptical of the operation of the legal system. Certainly, the smaller numbers of minority groups and their relationship to the
+frequently remove all representatives of minority groups from the
+venire. This prevents their participation in a panel meant to
+represent the conscience of their community, corroding a critical function of the jury and creating a group
+sceptical of the operation of the legal system. Certainly, the smaller sizes of minority groups and their relationship to the
 majority may lead to their under-representation for reasons other than peremptory challenges, but a graphical exploration shows
-definitively that a component of their under-representation is the higher probability that all members of the minority group are
-struck from the venire by peremptories and the virtual impossibility that all members of the majority are struck.
+definitively that a component of their under-representation is
+peremptory challenges. Minority groups are fully struck from the
+venire by peremptories far more often than majority groups. Striking
+all majority members may, in fact, be virtually impossible.
 
 All of this paints a bleak picture of the role of peremptory challenges in the modern jury selection process. Without additional
 work, it is impossible to say with certainty whether the racial patterns observed here and elsewhere are due to racial prejudice
@@ -67,7 +73,7 @@ The visualizations of this paper have made much seen, but it is doubtful that wh
 \label{sec:FutureWork}
 
 One obvious way to extend the work done here is through more thorough modelling. While the multinomial regression model fit in
-\ref{sec:mods} served its purpose, much more precise models could be fit using casual graphs. Such causal modelling has the
+\ref{sec:mods} served its purpose, much more precise models could be fit using causal graphs. Such causal modelling has the
 possibility to extend the observations of the model from the simple pattern identification of the multinomial model and
 visualizations presented here to precise statements about the magnitude of causal effects between factors. Representing the
 factors in a causal graph would also be a useful exercise in making the assumptions of the model abundantly clear. Logistic
@@ -78,27 +84,30 @@ Other possible models of interest are mixed models. In this work the attempts to
 several points models with random effects for each trial were attempted. Unfortunately, these models failed to converge. Not a
 great deal of time was spent trying to transform the data to facilitate convergence to a reasonable value, and so no mixed models
 were fit. Such models are attractive because they have the potential to flexibly control for a host of factors which will vary
-over the course of each trial, and do so in a manner which involves minimal parameters. Controlling a random effect for lawyer,
+between trials, and do so in a manner which involves minimal parameters. Estimating a random effect for lawyer,
 for instance, could shed light on how variable lawyers are in their behaviour. This dimension of individual variability is
 essentially unadressed by the aggregate examinations of this work.
 
 Another extension would be further investigation of the Sunshine data. It is an incredibly rich data set and this work only
 examined one small facet of it. The crime classification outlined in \ref{sec:jspdata}, for example, was never utilized in the
-analysis of this data, despite the investment of time and effort in performing this clean up. Perhaps this method could also be
+analysis, despite the investment of time and effort in performing this clean up. Perhaps this method could also be
 applied to other irregular data in court cases or elsewhere to efficiently categorize irregular strings.
 
 Finally, as \cite{JurySunshineProj} notes, more data is needed on this topic generally. Further efforts to collect data and
 reinforce or refute the findings of this work and previous ones should be undertaken, and efforts to centralize and regularize the
-data would assist in the ease of analysis. Using the visualizations of this paper, such as the mobile plot and positional box
-plot, quick and informative comparisons of new data to older data sets could be performed easily. Increased transparency and
+data would assist in the ease of analysis. Using the visualizations of
+this paper, such as the mobile plot and positional boxplot, quick and
+informative comparisons of new data to older data sets could be
+performed easily. Increased transparency and
 centralized data collection additionally have the potential to allow for a greater understanding of which elements of the jury
-trial system work and which are inappropriate more generally. As \citeauthor{JurySunshineProj} puts it:
+trial system work and which are inappropriate. As \citeauthor{JurySunshineProj} puts it:
 
 \begin{quote}
   The transformative power of data, in our view, is not limited to traffic stops or jury selection. We place our proposal in the
-  larger context of using transparency to change criminal justice practices for the better. As Andrew Crespo has pointed out, the
-  criminal courts already collect useful facts that remain hidden because they are scattered in single files or inaccessible
-  formats. An effort to assemble these facts in aggregate form could improve the courts' efforts to regulate the work of other
+  larger context of using transparency to change criminal justice
+  practices for the better ... the
+  criminal courts already collect useful facts that remain hidden ... scattered ... or inaccessible
+  ... An effort to assemble these facts in aggregate form could improve the courts' efforts to regulate the work of other
   criminal justice players, such as police and prosecutors.
 \end{quote}
 

@@ -1,7 +1,7 @@
 \select@language {english}
 \contentsline {chapter}{\numberline {}{Notation}}{xi}{section*.6}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}A Note on Palette Choice}{3}{section.1.1}
+\contentsline {section}{\numberline {1.1}A Note on Palette Choice}{2}{section.1.1}
 \contentsline {chapter}{\numberline {2}Peremptory Challenges}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Jury Selection Procedures}{5}{section.2.1}
 \contentsline {section}{\numberline {2.2}The Role of the Jury}{7}{section.2.2}
@@ -29,7 +29,7 @@
 \contentsline {subsection}{\numberline {3.2.2}Cleaning}{21}{subsection.3.2.2}
 \contentsline {section}{\numberline {3.3}Philadelphia Data}{21}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Methodology}{21}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Cleaning}{22}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.2}Cleaning}{21}{subsection.3.3.2}
 \contentsline {chapter}{\numberline {4}Analysis}{23}{chapter.4}
 \contentsline {section}{\numberline {4.1}Extremes of Partiality}{23}{section.4.1}
 \contentsline {section}{\numberline {4.2}The Impact of Race}{25}{section.4.2}

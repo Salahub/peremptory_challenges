@@ -1,9 +1,10 @@
 \chapter{Developing an Effective Visualization of Conditional Probability} \label{app:devmob}
 
-One deficiency of the results of the previous investigations was a failure to generate compelling and effective visualizations of
-the trends of peremptory challenges for different racial groups. While such visualizations are not necessarily critical to
-analysis, they can often be incredibly useful to not only communicate data, but to motivate further investigations and models in a
-way which is clearer and more intuitive than a simple table of values.
+As noted in \ref{c:introduction} and \ref{sec:impactrace}, a deficiency of the previous investigations into peremptory challenges
+was a failure to generate compelling and effective visualizations of the trends in the data, instead a great reliance was placed
+on tables. While such visualizations are not necessarily critical to analysis, they can often be incredibly useful to not only
+communicate and compare data, but to motivate further investigations and models in a way which is clearer and more intuitive than
+a simple table of values.
 
 The first attempt at such a visualization was the mosaic plot (as discussed by \cite{friendly1994}) using the \texttt{mosaicplot}
 function in the \texttt{graphics} package in \Rp (\cite{Rcite}). Figure \ref{fig:mosaicdefrace} displays this first approach with
@@ -19,14 +20,14 @@ disposition related to the simplified races of both the defendant and the venire
 
 This visualization suffers from a number of limitations, some of which are obvious, and others of which are best explained by
 the hierarchy of accuracy of visual perception provided in \cite{cleveland1987}. The obvious limitations are the lack of ability
-to perceive the differences for the smallest groups, which are compressed enough that their error is nearly
+to perceive the differences for the smallest groups, which are compressed enough that their shading is nearly
 imperceptible. Additionally, the ordering of the axes is incredibly important in how the different areas appear visually, and
-comparing the different areas is unclear if any specific comparisons are to be made.
+comparing the different areas is challenging.
 
-This may be somewhat unsurprising. \cite{cleveland1987}, in their ranking of visual displays by accuracy of perception place area
-low in the hierarchy, below angles, lengths, and positions along common scales. In \textit{The Visual Display of Quantitative
-  Information}, \citeauthor{VisualDisplayQuant} gives two more sources of possible criticism of the mosaic plot as displayed in
-Figure \ref{fig:mosaicdefrace}: the concept of data-ink and the dimensionality of visualization.
+This is rather unsurprising. In ranking visual displays by accuracy of perception, \cite{cleveland1987} place area
+low in the hierarchy. Areas are placed below angles, lengths, and positions along common scales. In \textit{The Visual Display of
+  Quantitative Information}, \citeauthor{VisualDisplayQuant} gives two more sources of possible criticism of the mosaic plot as
+displayed in Figure \ref{fig:mosaicdefrace}: the concept of data-ink and the dimensionality of visualization.
 
 Of the mosaic plot, one may ask how much of the ``ink'', or structure, on the page is necessary to communicate the information
 present. If one has a desire to ``above all else show the data'' as Tufte does, then these large shaded rectangles, which are
@@ -34,15 +35,15 @@ likely not perceived accurately according to \citeauthor{cleveland1987}, seem un
 visualization. This is the concept of ``data-ink,'' to reduce the complexity of the structures and chart used to display the
 data.
 
-Hand-in-hand with this concept for this plot is \citeauthor{VisualDisplayQuant}'s rule that the dimensionality of the
-visualization should not be larger than the data. In the case of the mosaic plot this is not strictly violated, as the marginal
-lengths used to create the areas reflect a measurement of the data. Nonetheless, the areas of each rectangle correspond to a
-simple count in a contingency table, and perhaps an area is not the best way to represent such a singular value.
+Hand-in-hand with this concept is \citeauthor{VisualDisplayQuant}'s rule that the dimensionality of a visualization should not be
+larger than the data. In the case of the mosaic plot this is not strictly violated, as the marginal lengths used to create the
+areas reflect a measurement of the data. Nonetheless, the areas of each rectangle correspond to a simple count in a contingency
+table, and perhaps an area is not the best way to represent such a singular value.
 
 \begin{figure}[!h]
   \centering
   \epsfCfile{0.7}{FirstParCoord}
-  \caption[First Parallel Coordinate Attempt]{The first attempt at a parallel coordinate plot attempted. Note that the cramped
+  \caption[First Parallel Coordinate Attempt]{The first attempt at a parallel coordinate plot. Note that the cramped
     display and unclear definition of the axis make interpretation even less intuitive than the mosaic plot, suggesting that this
     first attempt was a decided failure.}
   \label{fig:firstparcoord}
@@ -53,14 +54,15 @@ in Figure \ref{fig:firstparcoord}. This attempted visualization is arguably more
 is cluttered by the parallel coordinate lines, the bars emanating from each point obscure the fact that the end point of the bar
 is the only feature of interest, and the meaning of the black reference line is entirely unclear without extensive
 explanation. Finally, by viewing the distribution of each disposition, the wrong conditional density is being examined,
-$P(Race,Race Defendant|Disposition)$. Multiple edits and re-conceptualizations of the concept eventually resulted in Figure
-\ref{fig:raceparcoord}, which will be called the ``mobile plot'' due to its passing resemblance to the mobiles hung above babies'
-cribs.
+$P(Race,Race Defendant|Disposition)$. Multiple edits and re-conceptualizations of the concept eventually resulted in the ``mobile
+plot'' due to its passing resemblance to the mobiles hung above babies' cribs.
 
 An example of this plot can be seen in  \ref{fig:racedefmob}. Note that this plot is less cluttered than either the mosaic plot or
 the first parallel coordinate plot, despite displaying more information. It is also more efficient with data-ink, avoids
-displaying data with higher dimensions that the data itself, and uses redundant encoding of information in visual cues which are
-high in the hierarchy presented by \cite{cleveland1987}.
+displaying data with higher dimensions than the data itself, and uses redundant encoding of information in visual cues which are
+high in the hierarchy presented by \cite{cleveland1987}. These redundancies include using both colour and ordering to represent
+the different dispositions; and using both position along a common scale and length to communicate the conditional probabilities
+of each disposition.
 
 An explanation of the features and encoding used in the mobile plot is presented in \ref{app:mobile}.
 
@@ -85,7 +87,7 @@ horizontal line combination. The lengths of these lines correspond to the deviat
 different expectation is expected for the different values of the third categorical variable, the horizontal lines can be split
 evenly and placed vertically at this expectation, to the detriment of grouping clarity.
 
-In the case that such a split is not used an the continuous variable is the probability of a particular value of the third
+In the case that such a split is not used and the continuous variable is the probability of a particular value of the third
 categorical variable given the first two, the plot serves as a visual test of a very specific hypothesis: that of a uniform
 distribution of the third categorical variable with respect to the two variables represented horizontally. Such a plot is powerful
 because it allows for the simple detection of main effects and interaction effects over the three categorical variables against
