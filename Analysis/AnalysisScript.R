@@ -692,7 +692,7 @@ invisible(lapply(names(sun.racelist), function(nm) {
 
 ## maybe we just have a weird coincidence, what about gender?
 mobileplot(apply(sun.mastab, c("Disposition","Gender","DefGender"), sum)[,c(1,2),c(1,2)], deslev = c(1,2,5),
-                      main = "Conditional Probability of Strike by Venire Member Gender and Defendant Gender",
+                      main = "Conditional Probability of Strike by Gender and Defendant Gender",
            legendlevs = c("Cause","Defence","Prosecution"),
            xtext = "Inner Level: Gender | Outer Level: Defendant Gender")
 ## gender and race?
