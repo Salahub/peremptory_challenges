@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  24 FEB 2019 22:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  25 FEB 2019 13:44
 entering extended mode
 **./MasterThesisSfS.tex
 (MasterThesisSfS.tex
@@ -663,7 +663,7 @@ Chapter 1.
 
 
 ]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 77.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 79.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [2]) [3]
@@ -704,11 +704,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--43
 _fy16-17.asp) does not ap-
  []
 
-[16] [17] <Pictures/SimpleSubTree.pdf, id=901, 505.89pt x 505.89pt>
+[16] [17] <Pictures/SimpleSubTree.pdf, id=903, 505.89pt x 505.89pt>
 File: Pictures/SimpleSubTree.pdf Graphic file (type pdf)
 
 <use Pictures/SimpleSubTree.pdf>
-Package pdftex.def Info: Pictures/SimpleSubTree.pdf used on input line 160.
+Package pdftex.def Info: Pictures/SimpleSubTree.pdf used on input line 161.
 (pdftex.def)             Requested size: 256.0774pt x 256.07838pt.
 
 
@@ -734,7 +734,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[25] <Pictures/RaceParCoord.pdf, id=1001, 505.89pt x 505.89pt>
+[25] <Pictures/RaceParCoord.pdf, id=1003, 505.89pt x 505.89pt>
 File: Pictures/RaceParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/RaceParCoord.pdf>
@@ -749,28 +749,28 @@ Underfull \vbox (badness 1377) has occurred while \output is active []
 
  [26]
 [27 <./Pictures/RaceParCoord.pdf>]
-<Pictures/RaceDefCI.pdf, id=1030, 505.89pt x 505.89pt>
+<Pictures/RaceDefCI.pdf, id=1032, 505.89pt x 505.89pt>
 File: Pictures/RaceDefCI.pdf Graphic file (type pdf)
 
 <use Pictures/RaceDefCI.pdf>
 Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 217.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
  [28 <./Pictures/RaceDefCI.pdf>]
-<Pictures/StubbornCompPlot.pdf, id=1052, 505.89pt x 505.89pt>
+<Pictures/StubbornCompPlot.pdf, id=1054, 505.89pt x 505.89pt>
 File: Pictures/StubbornCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/StubbornCompPlot.pdf>
 Package pdftex.def Info: Pictures/StubbornCompPlot.pdf used on input line 245.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/PhillyCompPlot.pdf, id=1053, 505.89pt x 505.89pt>
+<Pictures/PhillyCompPlot.pdf, id=1055, 505.89pt x 505.89pt>
 File: Pictures/PhillyCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/PhillyCompPlot.pdf>
 Package pdftex.def Info: Pictures/PhillyCompPlot.pdf used on input line 251.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/SunshineCompPlot.pdf, id=1054, 505.89pt x 505.89pt>
+<Pictures/SunshineCompPlot.pdf, id=1056, 505.89pt x 505.89pt>
 File: Pictures/SunshineCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/SunshineCompPlot.pdf>
@@ -782,53 +782,53 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [29] [30 <./Pictures/StubbornCompPlot.pdf> <./Pictures/PhillyCompPlot.pdf> <./P
 ictures/SunshineCompPlot.pdf>]
-<Pictures/RaceGenderPolit.pdf, id=1116, 505.89pt x 505.89pt>
+<Pictures/RaceGenderPolit.pdf, id=1118, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderPolit.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderPolit.pdf>
-Package pdftex.def Info: Pictures/RaceGenderPolit.pdf used on input line 332.
+Package pdftex.def Info: Pictures/RaceGenderPolit.pdf used on input line 331.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
  [31 <./Pictures/RaceGenderPolit.pdf>]
-<Pictures/PolBlack.pdf, id=1141, 505.89pt x 505.89pt>
+<Pictures/PolBlack.pdf, id=1139, 505.89pt x 505.89pt>
 File: Pictures/PolBlack.pdf Graphic file (type pdf)
 
 <use Pictures/PolBlack.pdf>
-Package pdftex.def Info: Pictures/PolBlack.pdf used on input line 364.
+Package pdftex.def Info: Pictures/PolBlack.pdf used on input line 357.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/PolWhite.pdf, id=1142, 505.89pt x 505.89pt>
+<Pictures/PolWhite.pdf, id=1140, 505.89pt x 505.89pt>
 File: Pictures/PolWhite.pdf Graphic file (type pdf)
 
 <use Pictures/PolWhite.pdf>
-Package pdftex.def Info: Pictures/PolWhite.pdf used on input line 370.
+Package pdftex.def Info: Pictures/PolWhite.pdf used on input line 363.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/PolOther.pdf, id=1143, 505.89pt x 505.89pt>
+<Pictures/PolOther.pdf, id=1141, 505.89pt x 505.89pt>
 File: Pictures/PolOther.pdf Graphic file (type pdf)
 
 <use Pictures/PolOther.pdf>
-Package pdftex.def Info: Pictures/PolOther.pdf used on input line 376.
+Package pdftex.def Info: Pictures/PolOther.pdf used on input line 369.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Pictures/RaceGenderStrike.pdf, id=1148, 505.89pt x 505.89pt>
+<Pictures/RaceGenderStrike.pdf, id=1150, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderStrike.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderStrike.pdf>
-Package pdftex.def Info: Pictures/RaceGenderStrike.pdf used on input line 402.
+Package pdftex.def Info: Pictures/RaceGenderStrike.pdf used on input line 401.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [32] [33 <./Pictures/PolBlack.pdf> <./Pictures/PolWhite.pdf> <./Pictures/PolOth
-er.pdf>] <Pictures/GenderGenderStrike.pdf, id=1206, 505.89pt x 505.89pt>
+er.pdf>] <Pictures/GenderGenderStrike.pdf, id=1208, 505.89pt x 505.89pt>
 File: Pictures/GenderGenderStrike.pdf Graphic file (type pdf)
 
 <use Pictures/GenderGenderStrike.pdf>
-Package pdftex.def Info: Pictures/GenderGenderStrike.pdf used on input line 434
+Package pdftex.def Info: Pictures/GenderGenderStrike.pdf used on input line 433
 .
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
@@ -836,25 +836,25 @@ Package pdftex.def Info: Pictures/GenderGenderStrike.pdf used on input line 434
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [34 <./Pictures/RaceGenderStrike.pdf>]
-<Pictures/StubGenderComp.pdf, id=1229, 505.89pt x 505.89pt>
+<Pictures/StubGenderComp.pdf, id=1231, 505.89pt x 505.89pt>
 File: Pictures/StubGenderComp.pdf Graphic file (type pdf)
 
 <use Pictures/StubGenderComp.pdf>
-Package pdftex.def Info: Pictures/StubGenderComp.pdf used on input line 464.
+Package pdftex.def Info: Pictures/StubGenderComp.pdf used on input line 463.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/PhilGenderComp.pdf, id=1230, 505.89pt x 505.89pt>
+<Pictures/PhilGenderComp.pdf, id=1232, 505.89pt x 505.89pt>
 File: Pictures/PhilGenderComp.pdf Graphic file (type pdf)
 
 <use Pictures/PhilGenderComp.pdf>
-Package pdftex.def Info: Pictures/PhilGenderComp.pdf used on input line 470.
+Package pdftex.def Info: Pictures/PhilGenderComp.pdf used on input line 469.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
-<Pictures/SunGenderComp.pdf, id=1231, 505.89pt x 505.89pt>
+<Pictures/SunGenderComp.pdf, id=1233, 505.89pt x 505.89pt>
 File: Pictures/SunGenderComp.pdf Graphic file (type pdf)
 
 <use Pictures/SunGenderComp.pdf>
-Package pdftex.def Info: Pictures/SunGenderComp.pdf used on input line 476.
+Package pdftex.def Info: Pictures/SunGenderComp.pdf used on input line 475.
 (pdftex.def)             Requested size: 170.71393pt x 170.7112pt.
 
 
@@ -865,61 +865,61 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[37] [38] <Pictures/AllModCoef.pdf, id=1331, 505.89pt x 505.89pt>
+[37] [38] <Pictures/AllModCoef.pdf, id=1333, 505.89pt x 505.89pt>
 File: Pictures/AllModCoef.pdf Graphic file (type pdf)
 
 <use Pictures/AllModCoef.pdf>
-Package pdftex.def Info: Pictures/AllModCoef.pdf used on input line 629.
+Package pdftex.def Info: Pictures/AllModCoef.pdf used on input line 628.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
-<Pictures/SelectModCoef.pdf, id=1336, 505.89pt x 505.89pt>
+<Pictures/SelectModCoef.pdf, id=1338, 505.89pt x 505.89pt>
 File: Pictures/SelectModCoef.pdf Graphic file (type pdf)
 
 <use Pictures/SelectModCoef.pdf>
-Package pdftex.def Info: Pictures/SelectModCoef.pdf used on input line 647.
+Package pdftex.def Info: Pictures/SelectModCoef.pdf used on input line 646.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [39 <./Pictures/AllModCoef.pdf>] [40 <./Pictures/SelectModCoef.pdf>] [41]
-[42] <Pictures/DefProStrikesTrial.pdf, id=1402, 505.89pt x 505.89pt>
+[42] <Pictures/DefProStrikesTrial.pdf, id=1405, 505.89pt x 505.89pt>
 File: Pictures/DefProStrikesTrial.pdf Graphic file (type pdf)
 
 <use Pictures/DefProStrikesTrial.pdf>
-Package pdftex.def Info: Pictures/DefProStrikesTrial.pdf used on input line 776
+Package pdftex.def Info: Pictures/DefProStrikesTrial.pdf used on input line 777
 .
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
  [43 <./Pictures/DefProStrikesTrial.pdf>]
-<Pictures/DefStrikesTrial.pdf, id=1422, 505.89pt x 505.89pt>
+<Pictures/DefStrikesTrial.pdf, id=1425, 505.89pt x 505.89pt>
 File: Pictures/DefStrikesTrial.pdf Graphic file (type pdf)
 
 <use Pictures/DefStrikesTrial.pdf>
-Package pdftex.def Info: Pictures/DefStrikesTrial.pdf used on input line 809.
+Package pdftex.def Info: Pictures/DefStrikesTrial.pdf used on input line 810.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
-<Pictures/ProStrikesTrial.pdf, id=1423, 505.89pt x 505.89pt>
+<Pictures/ProStrikesTrial.pdf, id=1426, 505.89pt x 505.89pt>
 File: Pictures/ProStrikesTrial.pdf Graphic file (type pdf)
 
 <use Pictures/ProStrikesTrial.pdf>
-Package pdftex.def Info: Pictures/ProStrikesTrial.pdf used on input line 815.
+Package pdftex.def Info: Pictures/ProStrikesTrial.pdf used on input line 816.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Pictures/DefStrProp.pdf, id=1429, 505.89pt x 505.89pt>
+<Pictures/DefStrProp.pdf, id=1432, 505.89pt x 505.89pt>
 File: Pictures/DefStrProp.pdf Graphic file (type pdf)
 
 <use Pictures/DefStrProp.pdf>
-Package pdftex.def Info: Pictures/DefStrProp.pdf used on input line 841.
+Package pdftex.def Info: Pictures/DefStrProp.pdf used on input line 845.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
-<Pictures/ProStrProp.pdf, id=1430, 505.89pt x 505.89pt>
+<Pictures/ProStrProp.pdf, id=1433, 505.89pt x 505.89pt>
 File: Pictures/ProStrProp.pdf Graphic file (type pdf)
 
 <use Pictures/ProStrProp.pdf>
-Package pdftex.def Info: Pictures/ProStrProp.pdf used on input line 847.
+Package pdftex.def Info: Pictures/ProStrProp.pdf used on input line 851.
 (pdftex.def)             Requested size: 298.75262pt x 298.75812pt.
 
 
@@ -1163,7 +1163,7 @@ w.ca/2018/02/20/an-ethical-jury-reflections-
 
 ]
 Appendix A.
-<Pictures/FirstMosaic.pdf, id=1558, 505.89pt x 505.89pt>
+<Pictures/FirstMosaic.pdf, id=1561, 505.89pt x 505.89pt>
 File: Pictures/FirstMosaic.pdf Graphic file (type pdf)
 
 <use Pictures/FirstMosaic.pdf>
@@ -1173,7 +1173,7 @@ Package pdftex.def Info: Pictures/FirstMosaic.pdf used on input line 17.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[59] <Pictures/FirstParCoord.pdf, id=1572, 505.89pt x 505.89pt>
+[59] <Pictures/FirstParCoord.pdf, id=1575, 505.89pt x 505.89pt>
 File: Pictures/FirstParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/FirstParCoord.pdf>
@@ -1224,7 +1224,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \T1/aer/m/n/10.95 11CRS51895, 11CRS52470, 08CRS54836,
  []
 
-<Pictures/ChargeDiagram.pdf, id=1604, 1011.78pt x 722.7pt>
+<Pictures/ChargeDiagram.pdf, id=1607, 1011.78pt x 722.7pt>
 File: Pictures/ChargeDiagram.pdf Graphic file (type pdf)
 
 <use Pictures/ChargeDiagram.pdf>
@@ -1282,7 +1282,7 @@ Appendix D.
 
 
 ]
-<confirmation-originality-scan.pdf, id=1654, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=1657, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf>
@@ -1296,7 +1296,7 @@ Package pdftex.def Info: confirmation-originality-scan.pdf used on input line 2
 29.
 (pdftex.def)             Requested size: 597.43054pt x 845.07512pt.
 
-<confirmation-originality-scan.pdf, id=1657, page=1, 597.432pt x 845.07718pt>
+<confirmation-originality-scan.pdf, id=1660, page=1, 597.432pt x 845.07718pt>
 File: confirmation-originality-scan.pdf Graphic file (type pdf)
 
 <use confirmation-originality-scan.pdf, page 1>
@@ -1370,9 +1370,9 @@ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb><C:/Program Files/MiK
 TeX 2.9/fonts/type1/public/amsfonts/latxfont/linew10.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files/MiKTeX 
 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on MasterThesisSfS.pdf (83 pages, 1345319 bytes).
+Output written on MasterThesisSfS.pdf (83 pages, 1044099 bytes).
 PDF statistics:
- 1805 PDF objects out of 2073 (max. 8388607)
+ 1808 PDF objects out of 2073 (max. 8388607)
  297 named destinations out of 1000 (max. 500000)
  578 words of extra memory for PDF output out of 10000 (max. 10000000)
 

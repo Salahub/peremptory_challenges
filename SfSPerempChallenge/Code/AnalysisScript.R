@@ -268,9 +268,6 @@ mobileplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, add
     tempx[2*(1:(nseg-1))] <- space*rep(c(rep(1,innern-1),3), length.out = nseg-1)*sum(marsums)
     ## take the cumulative sum to get the positions
     xpos_line <- c(0, cumsum(tempx)/sum(tempx))
-    ##xpos <- rep(1:dims[nontrace[2]], each = dims[nontrace[1]]) +
-    ##    rep(seq(-0.2, 0.2, length.out = dims[nontrace[1]]), times = dims[nontrace[2]])
-    ##xpos <- cumsum(marsums)/sum(marsums)
     ## create the empty plot region
     yscl <- if (ymax == 0) max(condout) else ymax
     plot(NA, xlim = range(xpos_line), ylim = c(0, yscl), xaxt = 'n', xlab = "",
@@ -294,14 +291,12 @@ mobileplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, add
         ## add the corresponding end points
         points(adjx, yvals, col = temPal[ind], pch = 20)
         ## for aesthetics reduce line alpha if confidence intervals are plotted
-        if (testlines) lnal <- 0.3 else lnal <- 1
+        if (testlines) lnal <- 0.5 else lnal <- 1
         ## plot the lines
         for (ii in 1:length(adjx)) lines(x = rep(adjx[ii],2), y = c(meanline[ii], yvals[ii]),
                                                          lty = 2, col = adjustcolor(temPal[ind], alpha.f = lnal))
         ## if trace lines (parallel axis plot) are desired plot these
         if (addlines) lines(adjx, yvals, col = temPal[ind], lty = 3)
-        ##rect(xleft = adjx - (1/2)*wid, xright = adjx + (1/2)*wid, ybottom = meanline,
-        ##     ytop = yvals, col = temPal[ind])
         return(adjx)
     })))
     ## now add the axes
@@ -338,9 +333,9 @@ mobileplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, add
             ## get the appropriate colour
             errcol <- temPal[(pos-1) %% dims[tracemar] + 1]
             ## add the lines
-            lines(x = errpos[pos] + ext, y = rep(cis[1,pos], 2), col = adjustcolor(errcol, alpha.f = 0.5))
-            lines(x = errpos[pos] + ext, y = rep(cis[2,pos], 2), col = adjustcolor(errcol, alpha.f = 0.5))
-            lines(x = rep(errpos[pos], 2), y = cis[,pos], col = adjustcolor(errcol, alpha.f = 0.5))
+            lines(x = errpos[pos] + ext, y = rep(cis[1,pos], 2), col = adjustcolor(errcol, alpha.f = 1))
+            lines(x = errpos[pos] + ext, y = rep(cis[2,pos], 2), col = adjustcolor(errcol, alpha.f = 1))
+            lines(x = rep(errpos[pos], 2), y = cis[,pos], col = adjustcolor(errcol, alpha.f = 1))
         }))
     }
     ## add a legend to explain the colours
@@ -636,36 +631,36 @@ sun.raceknown <- MatRelevel(sun.raceknown)
 mosaicplot(PerempStruck ~ WhiteBlack, data = sun.raceknown)
 ## break it down by race and defendant race, as they were the motivation of this investigation
 mobileplot(deslev = c(1,2,5), legendlevs = c("Cause","Defence","Prosecution"),
-               main = "Conditional Probability of Removal by Race and Race of Defendant",
+               main = "Conditional Strike Probability by Race and Race of Defendant",
                xtext = "Inner Label: Defendant Race | Outer Label: Venire Member Race")
 ## but are these differences significant?
 mobileplot(deslev = c(1,2,5), testlines = TRUE, legendlevs = c("Cause","Defence","Prosecution"),
-               main = "Conditional Probability of Removal by Race and Race of Defendant",
+               main = "Conditional Strike Probability by Race and Race of Defendant",
            xtext = "Inner Label: Defendant Race | Outer Label: Venire Member Race")
 
 ## let's check for the other data
 ## this requires some significant filtering of the sunshine data to only include capital trials, and additionally to
 ## ensure that the disposition data is comparable to the stubborn data, which did not include challenges with cause
 with(sun.raceknown[sun.raceknown$FirstDeg & sun.raceknown$Disposition != "C_rem",],
-     mobileplot(table(Disposition, DefWhiteBlack == "Black", WhiteBlack == "Black"), deslev = c(2,5), testlines = T,
+     mobileplot(table(Disposition, DefWhiteBlack != "Black", WhiteBlack != "Black"), deslev = c(2,5), testlines = T,
                 temPal = racePal[c(2,3)], ymax = 0.6,
                 legendlevs = c("Defence","Prosecution"),
-                main = "Conditional Probability of Removal (Sunshine)",
-                xtext = "Inner Label: Defendant Black | Outer Label: Venire Member Black"))
+                main = "Conditional Strike Probability (Sunshine)",
+                xtext = "Inner Label: Defendant White/Other | Outer Label: Venire Member White/Other"))
 ## now the stubborn data
 with(stub,
-     mobileplot(table(DispSimp, DefWhiteBlack == "Black", WhiteBlack == "Black"),
+     mobileplot(table(DispSimp, DefWhiteBlack != "Black", WhiteBlack != "Black"),
                 deslev = c(1,3), testlines = T, legendlevs = c("Defence","Prosecution"),
                 temPal = racePal[c(2,3)], ymax = 0.6,
-                main = "Conditional Probability of Removal (Stubborn)",
-                xtext = "Inner Label: Defendant Black | Outer Label: Venire Member Black"))
+                main = "Conditional Strike Probability (Stubborn)",
+                xtext = "Inner Label: Defendant White/Other | Outer Label: Venire Member White/Other"))
 ## finally the philly data
 with(phil[phil$DispSimp != "C_rem",],
-     mobileplot(table(DispSimp, DefWhiteBlack %in% "Black", WhiteBlack %in% "Black"),
+     mobileplot(table(DispSimp, DefWhiteBlack != "Black", WhiteBlack != "Black"),
                 deslev = c(2,4), testlines = T, legendlevs = c("Defence","Prosecution"),
                 temPal = racePal[c(2,3)], ymax = 0.6,
-                main = "Conditional Probability of Removal (Philadelphia)",
-                xtext = "Inner Label: Defendant Black | Outer Label: Venire Member Black"))
+                main = "Conditional Strike Probability (Philadelphia)",
+                xtext = "Inner Label: Defendant White/Other | Outer Label: Venire Member White/Other"))
 
 ## what about race and political affiliation
 mobileplot(table(MatRelevel(sun.juror[sun.juror$WhiteBlack != "U" & sun.juror$PoliticalAffiliation != "U" &
@@ -687,22 +682,22 @@ names(sun.racelist) <- dimnames(sun.mastab)[["WhiteBlack"]]
 invisible(lapply(names(sun.racelist), function(nm) {
     tab <- sun.racelist[[nm]]
     tab <- tab[,,c("Dem","Rep","Ind")]
-    ## pdf(paste0(picOut, "Pol", nm, ".pdf")) # output values
-    dev.new()
+    pdf(paste0(picOut, "Pol", nm, ".pdf")) # output values
+    ##dev.new()
     mobileplot(tab, tracemar = 1, deslev = c(1,2,5), main = paste(nm, "Venire Members"), ymax = 0.2,
                xtext = "Inner Label: Defendant Race | Outer Label: Venire Member Poitical Affiliation",
-               legendlevs = c("Cause", "Defence", "Prosecution"))
-    ## dev.off() # output values
+               legendlevs = c("Cause", "Defence", "Prosecution"), testlines = TRUE)
+    dev.off() # output values
 }))
 
 ## maybe we just have a weird coincidence, what about gender?
 mobileplot(apply(sun.mastab, c("Disposition","Gender","DefGender"), sum)[,c(1,2),c(1,2)], deslev = c(1,2,5),
-                      main = "Strike Source by Venire Member Gender and Defendant Gender",
+                      main = "Conditional Probability of Strike by Gender and Defendant Gender",
            legendlevs = c("Cause","Defence","Prosecution"),
            xtext = "Inner Level: Gender | Outer Level: Defendant Gender")
 ## gender and race?
 mobileplot(apply(sun.mastab, c("Disposition","Gender","WhiteBlack"), sum)[,c(1,2),], deslev = c(1,2,5),
-           main = "Strike Source by Venire Member Race and Gender",
+           main = "Conditional Probabilty of Strike by Venire Member Race and Gender",
            legendlevs = c("Cause","Defence","Prosecution"),
            xtext = "Inner Level: Gender | Outer Level: Race")
 ## race and politics?
@@ -713,25 +708,25 @@ mobileplot(apply(sun.mastab, c("Disposition","PoliticalAffiliation","WhiteBlack"
 ## start with the restricted sunshine data
 with(MatRelevel(sun.raceknown[sun.raceknown$FirstDeg & sun.raceknown$Disposition != "C_rem" &
                              sun.raceknown$Gender != "U",]),
-     mobileplot(table(DispSimp, Gender, WhiteBlack == "Black"), deslev = c(1,3), testlines = T,
+     mobileplot(table(DispSimp, Gender, WhiteBlack != "Black"), deslev = c(1,3), testlines = T,
                 temPal = racePal[c(2,3)], ymax = 0.6,
-                main = "Conditional Probability by Gender and Race (Sunshine)",
+                main = "Conditional Strike Probability by Gender and Race (Sunshine)",
                 legendlevs = c("Defence","Prosecution"),
-                xtext = "Inner Level: Gender | Outer Level: Black"))
+                xtext = "Inner Level: Gender | Outer Level: White/Other"))
 ## the stubborn data
 with(stub,
-     mobileplot(table(DispSimp, Gender, WhiteBlack == "Black"), deslev = c(1,3), testlines = T,
+     mobileplot(table(DispSimp, Gender, WhiteBlack != "Black"), deslev = c(1,3), testlines = T,
                 temPal = racePal[c(2,3)], ymax = 0.6,
-                main = "Conditional Probability by Gender and Race (Stubborn)",
+                main = "Conditional Strike Probability by Gender and Race (Stubborn)",
                 legendlevs = c("Defence","Prosecution"),
-                xtext = "Inner Level: Gender | Outer Level: Black"))
+                xtext = "Inner Level: Gender | Outer Level: White/Other"))
 ## now the philly data
 with(phil[phil$DispSimp != "C_rem",],
-     mobileplot(table(DispSimp, Gender, WhiteBlack == "Black"), deslev = c(2,4), testlines = T,
+     mobileplot(table(DispSimp, Gender, WhiteBlack != "Black"), deslev = c(2,4), testlines = T,
                 temPal = racePal[c(2,3)], ymax = 0.6,
-                main = "Conditional Probability by Gender and Race (Philadelphia)",
+                main = "Conditional Strike Probability by Gender and Race (Philadelphia)",
                 legendlevs = c("Defence","Prosecution"),
-                xtext = "Inner Level: Gender | Outer Level: Black"))
+                xtext = "Inner Level: Gender | Outer Level: White/Other"))
 
 ## do some modelling for more precise controls
 ## first reorder the levels to make a comparison of those kept (a linear transformation of the rejection average displayed above)

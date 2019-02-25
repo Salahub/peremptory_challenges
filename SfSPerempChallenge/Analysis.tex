@@ -16,10 +16,10 @@ is mutually acceptable to both parties in the trial.
 \section{Extremes of Partiality} \label{sec:extremes}
 
 Unfortunately, not much can be said about the argument of extreme bias. Suppose the bias of the population for a particular
-trial is modelled using a beta distribution, where each individual has some bias between 0 and 1 which represents that
+trial is modelled using a beta distribution, where each individual has some bias between 0 and 1, representing that
 individual's subjective probability that the accused is guilty before seeing any evidence. A perfectly unbiased individual would
-have a bias of 0.5: equally likely to say the accused is innocent or guilty and so equally receptive to the arguments of the
-prosecution and defence. These are the ideal jurors without extreme bias.
+have a bias of 0.5. Such an individuals would be equally likely to say the accused is innocent or guilty and so equally receptive to the arguments of the
+prosecution and defence. These are the ideal jurors without any bias.
 
 This simple bias model is that used in \cite{ford2010}, and is appropriate for the domain of this problem. Whether the bias of
 members of a population really follows such a pattern is not known, as this definition of ``bias'' is somewhat difficult to
@@ -29,11 +29,11 @@ members conditional on all of the features and evidence of a trial.
 Under the simplistic beta model, the diverse possible centres, spreads, and shapes of a beta distribution make statements about
 the proportion of points around 0.5 impossible. Consider the case of a beta distribution with a probability density function
 parameterized as $f(x) = \frac{\Gamma (\alpha + \beta)}{\Gamma (\alpha) \Gamma (\beta)} x^{\alpha-1} (1-x)^{\beta-1}
-\hspace{0.2cm} x \in [0,1]$, if $\alpha \rightarrow 0$ and $\beta \rightarrow 0$ this distribution becomes entirely polarized,
+\hspace{0.2cm} x \in [0,1]$. If $\alpha \rightarrow 0$ and $\beta \rightarrow 0$ this distribution becomes entirely polarized,
 with all of its probability mass shifted to its boundaries at 0 and 1. Conversely, as  $\alpha \rightarrow \infty$ and $\beta
 \rightarrow \infty$ the density becomes degenerate at 0.5. Clearly the
 beta assumption permits no conclusive statement on the extremity of
-observations without additionally assuming some parameterization.
+observations without additionally assuming some parameter values.
 
 The assumptions of \cite{flanagan2015} do not allow much more to be determined. Using this conceptualization, the best
 characterization of an individual with extreme bias is an individual that would vote to convict or not convict regardless of the
@@ -99,7 +99,7 @@ the mean of the population distribution, the above arguments on symmetric extrem
 very well be appropriate to find the unbiased jurors.
 
 Such criticism may be supported by the increased use of peremptory challenges for the capital cases in the data. As is clear
-viewing historical Gallup polls on the topic [\cite{gallupdeath}], opinions on the death penalty and murder trials are far more
+viewing historical Gallup polls on the topic [\cite{gallupdeath}], opinions on the death penalty and murder trials are highly
 polarized and have varied greatly over time in the United States. At
 times the population has been biased as a whole towards the death
 penalty for murder rather than life imprisonment, regardless of the law around the subject. In the case of murder trials, then,
@@ -129,7 +129,7 @@ others, as this would suggest that race is the target of an undue rate of strike
   \begin{tabular}{|c|c c c|} \hline
     Data & Black & Other & White \\ \hline
     Sunshine & 0.23 & 0.24 & 0.25 \\
-    Sunshine Capital & 0.62 & 0.76 & 0.63 \\
+    Sunshine Capital & 0.22 & 0.27 & 0.27 \\
     Stubborn & 0.65 & 0.36 & 0.66 \\ 
     Philadelphia & 0.67 & \multicolumn{2}{c|}{0.68} \\ \hline
   \end{tabular}
@@ -150,7 +150,7 @@ developed. A detailed description of this plot and its development which include
 perception which were used to devise its form is presented in \ref{app:devmob}\footnote{Here it suffices to mention that much of
   its design was motivated by the philosophy of \cite{VisualDisplayQuant} and the results of \cite{cleveland1987} on the accuracy
   of visual perception.}. This visual tool was then combined with inspiration from \textit{Swain v. Alabama}, \textit{Batson
-  v. Kentucky}, and \textit{R. v. Stanley} to generate \ref{fig:racedefmob}, which displays the relationship between venire member
+  v. Kentucky}, and \textit{R. v. Stanley} to generate Figure \ref{fig:racedefmob}, which displays the relationship between venire member
 race and defendant race.
 
 \begin{figure}[!h]
@@ -169,7 +169,7 @@ First, a small explanation of this mobile plot. This mobile plot displays the re
 venire member race, defendant race, and disposition (whether a venire member is struck and by whom). The vertical axis corresponds
 to the conditional probability of a particular disposition given a race and defendant race combination\footnote{Generally, any three
   categorical variables can be displayed using a mobile plot, as the mobile plot is used to display the distribution of a
-  categorical variable given the combinations of the other two. Mathematically it displays $X_3|X_1,X_2$.}. Racial combinations
+  categorical variable given the combinations of two others. Mathematically it displays $X_3|X_1,X_2$.}. Racial combinations
 are placed along the horizontal axis, and each combination corresponds to one horizontal black line in the plotting area. The
 length of these lines is proportional to the number of venire members in the data with the corresponding racial combination, and
 their vertical positions are the mean conditional probability of a
@@ -200,7 +200,7 @@ orange points are below the horizontal lines for the black and other venire memb
 struck by the defence than expected, while the points are above the lines for the white venire members, indicating a higher than
 expected probability of defence strike for white venire members. The prosecution seems to mirror this tendency, striking the
 white venire members at a lower rate than expected and the black venire members more often than expected. Strikes with cause
-seem to show les deviation from expectation for the black and white venire members, and always deviate from expectation
+seem to show less deviation from expectation for the black and white venire members, and always deviate from expectation
 in the same direction as the prosecution.
 
 The addition of defendant races shows another interesting trend. It would seem that the aforementioned tendencies of the
@@ -217,7 +217,7 @@ independent uniform strike rates. Further discussion of the agreement of these t
   \epsfCfile{0.7}{RaceDefCI}
   \caption[Strikes by Racial Combination with Confidence
   Intervals (Sunsine)]{\footnotesize The plot of conditional strike probability by racial
-    combination from \ref{fig:racedefmob} with confidence intervals added. Note that many of the seemingly striking departures seen are
+    combination from Figure \ref{fig:racedefmob} with confidence intervals added. Note that many of the seemingly striking departures seen are
     insignificant when these confidence intervals are applied,
     especially for races other than black and white.}
   \label{fig:racedefci}
@@ -235,7 +235,7 @@ As suspected, some of the results for the smaller sample sizes do not seem to be
 in particular for white venire members or black defendants, are significant, however. It should be noted that these simultaneous
 confidence intervals do not constitute a proper statistical test of the impact of race, they are rather a way of visually
 providing a viewer some sense of the expected variability in the data over repeated sampling. More rigorous testing requires
-controlling the impact of confouding factors, as done by the modelling in \ref{sec:mods}.
+controlling the impact of confounding factors, as done by the modelling in \ref{sec:mods}.
 
 \subsection{In the Stubborn and Philadelphia Data}
 
@@ -282,14 +282,13 @@ sets immediately clear\footnote{Three important differences between Figure \ref{
   logical indicators of whether the race variable was black or not.}.
 
 Despite the very different study sample universes of these three data sets, all display identical patterns, with only the
-magnitudes of the different strike rates differing. The mobile plot format makes several interesting aspects immediately
+magnitudes of the strike rates differing. The mobile plot format makes several interesting aspects immediately
 clear. The similar level of all black lines within each plot shows that in each data set, the aggregate probability of removal is
 similar across racial minority combinations, as was implied by Table \ref{tab:margrace}. However, these aggregate similarities
 hide the vastly different strategies of the defence and prosecution which are consistent across all data sets. The defence has a
 tendency to retain black venire members, striking them at a lower rate
 than the other\footnote{One must keep in mind that these non-black
-  venire members are predominantly white in the data sets for which
-  detailed race information was recorded.} venire members, while the
+  venire members will be predominantly white.} venire members, while the
 prosecution shows a pattern which mirrors that of the defence,
 removing more black venire members and fewer other venire members. In
 all data sets the gap between these probabilities and the expected strike rates is greatest for the black venire members in cases
@@ -352,12 +351,6 @@ independent. The ``ideological imbalance'' of racial voting tendencies, as \cite
 confounding factor and a possible source of a legitimate cause for an initially suspect overall trend. As such, the mobile plot
 was used to investigate the relationship between race, political affiliation, and disposition.
 
-To control for the defendant race as well, which appears important in
-Figure \ref{fig:racedefmob}, the venire members were split into the simplified
-racial groups black, white, and other. Then mobile plots of the conditional strike probabilities for the different venire member
-races given the defendant race and political affiliation were generated. Figures \ref{fig:blackdefpol}, \ref{fig:otherdefpol}, and
-\ref{fig:whitedefpol} display these mobile plots. 
-
 \begin{figure}[h!]
   \centering
   \begin{subfigure}{0.40\textwidth}
@@ -383,6 +376,12 @@ races given the defendant race and political affiliation were generated. Figures
     venire member race, and this pattern is the aggregate pattern seen in Figure \ref{fig:racedefmob}} \label{fig:racedefpol}
 \end{figure}
 
+To control for the defendant race as well, which appears important in
+Figure \ref{fig:racedefmob}, the venire members were split into the simplified
+racial groups black, white, and other. Then mobile plots of the conditional strike probabilities for the different venire member
+races given the defendant race and political affiliation were generated. Figures \ref{fig:blackdefpol}, \ref{fig:otherdefpol}, and
+\ref{fig:whitedefpol} display these mobile plots. 
+
 This sequence of three plots immediately suggests that a political argument is insufficient for this data. For each venire member
 race and defendant race, the political affiliation of the venire member does not radically change the pattern of strikes for any
 party in the court. Rather, the court tendencies for each political affiliation, venire member race, and defendant race seem to
@@ -405,7 +404,7 @@ data.
     each racial group.} \label{fig:racegenpol}
 \end{figure}
 
-Another factor which may have an impact is that of gender. While \textit{J.E.B. v. Alabama} (\cite{jebvalabama}) has also ruled
+Another factor which may have an impact is that of gender. While \textit{J.E.B. v. Alabama} [\cite{jebvalabama}] has also ruled
 peremptory challenges for this reason alone unconstitutional in the United States, it is noted in \cite{vandykejurysel} on page
 152-153 that prosecutor's guidelines have, in the past, recommended using peremptory challenges to remove female venire
 members\footnote{\citeauthor{vandykejurysel} provides specific guidelines for sex written by Jon Sparling, an assistant district
@@ -477,7 +476,7 @@ before, the data has been restricted to ensure analogous study universes across 
     \caption{\footnotesize Sunshine strike pattern}
     \label{fig:suncompgen}
   \end{subfigure}
-  \caption[Strikes by Race and Gender of Venire Member (All Capital Trial Data)]
+  \caption[Strikes by Race and Gender (All Capital Trial Data)]
   {\footnotesize The conditional probability of defence and prosecution peremptory challenge by venire member race and gender for
     all capital trials in all data sets. The pattern, though sometimes different in magnitude, is quite consistent across the three
     examined data sets, despite the significant differences in the respective study sample universes.}
@@ -543,7 +542,7 @@ any other interactions are likely to be significant. This led to a model:
 The fundamental purpose of fitting this model is to test two effects. The first is whether the interaction between defendant race
 and venire member race is significant, as has been suggested by the
 controversial trials named in Chapter \ref{c:background}, and the
-second is whether the venire member race is a significant factor in the presence of the other controlled factors. These two
+second is whether the venire member race is a significant factor in the presence of the other factors. These two
 assumptions can be testing by fitting models nested in \ref{eq:fullmod}:
 
 \begin{equation}
@@ -684,7 +683,8 @@ difference between the different striking parties, without
 overlapping confidence intervals. These suggest that all three parties behave differently in the reference group, which
 consists of a female, black, Democrat venire member in a case with a female, black defendant. Crucially, the defence intercept is
 far lower than the prosecution, matching what was observed in Figure \ref{fig:racedefmob}, where the lowest defence strike
-probability occurred for black venire members in cases with black defendants. Also visible in this figure is an increase in
+probability occurred for black venire members in cases with black
+defendants. Also visible in Figure \ref{fig:racedefmob} is an increase in
 defence strike probability and decrease in prosecution strike probability for a white defendant with a black or other venire
 member. This pattern is reflected perfectly in the positive defence coefficient and negative prosecution coefficient for white
 defendants.
@@ -711,12 +711,13 @@ those still musing on \textit{R. v. Stanley}'s perceived injustice.
 
 Such racial patterns in the prosecution and the defence dominate all other effects. The political effect is minor, though
 consistent with the hypothesis put forward by \cite{revesz2016}, with a preference for Republicans by the prosecution and a
-preference for Democrats by the defence. Interestingly, all parties seem to have an increased probability for male venire
+preference for Democrats by the defence. Interestingly, all parties
+seem to have an increased strike probability for male venire
 members, suggesting a universal preference for female venire members on the jury. One would hope that this pattern is for some
 other reason than anything listed on pages 152-153 of \cite{vandykejurysel} and reproduced here in \ref{sec:polaff}. While no
 detailed explanation is forthcoming for this pattern in the presence of racial and political affiliation controls, it would
 certainly be an interesting avenue for further research, as the exercise of peremptory challenges based purely on gender is also
-protected since \textit{J.E.B. v. Alabama} [\cite{jebvalabama}].
+protected by \textit{J.E.B. v. Alabama} [\cite{jebvalabama}].
 
 A lack of consistent information between data sets and of time made fitting additional models using the other data sets more
 difficult. Regardless of the lack of specific coefficient comparisons due to these difficulties, the above findings are consistent
@@ -797,7 +798,7 @@ individual trial level or was rather due outlier cases with abundant defence str
 trial.
 
 Of course, the most striking result of the modelling from \ref{sec:mods} seen clearly in Figure \ref{fig:modselcoef} was the
-dominance of the venire member race in determining their strike
+dominance of the venire member race in determining strike
 probabilities. Viewing the defendant race may therefore miss
 interesting patterns. A pair of positional boxplots to display the
 racial tendencies across trials for the defence and prosecution is
@@ -825,11 +826,14 @@ Figure \ref{fig:defracestrike} shows the strong preference of the defence to str
 race. The tendency of the defence to strike jurors different than the defendant noted in \ref{sec:examcoef} is also visible in
 this plot. Note the generally greater proportion of black defendants for higher white venire strike
 counts. In contrast, the opposite trend is shown in Figure \ref{fig:proracestrike}, where the boxes further to the left have a
-greater proportion of black defendants and those moving up have a greater proportion of white defendants.
+greater proportion of black defendants and those moving up have a
+greater proportion of white defendants. This corresponds to a strategy
+of race matching by the defence across trials and an opposite strategy
+by the prosecution.
 
 Interestingly, the prosecution seems less biased than the defence at
 the trial level. The distribution of strikes appears symmetric for
-different venire member races. Such an appearance, however, is misleading, because it fails to account for
+different venire member races. However, such an appearance is misleading because it fails to account for
 the number of black and white venire members presented to the court. These numbers are very different, as can be seen by the
 lengths of the horizontal black lines in Figure \ref{fig:racedefmob}. A sizeable majority of the venire members are
 white. Luckily, with trial aggregated data, the raw strike counts can be normalized into proportions. The resulting scatterplots
@@ -864,23 +868,25 @@ prosecution lawyers, merely on average.
 While these differences are intriguing, the far more interesting observation that can be gleaned from these plots is the
 fundamental difference in inclusion of minority and majority groups in jury formation. The aggregate statistics indicate that the
 black venire members are a minority, and Figure \ref{fig:defproprop} suggests that as a consequence, it is common that a majority
-or all of the potential black jurors will be removed by peremptory challenge while such an occurrence is incredibly rare for the
-majority white jurors, if not impossible. While in many trials all black venire members were struck, in not a single trial was
+or all of the potential black jurors will be removed by peremptory
+challenge. Such an occurrence is not observed in this data for the
+majority white venire members, suggesting the complete removal of
+white venire members is incredibly rare, if not impossible. While in many trials all black venire members were struck, in not a single trial was
 every white venire member struck. This suggests that if one had a strategy of keeping minorities off of juries, the peremptory
 challenge system would make this task easier. Such an observation is obvious in theory, but it is no less impactful to see it
 emerge from the data.
 
 \section{On Venire Selection}
 
-\cite{vandykejurysel} spends much of chapters four and five exploring the causes for the underrepresentation of certain groups in
-jury venires, and his analysis suggests that underrepresentation
+\cite{vandykejurysel} spends much of chapters four and five exploring the causes for the under-representation of certain groups in
+jury venires, and his analysis suggests that under-representation
 starts at the jury selection stage. Fewer non-white
 individuals register to vote generally (page 89). Additionally,
 excusal from jury duty, primarily granted for economic
 hardship, impacts disadvantaged economic groups to a greater extent (pages 113-120).
 
 Such explanations provide a plausible reason why black males would be
-most underrepresented in venires, and are also possibly contributing
+most under-represented in venires, and are also possibly contributing
 factors to the white majority of the venire despite the majority of defendants being black. Such issues with the jury
 selection process will not, and cannot, be solved by simply removing the peremptory challenge. They have much more to do with the
 relationship between minority groups and wider society, and so require more comprehensive and complex solutions.

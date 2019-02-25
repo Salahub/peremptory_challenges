@@ -1,7 +1,7 @@
 \chapter{Data} \label{c:data}
 
 Without data, performing an analysis that incorporated more than the history and legal argumentation presented in Chapter
-\ref{c:background} is impossible. This proved problematic. While the motivation of this text was a Canadian case, no comprehensive
+\ref{c:background} is impossible. This proved problematic. While the motivation of this work was a Canadian case, no comprehensive
 data sets which examined jury selection in Canada could be found. The increased prominence of the jury selection process
 in the United States garnered a more fruitful search.
 
@@ -15,7 +15,7 @@ notes:
    limited public access to court data reinforces the single-case focus of the legal doctrines related to jury selection. Poor
    access to records is the single largest reason why jury selection
    cannot ... become a
-   normal topic for political debate
+   normal topic for political debate.
 \end{quote}
 
 Currently, the collection of jury data is difficult. Many courtrooms have not digitized past records and concerns over privacy
@@ -110,7 +110,8 @@ as setting all demographic variable levels to be uppercase and replacing obvious
 One specific inconsistency which should be noted is that of the outcome, which had a handful of entries recorded as \texttt{HC}, an
 inadmissible level not defined by the codebook. It is likely that this level represented a typo, as the ``H'' and ``G''
 keys are adjacent on the American QWERTY keyboard layout, and
-\texttt{GC} was the code for 'guilty as charged', and so every
+\texttt{GC} was the code for 'guilty as charged.' Based on this
+assumption, every
 occurrence of \texttt{HC} was replaced with \texttt{GC}. Additionally, the
 inadmissible level \texttt{G} was replaced by \texttt{GC}.
 
@@ -118,7 +119,7 @@ inadmissible level \texttt{G} was replaced by \texttt{GC}.
 
 A more difficult level misspecification problem was the presence of what appeared to be columns with swapped values, frequently
 occurring with the gender column (the admissible levels of which are \texttt{M}, \texttt{F}, and \texttt{U}) and the political affiliation column
-(the admissible levels of which are \texttt{D}, \texttt{L}, \texttt{R}, \texttt{I}, or \texttt{U}). The aformentioned ``swaps'' appeared as records in which, for
+(the admissible levels of which are \texttt{D}, \texttt{L}, \texttt{R}, \texttt{I}, and \texttt{U}). The aformentioned ``swaps'' appeared as records in which, for
 example, the gender was recorded as \texttt{R} and political affiliation as \texttt{M}. More complicated swaps of three columns also
 occurred. To address this problem, the \texttt{IdentifySwap} function was written.
 
@@ -189,7 +190,7 @@ Sunshine data set. They are detailed below.
 \begin{description}
   \item[Race Match] A logical variable which is true for a venire member if they are the same race as the defendant, and false
     otherwise. This variable was motivated in particular by
-    \textit{R. v. Stanley}, implicit contention of which was that the First Nations venire members were struck by the defence because their
+    \textit{R. v. Stanley}, the implicit contention of which was that the First Nations venire members were struck by the defence because their
     race did not match that of Stanley.
   \item[Guilty] Logical indicator indicating whether the trial verdict
     was guilty or not.
@@ -210,7 +211,9 @@ Sunshine data set. They are detailed below.
 \cite{StubbornLegacy} also provided data to the author, albeit a more limited set. This study, also based in North Carolina,
 focused on the trials of inmates on death row as of July 1, 2010, yielding a total of 173 cases. In each proceeding, the study
 examined only those venire members not excluded for cause, and critically the analysis of the study focused only on prosecutorial
-peremptory challenges. Besides collecting demographic data as in the Jury Sunshine Case, this study also collected attitudinal
+peremptory challenges.
+
+Besides collecting demographic data as in the Jury Sunshine Case, this study also collected attitudinal
 data for the venire members. This attitudinal data for the venire members is somewhat more detailed than the political affiliation
 data provided in the Sunshine data, including attitudes about the death penalty, employment information, and opinions on the
 trustworthiness of law enforcement.
@@ -255,7 +258,8 @@ methods to a standard of 98\% reliability\footnote{Additionally, imputation was 
 
 This data had a number of departures from the Sunshine and Stubborn data. It lacked racial information as detailed as either, and
 collected detailed attitudinal variables as in the Stubborn data as opposed to the simple political affiliation reported by the
-Sunshine data. These limitations are quite clear when comparisons between all three data sets are made.
+Sunshine data. These differences futher limited the direct comparison
+possible between all three data sets.
 
 \subsection{Cleaning}
 

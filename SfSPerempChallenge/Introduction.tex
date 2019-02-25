@@ -12,8 +12,10 @@ Bill C-75 by the Canadian government in March of 2018 [\cite{billc75}], less tha
 
 Bill C-75, in part, aims to ameliorate one of the critical points of contention in the Gerald Stanley case: the use of peremptory
 challenges in jury selection. The outsized impact of the case was due, in large part, to the case's racial aspect. Gerald Stanley,
-a white man, was accused of second degree murder in the killing of Colten Boushie, a First Nations man. Given Canada's troubled
-history with First Nations groups, this alone would have been enough to make the trial a flash point for race issues, but that was
+a white man, was accused of second degree murder in the killing of
+Colten Boushie, a First Nations man. This alone would have been enough
+to make the trial a flash point for race issues given Canada's troubled
+history with First Nations groups, but it was
 not the worst aspect of the trial. Rather, the most controversial and influential facet of the entire affair was the alleged use
 of peremptory challenges to strike five potential jurors who ``appeared'' to be First Nations, resulting in an all-white jury
 [\cite{fiverejected}, \cite{fraughthistory}].
@@ -25,7 +27,7 @@ little of this discussion has been based on any hard, quantitive evidence on the
 selection. This paper aims to provide analysis and evidence to illuminate the topic further by analyzing three separate peremptory
 challenge data sets collected in the United States, namely the data from \cite{JurySunshineProj}, \cite{StubbornLegacy}, and
 \cite{PerempChalMurder}, henceforth referred to as the ``Sunshine,'' ``Stubborn,'' and ``Philadelphia'' data sets respectively. While this data cannot reveal anything about the alleged racial motivation of peremptory challenge use in
-\textit{R. v. Stanley}, wider view of the practice is a more sober
+\textit{R. v. Stanley}, a wider view of the practice is a more sober
 place to assess its role in modern jury trials than the dissection of a particular controversial case.
 
 Of course, this work is not the first such investigation. \cite{JurySunshineProj}, \cite{StubbornLegacy}, and
@@ -57,9 +59,9 @@ modern controversies of this process are outlined in \ref{sec:modper}. Legal arg
 challenge are provided interspersed in this modern history in \ref{sec:rolejur} and \ref{sec:roleper}. After the modern
 description, a brief history of the practice of peremptory challenges in jury trials is presented in \ref{sec:history}, in
 particular explaining the original motivation of the practice, its past implementations, and its development in the United States,
-the England, and Canada.
+England, and Canada.
 
-With the necessary context provided, chapter \ref{c:data} proceeds to discuss the three data sets obtained, explaining the sources
+With the necessary context provided, Chapter \ref{c:data} proceeds to discuss the three data sets obtained, explaining the sources
 and collection methods before detailing cleaning and preprocessing. Chapter \ref{c:analysis} then provides the details and results
 of the analysis performed on the different data sets. It begins by performing statistical analysis of one common argument in
 favour of peremptory challenge in \ref{sec:extremes} before visualizing the Sunshine data in \ref{sec:impactrace} and
@@ -67,15 +69,15 @@ favour of peremptory challenge in \ref{sec:extremes} before visualizing the Suns
 every visualization of the Sunshine data set is compared to analogous visualizations of the Stubborn and Philadelphia data
 sets. The implications of their similarities for generalization are discussed. These visual analyses are then used to motivate
 model selection in \ref{sec:mods} in order to estimate more precisely the impact of race in the Sunshine data. These results and
-findings are summarized in chapter \ref{c:summary}. Recommendations based on the observations obtained are provided alongside suggestions for future work.
+findings are summarized in Chapter \ref{c:summary}. Recommendations based on the observations obtained are provided alongside suggestions for future work.
 
 \section{A Note on Palette Choice}
 
 The analysis and presentation of results in this paper is primarily visual, utilizing graphs and figures rather than tables to
 communicate patterns and estimates. In order to make these visual presentations of the data as accessible as possible, the colours
-and palettes used were very deliberately chosen to be distinguishable for as many individuals as possible, including colour blind
+and palettes used were very deliberately chosen to be distinguishable for as many individuals as possible, including colour-blind
 individuals. In this endeavour, the \texttt{RColorBrewer} package in \Rp [\cite{rcolorbrewer}] and \cite{wong2011} were
-indispensible, as both provide suggested colour-blind safe palettes and colours. Additionally, most factors encoded by colours
+indispensible, as both provide suggested colour-blind safe palettes and colours. Additionally, most factors encoded by colour
 are redundantly encoded by position or order where possible.
 
 %%% Local Variables: 
