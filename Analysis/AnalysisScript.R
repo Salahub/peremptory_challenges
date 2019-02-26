@@ -322,7 +322,7 @@ mobileplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, add
         errpos <- xpos
         ##errpos[3*(1:nseg) - 1] <- axpos
         ## define error bar extensions
-        ext <- c(-0.005, 0.005)
+        ##ext <- c(-0.005, 0.005)
         ## iterate through the non-trace margins, apply the multinomialCI function and plot
         cis <- apply(outcometab, nontrace,
                      function(tab) t(multinomialCI(c(tab[deslev], sum(tab[-deslev])), alpha = alpha)[1:length(deslev),]))
@@ -333,8 +333,8 @@ mobileplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, add
             ## get the appropriate colour
             errcol <- temPal[(pos-1) %% dims[tracemar] + 1]
             ## add the lines
-            lines(x = errpos[pos] + ext, y = rep(cis[1,pos], 2), col = adjustcolor(errcol, alpha.f = 1))
-            lines(x = errpos[pos] + ext, y = rep(cis[2,pos], 2), col = adjustcolor(errcol, alpha.f = 1))
+            ##lines(x = errpos[pos] + ext, y = rep(cis[1,pos], 2), col = adjustcolor(errcol, alpha.f = 1))
+            ##lines(x = errpos[pos] + ext, y = rep(cis[2,pos], 2), col = adjustcolor(errcol, alpha.f = 1))
             lines(x = rep(errpos[pos], 2), y = cis[,pos], col = adjustcolor(errcol, alpha.f = 1))
         }))
     }
@@ -801,15 +801,15 @@ if ("AllJuries.Rds" %in% list.files(ThesisDir)) {
     sun.jursum <- readRDS(paste0(ThesisDir, "/AllJuries.Rds"))
 } else cat(paste0("No file 'AllJuries.Rds' in ", ThesisDir))
 
-## now look at removals across trials for defense and prosecution
-with(sun.trialsum, plot(jitter(DefRemEst, factor = 2), jitter(ProRemEst, factor = 2), pch = 20,
-                        xlab = "Defence Strike Count (jittered)", ylab = "Prosecution Strike Count (jittered)",
-                        col = adjustcolor(racePal2[as.numeric(DefWhiteBlack)], alpha.f = 0.3)))
-abline(0,1)
-legend(x = "topleft", legend = levels(sun.trialsum$DefWhiteBlack), col = racePal, pch = 20, title = "Defendant Race")
 ## remove the unknown defendant races
 sun.trialrace <- sun.trialsum[sun.trialsum$DefWhiteBlack != "U",]
 sun.trialrace$DefWhiteBlack <- as.factor(as.character(sun.trialrace$DefWhiteBlack))
+## now look at removals across trials for defense and prosecution
+with(sun.trialrace, plot(jitter(DefRemEst, factor = 2), jitter(ProRemEst, factor = 2), pch = 20,
+                        xlab = "Defence Strike Count (jittered)", ylab = "Prosecution Strike Count (jittered)",
+                        col = adjustcolor(racePal2[as.numeric(DefWhiteBlack)], alpha.f = 0.3)))
+abline(0,1)
+legend(x = "topleft", legend = levels(sun.trialrace$DefWhiteBlack), col = racePal, pch = 20, title = "Defendant Race")
 ## this is only somewhat informative, it is difficult to see any patterns, use the custom posboxplot function
 ## first encode relative size of point by alpha blending
 with(sun.trialrace, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal2, xlab = "Defence Strike Count",
