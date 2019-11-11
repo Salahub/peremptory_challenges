@@ -15,8 +15,8 @@ figures and models.
 ### Data
 
 This folder contains the code used to process the data. As the data
-was provided to me by other authors, none of the code files themselves
-are placed in this file for public use. If you are interested in the
+was provided to me by other authors, none of the data files themselves
+are placed in this folder. If you are interested in the
 data, I would direct you to ask the data sources outlined in the paper
 for their data. The code here can then be used to process it.
 
