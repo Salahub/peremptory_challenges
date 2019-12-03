@@ -34,4 +34,4 @@ my thesis, alongside figures and other dependencies.
 
 My final submitted thesis version, in PDF format.
 
-###Please, explore, use, and enjoy. Let me know if anything is amiss.
+### Please, explore, use, and enjoy. Let me know if anything is amiss.
