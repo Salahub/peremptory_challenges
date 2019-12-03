@@ -1,0 +1,816 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  12 NOV 2019 15:32
+entering extended mode
+**\input ShortenedThesis.tex
+(ShortenedThesis.tex ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size12.clo"
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
+Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen103
+\extrarowheight=\dimen104
+\NC@list=\toks14
+\extratabsurround=\skip43
+\backup@length=\skip44
+)
+\TX@col@width=\dimen105
+\TX@old@table=\dimen106
+\TX@old@col=\dimen107
+\TX@target=\dimen108
+\TX@delta=\dimen109
+\TX@cols=\count87
+\TX@ftn=\toks15
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty"
+Package: subcaption 2018/05/01 v1.1-162 Sub-captions (AR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty"
+Package: caption 2018/05/01 v3.3-147 Customizing captions (AR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+Package: caption3 2018/05/27 v1.8a caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+\captionmargin=\dimen110
+\captionmargin@=\dimen111
+\captionwidth=\dimen112
+\caption@tempdima=\dimen113
+\caption@indent=\dimen114
+\caption@parindent=\dimen115
+\caption@hangindent=\dimen116
+)
+\c@ContinuedFloat=\count88
+)
+\c@subfigure=\count89
+\c@subtable=\count90
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdfpages\pdfpages.sty"
+Package: pdfpages 2017/10/31 v0.5l Insert pages of external PDF documents (AM)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count91
+\calc@Bcount=\count92
+\calc@Adimen=\dimen117
+\calc@Bdimen=\dimen118
+\calc@Askip=\skip45
+\calc@Bskip=\skip46
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count93
+\calc@Cskip=\skip47
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
+Package: eso-pic 2018/04/12 v2.0h eso-pic (RN)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty"
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def"
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
+\Gread@gobject=\count94
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+)
+\Gin@req@height=\dimen119
+\Gin@req@width=\dimen120
+)
+\AM@pagewidth=\dimen121
+\AM@pageheight=\dimen122
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.def"
+File: pppdftex.def 2017/10/31 v0.5l Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box26
+\AM@global@opts=\toks17
+\AM@toc@title=\toks18
+\c@AM@survey=\count95
+\AM@templatesizebox=\box27
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen123
+)
+\pmbraise@=\dimen124
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip48
+\bibsep=\skip49
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count96
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2016/11/05 v2.16a AMS math features
+\@mathmargin=\skip50
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01 AMS text
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count97
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count98
+\leftroot@=\count99
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count100
+\DOTSCASE@=\count101
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen125
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count102
+\c@MaxMatrixCols=\count103
+\dotsspace@=\muskip10
+\c@parentequation=\count104
+\dspbrk@lvl=\count105
+\tag@help=\toks20
+\row@=\count106
+\column@=\count107
+\maxfields@=\count108
+\andhelp@=\toks21
+\eqnshift@=\dimen126
+\alignsep@=\dimen127
+\tagshift@=\dimen128
+\tagwidth@=\dimen129
+\totwidth@=\dimen130
+\lineht@=\dimen131
+\@envbody=\toks22
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\enumerate.sty"
+Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+\@enLab=\toks24
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\relsize.sty"
+Package: relsize 2003/07/04 ver 3.1
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.sty"
+\lst@mode=\count109
+\lst@gtempboxa=\box30
+\lst@token=\toks25
+\lst@length=\count110
+\lst@currlwidth=\dimen132
+\lst@column=\count111
+\lst@pos=\count112
+\lst@lostspace=\dimen133
+\lst@width=\dimen134
+\lst@newlines=\count113
+\lst@lineno=\count114
+\lst@maxwidth=\dimen135
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count115
+\lst@skipnumbers=\count116
+\lst@framebox=\box31
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.cfg"
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\times.sty"
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count117
+\Gm@cntv=\count118
+\c@Gm@tempcnt=\count119
+\Gm@bindingoffset=\dimen136
+\Gm@wd@mp=\dimen137
+\Gm@odd@mp=\dimen138
+\Gm@even@mp=\dimen139
+\Gm@layoutwidth=\dimen140
+\Gm@layoutheight=\dimen141
+\Gm@layouthoffset=\dimen142
+\Gm@layoutvoffset=\dimen143
+\Gm@dimlist=\toks26
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
+(ShortenedThesis.aux)
+\openout1 = `ShortenedThesis.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 27.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\AtBeginShipoutBox=\box32
+ ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count120
+\scratchdimen=\dimen144
+\scratchbox=\box33
+\nofMPsegments=\count121
+\nofMParguments=\count122
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count123
+\MPscratchDim=\dimen145
+\MPnumerator=\count124
+\makeMPintoPDFobject=\count125
+\everyMPtoPDFconversion=\toks28
+) ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
+Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
+\c@lstlisting=\count126
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 472.03123pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 652.70622pt, 71.13188pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=472.03123pt
+* \textheight=652.70622pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-38.1381pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 28.
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 28.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 30.
+ (Introduction.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+
+[1
+
+{C:/Users/Chris/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
+
+
+LaTeX Warning: Reference `c:devmob' on page 2 undefined on input line 44.
+
+) (History.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 8.
+ [2] [3] [4] [5]) (Data.tex [6] [7]) (Analysis.tex [8] [9]
+<Pictures/RaceParCoord.pdf, id=39, 505.89pt x 505.89pt>
+File: Pictures/RaceParCoord.pdf Graphic file (type pdf)
+
+<use Pictures/RaceParCoord.pdf>
+Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 75.
+(pdftex.def)             Requested size: 330.42041pt x 330.42247pt.
+ [10 <./Pictures/RaceParCoord.pdf>]
+<Pictures/RaceDefCI.pdf, id=50, 505.89pt x 505.89pt>
+File: Pictures/RaceDefCI.pdf Graphic file (type pdf)
+
+<use Pictures/RaceDefCI.pdf>
+Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 132.
+(pdftex.def)             Requested size: 330.42041pt x 330.42247pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 145.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [11]
+<Pictures/StubbornCompPlot.pdf, id=56, 505.89pt x 505.89pt>
+File: Pictures/StubbornCompPlot.pdf Graphic file (type pdf)
+
+<use Pictures/StubbornCompPlot.pdf>
+Package pdftex.def Info: Pictures/StubbornCompPlot.pdf used on input line 160.
+(pdftex.def)             Requested size: 202.3524pt x 202.3524pt.
+
+Overfull \hbox (13.5428pt too wide) in paragraph at lines 160--161
+[][] 
+ []
+
+<Pictures/PhillyCompPlot.pdf, id=57, 505.89pt x 505.89pt>
+File: Pictures/PhillyCompPlot.pdf Graphic file (type pdf)
+
+<use Pictures/PhillyCompPlot.pdf>
+Package pdftex.def Info: Pictures/PhillyCompPlot.pdf used on input line 166.
+(pdftex.def)             Requested size: 202.3524pt x 202.3524pt.
+
+Overfull \hbox (13.5428pt too wide) in paragraph at lines 166--167
+[][] 
+ []
+
+<Pictures/SunshineCompPlot.pdf, id=58, 505.89pt x 505.89pt>
+File: Pictures/SunshineCompPlot.pdf Graphic file (type pdf)
+
+<use Pictures/SunshineCompPlot.pdf>
+Package pdftex.def Info: Pictures/SunshineCompPlot.pdf used on input line 172.
+(pdftex.def)             Requested size: 202.3524pt x 202.3524pt.
+
+Overfull \hbox (13.5428pt too wide) in paragraph at lines 172--173
+[][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[12 <./Pictures/RaceDefCI.pdf>] [13 <./Pictures/StubbornCompPlot.pdf> <./Pictur
+es/PhillyCompPlot.pdf> <./Pictures/SunshineCompPlot.pdf>]
+Overfull \hbox (2.69485pt too wide) in paragraph at lines 223--227
+[]\OT1/ptm/m/n/12 [The peremp-tory chal-lenge] is no less fre-quently ex-er-cis
+ed on grounds nor-mally thought
+ []
+
+<Pictures/RaceGenderPolit.pdf, id=107, 505.89pt x 505.89pt>
+File: Pictures/RaceGenderPolit.pdf Graphic file (type pdf)
+
+<use Pictures/RaceGenderPolit.pdf>
+Package pdftex.def Info: Pictures/RaceGenderPolit.pdf used on input line 242.
+(pdftex.def)             Requested size: 330.42041pt x 330.42247pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[14] <Pictures/PolBlack.pdf, id=111, 505.89pt x 505.89pt>
+File: Pictures/PolBlack.pdf Graphic file (type pdf)
+
+<use Pictures/PolBlack.pdf>
+Package pdftex.def Info: Pictures/PolBlack.pdf used on input line 268.
+(pdftex.def)             Requested size: 202.3524pt x 202.3524pt.
+
+Overfull \hbox (13.5428pt too wide) in paragraph at lines 268--269
+[][] 
+ []
+
+<Pictures/PolWhite.pdf, id=112, 505.89pt x 505.89pt>
+File: Pictures/PolWhite.pdf Graphic file (type pdf)
+
+<use Pictures/PolWhite.pdf>
+Package pdftex.def Info: Pictures/PolWhite.pdf used on input line 274.
+(pdftex.def)             Requested size: 202.3524pt x 202.3524pt.
+
+Overfull \hbox (13.5428pt too wide) in paragraph at lines 274--275
+[][] 
+ []
+
+<Pictures/PolOther.pdf, id=113, 505.89pt x 505.89pt>
+File: Pictures/PolOther.pdf Graphic file (type pdf)
+
+<use Pictures/PolOther.pdf>
+Package pdftex.def Info: Pictures/PolOther.pdf used on input line 280.
+(pdftex.def)             Requested size: 202.3524pt x 202.3524pt.
+
+Overfull \hbox (13.5428pt too wide) in paragraph at lines 280--281
+[][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[15 <./Pictures/RaceGenderPolit.pdf>] [16 <./Pictures/PolBlack.pdf> <./Pictures
+/PolWhite.pdf> <./Pictures/PolOther.pdf>]
+<Pictures/RaceGenderStrike.pdf, id=148, 505.89pt x 505.89pt>
+File: Pictures/RaceGenderStrike.pdf Graphic file (type pdf)
+
+<use Pictures/RaceGenderStrike.pdf>
+Package pdftex.def Info: Pictures/RaceGenderStrike.pdf used on input line 307.
+(pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
+ [17 <./Pictures/RaceGenderStrike.pdf>]
+<Pictures/GenderGenderStrike.pdf, id=159, 505.89pt x 505.89pt>
+File: Pictures/GenderGenderStrike.pdf Graphic file (type pdf)
+
+<use Pictures/GenderGenderStrike.pdf>
+Package pdftex.def Info: Pictures/GenderGenderStrike.pdf used on input line 339
+.
+(pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
+ [18 <./Pictures/GenderGenderStrike.pdf>]
+<Pictures/StubGenderComp.pdf, id=170, 505.89pt x 505.89pt>
+File: Pictures/StubGenderComp.pdf Graphic file (type pdf)
+
+<use Pictures/StubGenderComp.pdf>
+Package pdftex.def Info: Pictures/StubGenderComp.pdf used on input line 369.
+(pdftex.def)             Requested size: 202.3524pt x 202.3524pt.
+
+Overfull \hbox (13.5428pt too wide) in paragraph at lines 369--370
+[][] 
+ []
+
+<Pictures/PhilGenderComp.pdf, id=171, 505.89pt x 505.89pt>
+File: Pictures/PhilGenderComp.pdf Graphic file (type pdf)
+
+<use Pictures/PhilGenderComp.pdf>
+Package pdftex.def Info: Pictures/PhilGenderComp.pdf used on input line 375.
+(pdftex.def)             Requested size: 202.3524pt x 202.3524pt.
+
+Overfull \hbox (13.5428pt too wide) in paragraph at lines 375--376
+[][] 
+ []
+
+<Pictures/SunGenderComp.pdf, id=172, 505.89pt x 505.89pt>
+File: Pictures/SunGenderComp.pdf Graphic file (type pdf)
+
+<use Pictures/SunGenderComp.pdf>
+Package pdftex.def Info: Pictures/SunGenderComp.pdf used on input line 381.
+(pdftex.def)             Requested size: 202.3524pt x 202.3524pt.
+
+Overfull \hbox (13.5428pt too wide) in paragraph at lines 381--382
+[][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[19] [20 <./Pictures/StubGenderComp.pdf> <./Pictures/PhilGenderComp.pdf> <./Pic
+tures/SunGenderComp.pdf>]
+
+LaTeX Warning: Reference `eq:noraceintmod' on page 21 undefined on input line 4
+31.
+
+
+LaTeX Warning: Reference `eq:novmmod' on page 21 undefined on input line 431.
+
+
+LaTeX Warning: Reference `eq:fullmod' on page 21 undefined on input line 431.
+
+
+LaTeX Warning: Reference `eq:fullmod' on page 21 undefined on input line 453.
+
+
+LaTeX Warning: Reference `tab:fullmodracecoef' on page 21 undefined on input li
+ne 456.
+
+<Pictures/AllModCoef.pdf, id=210, 505.89pt x 505.89pt>
+File: Pictures/AllModCoef.pdf Graphic file (type pdf)
+
+<use Pictures/AllModCoef.pdf>
+Package pdftex.def Info: Pictures/AllModCoef.pdf used on input line 469.
+(pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 472.
+
+
+LaTeX Warning: Reference `eq:fullmod' on page 21 undefined on input line 472.
+
+
+LaTeX Warning: Reference `eq:fullmod' on page 21 undefined on input line 472.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Pictures/SelectModCoef.pdf, id=211, 505.89pt x 505.89pt>
+File: Pictures/SelectModCoef.pdf Graphic file (type pdf)
+
+<use Pictures/SelectModCoef.pdf>
+Package pdftex.def Info: Pictures/SelectModCoef.pdf used on input line 487.
+(pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
+ [21]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[22 <./Pictures/AllModCoef.pdf>]
+
+LaTeX Warning: Reference `tab:rejbounds' on page 23 undefined on input line 519
+.
+
+[23 <./Pictures/SelectModCoef.pdf>] [24] [25]
+<Pictures/DefProStrikesTrial.pdf, id=246, 505.89pt x 505.89pt>
+File: Pictures/DefProStrikesTrial.pdf Graphic file (type pdf)
+
+<use Pictures/DefProStrikesTrial.pdf>
+Package pdftex.def Info: Pictures/DefProStrikesTrial.pdf used on input line 618
+.
+(pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
+ [26 <./Pictures/DefProStrikesTrial.pdf>]
+<Pictures/DefStrProp.pdf, id=256, 505.89pt x 505.89pt>
+File: Pictures/DefStrProp.pdf Graphic file (type pdf)
+
+<use Pictures/DefStrProp.pdf>
+Package pdftex.def Info: Pictures/DefStrProp.pdf used on input line 650.
+(pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
+
+Overfull \hbox (15.23578pt too wide) in paragraph at lines 650--651
+[][] 
+ []
+
+<Pictures/ProStrProp.pdf, id=257, 505.89pt x 505.89pt>
+File: Pictures/ProStrProp.pdf Graphic file (type pdf)
+
+<use Pictures/ProStrProp.pdf>
+Package pdftex.def Info: Pictures/ProStrProp.pdf used on input line 656.
+(pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
+
+Overfull \hbox (15.23578pt too wide) in paragraph at lines 656--657
+[][] 
+ []
+
+[27 <./Pictures/DefStrProp.pdf> <./Pictures/ProStrProp.pdf>]
+Overfull \hbox (22.35345pt too wide) in paragraph at lines 686--692
+\OT1/ptm/m/n/12 Van Dyke (1977) spends much of chap-ters four and five ex-plor-
+ing the causes for the under-representation
+ []
+
+) (Summary.tex [28] [29]) (ShortenedThesis.bbl [30]
+Underfull \hbox (badness 10000) in paragraph at lines 72--76
+[]\OT1/ptm/m/n/12 Government of Canada (1985).  Crim-i-nal code sec-tion 634.  
+https://laws-
+ []
+
+[31]
+Underfull \hbox (badness 7851) in paragraph at lines 97--103
+[]\OT1/ptm/m/n/12 Hasan, N. R. (2018).  Elim-i-nat-ing peremp-tory chal-lenges 
+makes tri-als less fair.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--146
+\OT1/ptm/m/n/12 macnab/stanley-acquittal-should-not-lead-to-scrapping-peremptor
+y-challenges-say-criminal-
+ []
+
+
+Underfull \hbox (badness 5802) in paragraph at lines 172--179
+[]\OT1/ptm/m/n/12 Quenneville, G. and War-ick, J. (2018a).  'Deck is stacked ag
+ainst us,'says fam-
+ []
+
+
+Underfull \hbox (badness 5203) in paragraph at lines 172--179
+\OT1/ptm/m/n/12 ily of Colten Boushie af-ter jury cho-sen for Ger-ald Stan-ley 
+trial.  CBC News.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--179
+\OT1/ptm/m/n/12 https://www.cbc.ca/news/canada/saskatoon/colten-boushie-shootin
+g-case-jury-selection-gerald-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 181--188
+[]\OT1/ptm/m/n/12 Quenneville, G. and War-ick, J. (2018b).  Shouts of 'mur-dere
+r' in court-room
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 181--188
+\OT1/ptm/m/n/12 af-ter Ger-ald Stan-ley ac-quit-ted in Colten Boushie shoot-ing
+.  CBC News.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 181--188
+\OT1/ptm/m/n/12 https://www.cbc.ca/news/canada/saskatoon/gerald-stanley-colten-
+boushie-verdict-1.4526313
+ []
+
+[32]
+Underfull \hbox (badness 10000) in paragraph at lines 228--232
+[]\OT1/ptm/m/n/12 Supreme Court of the United States (1965).  Swain v. Al-abama
+.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--238
+[]\OT1/ptm/m/n/12 Supreme Court of the United States (1986).  Bat-son v. Ken-tu
+cky.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--244
+[]\OT1/ptm/m/n/12 Supreme Court of the United States (1993).  J.E.B. v. Al-abam
+a.
+ []
+
+
+Underfull \hbox (badness 1755) in paragraph at lines 268--275
+[]\OT1/ptm/m/n/12 Woolley, A. (2018).  An Eth-i-cal Jury? Re-flec-tions on the 
+Ac-quit-tal of Ger-ald Stan-
+ []
+
+
+Underfull \hbox (badness 3108) in paragraph at lines 268--275
+\OT1/ptm/m/it/12 a-zine\OT1/ptm/m/n/12 .  http://www.slaw.ca/2018/02/20/an-ethi
+cal-jury-reflections-on-the-acquittal-of-gerald-
+ []
+
+
+Underfull \hbox (badness 4048) in paragraph at lines 283--289
+[]\OT1/ptm/m/n/12 Zinchuk, B. (2018).  Both sides wrong about Stan-ley trial.  
+Prince George Cit-i-
+ []
+
+
+Underfull \hbox (badness 1348) in paragraph at lines 283--289
+\OT1/ptm/m/n/12 zen.  https://www.princegeorgecitizen.com/opinion/editorial/bot
+h-sides-wrong-about-stanley-
+ []
+
+[33]) [34] (ShortenedThesis.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 7444 strings out of 493328
+ 109476 string characters out of 3139124
+ 181055 words of memory out of 3000000
+ 10806 multiletter control sequences out of 15000+200000
+ 35144 words of font info for 77 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 42i,9n,40p,802b,491s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
+/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pf
+b>
+Output written on ShortenedThesis.pdf (34 pages, 379228 bytes).
+PDF statistics:
+ 344 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+

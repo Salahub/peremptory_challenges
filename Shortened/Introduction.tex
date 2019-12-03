@@ -1,0 +1,48 @@
+\section{Introduction} \label{c:introduction}
+
+Recent racial controversy (\cite{fiverejected}; \cite{fraughthistory}) related to the use of the peremptory challenge in \textit{R. v. Stanley} (\cite{GeraldStanleyVerdict}) have culminated in legislative changes to the legal practice in Canada with the proposition of Bill C-75 by the 42nd Parliament of Canada (\cite{billc75}). With Bill C-75 currently moving through the Canadian parliamentary system, having completed its second reading in June
+2018 (\cite{c75legisinfo}), an evaluation of the practice of peremptory challenge is warranted. A great deal of ink has
+already been spilled on both sides of the debate (\cite{peremparegood}; \cite{bothwrong}; \cite{goodfirststep}), but startlingly
+little of this discussion has been based on any hard, quantitive evidence on the impact of peremptory challenge in jury
+selection. This paper aims to provide analysis and evidence to illuminate the topic further by analyzing three separate peremptory
+challenge data sets collected in the United States, namely the data from \cite{JurySunshineProj}, \cite{StubbornLegacy}, and
+\cite{PerempChalMurder}, henceforth the ``Sunshine,'' ``Stubborn,'' and ``Philadelphia'' data sets respectively. While this data cannot reveal anything about the alleged racial motivation of peremptory challenge use in
+\textit{R. v. Stanley}, a wider view of the practice is a more sober
+place to assess its role in modern jury trials than the dissection of a particular controversial case.
+
+Of course, this work is not the first such investigation. \cite{JurySunshineProj}, \cite{StubbornLegacy}, and
+\cite{PerempChalMurder} have performed analysis on the factors which
+impact the use of peremptory challenges in their respective data
+sets. All of these
+investigations indicated that race was an important factor in
+determining if a venire member was struck. Numerous others have
+performed unique legal, empirical, and analytical analyses of the jury
+selection process, including
+\cite{hoffman1997}, \cite{vandykejurysel}, \cite{hansvidjudging}, \cite{brown1978}, and \cite{ford2010}. Most of the authors which have
+performed such analysis arrive at similar conclusions on the general importance of race in the exercise of peremptory challenges,
+and the negative impact this has on the operation and perception of justice in the legal system. \cite{hoffman1997} gives an
+exceptionally negative analysis of peremptory challenges from a legal perspective, while the game theory analysis of
+\cite{ford2010} suggests that the use of peremptory challenges may even be counter-productive.
+
+What is, perhaps crucially, missing from this rich analysis is an effective method of communicating these results. While the
+tables generated to summarize the previous analyses certainly contain
+all the data necessary to evaluate strike patterns, they fail
+to be accessible to a casual reader, as they require some degree of commitment and focus to interpret and compare. Visual
+representations of the data which could be used for such quick
+comparison and interpretation would facilitate dissemination of
+the empirical results of these analyses to a broader audience, and would make the work of comparing and interpreting data sets far
+more intuitive than the current table representations. This work endeavours to provide such visual tools.
+
+Consequently, this work proceeds in four parts. Section \ref{c:background} provides the necessary legal context to understand the
+motivation of the previous investigations. In \ref{sec:jurysel}, the general jury selection procedure is presented before the
+modern controversies of this process are outlined in \ref{sec:modper}. Legal arguments for both the jury and the peremptory
+challenge are provided interspersed in this modern history in \ref{sec:rolejur} and \ref{sec:roleper}. With the necessary context provided, Section \ref{c:data} proceeds to discuss the three data sets obtained, explaining the sources
+and collection methods before detailing cleaning and
+preprocessing. Section \ref{c:analysis} then provides the details and results
+of the analysis performed on the different data sets. It begins by performing statistical analysis of one common argument in
+favour of peremptory challenge in \ref{sec:extremes} before visualizing the Sunshine data in \ref{sec:impactrace} and
+\ref{sec:otherfact}. Mobile plots (see Section \ref{c:devmob}) are the primary tool used for this visual analysis of the data, and
+every visualization of the Sunshine data set is compared to analogous visualizations of the Stubborn and Philadelphia data
+sets. The implications of their similarities for generalization are discussed. These visual analyses are then used to motivate
+model selection in \ref{sec:mods} in order to estimate more precisely the impact of race in the Sunshine data. These results and
+findings are summarized in Section \ref{c:summary}. Recommendations based on the observations obtained are provided alongside suggestions for future work.

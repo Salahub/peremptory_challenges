@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+
+\usepackage{tabularx} 
+\usepackage{subcaption}
+\usepackage{pdfpages}
+\usepackage{amsbsy}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\graphicspath{{Pictures/}}
+\usepackage[longnamesfirst]{natbib}
+\usepackage{amsmath}
+\usepackage{enumerate}
+
+\usepackage{relsize}
+\usepackage{color}
+\usepackage{listings}
+
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin = 2.5cm]{geometry}
+
+\title{Seen to Be Done: A Graphical Analysis of Peremptory Challenge}
+\author{Chris Salahub}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The legal practice of peremptory challenges is described, outlining its past and present racial controversies as well as the
+modern defences typically provided in its favour. These arguments are analyzed statistically using novel visual tools including
+the mobile plot and the positional boxplot, which were developed to explore the impact of race on the exercise of peremptory
+challenges in three data sets (\cite{JurySunshineProj}, \cite{StubbornLegacy}, and \cite{PerempChalMurder}). Mulitnomial
+regression models motivated by these visualizations are fit and used to generate precise parameter estimates which indicate the
+dominance of race in peremptory challenge decisions for venire members across all data sets. Trial level summaries of the data
+from \cite{JurySunshineProj} are produced and discussed in the context of the results from the venire member models.
+\end{abstract}
+ 
+\pagenumbering{arabic}%--- switch back to standard numbering 
+
+\input{Introduction}
+\input{History}
+\input{Data}
+\input{Analysis}
+\input{Summary} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{apalike}
+\bibliography{myReferences}
+
+\end{document}

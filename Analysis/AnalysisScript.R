@@ -291,7 +291,7 @@ mobileplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, add
         ## add the corresponding end points
         points(adjx, yvals, col = temPal[ind], pch = 20)
         ## for aesthetics reduce line alpha if confidence intervals are plotted
-        if (testlines) lnal <- 0.5 else lnal <- 1
+        if (testlines) lnal <- 0.4 else lnal <- 1
         ## plot the lines
         for (ii in 1:length(adjx)) lines(x = rep(adjx[ii],2), y = c(meanline[ii], yvals[ii]),
                                                          lty = 2, col = adjustcolor(temPal[ind], alpha.f = lnal))
@@ -335,7 +335,7 @@ mobileplot <- function(tabl = NULL, tracemar = 1, deslev = NULL, wid = 0.02, add
             ## add the lines
             ##lines(x = errpos[pos] + ext, y = rep(cis[1,pos], 2), col = adjustcolor(errcol, alpha.f = 1))
             ##lines(x = errpos[pos] + ext, y = rep(cis[2,pos], 2), col = adjustcolor(errcol, alpha.f = 1))
-            lines(x = rep(errpos[pos], 2), y = cis[,pos], col = adjustcolor(errcol, alpha.f = 1))
+            lines(x = rep(errpos[pos], 2), y = cis[,pos], lwd = 1.5, col = adjustcolor(errcol, alpha.f = 0.6))
         }))
     }
     ## add a legend to explain the colours
@@ -817,19 +817,19 @@ with(sun.trialrace, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours =
 ## next by area, another encoding option in this function
 with(sun.trialrace, posboxplot(DefRemEst, ProRemEst, DefWhiteBlack, boxcolours = racePal2, xlab = "Defence Strike Count",
                                ylab = "Prosecution Strike Count", alphaencoding = FALSE, areaencoding = TRUE,
-                               main = "Prosecution and Defence Strikes by Trial"))
+                               main = "Prosecution and Defence Strikes per Trial by Defendant Race"))
 abline(a = 0, b = 1)
 
 ## what about counts for each side?
 ## use custom plot here
 with(sun.trialrace, posboxplot(Race.DefRem.Black, Race.DefRem.White, DefWhiteBlack, racePal2,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
-                              xlim = c(0,13), ylim = c(0,13), main = "Defence Strike Counts",
+                              xlim = c(-0.1,8), ylim = c(-0.1,8), main = "Defence Strike Counts by Defendant Race",
                               alphaencoding = FALSE, areaencoding = TRUE))
 ## more of the custom plot for the prosecution
 with(sun.trialrace, posboxplot(Race.ProRem.Black, Race.ProRem.White, DefWhiteBlack, racePal2,
                               xlab = "Black Venire Strike Count", ylab = "White Venire Strike Count",
-                              xlim = c(0,13), ylim = c(0,13), main = "Prosecution Strike Counts",
+                              xlim = c(-0.1,8), ylim = c(-0.1,8), main = "Prosecution Strike Counts by Defendant Race",
                               alphaencoding = FALSE, areaencoding = TRUE))
 
 ## break apart in more detail for the defence, first find the means by defendant race

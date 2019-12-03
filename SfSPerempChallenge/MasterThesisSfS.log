@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  25 FEB 2019 13:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  26 AUG 2019 10:29
 entering extended mode
 **./MasterThesisSfS.tex
 (MasterThesisSfS.tex
@@ -603,15 +603,15 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 Overfull \vbox (7.17722pt too high) has occurred while \output is active []
 
 
-[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+[1{C:/Users/Chris/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ] [2
 
 ]
 \openout2 = `Preface.aux'.
 
- (Preface.tex)
-[3
+
+(Preface.tex) [3
 
 
 ]
@@ -627,12 +627,12 @@ Overfull \vbox (7.17722pt too high) has occurred while \output is active []
 \tf@toc=\write4
 \openout4 = `MasterThesisSfS.toc'.
 
- [7] (MasterThesisSfS.lof)
+ [7]
+(MasterThesisSfS.lof)
 \tf@lof=\write5
 \openout5 = `MasterThesisSfS.lof'.
 
-
-[8] (MasterThesisSfS.lot)
+ [8] (MasterThesisSfS.lot)
 \tf@lot=\write6
 \openout6 = `MasterThesisSfS.lot'.
 
