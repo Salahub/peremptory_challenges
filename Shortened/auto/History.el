@@ -4,8 +4,7 @@
    (LaTeX-add-labels
     "c:background"
     "sec:jurysel"
-    "sec:rolejur"
     "sec:modper"
-    "sec:roleper"))
+    "sec:prevwork"))
  :latex)
 

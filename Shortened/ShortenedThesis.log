@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  12 NOV 2019 15:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  29 DEC 2019 15:54
 entering extended mode
 **\input ShortenedThesis.tex
 (ShortenedThesis.tex ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -425,38 +425,45 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
 
 {C:/Users/Chris/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 39.
 
 
-LaTeX Warning: Reference `c:devmob' on page 2 undefined on input line 44.
+LaTeX Warning: Reference `sec:rolejur' on page 2 undefined on input line 39.
+
+
+LaTeX Warning: Reference `sec:roleper' on page 2 undefined on input line 39.
 
 ) (History.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 8.
- [2] [3] [4] [5]) (Data.tex [6] [7]) (Analysis.tex [8] [9]
-<Pictures/RaceParCoord.pdf, id=39, 505.89pt x 505.89pt>
+ [2] [3] [4]) (Data.tex [5]) (Analysis.tex [6]
+
+LaTeX Warning: Reference `sec:roleper' on page 7 undefined on input line 11.
+
+[7] <Pictures/RaceParCoord.pdf, id=33, 505.89pt x 505.89pt>
 File: Pictures/RaceParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/RaceParCoord.pdf>
 Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 75.
 (pdftex.def)             Requested size: 330.42041pt x 330.42247pt.
- [10 <./Pictures/RaceParCoord.pdf>]
-<Pictures/RaceDefCI.pdf, id=50, 505.89pt x 505.89pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[8] [9 <./Pictures/RaceParCoord.pdf>]
+<Pictures/RaceDefCI.pdf, id=49, 505.89pt x 505.89pt>
 File: Pictures/RaceDefCI.pdf Graphic file (type pdf)
 
 <use Pictures/RaceDefCI.pdf>
 Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 132.
 (pdftex.def)             Requested size: 330.42041pt x 330.42247pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 145.
+
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [11]
-<Pictures/StubbornCompPlot.pdf, id=56, 505.89pt x 505.89pt>
+) [10 <./Pictures/RaceDefCI.pdf>] <Pictures/StubbornCompPlot.pdf, id=63, 505.89
+pt x 505.89pt>
 File: Pictures/StubbornCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/StubbornCompPlot.pdf>
@@ -467,7 +474,7 @@ Overfull \hbox (13.5428pt too wide) in paragraph at lines 160--161
 [][] 
  []
 
-<Pictures/PhillyCompPlot.pdf, id=57, 505.89pt x 505.89pt>
+<Pictures/PhillyCompPlot.pdf, id=64, 505.89pt x 505.89pt>
 File: Pictures/PhillyCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/PhillyCompPlot.pdf>
@@ -478,7 +485,7 @@ Overfull \hbox (13.5428pt too wide) in paragraph at lines 166--167
 [][] 
  []
 
-<Pictures/SunshineCompPlot.pdf, id=58, 505.89pt x 505.89pt>
+<Pictures/SunshineCompPlot.pdf, id=65, 505.89pt x 505.89pt>
 File: Pictures/SunshineCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/SunshineCompPlot.pdf>
@@ -492,14 +499,14 @@ Overfull \hbox (13.5428pt too wide) in paragraph at lines 172--173
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[12 <./Pictures/RaceDefCI.pdf>] [13 <./Pictures/StubbornCompPlot.pdf> <./Pictur
-es/PhillyCompPlot.pdf> <./Pictures/SunshineCompPlot.pdf>]
+[11] [12 <./Pictures/StubbornCompPlot.pdf> <./Pictures/PhillyCompPlot.pdf> <./P
+ictures/SunshineCompPlot.pdf>]
 Overfull \hbox (2.69485pt too wide) in paragraph at lines 223--227
 []\OT1/ptm/m/n/12 [The peremp-tory chal-lenge] is no less fre-quently ex-er-cis
 ed on grounds nor-mally thought
  []
 
-<Pictures/RaceGenderPolit.pdf, id=107, 505.89pt x 505.89pt>
+<Pictures/RaceGenderPolit.pdf, id=103, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderPolit.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderPolit.pdf>
@@ -509,7 +516,7 @@ Package pdftex.def Info: Pictures/RaceGenderPolit.pdf used on input line 242.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[14] <Pictures/PolBlack.pdf, id=111, 505.89pt x 505.89pt>
+<Pictures/PolBlack.pdf, id=104, 505.89pt x 505.89pt>
 File: Pictures/PolBlack.pdf Graphic file (type pdf)
 
 <use Pictures/PolBlack.pdf>
@@ -520,7 +527,7 @@ Overfull \hbox (13.5428pt too wide) in paragraph at lines 268--269
 [][] 
  []
 
-<Pictures/PolWhite.pdf, id=112, 505.89pt x 505.89pt>
+<Pictures/PolWhite.pdf, id=105, 505.89pt x 505.89pt>
 File: Pictures/PolWhite.pdf Graphic file (type pdf)
 
 <use Pictures/PolWhite.pdf>
@@ -531,7 +538,7 @@ Overfull \hbox (13.5428pt too wide) in paragraph at lines 274--275
 [][] 
  []
 
-<Pictures/PolOther.pdf, id=113, 505.89pt x 505.89pt>
+<Pictures/PolOther.pdf, id=106, 505.89pt x 505.89pt>
 File: Pictures/PolOther.pdf Graphic file (type pdf)
 
 <use Pictures/PolOther.pdf>
@@ -545,24 +552,31 @@ Overfull \hbox (13.5428pt too wide) in paragraph at lines 280--281
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[15 <./Pictures/RaceGenderPolit.pdf>] [16 <./Pictures/PolBlack.pdf> <./Pictures
-/PolWhite.pdf> <./Pictures/PolOther.pdf>]
-<Pictures/RaceGenderStrike.pdf, id=148, 505.89pt x 505.89pt>
+[13] <Pictures/RaceGenderStrike.pdf, id=111, 505.89pt x 505.89pt>
 File: Pictures/RaceGenderStrike.pdf Graphic file (type pdf)
 
 <use Pictures/RaceGenderStrike.pdf>
 Package pdftex.def Info: Pictures/RaceGenderStrike.pdf used on input line 307.
 (pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
- [17 <./Pictures/RaceGenderStrike.pdf>]
-<Pictures/GenderGenderStrike.pdf, id=159, 505.89pt x 505.89pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[14 <./Pictures/RaceGenderPolit.pdf>] [15 <./Pictures/PolBlack.pdf> <./Pictures
+/PolWhite.pdf> <./Pictures/PolOther.pdf>]
+<Pictures/GenderGenderStrike.pdf, id=146, 505.89pt x 505.89pt>
 File: Pictures/GenderGenderStrike.pdf Graphic file (type pdf)
 
 <use Pictures/GenderGenderStrike.pdf>
 Package pdftex.def Info: Pictures/GenderGenderStrike.pdf used on input line 339
 .
 (pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
- [18 <./Pictures/GenderGenderStrike.pdf>]
-<Pictures/StubGenderComp.pdf, id=170, 505.89pt x 505.89pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[16 <./Pictures/RaceGenderStrike.pdf>]
+<Pictures/StubGenderComp.pdf, id=157, 505.89pt x 505.89pt>
 File: Pictures/StubGenderComp.pdf Graphic file (type pdf)
 
 <use Pictures/StubGenderComp.pdf>
@@ -573,7 +587,7 @@ Overfull \hbox (13.5428pt too wide) in paragraph at lines 369--370
 [][] 
  []
 
-<Pictures/PhilGenderComp.pdf, id=171, 505.89pt x 505.89pt>
+<Pictures/PhilGenderComp.pdf, id=158, 505.89pt x 505.89pt>
 File: Pictures/PhilGenderComp.pdf Graphic file (type pdf)
 
 <use Pictures/PhilGenderComp.pdf>
@@ -584,7 +598,7 @@ Overfull \hbox (13.5428pt too wide) in paragraph at lines 375--376
 [][] 
  []
 
-<Pictures/SunGenderComp.pdf, id=172, 505.89pt x 505.89pt>
+<Pictures/SunGenderComp.pdf, id=159, 505.89pt x 505.89pt>
 File: Pictures/SunGenderComp.pdf Graphic file (type pdf)
 
 <use Pictures/SunGenderComp.pdf>
@@ -598,26 +612,27 @@ Overfull \hbox (13.5428pt too wide) in paragraph at lines 381--382
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[19] [20 <./Pictures/StubGenderComp.pdf> <./Pictures/PhilGenderComp.pdf> <./Pic
-tures/SunGenderComp.pdf>]
+[17 <./Pictures/GenderGenderStrike.pdf>] [18 <./Pictures/StubGenderComp.pdf> <.
+/Pictures/PhilGenderComp.pdf> <./Pictures/SunGenderComp.pdf>]
 
-LaTeX Warning: Reference `eq:noraceintmod' on page 21 undefined on input line 4
+LaTeX Warning: Reference `eq:noraceintmod' on page 19 undefined on input line 4
 31.
 
 
-LaTeX Warning: Reference `eq:novmmod' on page 21 undefined on input line 431.
+LaTeX Warning: Reference `eq:novmmod' on page 19 undefined on input line 431.
 
 
-LaTeX Warning: Reference `eq:fullmod' on page 21 undefined on input line 431.
+LaTeX Warning: Reference `eq:fullmod' on page 19 undefined on input line 431.
+
+[19]
+
+LaTeX Warning: Reference `eq:fullmod' on page 20 undefined on input line 453.
 
 
-LaTeX Warning: Reference `eq:fullmod' on page 21 undefined on input line 453.
-
-
-LaTeX Warning: Reference `tab:fullmodracecoef' on page 21 undefined on input li
+LaTeX Warning: Reference `tab:fullmodracecoef' on page 20 undefined on input li
 ne 456.
 
-<Pictures/AllModCoef.pdf, id=210, 505.89pt x 505.89pt>
+<Pictures/AllModCoef.pdf, id=207, 505.89pt x 505.89pt>
 File: Pictures/AllModCoef.pdf Graphic file (type pdf)
 
 <use Pictures/AllModCoef.pdf>
@@ -627,39 +642,35 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 472.
 
 
-LaTeX Warning: Reference `eq:fullmod' on page 21 undefined on input line 472.
+LaTeX Warning: Reference `eq:fullmod' on page 20 undefined on input line 472.
 
 
-LaTeX Warning: Reference `eq:fullmod' on page 21 undefined on input line 472.
+LaTeX Warning: Reference `eq:fullmod' on page 20 undefined on input line 472.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Pictures/SelectModCoef.pdf, id=211, 505.89pt x 505.89pt>
+[20 <./Pictures/AllModCoef.pdf>]
+<Pictures/SelectModCoef.pdf, id=220, 505.89pt x 505.89pt>
 File: Pictures/SelectModCoef.pdf Graphic file (type pdf)
 
 <use Pictures/SelectModCoef.pdf>
 Package pdftex.def Info: Pictures/SelectModCoef.pdf used on input line 487.
 (pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
- [21]
+ [21 <./Pictures/SelectModCoef.pdf>]
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[22 <./Pictures/AllModCoef.pdf>]
-
-LaTeX Warning: Reference `tab:rejbounds' on page 23 undefined on input line 519
+LaTeX Warning: Reference `tab:rejbounds' on page 22 undefined on input line 519
 .
 
-[23 <./Pictures/SelectModCoef.pdf>] [24] [25]
-<Pictures/DefProStrikesTrial.pdf, id=246, 505.89pt x 505.89pt>
+[22] [23] <Pictures/DefProStrikesTrial.pdf, id=239, 505.89pt x 505.89pt>
 File: Pictures/DefProStrikesTrial.pdf Graphic file (type pdf)
 
 <use Pictures/DefProStrikesTrial.pdf>
 Package pdftex.def Info: Pictures/DefProStrikesTrial.pdf used on input line 618
 .
 (pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
- [26 <./Pictures/DefProStrikesTrial.pdf>]
-<Pictures/DefStrProp.pdf, id=256, 505.89pt x 505.89pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[24] <Pictures/DefStrProp.pdf, id=243, 505.89pt x 505.89pt>
 File: Pictures/DefStrProp.pdf Graphic file (type pdf)
 
 <use Pictures/DefStrProp.pdf>
@@ -670,7 +681,7 @@ Overfull \hbox (15.23578pt too wide) in paragraph at lines 650--651
 [][] 
  []
 
-<Pictures/ProStrProp.pdf, id=257, 505.89pt x 505.89pt>
+<Pictures/ProStrProp.pdf, id=244, 505.89pt x 505.89pt>
 File: Pictures/ProStrProp.pdf Graphic file (type pdf)
 
 <use Pictures/ProStrProp.pdf>
@@ -681,19 +692,23 @@ Overfull \hbox (15.23578pt too wide) in paragraph at lines 656--657
 [][] 
  []
 
-[27 <./Pictures/DefStrProp.pdf> <./Pictures/ProStrProp.pdf>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[25 <./Pictures/DefProStrikesTrial.pdf>]
 Overfull \hbox (22.35345pt too wide) in paragraph at lines 686--692
 \OT1/ptm/m/n/12 Van Dyke (1977) spends much of chap-ters four and five ex-plor-
 ing the causes for the under-representation
  []
 
-) (Summary.tex [28] [29]) (ShortenedThesis.bbl [30]
+) (Summary.tex [26 <./Pictures/DefStrProp.pdf> <./Pictures/ProStrProp.pdf>]
+[27] [28]) (ShortenedThesis.bbl [29]
 Underfull \hbox (badness 10000) in paragraph at lines 72--76
 []\OT1/ptm/m/n/12 Government of Canada (1985).  Crim-i-nal code sec-tion 634.  
 https://laws-
  []
 
-[31]
+
 Underfull \hbox (badness 7851) in paragraph at lines 97--103
 []\OT1/ptm/m/n/12 Hasan, N. R. (2018).  Elim-i-nat-ing peremp-tory chal-lenges 
 makes tri-als less fair.
@@ -705,7 +720,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 139--146
 y-challenges-say-criminal-
  []
 
-
+[30]
 Underfull \hbox (badness 5802) in paragraph at lines 172--179
 []\OT1/ptm/m/n/12 Quenneville, G. and War-ick, J. (2018a).  'Deck is stacked ag
 ainst us,'says fam-
@@ -741,7 +756,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 181--188
 boushie-verdict-1.4526313
  []
 
-[32]
+
 Underfull \hbox (badness 10000) in paragraph at lines 228--232
 []\OT1/ptm/m/n/12 Supreme Court of the United States (1965).  Swain v. Al-abama
 .
@@ -753,7 +768,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 234--238
 cky.
  []
 
-
+[31]
 Underfull \hbox (badness 10000) in paragraph at lines 240--244
 []\OT1/ptm/m/n/12 Supreme Court of the United States (1993).  J.E.B. v. Al-abam
 a.
@@ -783,16 +798,16 @@ Underfull \hbox (badness 1348) in paragraph at lines 283--289
 h-sides-wrong-about-stanley-
  []
 
-[33]) [34] (ShortenedThesis.aux)
+) [32] (ShortenedThesis.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7444 strings out of 493328
- 109476 string characters out of 3139124
- 181055 words of memory out of 3000000
- 10806 multiletter control sequences out of 15000+200000
+ 7443 strings out of 493328
+ 109466 string characters out of 3139124
+ 183043 words of memory out of 3000000
+ 10805 multiletter control sequences out of 15000+200000
  35144 words of font info for 77 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,9n,40p,802b,491s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -808,9 +823,9 @@ Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 /times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pf
 b>
-Output written on ShortenedThesis.pdf (34 pages, 379228 bytes).
+Output written on ShortenedThesis.pdf (32 pages, 373413 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
+ 338 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
