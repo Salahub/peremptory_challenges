@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  7 JAN 2020 19:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  8 JAN 2020 17:27
 entering extended mode
 **\input ShortenedThesis.tex
 (ShortenedThesis.tex ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -495,111 +495,63 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [9 <./Pictures/RaceDefCI.pdf>] [10 <./Pictures/StubbornCompPlot.pdf> <./Picture
 s/PhillyCompPlot.pdf> <./Pictures/SunshineCompPlot.pdf>]
 
-LaTeX Warning: Reference `eq:noraceintmod' on page 11 undefined on input line 2
-05.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-LaTeX Warning: Reference `eq:novmmod' on page 11 undefined on input line 205.
-
-
-LaTeX Warning: Reference `eq:fullmod' on page 11 undefined on input line 205.
-
-[11]
-
-LaTeX Warning: Reference `eq:fullmod' on page 12 undefined on input line 227.
-
-<Pictures/AllModCoef.pdf, id=97, 505.89pt x 505.89pt>
+[11] <Pictures/AllModCoef.pdf, id=97, 505.89pt x 505.89pt>
 File: Pictures/AllModCoef.pdf Graphic file (type pdf)
 
 <use Pictures/AllModCoef.pdf>
-Package pdftex.def Info: Pictures/AllModCoef.pdf used on input line 235.
+Package pdftex.def Info: Pictures/AllModCoef.pdf used on input line 221.
 (pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 238.
-
-
-LaTeX Warning: Reference `eq:fullmod' on page 12 undefined on input line 238.
-
-
-LaTeX Warning: Reference `eq:fullmod' on page 12 undefined on input line 238.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-LaTeX Warning: Reference `sec:impactrace' on page 12 undefined on input line 26
-6.
-
-[12]
-
-LaTeX Warning: Reference `tab:rejbounds' on page 13 undefined on input line 275
-.
-
-[13 <./Pictures/AllModCoef.pdf>]
-
-LaTeX Warning: Reference `sec:otherfact' on page 14 undefined on input line 291
-.
-
-
-LaTeX Warning: Reference `sec:impactrace' on page 14 undefined on input line 29
-1.
-
-
-LaTeX Warning: Reference `sec:polaff' on page 14 undefined on input line 314.
-
-[14] <Pictures/DefProStrikesTrial.pdf, id=117, 505.89pt x 505.89pt>
+[12] [13 <./Pictures/AllModCoef.pdf>] [14]
+<Pictures/DefProStrikesTrial.pdf, id=117, 505.89pt x 505.89pt>
 File: Pictures/DefProStrikesTrial.pdf Graphic file (type pdf)
 
 <use Pictures/DefProStrikesTrial.pdf>
-Package pdftex.def Info: Pictures/DefProStrikesTrial.pdf used on input line 360
+Package pdftex.def Info: Pictures/DefProStrikesTrial.pdf used on input line 314
 .
 (pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: Reference `fig:gengen' on page 15 undefined on input line 377.
-
-[15] <Pictures/DefStrProp.pdf, id=121, 505.89pt x 505.89pt>
+ [15 <./Pictures/DefProStrikesTrial.pdf>]
+<Pictures/DefStrProp.pdf, id=127, 505.89pt x 505.89pt>
 File: Pictures/DefStrProp.pdf Graphic file (type pdf)
 
 <use Pictures/DefStrProp.pdf>
-Package pdftex.def Info: Pictures/DefStrProp.pdf used on input line 392.
+Package pdftex.def Info: Pictures/DefStrProp.pdf used on input line 339.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (15.23578pt too wide) in paragraph at lines 392--393
+Overfull \hbox (15.23578pt too wide) in paragraph at lines 339--340
 [][] 
  []
 
-<Pictures/ProStrProp.pdf, id=122, 505.89pt x 505.89pt>
+<Pictures/ProStrProp.pdf, id=128, 505.89pt x 505.89pt>
 File: Pictures/ProStrProp.pdf Graphic file (type pdf)
 
 <use Pictures/ProStrProp.pdf>
-Package pdftex.def Info: Pictures/ProStrProp.pdf used on input line 398.
+Package pdftex.def Info: Pictures/ProStrProp.pdf used on input line 345.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (15.23578pt too wide) in paragraph at lines 398--399
+Overfull \hbox (15.23578pt too wide) in paragraph at lines 345--346
 [][] 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[16 <./Pictures/DefProStrikesTrial.pdf>]) (Summary.tex [17 <./Pictures/DefStrPr
-op.pdf> <./Pictures/ProStrProp.pdf>] [18] [19]) (ShortenedThesis.bbl
+) (Summary.tex [16 <./Pictures/DefStrProp.pdf> <./Pictures/ProStrProp.pdf>]
+[17]) (ShortenedThesis.bbl [18]
 Underfull \hbox (badness 10000) in paragraph at lines 53--60
 \OT1/ptm/m/n/12 ontario-judge-strikes-down-federal-ban-on-peremptory-jury-selec
 tion/ (Ac-cessed Jan-uary
  []
 
-[20]
+
 Underfull \hbox (badness 10000) in paragraph at lines 73--77
 []\OT1/ptm/m/n/12 Government of Canada (1985).  Crim-i-nal code sec-tion 634.  
 https://laws-
  []
 
-
+[19]
 Underfull \hbox (badness 7851) in paragraph at lines 98--104
 []\OT1/ptm/m/n/12 Hasan, N. R. (2018).  Elim-i-nat-ing peremp-tory chal-lenges 
 makes tri-als less fair.
@@ -611,7 +563,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 135--142
 y-challenges-say-criminal-
  []
 
-[21]
+
 Underfull \hbox (badness 10000) in paragraph at lines 168--175
 []\OT1/ptm/m/n/12 Quenneville, G. and War-ick, J. (2018).  Shouts of 'mur-derer
 ' in court-room
@@ -629,7 +581,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 168--175
 boushie-verdict-1.4526313
  []
 
-
+[20]
 Underfull \hbox (badness 10000) in paragraph at lines 215--219
 []\OT1/ptm/m/n/12 Supreme Court of the United States (1965).  Swain v. Al-abama
 .
@@ -659,7 +611,7 @@ Underfull \hbox (badness 3108) in paragraph at lines 255--262
 cal-jury-reflections-on-the-acquittal-of-gerald-
  []
 
-[22]
+
 Underfull \hbox (badness 4048) in paragraph at lines 270--276
 []\OT1/ptm/m/n/12 Zinchuk, B. (2018).  Both sides wrong about Stan-ley trial.  
 Prince George Cit-i-
@@ -671,31 +623,27 @@ Underfull \hbox (badness 1348) in paragraph at lines 270--276
 h-sides-wrong-about-stanley-
  []
 
-) [23] (ShortenedThesis.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+) [21] (ShortenedThesis.aux) ) 
 Here is how much of TeX's memory you used:
- 7357 strings out of 493328
- 107488 string characters out of 3139124
+ 7346 strings out of 493328
+ 107342 string characters out of 3139124
  180725 words of memory out of 3000000
- 10734 multiletter control sequences out of 15000+200000
- 30659 words of font info for 70 fonts, out of 3000000 for 9000
+ 10724 multiletter control sequences out of 15000+200000
+ 29033 words of font info for 68 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,9n,40p,841b,491s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/urw/times/utmri8a.pfb>
-Output written on ShortenedThesis.pdf (23 pages, 271326 bytes).
+ 42i,9n,40p,768b,491s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base
+/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
+utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ShortenedThesis.pdf (21 pages, 264138 bytes).
 PDF statistics:
- 206 PDF objects out of 1000 (max. 8388607)
+ 200 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

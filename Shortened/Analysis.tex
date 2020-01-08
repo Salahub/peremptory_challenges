@@ -171,38 +171,24 @@ race itself. There may be a plethora of attitudes associated with race that coul
 challenge, as noted by Justice Byron R. White in the majority opinion in \textit{Swain v. Alabama} [\cite{swainvalabama}].
 
 Without detailed transcripts detailing voire dire, it cannot be known if the aggregate pattern of removal is the result of racially based strikes, or whether the lawyers
-determined valid reasons for a peremptory challenge during the voir dire process related to race. For example, if
-defence attorneys reasonably assumed that deference to authority would make a venire member insurmountably predisposed to reject
-their arguments about mishandling of evidence by police, this would be reasonable grounds for
-peremptory challenge. If such opinions were distributed heterogeneously by race, the aggregate pattern may appear to reflect
-racially-based decision making by the defence attorneys despite the
-true explanation being legitimate and non-racial. Such ``ideological imbalance'' in political affiliation was noted in \cite{revesz2016}.
+determined valid reasons for a peremptory challenge related to race. Striking a venire member due to their political affiliation, for example, would be allowed, and so racial heterogeneity could cause valid strikes to appear invalid. Such an ``ideological imbalance'' in racial political affiliations is actually present in this data set, and has been noted elsewhere in the literature [\cite{revesz2016}].
 
-Answering this question precisely requires that all available confounding factors be controlled. While such controlled modelling has already been completed for \cite{StubbornLegacy} and \cite{PerempChalMurder}, no such modelling has been completed for the much richer and larger Jury Sunshine data set. The design of the mobile plot further motivates such multivariable regression by suggesting a particular form of model: the multinomial logistic regression model.
+Consequently, answering the question of peremptory strike validity precisely requires that all available confounding factors be controlled. While such controlled modelling has already been completed for \cite{StubbornLegacy} and \cite{PerempChalMurder}, no such modelling has been completed for the much richer and larger Jury Sunshine data set. The design of the mobile plot further motivates such multivariate regression by suggesting a particular form of model: the multinomial logistic regression model.
 
 \subsubsection{Multinomial Logistic Regression}
 
-Though the above results in the Sunshine data set may be suggestive, refining the estimates for the impact of race on the
-probability of rejection and controlling for the myriad of possible confounding factors motivated the fitting of multiple
-models. This is helped by the nature of the mobile plots used in
-Figure \ref{fig:racedefmob} and elsewhere. The mobile plot displays the
-conditional distribution of a categorical variable with multiple levels, which suggests modelling with a conditional multinomial
-distribution. Consequently, fitting multinomial log-linear regression, or equivalently a Poisson regression [\cite{baker1994}; \cite{lang1996}], seemed a natural choice. The specific implementation of multinomial regression utilized is the
-\texttt{multinom} function in the \texttt{nnet} package in R, which implements a method of fitting multinomial models discussed
+The mobile plot used in Figure \ref{fig:racedefmob} displays the
+conditional distribution of a categorical variable with multiple levels given some combination of other variables. The natural model to complement this plot, then, would be a conditional multinomial model. Consequently, a multinomial log-linear regression model, or equivalently a Poisson regression [\cite{baker1994}; \cite{lang1996}], was chosen to model the data. The specific implementation of multinomial regression utilized is the
+\texttt{multinom} function in the \texttt{nnet} package in R, which implements a method of fitting multinomial logistic regression models discussed
 in \cite{nnet}.
 
 For all models, the pivot outcome chosen was the probability of a
 venire member sitting on the final jury, in other words the probability their disposition was coded as \texttt{Kept}. Coefficients were
 then estimated using treatment contrasts with a black female venire member with Democrat voting tendencies in a case with a black female
-defendant used as the reference treatment.
+defendant used as the reference treatment. While the choice of race, gender, and political affiliation for the reference level was not deliberate, the choice of pivot outcome, that of a venire member being kept, was made in order to make the visualizations of model coefficients easily compared to previous visualizations. Choosing another pivot would have hidden its effect as the intercept, making comparison more complicated.
 
-While the choice of race, gender, and political affiliation for the reference level was not deliberate, the choice of pivot
-outcome, that of a venire member being kept, was made in order to make the visualizations constructed using the coefficients easy to compare to previous visualizations. Previous visualizations, including the mobile plots, have displayed the
-conditional probabilities of removal with cause and strikes by defence and prosecution, and if any were used as the pivot their
-coefficient estimates would be hidden as the intercept.
-
-The mobile plots created in \ref{sec:visual} also suggest that an interaction between race and
-defendant race is relevant in modelling the conditional probability of venire member rejection. This motivated a model of all main effects and an interaction effect between the race of the venire member and that of the defendant, called the full model. To test this interaction and the impact of venire member race in the presence of all other variables, models excluding this interaction and excluding venire member race were also fit, called reduced models 1 and 2 respectively. The deviance residuals of all three models were used to perform ANOVA tests comparing \ref{eq:noraceintmod} and \ref{eq:novmmod} to \ref{eq:fullmod}. These can be see in Table \ref{tab:modcomp}, which compares the deviances of the different models sequentially when fit to the Jury Sunshine Data.
+The mobile plots created in \ref{sec:visual} suggest two main features to investigate. The first is the obvious impact of race in peremptory challenge use, and the second is the interaction between race and
+defendant race, as there were some slight differences seen for different racial combinations. A model of all main effects and an interaction effect between the race of the venire member and that of the defendant, called the full model, was therefore fit. To test the interaction and race effects in the presence of all other variables, nested models excluding this interaction and excluding venire member race were also fit, called reduced models 1 and 2 respectively. The deviance residuals of all three models were used to perform ANOVA tests comparing the models. These can be see in Table \ref{tab:modcomp}, which compares the deviances of the different models sequentially when fit to the Sunshine data.
 
 \begin{table}[h!]
   \centering
@@ -224,8 +210,8 @@ the rejection of venire members is, at least in part, based on their racial char
 is underdispersed, implying that the significant test results gained
 are conservative.
 
-Due to its significance compared to the other models, \ref{eq:fullmod} was taken as the final model to estimate the race effects
-with precision. Inspired by \cite{dotwhisker}, a custom dot and whisker plot was generated to display these coefficients. This plot displays the coefficient estimates as points in the centre of a line, the endpoints of which
+Due to its significance compared to the other models, the full model was taken as the final model to estimate the race effects
+with precision. Inspired by the dot-whisker plot [\cite{dotwhisker}], a custom dot-whisker plot was designed to display the model coefficients. This plot displays the coefficient estimates as points in the centre of a line, the endpoints of which
 give the associated confidence intervals. A vertical line is placed at zero to provide a reference for the sign and significance
 of different parameters. Modifying this concept to suit the multinomial regression data was simple, as it only required grouping
 the different possible outcomes for each parameter spatially.  The estimated coefficients for the different effects and their approximate 95\% confidence intervals, calculated using the standard errors of the coefficients and using a normal assumption, are displayed using this modified dot-whisker plot in Figure \ref{fig:modallcoef}.
@@ -233,7 +219,7 @@ the different possible outcomes for each parameter spatially.  The estimated coe
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.7]{AllModCoef}
-  \caption[All Model Coefficients]{\footnotesize Model coefficients from the full model, \ref{eq:fullmod}, displayed using
+  \caption[All Model Coefficients]{\footnotesize Model coefficients from the full model displayed using
     a dot-whisker plot. The lines indicate the confidence intervals while the central points indicate the point estimates of
     coefficients.}
   \label{fig:modallcoef}
@@ -247,38 +233,26 @@ the different possible outcomes for each parameter spatially.  The estimated coe
 %  \label{fig:modselcoef}
 %\end{figure}
 
-The first feature of this plot to notice is the position of the coefficient estimates relative to the black line at zero. This
-indicates the sign of the coefficient, positive if the point is to the right and negative if it is to the left. A positive sign
+The first noteworthy feature of this plot is the position of the coefficient estimates relative to the black line at zero. These
+indicate the sign of a coefficient, positive if the point is to the right and negative if it is to the left. A positive sign
 indicates that the factor corresponding to the coefficient increases the probability of a venire member being struck by a particular party and a negative sign indicates that the presence of said factor decreases the
-probability of a venire member being struck. The pattern of positive and negative values suggests the uncontrolled patterns
-noticed in the mobile plots were not the result of confounding.
+probability of a venire member being struck. The pattern of positive and negative values suggests the racial patterns
+noticed in the mobile plots were not the result of confounding with any recorded variables.
 
-First, take a broad overview of the patterns. The variables which show the greatest significance and the characteristic
-oppositional tendencies of the prosecution and defence are all race variables. The effect of a white venire member, white
-defendant, and their interaction all display significant, and opposite, tendencies for these two oppositional parties. Moreover,
-the magnitude of the defence coefficients is always greater than the prosecution for the race variables. This suggests that the
-defence probability to strike is affected far more by race variables than the prosecution probability to strike. To put this more
-simply, the defence is more sensitive to the racial aspects of the trial in general.
+First, view the patterns broadly. The variables which show the greatest significance and the characteristic
+oppositional tendencies of the prosecution and defence seen in Figure \ref{fig:racedefmob} are all race variables. White venire members, white
+defendants, and the interaction of venire member and defendant race all have significant impacts on the probability of a venire member's removal by peremptory challenge. Furthermore, the prosecution and defence display impact opposite tendencies over these racial aspects and
+the magnitude of the defence coefficients is consistently greater than the prosecution for the race variables. This suggests that the defence is more sensitive to the racial aspects of the trial than the prosecution on average.
 
-A quick survey of the prosecution and cause coefficients shows far less agreement than seemed apparent in the mobile
-plots. Scanning from the top to the bottom, the cause coefficients match the prosecution for a few groups, but are generally quite 
-different and are often more similar to the defence than the prosecution. The suggestive pattern of matching prosecution strikes
-and causal strikes viewed in \ref{sec:impactrace} vanishes when controls are placed on possible confounders. In general, the cause strike
+A quick survey of the prosecution peremptory challenge and challenge with cause coefficients shows far less agreement than seemed apparent in the mobile
+plots. Scanning from the top to the bottom, the cause coefficients match the prosecution for a few groups, but are generally
+different and often more similar to the defence than the prosecution. The suggestive pattern of matching prosecution strikes
+and causal strikes viewed in Figure \ref{fig:racedefmob} vanishes when controls are placed on possible confounders. In general, the cause strike
 coefficients are lower in magnitude than both the prosecution and defence, with the notable exception of the effect for male
 defendants, where it is significantly greater than both.
 
 In order to examine patterns in more detail some important differentiation is necessary between the intercept values and the other
-coefficients. As with all linear models, the intercept values provide a locational measure. That is to say, the intercepts provide
-the base level upon which the coefficients act. Consequently, the
-negative values of the intercept for all striking parties is to
-be expected. In the Sunshine data more venire members were kept than rejected, as can be seen in Tables \ref{tab:margrace} and
-\ref{tab:rejbounds}, and so the intercept, which gives the log odds ratio of each strike outcome to the venire member being kept,
-would naturally be negative for all parties.
-
-The more important feature to note for this intercept is the large
-difference between the different striking parties, without
-overlapping confidence intervals. These suggest that all three parties behave differently in the reference group, which
-consists of a female, black, Democrat venire member in a case with a female, black defendant. Crucially, the defence intercept is
+coefficients. In the Sunshine data more venire members were kept than rejected, as can be seen in Table \ref{tab:margrace}, and so the intercept, which gives the log odds ratio of each strike outcome to the venire member being kept, is negative for all parties as expected. The more important feature to note for the intercept is the large differences between the different striking parties. These suggest that all three parties behave differently in the pivot case, that of a female, black, Democrat venire member in a case with a female, black defendant. Crucially, the defence intercept is
 far lower than the prosecution, matching what was observed in Figure \ref{fig:racedefmob}, where the lowest defence strike
 probability occurred for black venire members in cases with black
 defendants. Also visible in Figure \ref{fig:racedefmob} is an increase in
@@ -287,9 +261,9 @@ member. This pattern is reflected perfectly in the positive defence coefficient 
 defendants.
 
 The coefficients for white venire members also match the expectations of Figure \ref{fig:racedefmob}. The defence attains its
-largest positive coefficient for this group and the prosecution is largest negative value. The dominant effect of venire member
-race visible throughout the mobile plots in \ref{sec:otherfact} and \ref{sec:impactrace} is reflected by the dominance of the
-magnitudes of the coefficients for white venire members relative to the reference black venire members. The defence is much more
+largest positive coefficient for this group and the prosecution its largest negative coefficient, suggesting white venire members in cases with black defendants are the most polarizing. The dominant effect of venire member
+race visible in Figure \ref{fig:racedefmob} is reflected by the dominance of the
+magnitudes of the coefficients for white venire members. The defence is much more
 likely to reject a white venire member and the prosecution much less likely.
 
 Slightly attenuating this pattern is the interaction effect between a white defendant and a white venire member. For this specific
@@ -301,58 +275,38 @@ members and the defence dominantly rejects white venire members, they are also s
 pattern is consistent with a strategy which aims to partially select for venire members which have the same race as the defendant,
 while the prosecution has the opposite pattern.
 
-This pattern is precisely the problematic behaviour which was implied by the individuals that viewed \textit{R. v. Stanley} as a
-travesty. While the data here \textit{cannot} reveal anything about that \textit{specific} trial, or indeed about the exercise of
-peremptory challenges in Canada generally. That such a pattern is clearly present in the data will no doubt feel vindicating for
-those still musing on \textit{R. v. Stanley}'s perceived injustice.
-
 Such racial patterns in the prosecution and the defence dominate all other effects. The political effect is minor, though
 consistent with the hypothesis put forward by \cite{revesz2016}, with a preference for Republicans by the prosecution and a
-preference for Democrats by the defence. Interestingly, all parties
-seem to have an increased strike probability for male venire
-members, suggesting a universal preference for female venire members on the jury. One would hope that this pattern is for some
-other reason than anything listed on pages 152-153 of \cite{vandykejurysel} and reproduced here in \ref{sec:polaff}. While no
-detailed explanation is forthcoming for this pattern in the presence of racial and political affiliation controls, it would
-certainly be an interesting avenue for further research, as the exercise of peremptory challenges based purely on gender is also
-protected by \textit{J.E.B. v. Alabama} [\cite{jebvalabama}].
+preference for Democrats by the defence.
 
 \subsection{Trial Level Summary} \label{sec:casesum}
 
-While \cite{JurySunshineProj} reported a great deal of aggregate statistics about the venire members themselves, one piece of
-investigation which was lacking was an analysis which viewed the trends for cases, rather than simply for
-individual venire members. As it cannot be known why a particular venire member is struck, and viewing their aggregate
-statistics tells us nothing about how different strikes relate to each other, it is possible the aggregate patterns are the result
-of some effect which is not due to persistent bias across trials.
-
-By aggregating the venire members by trial and viewing the demographic trends in strikes and behaviour at this level,
-detailed insight into the impact of challenges at a more relevant scale is gleaned. Aggregation to the trial level naturally controls for differences created by judges, lawyers, and cases by grouping together venire members exposed to the same values for these variables. This particular perspective of the data has also not been explored by any other studies
-known to the author.
+The control introduced by linear modelling ignores one critically important dependence that is present between jurors: the case. Cases share lawyers, judges, charges, and other important features which are not adequately controlled by the models fit in Section \ref{sec:mods}.  As it cannot be known why a particular venire member is struck, and modelling the patterns at the venire member level does not account for the close relationship between venire members on the same case, it is possible the aggregate patterns are the result
+of some effect other than persistent bias across trials. By aggregating the venire members by trial and viewing the racial strike behaviour at this level, insight into the impact of challenges at a more relevant scale is gleaned.
 
 \subsubsection{Estimating Struck Juror Counts} \label{subsec:struckjur}
 
-One gap which was present in the Sunshine data was the total count of defence and prosecution removals for each trial. This
+Aggregation required some synthesis, however. One gap which was present in the Sunshine data was the total count of defence and prosecution removals for each trial. This
 variable is of minor importance for modelling the individual venire
 members, but it is of major interest when viewing the trials
 themselves. While counts of these strikes were provided in the data, there were many missing values, or values inconsistent with
 the number of associated venire members in the data. For example, many of the recorded values in these columns were zero even when
 venire members associated with that trial were marked as struck.
 
-To remedy this, a number of variables were generated for each trial. Primarily, these variables were counts of the number of
-venire members with particular characteristics which were struck by both the prosecution and defence in the trial. For example the
-variable \texttt{DefRem.Race.Black} provided the count of black venire members struck by the defence for a specific trial. To
-provide an estimate of the number of venire members struck by each
+To remedy this,  counts of struck venire members with particular characteristics, for example race, were computed for each trial. To
+provide an estimate of the total number of venire members struck by each
 party, these counts were summed for one particular
-variable, typically gender. The sum was then compared to the recorded value for that party's removed count. The greater of the two
+variable, typically gender. This sum was then compared to the recorded value for that party's removed count. The greater of the two
 values was kept as an estimated count to be used in analysis. For both the prosecution and the defence, about 80\% of the sum and
 recorded values matched exactly and about 18\% of the recorded values were less than the sum. This suggests some incompleteness
-for the remaining 2--4\% of the data.
+for the remaining 2\% of the data.
 
 \subsubsection{Visualizing the Racial Trends} \label{subsec:vistrend}
 
 Motivated by the plots in the \texttt{extracat} package in R [\cite{extracat}], in particular the \texttt{rmb} plot, a
 positional proportion plot, called here the ``positional boxplot,'' was developed to display the strike tendencies across
 trials. The data for each trial consists of categorical variables and two integer counts corresponding to the estimated defence
-and prosecution strike counts described in \ref{subsec:struckjur}. The positional boxplot was developed to investigate the
+and prosecution strike counts described in Section \ref{subsec:struckjur}. The positional boxplot was developed to investigate the
 relationship between the strike patterns of both parties and the defendant race.
 
 \begin{figure}[h!]
@@ -373,17 +327,10 @@ variable that occurs with that specific integer combination.
 
 Figure \ref{fig:trialprodef} displays a positional boxplot of defendant race to prosecution and defence estimated strike
 counts. While the internal box patterns look rather similar everywhere, split somewhat evenly between black and white defendants,
-their areas are quite revealing. In the aggregate examination of the data, it was clear that the defence had an overall higher
-strike rate than the prosecution, this effect can be viewed clearly in Figure \ref{fig:gengen} where the defence has a higher
-strike rate across all gender combinations. What was not clear was whether this pattern reflected the typical pattern at the
-individual trial level or was rather due outlier cases with abundant defence strikes. The areas of the boxes in Figure
-\ref{fig:trialprodef} indicate clearly that the defence typically uses more peremptory challenges than the prosecution in each
-trial.
+their areas are quite revealing. The greater area of boxes below the diagonal line demonstrates clearly the tendency for the defence to use more peremptory challenges than the prosecution in a given case.
 
-This plot may be somewhat misleading, however, as it fails to account for
-the number of black and white venire members presented to the court in each of the trials. These numbers are very different, as can be seen by the
-lengths of the horizontal black lines in Figure \ref{fig:racedefmob}. A sizeable majority of the venire members are
-white. Luckily, with trial aggregated data, the raw strike counts can be normalized into proportions. The resulting scatterplots
+However, this plot fails to account for
+the total number of black and white venire members presented to the court in each of the trials. We would expect these numbers to be very different in the Sunshine data; consider the different lengths of the horizontal black lines in Figure \ref{fig:racedefmob}. These lengths indicate that a sizeable majority of the venire members are white. To account for this, the raw strike counts were normalized into proportions of the venire by race. The resulting scatterplots
 of these proportions by trial are displayed in Figure \ref{fig:defproprop}.
 
 \begin{figure}[h!]
@@ -404,23 +351,17 @@ of these proportions by trial are displayed in Figure \ref{fig:defproprop}.
   \label{fig:defproprop}
 \end{figure}
 
-Here, the prosecution and defence biases are much more clear. The prosecution never strikes more than 40\% of white venire members
+Here, the prosecution and defence biases are clear. The prosecution never strikes more than 40\% of white venire members
 presented, and on average strikes a greater proportion of the black venire than the white venire. The defence, in contrast,
 regularly strikes more than 40\% of the white venire, and on average strikes a greater proportion of the white venire members than
-the black venire members. This reinforces the aggregate observations made in \ref{sec:mods}, indicating that these mechanics
-operate on the individual trial level, and not just over all trials. Additionally, the high variation visible in Figure
-\ref{fig:defproprop} suggests that the aggregate patterns described in \ref{sec:mods} are not followed by all defence or
+the black venire members. This reinforces the observations made in Section \ref{sec:mods}, indicating that these mechanics
+operate at the trial level, not just the venire member level. More crucially, the high variation visible in Figure
+\ref{fig:defproprop} suggests that the aggregate patterns described here and in Section \ref{sec:mods} are not followed by all defence or
 prosecution lawyers, merely on average.
 
-While these differences are intriguing, the far more interesting observation that can be gleaned from these plots is the
+While these differences are intriguing, a far more interesting observation is the
 fundamental difference in inclusion of minority and majority groups in jury formation. The aggregate statistics indicate that the
 black venire members are a minority, and Figure \ref{fig:defproprop} suggests that as a consequence, it is common that a majority
 or all of the potential black jurors will be removed by peremptory
-challenge. Such an occurrence is not observed in this data for the
-majority white venire members, suggesting the complete removal of
-white venire members is incredibly rare, if not impossible. While in many trials all black venire members were struck, in not a single trial was
-every white venire member struck. This suggests that if one had a strategy of keeping minorities off of juries, the peremptory
-challenge system would make this task easier. Such an observation is obvious in theory, but it is no less impactful to see it
-emerge from the data.
-
-Of course, more critical to this issue is the underrepresentation of marginalized groups in jury venires, as noted by \cite{vandykejurysel}. Their reduced representation and small numbers at the time of jury selection allows for their complete exclusion in a large number of trials. This is due to a combination of factors including the method of jury summons and the compensation given to jurors, and cannot be solved by the removal of peremptory challenges alone.
+challenge. There is not a single case where all of the majority white venire members, suggesting the complete removal of
+white venire members is rare, if not impossible. Whether these peremptories are being used legitimately, the ultimate consequence of their use is the exclusion of minorities from the juries of cases with minority defendants. Given the tarnished history of peremptory challenge use to create identical exclusion in a deliberate manner, this pattern is distasteful to say the least.
