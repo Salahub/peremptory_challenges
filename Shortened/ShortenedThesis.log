@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  6 JAN 2020 20:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  7 JAN 2020 19:54
 entering extended mode
 **\input ShortenedThesis.tex
 (ShortenedThesis.tex ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -423,161 +423,135 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
 
 [1
 
-{C:/Users/Chris/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 39.
-
-
-LaTeX Warning: Reference `sec:rolejur' on page 2 undefined on input line 39.
-
-
-LaTeX Warning: Reference `sec:roleper' on page 2 undefined on input line 39.
-
-
-LaTeX Warning: Reference `sec:extremes' on page 2 undefined on input line 43.
-
-
-LaTeX Warning: Reference `sec:impactrace' on page 2 undefined on input line 43.
-
-
-
-LaTeX Warning: Reference `sec:otherfact' on page 2 undefined on input line 44.
-
-) (History.tex
+{C:/Users/Chris/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])
+(History.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 8.
- [2] [3] [4]) (Data.tex [5]) (Analysis.tex [6]
-<Pictures/RaceParCoord.pdf, id=23, 505.89pt x 505.89pt>
+ [2] [3] [4]) (Data.tex [5]) (Analysis.tex
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6] <Pictures/RaceParCoord.pdf, id=23, 505.89pt x 505.89pt>
 File: Pictures/RaceParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/RaceParCoord.pdf>
-Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 43.
+Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 34.
 (pdftex.def)             Requested size: 330.42041pt x 330.42247pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[7] [8 <./Pictures/RaceParCoord.pdf>]
-<Pictures/RaceDefCI.pdf, id=41, 505.89pt x 505.89pt>
+ [7 <./Pictures/RaceParCoord.pdf>]
+<Pictures/RaceDefCI.pdf, id=35, 505.89pt x 505.89pt>
 File: Pictures/RaceDefCI.pdf Graphic file (type pdf)
 
 <use Pictures/RaceDefCI.pdf>
-Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 99.
+Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 89.
 (pdftex.def)             Requested size: 330.42041pt x 330.42247pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 112.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 102.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-<Pictures/StubbornCompPlot.pdf, id=42, 505.89pt x 505.89pt>
+) [8]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 112.
+
+<Pictures/StubbornCompPlot.pdf, id=44, 505.89pt x 505.89pt>
 File: Pictures/StubbornCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/StubbornCompPlot.pdf>
-Package pdftex.def Info: Pictures/StubbornCompPlot.pdf used on input line 127.
+Package pdftex.def Info: Pictures/StubbornCompPlot.pdf used on input line 117.
 (pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
 
-Overfull \hbox (10.83464pt too wide) in paragraph at lines 127--128
+Overfull \hbox (10.83464pt too wide) in paragraph at lines 117--118
 [][] 
  []
 
-<Pictures/PhillyCompPlot.pdf, id=43, 505.89pt x 505.89pt>
+<Pictures/PhillyCompPlot.pdf, id=45, 505.89pt x 505.89pt>
 File: Pictures/PhillyCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/PhillyCompPlot.pdf>
-Package pdftex.def Info: Pictures/PhillyCompPlot.pdf used on input line 133.
+Package pdftex.def Info: Pictures/PhillyCompPlot.pdf used on input line 123.
 (pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
 
-Overfull \hbox (10.83464pt too wide) in paragraph at lines 133--134
+Overfull \hbox (10.83464pt too wide) in paragraph at lines 123--124
 [][] 
  []
 
-<Pictures/SunshineCompPlot.pdf, id=44, 505.89pt x 505.89pt>
+<Pictures/SunshineCompPlot.pdf, id=46, 505.89pt x 505.89pt>
 File: Pictures/SunshineCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/SunshineCompPlot.pdf>
-Package pdftex.def Info: Pictures/SunshineCompPlot.pdf used on input line 139.
+Package pdftex.def Info: Pictures/SunshineCompPlot.pdf used on input line 129.
 (pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
 
-Overfull \hbox (10.83464pt too wide) in paragraph at lines 139--140
+Overfull \hbox (10.83464pt too wide) in paragraph at lines 129--130
 [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9]
+[9 <./Pictures/RaceDefCI.pdf>] [10 <./Pictures/StubbornCompPlot.pdf> <./Picture
+s/PhillyCompPlot.pdf> <./Pictures/SunshineCompPlot.pdf>]
 
-LaTeX Warning: Text page 10 contains only floats.
+LaTeX Warning: Reference `eq:noraceintmod' on page 11 undefined on input line 2
+05.
 
-[10 <./Pictures/RaceDefCI.pdf> <./Pictures/StubbornCompPlot.pdf> <./Pictures/Ph
-illyCompPlot.pdf> <./Pictures/SunshineCompPlot.pdf>]
-Overfull \hbox (2.69485pt too wide) in paragraph at lines 184--188
-[]\OT1/ptm/m/n/12 [The peremp-tory chal-lenge] is no less fre-quently ex-er-cis
-ed on grounds nor-mally thought
- []
+
+LaTeX Warning: Reference `eq:novmmod' on page 11 undefined on input line 205.
+
+
+LaTeX Warning: Reference `eq:fullmod' on page 11 undefined on input line 205.
 
 [11]
 
-LaTeX Warning: Reference `eq:noraceintmod' on page 12 undefined on input line 2
-23.
+LaTeX Warning: Reference `eq:fullmod' on page 12 undefined on input line 227.
 
-
-LaTeX Warning: Reference `eq:novmmod' on page 12 undefined on input line 223.
-
-
-LaTeX Warning: Reference `eq:fullmod' on page 12 undefined on input line 223.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: Reference `eq:fullmod' on page 12 undefined on input line 245.
-
-[12] <Pictures/AllModCoef.pdf, id=100, 505.89pt x 505.89pt>
+<Pictures/AllModCoef.pdf, id=97, 505.89pt x 505.89pt>
 File: Pictures/AllModCoef.pdf Graphic file (type pdf)
 
 <use Pictures/AllModCoef.pdf>
-Package pdftex.def Info: Pictures/AllModCoef.pdf used on input line 253.
+Package pdftex.def Info: Pictures/AllModCoef.pdf used on input line 235.
 (pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 256.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 238.
 
 
-LaTeX Warning: Reference `eq:fullmod' on page 13 undefined on input line 256.
+LaTeX Warning: Reference `eq:fullmod' on page 12 undefined on input line 238.
 
 
-LaTeX Warning: Reference `eq:fullmod' on page 13 undefined on input line 256.
+LaTeX Warning: Reference `eq:fullmod' on page 12 undefined on input line 238.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `sec:impactrace' on page 12 undefined on input line 26
+6.
+
+[12]
+
+LaTeX Warning: Reference `tab:rejbounds' on page 13 undefined on input line 275
+.
 
 [13 <./Pictures/AllModCoef.pdf>]
 
-LaTeX Warning: Reference `sec:impactrace' on page 14 undefined on input line 28
-4.
-
-
-LaTeX Warning: Reference `tab:rejbounds' on page 14 undefined on input line 293
+LaTeX Warning: Reference `sec:otherfact' on page 14 undefined on input line 291
 .
 
 
-LaTeX Warning: Reference `sec:otherfact' on page 14 undefined on input line 309
-.
+LaTeX Warning: Reference `sec:impactrace' on page 14 undefined on input line 29
+1.
 
 
-LaTeX Warning: Reference `sec:impactrace' on page 14 undefined on input line 30
-9.
+LaTeX Warning: Reference `sec:polaff' on page 14 undefined on input line 314.
 
-[14]
-
-LaTeX Warning: Reference `sec:polaff' on page 15 undefined on input line 332.
-
-[15] <Pictures/DefProStrikesTrial.pdf, id=120, 505.89pt x 505.89pt>
+[14] <Pictures/DefProStrikesTrial.pdf, id=117, 505.89pt x 505.89pt>
 File: Pictures/DefProStrikesTrial.pdf Graphic file (type pdf)
 
 <use Pictures/DefProStrikesTrial.pdf>
-Package pdftex.def Info: Pictures/DefProStrikesTrial.pdf used on input line 378
+Package pdftex.def Info: Pictures/DefProStrikesTrial.pdf used on input line 360
 .
 (pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
 
@@ -585,16 +559,16 @@ Package pdftex.def Info: Pictures/DefProStrikesTrial.pdf used on input line 378
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-LaTeX Warning: Reference `fig:gengen' on page 16 undefined on input line 395.
+LaTeX Warning: Reference `fig:gengen' on page 15 undefined on input line 377.
 
-<Pictures/DefStrProp.pdf, id=121, 505.89pt x 505.89pt>
+[15] <Pictures/DefStrProp.pdf, id=121, 505.89pt x 505.89pt>
 File: Pictures/DefStrProp.pdf Graphic file (type pdf)
 
 <use Pictures/DefStrProp.pdf>
-Package pdftex.def Info: Pictures/DefStrProp.pdf used on input line 410.
+Package pdftex.def Info: Pictures/DefStrProp.pdf used on input line 392.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (15.23578pt too wide) in paragraph at lines 410--411
+Overfull \hbox (15.23578pt too wide) in paragraph at lines 392--393
 [][] 
  []
 
@@ -602,124 +576,112 @@ Overfull \hbox (15.23578pt too wide) in paragraph at lines 410--411
 File: Pictures/ProStrProp.pdf Graphic file (type pdf)
 
 <use Pictures/ProStrProp.pdf>
-Package pdftex.def Info: Pictures/ProStrProp.pdf used on input line 416.
+Package pdftex.def Info: Pictures/ProStrProp.pdf used on input line 398.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (15.23578pt too wide) in paragraph at lines 416--417
+Overfull \hbox (15.23578pt too wide) in paragraph at lines 398--399
 [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[16] [17 <./Pictures/DefProStrikesTrial.pdf>]) (Summary.tex [18 <./Pictures/Def
-StrProp.pdf> <./Pictures/ProStrProp.pdf>] [19]) (ShortenedThesis.bbl [20]
-Underfull \hbox (badness 10000) in paragraph at lines 72--76
+[16 <./Pictures/DefProStrikesTrial.pdf>]) (Summary.tex [17 <./Pictures/DefStrPr
+op.pdf> <./Pictures/ProStrProp.pdf>] [18] [19]) (ShortenedThesis.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 53--60
+\OT1/ptm/m/n/12 ontario-judge-strikes-down-federal-ban-on-peremptory-jury-selec
+tion/ (Ac-cessed Jan-uary
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 73--77
 []\OT1/ptm/m/n/12 Government of Canada (1985).  Crim-i-nal code sec-tion 634.  
 https://laws-
  []
 
-[21]
-Underfull \hbox (badness 7851) in paragraph at lines 97--103
+
+Underfull \hbox (badness 7851) in paragraph at lines 98--104
 []\OT1/ptm/m/n/12 Hasan, N. R. (2018).  Elim-i-nat-ing peremp-tory chal-lenges 
 makes tri-als less fair.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 139--146
+Underfull \hbox (badness 10000) in paragraph at lines 135--142
 \OT1/ptm/m/n/12 macnab/stanley-acquittal-should-not-lead-to-scrapping-peremptor
 y-challenges-say-criminal-
  []
 
-
-Underfull \hbox (badness 5802) in paragraph at lines 172--179
-[]\OT1/ptm/m/n/12 Quenneville, G. and War-ick, J. (2018a).  'Deck is stacked ag
-ainst us,'says fam-
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 168--175
+[]\OT1/ptm/m/n/12 Quenneville, G. and War-ick, J. (2018).  Shouts of 'mur-derer
+' in court-room
  []
 
 
-Underfull \hbox (badness 5203) in paragraph at lines 172--179
-\OT1/ptm/m/n/12 ily of Colten Boushie af-ter jury cho-sen for Ger-ald Stan-ley 
-trial.  CBC News.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 172--179
-\OT1/ptm/m/n/12 https://www.cbc.ca/news/canada/saskatoon/colten-boushie-shootin
-g-case-jury-selection-gerald-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--188
-[]\OT1/ptm/m/n/12 Quenneville, G. and War-ick, J. (2018b).  Shouts of 'mur-dere
-r' in court-room
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--188
+Underfull \hbox (badness 10000) in paragraph at lines 168--175
 \OT1/ptm/m/n/12 af-ter Ger-ald Stan-ley ac-quit-ted in Colten Boushie shoot-ing
 .  CBC News.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--188
+Underfull \hbox (badness 10000) in paragraph at lines 168--175
 \OT1/ptm/m/n/12 https://www.cbc.ca/news/canada/saskatoon/gerald-stanley-colten-
 boushie-verdict-1.4526313
  []
 
-[22]
-Underfull \hbox (badness 10000) in paragraph at lines 228--232
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--219
 []\OT1/ptm/m/n/12 Supreme Court of the United States (1965).  Swain v. Al-abama
 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 234--238
+Underfull \hbox (badness 10000) in paragraph at lines 221--225
 []\OT1/ptm/m/n/12 Supreme Court of the United States (1986).  Bat-son v. Ken-tu
 cky.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 240--244
+Underfull \hbox (badness 10000) in paragraph at lines 227--231
 []\OT1/ptm/m/n/12 Supreme Court of the United States (1993).  J.E.B. v. Al-abam
 a.
  []
 
 
-Underfull \hbox (badness 1755) in paragraph at lines 268--275
+Underfull \hbox (badness 1755) in paragraph at lines 255--262
 []\OT1/ptm/m/n/12 Woolley, A. (2018).  An Eth-i-cal Jury? Re-flec-tions on the 
 Ac-quit-tal of Ger-ald Stan-
  []
 
 
-Underfull \hbox (badness 3108) in paragraph at lines 268--275
+Underfull \hbox (badness 3108) in paragraph at lines 255--262
 \OT1/ptm/m/it/12 a-zine\OT1/ptm/m/n/12 .  http://www.slaw.ca/2018/02/20/an-ethi
 cal-jury-reflections-on-the-acquittal-of-gerald-
  []
 
-
-Underfull \hbox (badness 4048) in paragraph at lines 283--289
+[22]
+Underfull \hbox (badness 4048) in paragraph at lines 270--276
 []\OT1/ptm/m/n/12 Zinchuk, B. (2018).  Both sides wrong about Stan-ley trial.  
 Prince George Cit-i-
  []
 
 
-Underfull \hbox (badness 1348) in paragraph at lines 283--289
+Underfull \hbox (badness 1348) in paragraph at lines 270--276
 \OT1/ptm/m/n/12 zen.  https://www.princegeorgecitizen.com/opinion/editorial/bot
 h-sides-wrong-about-stanley-
  []
 
-[23]) [24] (ShortenedThesis.aux)
+) [23] (ShortenedThesis.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7375 strings out of 493328
- 107749 string characters out of 3139124
- 181836 words of memory out of 3000000
- 10747 multiletter control sequences out of 15000+200000
- 35651 words of font info for 78 fonts, out of 3000000 for 9000
+ 7357 strings out of 493328
+ 107488 string characters out of 3139124
+ 180725 words of memory out of 3000000
+ 10734 multiletter control sequences out of 15000+200000
+ 30659 words of font info for 70 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,9n,40p,841b,491s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
@@ -731,9 +693,9 @@ s/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files
 /MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on ShortenedThesis.pdf (24 pages, 273974 bytes).
+Output written on ShortenedThesis.pdf (23 pages, 271326 bytes).
 PDF statistics:
- 209 PDF objects out of 1000 (max. 8388607)
+ 206 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
