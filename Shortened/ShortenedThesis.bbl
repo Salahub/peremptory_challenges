@@ -234,6 +234,12 @@ Tufte, E.~R. (2001).
 \newblock {\em The Visual Display of Quantitative Information}.
 \newblock Graphics Press, 2 edition.
 
+\bibitem[Tukey and Wilk, 1966]{tukeywilk1966}
+Tukey, J.~W. and Wilk, M.~B. (1966).
+\newblock Data analysis and statistics: an expository overview.
+\newblock In {\em Proceedings of the November 7-10, 1966, fall joint computer
+  conference}, pages 695--709.
+
 \bibitem[Van~Dyke, 1977]{vandykejurysel}
 Van~Dyke, J.~M. (1977).
 \newblock {\em Jury Selection Procedures: Our Uncertain Commitment to

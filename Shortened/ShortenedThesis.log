@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  8 JAN 2020 17:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.10)  13 JAN 2020 15:18
 entering extended mode
 **\input ShortenedThesis.tex
 (ShortenedThesis.tex ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -426,7 +426,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
 {C:/Users/Chris/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])
 (History.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 8.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 7.
  [2] [3] [4]) (Data.tex [5]) (Analysis.tex
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -435,57 +435,57 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: Pictures/RaceParCoord.pdf Graphic file (type pdf)
 
 <use Pictures/RaceParCoord.pdf>
-Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 34.
+Package pdftex.def Info: Pictures/RaceParCoord.pdf used on input line 39.
 (pdftex.def)             Requested size: 330.42041pt x 330.42247pt.
  [7 <./Pictures/RaceParCoord.pdf>]
 <Pictures/RaceDefCI.pdf, id=35, 505.89pt x 505.89pt>
 File: Pictures/RaceDefCI.pdf Graphic file (type pdf)
 
 <use Pictures/RaceDefCI.pdf>
-Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 89.
+Package pdftex.def Info: Pictures/RaceDefCI.pdf used on input line 97.
 (pdftex.def)             Requested size: 330.42041pt x 330.42247pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 102.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 110.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 ) [8]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 112.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 120.
 
-<Pictures/StubbornCompPlot.pdf, id=44, 505.89pt x 505.89pt>
+<Pictures/StubbornCompPlot.pdf, id=45, 505.89pt x 505.89pt>
 File: Pictures/StubbornCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/StubbornCompPlot.pdf>
-Package pdftex.def Info: Pictures/StubbornCompPlot.pdf used on input line 117.
+Package pdftex.def Info: Pictures/StubbornCompPlot.pdf used on input line 125.
 (pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
 
-Overfull \hbox (10.83464pt too wide) in paragraph at lines 117--118
+Overfull \hbox (10.83464pt too wide) in paragraph at lines 125--126
 [][] 
  []
 
-<Pictures/PhillyCompPlot.pdf, id=45, 505.89pt x 505.89pt>
+<Pictures/PhillyCompPlot.pdf, id=46, 505.89pt x 505.89pt>
 File: Pictures/PhillyCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/PhillyCompPlot.pdf>
-Package pdftex.def Info: Pictures/PhillyCompPlot.pdf used on input line 123.
+Package pdftex.def Info: Pictures/PhillyCompPlot.pdf used on input line 131.
 (pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
 
-Overfull \hbox (10.83464pt too wide) in paragraph at lines 123--124
+Overfull \hbox (10.83464pt too wide) in paragraph at lines 131--132
 [][] 
  []
 
-<Pictures/SunshineCompPlot.pdf, id=46, 505.89pt x 505.89pt>
+<Pictures/SunshineCompPlot.pdf, id=47, 505.89pt x 505.89pt>
 File: Pictures/SunshineCompPlot.pdf Graphic file (type pdf)
 
 <use Pictures/SunshineCompPlot.pdf>
-Package pdftex.def Info: Pictures/SunshineCompPlot.pdf used on input line 129.
+Package pdftex.def Info: Pictures/SunshineCompPlot.pdf used on input line 137.
 (pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
 
-Overfull \hbox (10.83464pt too wide) in paragraph at lines 129--130
+Overfull \hbox (10.83464pt too wide) in paragraph at lines 137--138
 [][] 
  []
 
@@ -501,45 +501,44 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: Pictures/AllModCoef.pdf Graphic file (type pdf)
 
 <use Pictures/AllModCoef.pdf>
-Package pdftex.def Info: Pictures/AllModCoef.pdf used on input line 221.
+Package pdftex.def Info: Pictures/AllModCoef.pdf used on input line 240.
 (pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
+ [12 <./Pictures/AllModCoef.pdf>] [13]
+<Pictures/DefProStrikesTrial.pdf, id=114, 505.89pt x 505.89pt>
+File: Pictures/DefProStrikesTrial.pdf Graphic file (type pdf)
+
+<use Pictures/DefProStrikesTrial.pdf>
+Package pdftex.def Info: Pictures/DefProStrikesTrial.pdf used on input line 362
+.
+(pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
+ [14]
+<Pictures/DefStrProp.pdf, id=118, 505.89pt x 505.89pt>
+File: Pictures/DefStrProp.pdf Graphic file (type pdf)
+
+<use Pictures/DefStrProp.pdf>
+Package pdftex.def Info: Pictures/DefStrProp.pdf used on input line 385.
+(pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
+
+Overfull \hbox (15.23578pt too wide) in paragraph at lines 385--386
+[][] 
+ []
+
+<Pictures/ProStrProp.pdf, id=119, 505.89pt x 505.89pt>
+File: Pictures/ProStrProp.pdf Graphic file (type pdf)
+
+<use Pictures/ProStrProp.pdf>
+Package pdftex.def Info: Pictures/ProStrProp.pdf used on input line 391.
+(pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
+
+Overfull \hbox (15.23578pt too wide) in paragraph at lines 391--392
+[][] 
+ []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[12] [13 <./Pictures/AllModCoef.pdf>] [14]
-<Pictures/DefProStrikesTrial.pdf, id=117, 505.89pt x 505.89pt>
-File: Pictures/DefProStrikesTrial.pdf Graphic file (type pdf)
-
-<use Pictures/DefProStrikesTrial.pdf>
-Package pdftex.def Info: Pictures/DefProStrikesTrial.pdf used on input line 314
-.
-(pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
- [15 <./Pictures/DefProStrikesTrial.pdf>]
-<Pictures/DefStrProp.pdf, id=127, 505.89pt x 505.89pt>
-File: Pictures/DefStrProp.pdf Graphic file (type pdf)
-
-<use Pictures/DefStrProp.pdf>
-Package pdftex.def Info: Pictures/DefStrProp.pdf used on input line 339.
-(pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
-
-Overfull \hbox (15.23578pt too wide) in paragraph at lines 339--340
-[][] 
- []
-
-<Pictures/ProStrProp.pdf, id=128, 505.89pt x 505.89pt>
-File: Pictures/ProStrProp.pdf Graphic file (type pdf)
-
-<use Pictures/ProStrProp.pdf>
-Package pdftex.def Info: Pictures/ProStrProp.pdf used on input line 345.
-(pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
-
-Overfull \hbox (15.23578pt too wide) in paragraph at lines 345--346
-[][] 
- []
-
-) (Summary.tex [16 <./Pictures/DefStrProp.pdf> <./Pictures/ProStrProp.pdf>]
-[17]) (ShortenedThesis.bbl [18]
+[15 <./Pictures/DefProStrikesTrial.pdf>]) (Summary.tex [16 <./Pictures/DefStrPr
+op.pdf> <./Pictures/ProStrProp.pdf>] [17]) (ShortenedThesis.bbl [18]
 Underfull \hbox (badness 10000) in paragraph at lines 53--60
 \OT1/ptm/m/n/12 ontario-judge-strikes-down-federal-ban-on-peremptory-jury-selec
 tion/ (Ac-cessed Jan-uary
@@ -551,13 +550,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 73--77
 https://laws-
  []
 
-[19]
+
 Underfull \hbox (badness 7851) in paragraph at lines 98--104
 []\OT1/ptm/m/n/12 Hasan, N. R. (2018).  Elim-i-nat-ing peremp-tory chal-lenges 
 makes tri-als less fair.
  []
 
-
+[19]
 Underfull \hbox (badness 10000) in paragraph at lines 135--142
 \OT1/ptm/m/n/12 macnab/stanley-acquittal-should-not-lead-to-scrapping-peremptor
 y-challenges-say-criminal-
@@ -600,38 +599,38 @@ a.
  []
 
 
-Underfull \hbox (badness 1755) in paragraph at lines 255--262
+Underfull \hbox (badness 1755) in paragraph at lines 261--268
 []\OT1/ptm/m/n/12 Woolley, A. (2018).  An Eth-i-cal Jury? Re-flec-tions on the 
 Ac-quit-tal of Ger-ald Stan-
  []
 
 
-Underfull \hbox (badness 3108) in paragraph at lines 255--262
+Underfull \hbox (badness 3108) in paragraph at lines 261--268
 \OT1/ptm/m/it/12 a-zine\OT1/ptm/m/n/12 .  http://www.slaw.ca/2018/02/20/an-ethi
 cal-jury-reflections-on-the-acquittal-of-gerald-
  []
 
 
-Underfull \hbox (badness 4048) in paragraph at lines 270--276
+Underfull \hbox (badness 4048) in paragraph at lines 276--282
 []\OT1/ptm/m/n/12 Zinchuk, B. (2018).  Both sides wrong about Stan-ley trial.  
 Prince George Cit-i-
  []
 
 
-Underfull \hbox (badness 1348) in paragraph at lines 270--276
+Underfull \hbox (badness 1348) in paragraph at lines 276--282
 \OT1/ptm/m/n/12 zen.  https://www.princegeorgecitizen.com/opinion/editorial/bot
 h-sides-wrong-about-stanley-
  []
 
 ) [21] (ShortenedThesis.aux) ) 
 Here is how much of TeX's memory you used:
- 7346 strings out of 493328
- 107342 string characters out of 3139124
- 180725 words of memory out of 3000000
- 10724 multiletter control sequences out of 15000+200000
+ 7348 strings out of 493328
+ 107398 string characters out of 3139124
+ 180759 words of memory out of 3000000
+ 10726 multiletter control sequences out of 15000+200000
  29033 words of font info for 68 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,9n,40p,768b,491s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,9n,40p,596b,491s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base
 /8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Progr
@@ -641,7 +640,7 @@ iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.
 ype1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
 utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ShortenedThesis.pdf (21 pages, 264138 bytes).
+Output written on ShortenedThesis.pdf (21 pages, 263409 bytes).
 PDF statistics:
  200 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
