@@ -1,6 +1,6 @@
 \section{Analysis} \label{c:analysis}
 
-Note that the R code used to perform the analysis and generate all
+The \R code used to perform the analysis and generate all
 figures is publicly available on GitHub at github.com/Salahub/peremptory\_challenges.
 
 \subsection{Visualization} \label{sec:visual}
@@ -16,7 +16,7 @@ magnitude of these differences suggests only a weak racial bias at the aggregate
   \caption[Strike Rate by Race]{\footnotesize The conditional probability of a venire member being struck peremptorily by venire member race across data sets. Note that the Philadelphia trial data only
     indicated black and non-black venire members and so only two numbers can be reported.} \label{tab:margrace}
   \begin{tabular}{|c|c c c|} \hline
-    Data & Black & Other & White \\ \hline
+    \textit{Data} & \textit{Black} & \textit{Other} & \textit{White} \\ \hline
     Sunshine & 0.23 & 0.24 & 0.25 \\
     Sunshine Capital & 0.22 & 0.27 & 0.27 \\
     Stubborn & 0.65 & 0.36 & 0.66 \\ 
@@ -27,11 +27,11 @@ magnitude of these differences suggests only a weak racial bias at the aggregate
 This table also demonstrates some of the drawbacks of tables, the
 dominant method used to display data in the literature. The table, while excellent at communicating specific
 values, does not provide a sense of trends or patterns without careful
-engagement by the reader [\cite{tukeywilk1966}]. A critical component of the
-communication of any analysis and its comparison to others is the ability to quickly and effectively discern patterns in the data. Consequently, the ``mobile plot'' for visualizating the three-way relationships of categorical variables was
+engagement by the reader (\cite{tukeywilk1966}.) A critical component of the
+communication of any analysis and its comparison to others is the ability to quickly and effectively discern patterns in the data. Consequently, the ``mobile plot'' for visualizing the three-way relationships of categorical variables was
 developed, with motivation from the hierarchy of visual perception of
-\cite{cleveland1987} and inspiration from
-\cite{VisualDisplayQuant}. It is used in Figure \ref{fig:racedefmob}
+(\cite{cleveland1987}) and inspiration from
+(\cite{VisualDisplayQuant}). It is used in Figure \ref{fig:racedefmob}
 to compare the strike dispositions of venire members by their race and the defendant race for the Sunshine data.
 
 \begin{figure}[!h]
@@ -105,16 +105,16 @@ independent uniform strike rates. Section \ref{sec:mods} discusses the agreement
 
 While Figure \ref{fig:racedefmob} is quite suggestive, the widths of certain horizontal black lines, in particular those for
 venire members with a race other than white or black, suggest that some of the more extreme tendencies are simply a result
-of the well-known greater variation of samples with small sizes. In order to see the true nature of the noted departures some
+of the greater variation of small samples. In order to see the true nature of the noted departures some
 incorporation of the expected variation is required. This is accomplished by the addition of
-approximate 95\% simultaneous multinomial confidence intervals using the \texttt{MultinomialCI} package in R, which implements
-simultaneous confidence intervals for multinomial proportions following the method presented in \cite{sison1995}. These confidence
+approximate 95\% simultaneous multinomial confidence intervals using the \texttt{MultinomialCI} package in \R, which implements
+simultaneous confidence intervals for multinomial proportions following the method presented in (\cite{sison1995}). These confidence
 intervals can be seen in Figure \ref{fig:racedefci}.
 
 As suspected, some of the results for the smaller sample sizes do not seem to be significant. However, the results for the larger groups,
 in particular for white venire members or black defendants, are significant. It should be noted that these simultaneous
-confidence intervals do not constitute a proper statistical test of the impact of race, they are rather a way of visually
-providing a viewer some sense of the expected variability in the data over repeated sampling. More rigorous testing requires
+confidence intervals do not constitute a proper statistical test of the impact of race, but instead
+provide the viewer some sense of the expected variability in the data over repeated sampling. More rigorous testing requires
 controlling for the impact of confounding factors, as done by the modelling in Section \ref{sec:mods}.
 
 \subsubsection{In the Stubborn and Philadelphia Data}
@@ -176,13 +176,13 @@ visible in Table \ref{tab:margrace}. This departure may be of interest for futur
 \subsection{Modelling} \label{sec:mods}
 
 Of course, it would be incorrect to conclude immediately that the cause of the racial patterns observed across these data sets is
-race itself. There may be a plethora of attitudes associated with race that could serve as legitimate cause for a peremptory
-challenge, as noted by Justice Byron R. White in the majority opinion in \textit{Swain v. Alabama} [\cite{swainvalabama}].
+race itself. A plethora of attitudes associated with race could serve as legitimate cause for a peremptory
+challenge, as noted by Justice Byron R. White in the majority opinion in \textit{Swain v. Alabama} (\cite{swainvalabama}).
 
 Without detailed transcripts detailing voire dire, it cannot be known if the aggregate pattern of removal is the result of racially based strikes, or whether the lawyers
-determined valid reasons for a peremptory challenge related to race. Striking a venire member due to their political affiliation, for example, would be allowed, and so racial heterogeneity could cause valid strikes to appear invalid. Such an ``ideological imbalance'' in racial political affiliations is actually present in this data set, and has been noted elsewhere in the literature [\cite{revesz2016}].
+determined valid reasons for a peremptory challenge related to race. Striking a venire member due to their political affiliation, for example, would be allowed, and so racial heterogeneity could cause valid strikes to appear invalid. Such an ``ideological imbalance'' in racial political affiliations is actually present in this data set, and has been noted elsewhere in the literature (\cite{revesz2016}).
 
-Consequently, answering the question of peremptory strike validity precisely requires that all available confounding factors be controlled. While such controlled modelling has already been completed for \cite{StubbornLegacy} and \cite{PerempChalMurder}, no such modelling has been completed for the much richer and larger Jury Sunshine data set. The design of the mobile plot further motivates such multivariate regression by suggesting a particular form of model: the multinomial logistic regression model.
+Consequently, answering the question of peremptory strike validity precisely requires that all available confounding factors be controlled. While such controlled modelling has already been completed for (\cite{StubbornLegacy}) and (\cite{PerempChalMurder}), no such modelling has been completed for the much richer and larger Jury Sunshine data set. The design of the mobile plot further motivates such multivariate regression by suggesting a particular form of model: the multinomial logistic regression model.
 
 \subsubsection{Multinomial Logistic Regression}
 
@@ -192,8 +192,8 @@ levels given some combination of other variables. The natural model to
 complement this plot, then, would be a conditional multinomial
 model. Consequently, a multinomial log-linear regression
 model was fit to the data. The specific implementation of multinomial regression utilized was the
-\texttt{multinom} function in the \texttt{nnet} package in R, which implements a method of fitting multinomial logistic regression models discussed
-in \cite{nnet}.
+\texttt{multinom} function in the \texttt{nnet} package in \R, which implements a method of fitting multinomial logistic regression models discussed
+in (\cite{nnet}).
 
 For all models, the pivot outcome chosen was the probability of a
 venire member sitting on the final jury, in other words the probability their disposition was coded as \texttt{Kept}. Coefficients were
@@ -216,7 +216,7 @@ all other variables, nested models excluding the interaction and excluding venir
     differences for adjacent models.}
   \label{tab:modcomp}
   \begin{tabular}{|c|c|c|c|c|} \hline
-    Model & Residual df & Residual Deviance & Difference & $P(\chi^2)$ \\ \hline
+    \textit{Model} & \textit{Residual df} & \textit{Residual Deviance} & \textit{Difference} & $P(\chi^2)$ \\ \hline
     Reduced Model 2 & 55527 & 39496 &  &  \\
     Reduced Model 1 & 55521 & 39087 & 405 & ~0 \\
     Full Model & 55509 & 39023 & 67 & 1.4e-9 \\ \hline
@@ -230,7 +230,7 @@ is underdispersed, implying that the significant test results gained
 are conservative.
 
 Due to its significance compared to the other models, the full model was taken as the final model to estimate the race effects
-with precision. Inspired by the dot-whisker plot [\cite{dotwhisker}], a custom dot-whisker plot was designed to display the model coefficients. This plot displays the coefficient estimates as points in the centre of a line, the endpoints of which
+with precision. Inspired by the dot-whisker plot (\cite{dotwhisker}), a custom dot-whisker plot was designed to display the model coefficients. This plot displays the coefficient estimates as points in the centre of a line, the endpoints of which
 give the associated confidence intervals. A vertical line is placed at zero to provide a reference for the sign and significance
 of different parameters. Modifying this concept to suit the multinomial regression data required grouping
 the different possible outcomes for each parameter spatially. The estimated coefficients for the different effects and their approximate 95\% confidence intervals, calculated using the standard errors of the coefficients and a normal assumption, are displayed using this modified dot-whisker plot in Figure \ref{fig:modallcoef}.
@@ -280,9 +280,8 @@ defendants, where it is significantly greater than both.
 
 There are a number of more nuanced patterns present as well. Note that
 more venire members were kept than rejected in the Sunshine data, and so the
-negative intercept for all strikes is expected, as it gives the log odds ratio of each strike outcome to
-the venire member being kept. More intriguing are the large differences
-between the different strikes. These suggest that all three
+negative intercept for all strikes is expected. More intriguing are the large differences
+between the different strike intercepts. These suggest that all three
 strikes are used differently in the pivot case, that of a female, black,
 Democrat venire member in a case with a female, black
 defendant. Crucially, the defence intercept is smaller than the prosecution, matching what was observed in Figure \ref{fig:racedefmob}, where the lowest defence strike
@@ -306,17 +305,16 @@ prosecution has a tendency to do the opposite. The white defendant
 coefficient, which is negative for the prosecution and positive for
 the defence, and the interaction effect for white venire members with
 white defendants, which is positive for the prosecution and negative
-for the defence, matches this observation exactly. Moreovere, this seems to be significant based on the plotted confidence
+for the defence, matches this observation exactly. Moreover, this seems to be significant based on the plotted confidence
 intervals. This suggests that, while the prosecution dominantly rejects black venire
 members and the defence dominantly rejects white venire members, the
-parties in the courts are also sensitive to possible racial matches. The defence
+parties in the courts are sensitive to possible racial matches. The defence
 pattern is consistent with a strategy which aims to partially select
 venire members to match the defendant race, while the prosecution
 partially selects to mismatch.
 
 Such racial patterns in the prosecution and the defence dominate all other effects. The political effect is minor, though
-consistent with the hypothesis put forward by \cite{revesz2016}, with a preference for Republicans by the prosecution and a
-preference for Democrats by the defence.
+consistent with the hypothesis put forward by (\cite{revesz2016}), with a preference for Republicans by the prosecution and Democrats by the defence.
 
 \subsection{Trial Level Summary} \label{sec:casesum}
 
@@ -344,8 +342,8 @@ for the remaining 2\% of the data.
 
 \subsubsection{Visualizing the Racial Trends} \label{subsec:vistrend}
 
-Motivated by the plots in the \texttt{extracat} package in R
-[\cite{extracat}], in particular the \texttt{rmb} plot, the ``positional boxplot'' was developed to display the strike tendencies across
+Motivated by the plots in the \texttt{extracat} package in \R
+(\cite{extracat}), in particular the \texttt{rmb} plot, the ``positional boxplot'' was developed to display the strike tendencies across
 trials. The data visualized by the positional boxplot consists of three parts:
 a categorical variable and two integer counts which have many
 duplicates in the data. At each unique combination of these counts observed, a box is
@@ -393,7 +391,7 @@ of these proportions by trial are displayed in Figure \ref{fig:defproprop}.
     \label{fig:proraceprop}
   \end{subfigure}
   \caption[Racial Strike Proportions by Party]
-  {\footnotesize Scatterplot of venire proportion removed by race for both the defence and prosecution.}
+  {\footnotesize Scatterplots of venire proportion removed by race for both the defence and prosecution.}
   \label{fig:defproprop}
 \end{figure}
 
@@ -403,9 +401,7 @@ regularly strikes more than 40\% of the white venire, and on average strikes a g
 the black venire members. This reinforces the observations made in Section \ref{sec:mods}, indicating that these mechanics
 operate at the trial level, not just the venire member level. More crucially, the high variation visible in Figure
 \ref{fig:defproprop} suggests that the aggregate patterns described
-here and in Section \ref{sec:mods} are not a good reflection of the
-strategies pursued by all defence or
-prosecution lawyers, merely on
+here and in Section \ref{sec:mods} may be inadequate to describe any individual case.
 
 This plot also reveals a fundamental difference in inclusion of minority and majority groups in juries. The aggregate statistics indicate that the
 black venire members are a minority, and Figure \ref{fig:defproprop} suggests that as a consequence, it is common that a majority
@@ -416,4 +412,4 @@ white venire members is rare, if not impossible. Whether these
 peremptories are being used legitimately, the ultimate consequence of
 their use is the exclusion of minorities from the juries of cases with
 minority defendants. Given the tarnished history of peremptory
-challenge use for deliberate exclusion, this pattern is concerning to say the least.
+challenge for deliberate exclusion, this pattern is concerning.

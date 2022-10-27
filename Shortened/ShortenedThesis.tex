@@ -21,22 +21,30 @@
 \usepackage{amssymb}
 \usepackage[margin = 2.5cm]{geometry}
 
-\title{Seen to Be Done: A Graphical Analysis of Peremptory Challenge}
-\author{Chris Salahub}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+\newcommand*{\R}{\textsf{R}$~$}
+
+\let\svthefootnote\thefootnote
 
 \begin{document}
-\maketitle
+\begin{center}
+	\Large Seen to Be Done: A Graphical Analysis of Peremptory Challenge
+	\\ \vspace{0.5cm}
+	\large Chris Salahub\let\thefootnote\relax\footnotetext{csalahub@uwaterloo.ca; University of Waterloo, 200 University Ave. Waterloo, Canada. The author thanks Prof. Dr. Marloes Maathuis at ETH Z\"urich for her excellent advice and guidance.}
+	\let\thefootnote\svthefootnote
+\end{center}
 
 \begin{abstract}
 The legal practice of peremptory challenges is described, outlining its past and present racial controversies as well as the
 modern defence provided in its favour. Three different peremptory challenge data sets
-[\cite{JurySunshineProj}; \cite{StubbornLegacy};
-\cite{PerempChalMurder}] are analyzed for racial bias using a novel
+(\cite{JurySunshineProj, StubbornLegacy, PerempChalMurder}) are analyzed for racial bias using a novel
 visual tool, the mobile plot. Further visualization and analyses of
-the data from \cite{JurySunshineProj} are carried out using multinomial
+the data from (\cite{JurySunshineProj}) are carried out using multinomial
 regression models motivated by the mobile plots, aggregation to the trial level, and a second novel
 visualization, the positional boxplot. All analysis indicates the
-dominance of race in peremptory challenge decisions for venire members in the \cite{JurySunshineProj} data at both the individual venire member level and the trial level.
+dominance of race in peremptory challenge decisions for venire members in the (\cite{JurySunshineProj}) data at both the individual venire member level and the trial level.
 \end{abstract}
  
 \pagenumbering{arabic}%--- switch back to standard numbering 

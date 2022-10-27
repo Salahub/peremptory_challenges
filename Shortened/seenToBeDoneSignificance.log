@@ -1,9 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.24)  30 JUN 2022 16:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.9.24)  27 OCT 2022 11:14
 entering extended mode
-**./ShortenedThesis.tex
-(ShortenedThesis.tex
-LaTeX2e <2021-06-01> patch level 1
-L3 programming layer <2021-08-27>
+**\input seenToBeDoneSignificance.tex
+ (seenToBeDoneSignificance.tex
 (C:\Users\Chris\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2021/02/12 v1.4n Standard LaTeX document class
 (C:\Users\Chris\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
@@ -289,8 +287,8 @@ tex.def
 File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count291
 \l__pdf_internal_box=\box58
-) (ShortenedThesis.aux)
-\openout1 = `ShortenedThesis.aux'.
+) (seenToBeDoneSignificance.aux)
+\openout1 = `seenToBeDoneSignificance.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
@@ -389,223 +387,201 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
 (C:\Users\Chris\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(Introduction.tex [1
+[1
 
-{C:/Users/Chris/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]) (History.tex [
-2] [3] [4]) (Data.tex [5]) (Analysis.tex
-LaTeX Font Info:    Trying to load font information for OT1+phv on input line 3
-.
+{C:/Users/Chris/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2]
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 9
+0.
 
 (C:\Users\Chris\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 )
-[6]
-<Pictures//RaceParCoord.pdf, id=24, 505.89pt x 505.89pt>
+Overfull \hbox (2.96019pt too wide) in paragraph at lines 110--111
+\OT1/ptm/m/n/12 marginal dis-tri-bu-tions of three vari-ables: venire mem-ber r
+ace, de-fen-dant race, and out-come (whether
+ []
+
+[3]
+<Pictures//RaceParCoord.pdf, id=18, 505.89pt x 505.89pt>
 File: Pictures//RaceParCoord.pdf Graphic file (type pdf)
 <use Pictures//RaceParCoord.pdf>
-Package pdftex.def Info: Pictures//RaceParCoord.pdf  used on input line 39.
+Package pdftex.def Info: Pictures//RaceParCoord.pdf  used on input line 122.
 (pdftex.def)             Requested size: 330.42041pt x 330.42247pt.
- [7 <./Pictures//RaceParCoord.pdf>]
-<Pictures//RaceDefCI.pdf, id=36, 505.89pt x 505.89pt>
+ [4 <./Pictures//RaceParCoord.pdf>]
+<Pictures//RaceDefCI.pdf, id=29, 505.89pt x 505.89pt>
 File: Pictures//RaceDefCI.pdf Graphic file (type pdf)
 <use Pictures//RaceDefCI.pdf>
-Package pdftex.def Info: Pictures//RaceDefCI.pdf  used on input line 97.
+Package pdftex.def Info: Pictures//RaceDefCI.pdf  used on input line 140.
 (pdftex.def)             Requested size: 330.42041pt x 330.42247pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
-10.
+49.
 (C:\Users\Chris\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<Pictures//StubbornCompPlot.pdf, id=37, 505.89pt x 505.89pt>
-File: Pictures//StubbornCompPlot.pdf Graphic file (type pdf)
-<use Pictures//StubbornCompPlot.pdf>
-Package pdftex.def Info: Pictures//StubbornCompPlot.pdf  used on input line 125
-.
-(pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
 
-Overfull \hbox (10.83464pt too wide) in paragraph at lines 125--126
-[][] 
- []
+LaTeX Warning: Reference `sec:mods' on page 5 undefined on input line 151.
 
-<Pictures//PhillyCompPlot.pdf, id=38, 505.89pt x 505.89pt>
-File: Pictures//PhillyCompPlot.pdf Graphic file (type pdf)
-<use Pictures//PhillyCompPlot.pdf>
-Package pdftex.def Info: Pictures//PhillyCompPlot.pdf  used on input line 131.
-(pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
+[5] [6 <./Pictures//RaceDefCI.pdf>]
 
-Overfull \hbox (10.83464pt too wide) in paragraph at lines 131--132
-[][] 
- []
+LaTeX Warning: Reference `sec:visual' on page 7 undefined on input line 165.
 
-<Pictures//SunshineCompPlot.pdf, id=39, 505.89pt x 505.89pt>
-File: Pictures//SunshineCompPlot.pdf Graphic file (type pdf)
-<use Pictures//SunshineCompPlot.pdf>
-Package pdftex.def Info: Pictures//SunshineCompPlot.pdf  used on input line 137
-.
-(pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
-
-Overfull \hbox (10.83464pt too wide) in paragraph at lines 137--138
-[][] 
- []
-
-[8]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[9 <./Pictures//RaceDefCI.pdf>] [10 <./Pictures//StubbornCompPlot.pdf> <./Pictu
-res//PhillyCompPlot.pdf> <./Pictures//SunshineCompPlot.pdf>] [11]
-<Pictures//AllModCoef.pdf, id=98, 505.89pt x 505.89pt>
+<Pictures//AllModCoef.pdf, id=49, 505.89pt x 505.89pt>
 File: Pictures//AllModCoef.pdf Graphic file (type pdf)
 <use Pictures//AllModCoef.pdf>
-Package pdftex.def Info: Pictures//AllModCoef.pdf  used on input line 240.
+Package pdftex.def Info: Pictures//AllModCoef.pdf  used on input line 187.
 (pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
- [12 <./Pictures//AllModCoef.pdf>] [13]
-<Pictures//DefProStrikesTrial.pdf, id=115, 505.89pt x 505.89pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7] [8 <./Pictures//AllModCoef.pdf>]
+<Pictures//StubbornCompPlot.pdf, id=66, 505.89pt x 505.89pt>
+File: Pictures//StubbornCompPlot.pdf Graphic file (type pdf)
+<use Pictures//StubbornCompPlot.pdf>
+Package pdftex.def Info: Pictures//StubbornCompPlot.pdf  used on input line 221
+.
+(pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
+
+Overfull \hbox (10.83464pt too wide) in paragraph at lines 221--222
+[][] 
+ []
+
+<Pictures//PhillyCompPlot.pdf, id=67, 505.89pt x 505.89pt>
+File: Pictures//PhillyCompPlot.pdf Graphic file (type pdf)
+<use Pictures//PhillyCompPlot.pdf>
+Package pdftex.def Info: Pictures//PhillyCompPlot.pdf  used on input line 227.
+(pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
+
+Overfull \hbox (10.83464pt too wide) in paragraph at lines 227--228
+[][] 
+ []
+
+<Pictures//SunshineCompPlot.pdf, id=68, 505.89pt x 505.89pt>
+File: Pictures//SunshineCompPlot.pdf Graphic file (type pdf)
+<use Pictures//SunshineCompPlot.pdf>
+Package pdftex.def Info: Pictures//SunshineCompPlot.pdf  used on input line 233
+.
+(pdftex.def)             Requested size: 161.88809pt x 161.88809pt.
+
+Overfull \hbox (10.83464pt too wide) in paragraph at lines 233--234
+[][] 
+ []
+
+[9 <./Pictures//StubbornCompPlot.pdf> <./Pictures//PhillyCompPlot.pdf> <./Pictu
+res//SunshineCompPlot.pdf>]
+
+LaTeX Warning: Reference `sec:mods' on page 10 undefined on input line 252.
+
+[10]
+<Pictures//DefProStrikesTrial.pdf, id=105, 505.89pt x 505.89pt>
 File: Pictures//DefProStrikesTrial.pdf Graphic file (type pdf)
 <use Pictures//DefProStrikesTrial.pdf>
-Package pdftex.def Info: Pictures//DefProStrikesTrial.pdf  used on input line 3
-60.
+Package pdftex.def Info: Pictures//DefProStrikesTrial.pdf  used on input line 2
+66.
 (pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Pictures//DefStrProp.pdf, id=116, 505.89pt x 505.89pt>
+<Pictures//DefStrProp.pdf, id=106, 505.89pt x 505.89pt>
 File: Pictures//DefStrProp.pdf Graphic file (type pdf)
 <use Pictures//DefStrProp.pdf>
-Package pdftex.def Info: Pictures//DefStrProp.pdf  used on input line 383.
+Package pdftex.def Info: Pictures//DefStrProp.pdf  used on input line 280.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (15.23578pt too wide) in paragraph at lines 383--384
+Overfull \hbox (15.23578pt too wide) in paragraph at lines 280--281
 [][] 
  []
 
-<Pictures//ProStrProp.pdf, id=117, 505.89pt x 505.89pt>
+<Pictures//ProStrProp.pdf, id=107, 505.89pt x 505.89pt>
 File: Pictures//ProStrProp.pdf Graphic file (type pdf)
 <use Pictures//ProStrProp.pdf>
-Package pdftex.def Info: Pictures//ProStrProp.pdf  used on input line 389.
+Package pdftex.def Info: Pictures//ProStrProp.pdf  used on input line 286.
 (pdftex.def)             Requested size: 227.64839pt x 227.64839pt.
 
-Overfull \hbox (15.23578pt too wide) in paragraph at lines 389--390
+Overfull \hbox (15.23578pt too wide) in paragraph at lines 286--287
 [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[14]) (Summary.tex [15 <./Pictures//DefProStrikesTrial.pdf>] [16 <./Pictures//D
-efStrProp.pdf> <./Pictures//ProStrProp.pdf>] [17]) (ShortenedThesis.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 47--54
-\OT1/ptm/m/n/12 ontario-judge-strikes-down-federal-ban-on-peremptory-jury-selec
-tion/ (Ac-cessed Jan-uary
- []
 
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 67--71
-[]\OT1/ptm/m/n/12 Government of Canada (1985).  Crim-i-nal code sec-tion 634.  
-https://laws-
- []
+LaTeX Warning: Reference `sec:mods' on page 11 undefined on input line 295.
 
 
-Underfull \hbox (badness 7851) in paragraph at lines 92--98
+LaTeX Warning: Reference `sec:mods' on page 11 undefined on input line 295.
+
+[11]
+
+LaTeX Warning: Reference `sec:visual' on page 12 undefined on input line 300.
+
+[12 <./Pictures//DefProStrikesTrial.pdf>]
+
+LaTeX Warning: Reference `sec:mods' on page 13 undefined on input line 304.
+
+[13 <./Pictures//DefStrProp.pdf> <./Pictures//ProStrProp.pdf>]
+(seenToBeDoneSignificance.bbl
+Underfull \hbox (badness 7851) in paragraph at lines 28--34
 []\OT1/ptm/m/n/12 Hasan, N. R. (2018).  Elim-i-nat-ing peremp-tory chal-lenges 
 makes tri-als less fair.
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 123--130
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 50--57
 \OT1/ptm/m/n/12 macnab/stanley-acquittal-should-not-lead-to-scrapping-peremptor
 y-challenges-say-criminal-
  []
 
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 156--163
-[]\OT1/ptm/m/n/12 Quenneville, G. and War-ick, J. (2018).  Shouts of 'mur-derer
-' in court-room
- []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 156--163
-\OT1/ptm/m/n/12 af-ter Ger-ald Stan-ley ac-quit-ted in Colten Boushie shoot-ing
-.  CBC News.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 156--163
-\OT1/ptm/m/n/12 https://www.cbc.ca/news/canada/saskatoon/gerald-stanley-colten-
-boushie-verdict-1.4526313
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 203--207
+Underfull \hbox (badness 10000) in paragraph at lines 100--104
 []\OT1/ptm/m/n/12 Supreme Court of the United States (1965).  Swain v. Al-abama
 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--213
+Underfull \hbox (badness 10000) in paragraph at lines 106--110
 []\OT1/ptm/m/n/12 Supreme Court of the United States (1986).  Bat-son v. Ken-tu
 cky.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--219
+Underfull \hbox (badness 10000) in paragraph at lines 112--116
 []\OT1/ptm/m/n/12 Supreme Court of the United States (1993).  J.E.B. v. Al-abam
 a.
  []
 
+) [15] (seenToBeDoneSignificance.aux)
 
-Underfull \hbox (badness 1755) in paragraph at lines 249--256
-[]\OT1/ptm/m/n/12 Woolley, A. (2018).  An Eth-i-cal Jury? Re-flec-tions on the 
-Ac-quit-tal of Ger-ald Stan-
- []
+LaTeX Warning: There were undefined references.
 
-
-Underfull \hbox (badness 3108) in paragraph at lines 249--256
-\OT1/ptm/m/it/12 a-zine\OT1/ptm/m/n/12 .  http://www.slaw.ca/2018/02/20/an-ethi
-cal-jury-reflections-on-the-acquittal-of-gerald-
- []
-
-[20]
-Underfull \hbox (badness 4048) in paragraph at lines 264--270
-[]\OT1/ptm/m/n/12 Zinchuk, B. (2018).  Both sides wrong about Stan-ley trial.  
-Prince George Cit-i-
- []
-
-
-Underfull \hbox (badness 1348) in paragraph at lines 264--270
-\OT1/ptm/m/n/12 zen.  https://www.princegeorgecitizen.com/opinion/editorial/bot
-h-sides-wrong-about-stanley-
- []
-
-) [21] (ShortenedThesis.aux) ) 
+ ) 
 Here is how much of TeX's memory you used:
- 7869 strings out of 478927
- 120304 string characters out of 2852535
- 422065 words of memory out of 3000000
- 25602 multiletter control sequences out of 15000+600000
- 429683 words of font info for 80 fonts, out of 8000000 for 9000
+ 7736 strings out of 478927
+ 117987 string characters out of 2852535
+ 422353 words of memory out of 3000000
+ 25485 multiletter control sequences out of 15000+600000
+ 428057 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,9n,80p,593b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Users/Chris/AppData/Local/Programs/MiKTeX/fon
-ts/enc/dvips/base/8r.enc}<C:/Users/Chris/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Chris/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Chris/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Chris/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Chris/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Chr
-is/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/C
-hris/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/User
-s/Chris/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/User
-s/Chris/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/User
-s/Chris/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ShortenedThesis.pdf (21 pages, 274065 bytes).
+ 72i,9n,80p,1146b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/Chris/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:
+/Users/Chris/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi1
+2.pfb><C:/Users/Chris/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr12.pfb><C:/Users/Chris/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmr8.pfb><C:/Users/Chris/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmsy10.pfb><C:/Users/Chris/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Chris/AppData/Local/Programs/Mi
+KTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Chris/AppData/Local/Programs/
+MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Chris/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Chris/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Chris/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on seenToBeDoneSignificance.pdf (15 pages, 257555 bytes).
 PDF statistics:
- 214 PDF objects out of 1000 (max. 8388607)
+ 195 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

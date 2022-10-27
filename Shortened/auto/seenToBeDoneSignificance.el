@@ -1,5 +1,5 @@
 (TeX-add-style-hook
- "ShortenedThesis"
+ "seenToBeDoneSignificance"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-class-options
                      '(("article" "12pt")))
@@ -10,11 +10,6 @@
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "lstinline")
    (TeX-run-style-hooks
     "latex2e"
-    "Introduction"
-    "History"
-    "Data"
-    "Analysis"
-    "Summary"
     "article"
     "art12"
     "tabularx"
@@ -35,6 +30,24 @@
     "R"
     "svthefootnote"
     "thefootnote")
+   (LaTeX-add-labels
+    "tab:margrace"
+    "eq:vishyp"
+    "fig:racedefmob"
+    "fig:racedefci"
+    "tab:modcomp"
+    "fig:modallcoef"
+    "fig:stubcomp"
+    "fig:philcomp"
+    "fig:suncomp"
+    "fig:racedefalldata"
+    "sec:casesum"
+    "subsec:struckjur"
+    "subsec:vistrend"
+    "fig:trialprodef"
+    "fig:defraceprop"
+    "fig:proraceprop"
+    "fig:defproprop")
    (LaTeX-add-bibliographies
     "myReferences"))
  :latex)
