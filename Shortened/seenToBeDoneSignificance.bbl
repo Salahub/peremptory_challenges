@@ -1,135 +1,16 @@
 \begin{thebibliography}{}
 
-\bibitem[{Aboriginal Justice Implementation Commission}, 1999]{MBajic}
-{Aboriginal Justice Implementation Commission} (1999).
-\newblock {Report of the Aboriginal Justice Inquiry of Manitoba}.
-\newblock http://www.ajic.mb.ca/volume.html (Accessed January 2020).
-
 \bibitem[Baldus et~al., 2001]{PerempChalMurder}
 Baldus, D.~C., Woodworth, G., Zuckerman, D., and Weiner, N.~A. (2001).
 \newblock {The Use of Peremptory Challenges in Capital Murder Trials: A Legal
   and Empirical Analysis}.
 \newblock {\em University of Pennsylvania Journal of Consitutional Law}, 3(1).
 
-\bibitem[Cleveland and McGill, 1987]{cleveland1987}
-Cleveland, W.~S. and McGill, R. (1987).
-\newblock Graphical perception: The visual decoding of quantitative information
-  on graphical displays of data.
-\newblock {\em Journal of the Royal Statistical Society. Series A (General)},
-  150(3):192--229.
-
 \bibitem[Grosso and O'Brien, 2012]{StubbornLegacy}
 Grosso, C.~M. and O'Brien, B. (2012).
 \newblock {A Stubborn Legacy: The Overwhelming Importance of Race in Jury
   Selection in 173 Post-Batson North Carolina Capital Trials}.
 \newblock {\em Iowa Law Review}, 97:1531.
-
-\bibitem[Hasan, 2018]{peremparegood}
-Hasan, N.~R. (2018).
-\newblock Eliminating peremptory challenges makes trials less fair.
-\newblock {The Star}.
-\newblock
-  https://www.thestar.com/opinion/contributors/2018/04/10/eliminating-peremptory-challenges-make-trials-less-fair.html
-  (Accessed February 2019).
-
-\bibitem[Hoffman, 1997]{hoffman1997}
-Hoffman, M.~B. (1997).
-\newblock {Peremptory Challenges Should Be Abolished: A Trial Judge's
-  Perspective}.
-\newblock {\em The University of Chicago Law Review}, 64(3):809.
-
-\bibitem[Iacobucci, 2013]{iacobuccireport}
-Iacobucci, F. (2013).
-\newblock {First Nations Representation on Ontario Juries: Report of the
-  Independent Review Conducted by the Honourable Frank Iacobucci}.
-\newblock Ministry of the Attorney General.
-\newblock https://www.attorneygeneral.jus.gov.on.ca/english/about/pubs/
-  (Accessed February 2019).
-
-\bibitem[Macnab, 2018]{macnabproper}
-Macnab, A. (2018).
-\newblock Stanley acquittal should not lead to scrapping peremptory challenges,
-  say criminal lawyers.
-\newblock {Canadian Lawyer}.
-\newblock
-  https://www.canadianlawyermag.com/legalfeeds/author/aidan-macnab/stanley-acquittal-should-not-lead-to-scrapping-peremptory-challenges-say-criminal-lawyers-15332/
-  (Accessed February 2019).
-
-\bibitem[Morehead, 1994]{morehead1994}
-Morehead, J.~W. (1994).
-\newblock When a peremptory challenge is no longer peremptory: Batson's
-  unfortunate failure to eradicate invidious discrimination from jury
-  selection.
-\newblock {\em DePaul Law Review}, 43:625.
-
-\bibitem[Page, 2005]{page2005}
-Page, A. (2005).
-\newblock Batson's blind spot: Unconscious stereotyping and the peremptory
-  challenge.
-\newblock {\em Boston University Law Review}, 85:155.
-
-\bibitem[Pilh{\"o}fer and Unwin, 2013]{extracat}
-Pilh{\"o}fer, A. and Unwin, A. (2013).
-\newblock New approaches in visualization of categorical data: {R} package
-  {extracat}.
-\newblock {\em Journal of Statistical Software}, 53(7):1--25.
-
-\bibitem[Revesz, 2016]{revesz2016}
-Revesz, J. (2016).
-\newblock Ideological imbalance and the peremptory challenge.
-\newblock {\em Yale Law Journal}, 125.
-
-\bibitem[Richardson~Oakes and Davies, 2016]{oakes2016}
-Richardson~Oakes, A. and Davies, H. (2016).
-\newblock Justice must be seen to be done: a contextual reappraisal.
-\newblock {\em Adelaide Law Review}, 37(2):461--494.
-
-\bibitem[Sison and Glaz, 1995]{sison1995}
-Sison, C.~P. and Glaz, J. (1995).
-\newblock Simultaneous confidence intervals and sample size determination for
-  multinomial proportions.
-\newblock {\em Journal of the American Statistical Association},
-  90(429):366--369.
-
-\bibitem[Solt and Hu, 2018]{dotwhisker}
-Solt, F. and Hu, Y. (2018).
-\newblock {\em dotwhisker: Dot-and-Whisker Plots of Regression Results}.
-\newblock R package version 0.5.0.
-
-\bibitem[{Supreme Court of the United States}, 1965]{swainvalabama}
-{Supreme Court of the United States} (1965).
-\newblock {Swain v. Alabama}.
-\newblock https://supreme.justia.com/cases/federal/us/380/202/ (Accessed
-  February 2019).
-
-\bibitem[{Supreme Court of the United States}, 1986]{batsonvkentucky}
-{Supreme Court of the United States} (1986).
-\newblock {Batson v. Kentucky}.
-\newblock https://www.law.cornell.edu/supremecourt/text/476/79 (Accessed
-  February 2019).
-
-\bibitem[{Supreme Court of the United States}, 1993]{jebvalabama}
-{Supreme Court of the United States} (1993).
-\newblock {J.E.B. v. Alabama}.
-\newblock https://supreme.justia.com/cases/federal/us/511/127/ (Accessed
-  February 2019).
-
-\bibitem[Tufte, 2001]{VisualDisplayQuant}
-Tufte, E.~R. (2001).
-\newblock {\em The Visual Display of Quantitative Information}.
-\newblock Graphics Press, 2 edition.
-
-\bibitem[Tukey and Wilk, 1966]{tukeywilk1966}
-Tukey, J.~W. and Wilk, M.~B. (1966).
-\newblock Data analysis and statistics: an expository overview.
-\newblock In {\em Proceedings of the November 7-10, 1966, fall joint computer
-  conference}, pages 695--709.
-
-\bibitem[Venables and Ripley, 2002]{nnet}
-Venables, W.~N. and Ripley, B.~D. (2002).
-\newblock {\em Modern Applied Statistics with S}.
-\newblock Springer, New York, fourth edition.
-\newblock ISBN 0-387-95457-0.
 
 \bibitem[Wright et~al., 2018]{JurySunshineProj}
 Wright, R.~F., Chavis, K., and Parks, G.~S. (2018).

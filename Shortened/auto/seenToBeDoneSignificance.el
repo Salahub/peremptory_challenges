@@ -27,28 +27,26 @@
     "times"
     "geometry")
    (TeX-add-symbols
+    '("TODO" 1)
     "R"
     "svthefootnote"
     "thefootnote")
    (LaTeX-add-labels
-    "tab:margrace"
     "eq:vishyp"
     "fig:racedefmob"
-    "fig:racedefci"
     "tab:modcomp"
     "fig:modallcoef"
     "fig:stubcomp"
     "fig:philcomp"
     "fig:suncomp"
-    "fig:racedefalldata"
-    "sec:casesum"
-    "subsec:struckjur"
-    "subsec:vistrend"
-    "fig:trialprodef"
-    "fig:defraceprop"
-    "fig:proraceprop"
-    "fig:defproprop")
+    "fig:racedefalldata")
    (LaTeX-add-bibliographies
-    "myReferences"))
+    "myReferences")
+   (LaTeX-add-color-definecolors
+    "background-color"
+    "steelblue"
+    "brickred"
+    "bluegray"
+    "amethyst"))
  :latex)
 
